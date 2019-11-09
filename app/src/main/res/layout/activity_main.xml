@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="153dp"
         android:layout_marginTop="180dp"
+        android:layout_marginEnd="161dp"
         android:text="New Game"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,4 +28,16 @@
         android:textColor="#332012F1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="96dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="153dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="161dp"
+        android:text="@string/action_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newGameButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

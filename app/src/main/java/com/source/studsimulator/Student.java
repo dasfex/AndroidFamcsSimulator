@@ -14,20 +14,54 @@ public class Student {
 
     }
 
-    // мб добавить енам для каждой характеристики, чтобы методы не плодить
-    public int addCharacteristic(int add) throws IllegalArgumentException {
+    // сделать фикс для невыхода за границы тут и в следующих методах
+    public void addCharacteristic(int add, GameLogic.ECharacteristics characteristic) throws IllegalArgumentException {
         if (add <= 0) {
-            throw new IllegalArgumentException("Addend can't be less than zero.");
+            throw new IllegalArgumentException("Addend can't be less or equal than zero.");
         }
-        money += add;
-        return money;
+        switch (characteristic) {
+            case HEALTH:
+                health += add;
+                break;
+            case HUNGER:
+                hunger += add;
+                break;
+            case EDUCATION_LEVEL:
+                educationLevel += add;
+                break;
+        }
     }
 
-    public int substractCharacteristic(int substract) throws IllegalArgumentException {
+    public void substractCharacteristic(int substract, GameLogic.ECharacteristics characteristic) throws IllegalArgumentException {
         if (substract <= 0) {
-            throw new IllegalArgumentException("Subtrahend can't be less than zero.");
+            throw new IllegalArgumentException("Subtrahend can't be less or equal than zero.");
+        }
+        switch (characteristic) {
+            case HEALTH:
+                health -= substract;
+                break;
+            case HUNGER:
+                hunger -= substract;
+                break;
+            case EDUCATION_LEVEL:
+                educationLevel -= substract;
+                break;
+        }
+    }
+
+    public void addMoney(int add) throws IllegalArgumentException {
+        if (add <= 0) {
+            throw new IllegalArgumentException("Addend can't be less or equal than zero.");
+        }
+        money += add;
+    }
+
+    public void substractMoney(int substract) throws IllegalArgumentException {
+        if (substract <= 0) {
+            throw new IllegalArgumentException("Subtrahend can't be less or equal than zero.");
         }
         money -= substract;
-        return money;
     }
+
+    // методы для получения значений
 }

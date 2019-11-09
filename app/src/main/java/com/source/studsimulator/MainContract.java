@@ -8,10 +8,8 @@ public interface MainContract {
     }
 
     public interface Presenter {
-        int button();
     }
 
     public interface Model {
-        int Inc();
     }
 }

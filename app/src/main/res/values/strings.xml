@@ -8,4 +8,7 @@
     <string name="dollarsCount">0</string>
     <string name="dollarsCostText">Курс:</string>
     <string name="dollarsCost">2</string>
+    <string name="title_activity_information_fragment.xml">activity_information_fragment.xml
+    </string>
+    <string name="action_settings">Settings</string>
 </resources>

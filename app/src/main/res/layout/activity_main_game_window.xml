@@ -95,18 +95,13 @@
         app:layout_constraintStart_toEndOf="@+id/dollarsCostText"
         app:layout_constraintTop_toBottomOf="@+id/ageInformation" />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="412dp"
-        android:layout_height="49dp"
+    <ImageButton
+        android:id="@+id/infoButton"
+        android:layout_width="82dp"
+        android:layout_height="79dp"
+        android:src="@drawable/info"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical" />
-    </HorizontalScrollView>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@drawable/info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

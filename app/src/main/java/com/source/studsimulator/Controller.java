@@ -2,7 +2,6 @@ package com.source.studsimulator;
 
 
 
-
 public class Controller implements MainContract.Presenter {
     private MainContract.Model model;
     private MainContract.View view;
@@ -11,10 +10,4 @@ public class Controller implements MainContract.Presenter {
         view = newView;
         model = newModel;
     }
-
-    @Override
-    public int button() {
-        return model.Inc();
-    }
-
 }
