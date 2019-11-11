@@ -10,4 +10,9 @@ public class Controller implements MainContract.Presenter {
         view = newView;
         model = newModel;
     }
+    @Override
+    public void clickOnEatButton() {}
+
+    @Override
+    public void clickOnLearnButton() {}
 }

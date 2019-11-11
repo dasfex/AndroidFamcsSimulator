@@ -14,7 +14,6 @@ public class Student {
 
     }
 
-    // сделать фикс для невыхода за границы тут и в следующих методах
     public void addCharacteristic(int add, GameLogic.ECharacteristics characteristic) throws IllegalArgumentException {
         if (add <= 0) {
             throw new IllegalArgumentException("Addend can't be less or equal than zero.");
