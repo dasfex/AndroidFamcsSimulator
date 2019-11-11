@@ -8,20 +8,19 @@ public class Student {
     private int dollars = 0;
     private int health = 50;
     private int hunger = 50;
-    private int educationLevel = 50;
+    private int educationLevel = 0;
 
     public Student() {
 
     }
 
-    // сделать фикс для невыхода за границы тут и в следующих методах
     public void addCharacteristic(int add, GameLogic.ECharacteristics characteristic) throws IllegalArgumentException {
         if (add <= 0) {
             throw new IllegalArgumentException("Addend can't be less or equal than zero.");
         }
         switch (characteristic) {
             case HEALTH:
-                health += add;
+                health = Math.min(health + add, 100);
                 break;
             case HUNGER:
                 hunger += add;
@@ -38,7 +37,7 @@ public class Student {
         }
         switch (characteristic) {
             case HEALTH:
-                health -= substract;
+                health = Math.min(health - substract, 0);
                 break;
             case HUNGER:
                 hunger -= substract;
