@@ -19,7 +19,7 @@ public class GameMainWindow extends AppCompatActivity implements MainContract.Vi
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // запускаем фрагмент с информаицей
+                // запускаем фрагмент с информацией
             }
         });
     }
