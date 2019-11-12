@@ -14,6 +14,11 @@ public class GameMainWindow extends AppCompatActivity implements MainContract.Vi
     private Button mEatButton;
     private Button mSleepButton;
     private Button mStudyButton;
+    private Button mWorkButton;
+
+    private TextView mMoney;
+    private TextView mDollars;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,33 +30,37 @@ public class GameMainWindow extends AppCompatActivity implements MainContract.Vi
                 // запускаем фрагмент с информацией
             }
         });
-        mEatButton = findViewById(R.id.eatButton);
-        mEatButton.setText("Сытость: "
-                + controller.getParameter(GameLogic.ECharacteristics.SATIETY));
-        mEatButton.setOnClickListener(v-> {
-            mEatButton.setText("Сытость: "
-                + controller.getParameter(GameLogic.ECharacteristics.SATIETY));
-            controller.clickOnEatButton();
 
+        mMoney = findViewById(R.id.moneyCount);
+        mDollars = findViewById(R.id.dollarsCount);
+
+        mEatButton = findViewById(R.id.eatButton);
+        mEatButton.setText(new StringBuilder().append("Сытость: ").append(controller.getParameter(GameLogic.ECharacteristics.SATIETY)).toString());
+        mEatButton.setOnClickListener(v -> {
+            controller.clickOnEatButton();
         });
+
         mSleepButton = findViewById(R.id.sleepButton);
-        mSleepButton.setText("Здоровье: "
-                + controller.getParameter(GameLogic.ECharacteristics.HEALTH));
+        mSleepButton.setText(new StringBuilder().append("Здоровье: ").append(controller.getParameter(GameLogic.ECharacteristics.HEALTH)).toString());
         mSleepButton.setOnClickListener(
                 v -> {
-                    mSleepButton.setText("Здоровье: "
-                            + controller.getParameter(GameLogic.ECharacteristics.HEALTH));
                     controller.clickOnSleepButton();
                 }
         );
+
         mStudyButton = findViewById(R.id.studyButton);
-        mStudyButton.setText("Успеваймость: "
-                + controller.getParameter(GameLogic.ECharacteristics.EDUCATION_LEVEL));
-        mStudyButton.setOnClickListener(v-> {
-            mStudyButton.setText("Успеваймость: "
-                    + controller.getParameter(GameLogic.ECharacteristics.EDUCATION_LEVEL));
+        mStudyButton.setText(new StringBuilder().append("Успеваемость: ").append(controller.getParameter(GameLogic.ECharacteristics.EDUCATION_LEVEL)).toString());
+        mStudyButton.setOnClickListener(v -> {
             controller.clickOnLearnButton();
         });
+
+
+        mWorkButton = findViewById(R.id.workButton);
+        mWorkButton.setOnClickListener(v -> {
+            controller.clickOnWorkButton();
+        });
+
+
 
     }
 
@@ -63,7 +72,14 @@ public class GameMainWindow extends AppCompatActivity implements MainContract.Vi
 
     @Override
     public void refreshTextInformation() {
-
+        mStudyButton.setText(new StringBuilder().append("Успеваемость: ").append(controller.
+                getParameter(GameLogic.ECharacteristics.EDUCATION_LEVEL)).toString());
+        mSleepButton.setText(new StringBuilder().append("Здоровье: ").append(controller.
+                getParameter(GameLogic.ECharacteristics.HEALTH)).toString());
+        mEatButton.setText(new StringBuilder().append("Сытость: ").append(controller.
+                getParameter(GameLogic.ECharacteristics.SATIETY)).toString());
+        mMoney.setText("" + controller.getParameter(GameLogic.ECharacteristics.MONEY));
+        mDollars.setText("" + controller.getParameter(GameLogic.ECharacteristics.DOLLARS));
     }
 
 }

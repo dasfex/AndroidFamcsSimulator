@@ -23,10 +23,10 @@ public class Student {
                 health = Math.min(health + add, 100);
                 break;
             case SATIETY:
-                satiety = Math.min(health + add, 100);
+                satiety = Math.min(satiety + add, 100);
                 break;
             case EDUCATION_LEVEL:
-                educationLevel = Math.min(health + add, 100);
+                educationLevel = Math.min(educationLevel + add, 100);
                 break;
         }
     }
@@ -40,10 +40,10 @@ public class Student {
                 health = Math.max(health - substract, 0);
                 break;
             case SATIETY:
-                satiety = Math.max(health - substract, 0);
+                satiety = Math.max(satiety - substract, 0);
                 break;
             case EDUCATION_LEVEL:
-                educationLevel = Math.max(health - substract, 0);
+                educationLevel = Math.max(educationLevel - substract, 0);
                 break;
         }
     }

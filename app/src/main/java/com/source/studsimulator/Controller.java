@@ -33,6 +33,12 @@ public class Controller implements MainContract.Presenter {
     }
 
     @Override
+    public void clickOnWorkButton() {
+        model.work();
+        view.refreshTextInformation();
+    }
+
+    @Override
     public int getParameter(GameLogic.ECharacteristics characteristic){
         return model.getParameter(characteristic);
     }

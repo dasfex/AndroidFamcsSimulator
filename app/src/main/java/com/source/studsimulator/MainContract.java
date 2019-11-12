@@ -11,6 +11,7 @@ public interface MainContract {
         void clickOnEatButton();
         void clickOnLearnButton();
         void clickOnSleepButton();
+        void clickOnWorkButton();
         int getParameter(GameLogic.ECharacteristics characteristic);
     }
 
@@ -23,7 +24,6 @@ public interface MainContract {
         void sleep();
         // аналогично тут
         void work();
-//        void makeAction(Controller.EAction action);
-        public int getParameter(GameLogic.ECharacteristics characteristic);
+        int getParameter(GameLogic.ECharacteristics characteristic);
     }
 }
