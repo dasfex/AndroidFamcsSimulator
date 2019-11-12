@@ -21,7 +21,16 @@ public class Controller implements MainContract.Presenter {
     }
 
     @Override
-    public void clickOnLearnButton() {}
+    public void clickOnSleepButton() {
+        model.sleep();
+        view.refreshTextInformation();
+    }
+
+    @Override
+    public void clickOnLearnButton() {
+        model.learn();
+        view.refreshTextInformation();
+    }
 
     @Override
     public int getParameter(GameLogic.ECharacteristics characteristic){

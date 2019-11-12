@@ -12,6 +12,8 @@ public class GameMainWindow extends AppCompatActivity implements MainContract.Vi
     private MainContract.Presenter controller = new Controller(this, new GameLogic());
 
     private Button mEatButton;
+    private Button mSleepButton;
+    private Button mStudyButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,21 +26,44 @@ public class GameMainWindow extends AppCompatActivity implements MainContract.Vi
             }
         });
         mEatButton = findViewById(R.id.eatButton);
-        mEatButton.setText("Сытость: " + 50);
+        mEatButton.setText("Сытость: "
+                + controller.getParameter(GameLogic.ECharacteristics.SATIETY));
+        mEatButton.setOnClickListener(v-> {
+            mEatButton.setText("Сытость: "
+                + controller.getParameter(GameLogic.ECharacteristics.SATIETY));
+            controller.clickOnEatButton();
+
+        });
+        mSleepButton = findViewById(R.id.sleepButton);
+        mSleepButton.setText("Здоровье: "
+                + controller.getParameter(GameLogic.ECharacteristics.HEALTH));
+        mSleepButton.setOnClickListener(
+                v -> {
+                    mSleepButton.setText("Здоровье: "
+                            + controller.getParameter(GameLogic.ECharacteristics.HEALTH));
+                    controller.clickOnSleepButton();
+                }
+        );
+        mStudyButton = findViewById(R.id.studyButton);
+        mStudyButton.setText("Успеваймость: "
+                + controller.getParameter(GameLogic.ECharacteristics.EDUCATION_LEVEL));
+        mStudyButton.setOnClickListener(v-> {
+            mStudyButton.setText("Успеваймость: "
+                    + controller.getParameter(GameLogic.ECharacteristics.EDUCATION_LEVEL));
+            controller.clickOnLearnButton();
+        });
 
     }
 
-    @Override
-    public void refreshTextInformation() {
-        mEatButton.setText("Сытость: " + controller.getParameter(GameLogic.ECharacteristics.SATIETY));
-    }
 
     @Override
     public void refreshGradientInformation() {
 
     }
 
-    public void onEatButtonClick(View view) {
-        controller.clickOnEatButton();
+    @Override
+    public void refreshTextInformation() {
+
     }
+
 }

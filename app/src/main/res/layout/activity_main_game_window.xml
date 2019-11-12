@@ -113,7 +113,26 @@
         android:onClick="onEatButtonClick"
         android:text="@string/satiety"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoButton"
-        tools:srcCompat="@tools:sample/avatars[6]" />
+        app:layout_constraintTop_toBottomOf="@+id/infoButton" />
+
+    <Button
+        android:id="@+id/sleepButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:onClick="onSleepButtonClick"
+        android:text="@string/sleep"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eatButton" />
+
+    <Button
+        android:id="@+id/studyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:onClick="onStudyButtonClick"
+        android:text="@string/study"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sleepButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
