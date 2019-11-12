@@ -100,8 +100,20 @@
         android:layout_width="82dp"
         android:layout_height="79dp"
         android:src="@drawable/info"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:src="@drawable/info" />
+
+    <Button
+        android:id="@+id/eatButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="150dp"
+        android:onClick="onEatButtonClick"
+        android:text="@string/satiety"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoButton"
+        tools:srcCompat="@tools:sample/avatars[6]" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

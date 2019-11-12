@@ -10,6 +10,7 @@ public interface MainContract {
     public interface Presenter {
         void clickOnEatButton();
         void clickOnLearnButton();
+        int getParameter(GameLogic.ECharacteristics characteristic);
     }
 
     public interface Model {
@@ -20,5 +21,6 @@ public interface MainContract {
         void learn();
         // аналогично тут
         void work();
+        int getParameter(GameLogic.ECharacteristics characteristic);
     }
 }

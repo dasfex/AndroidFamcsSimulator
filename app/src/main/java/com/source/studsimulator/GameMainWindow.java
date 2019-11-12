@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class GameMainWindow extends AppCompatActivity implements MainContract.View {
     private MainContract.Presenter controller = new Controller(this, new GameLogic());
 
+    private Button mEatButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,15 +23,22 @@ public class GameMainWindow extends AppCompatActivity implements MainContract.Vi
                 // запускаем фрагмент с информацией
             }
         });
+        mEatButton = findViewById(R.id.eatButton);
+        mEatButton.setText("Сытость: " + 50);
+
     }
 
     @Override
     public void refreshTextInformation() {
-
+        mEatButton.setText("Сытость: " + controller.getParameter(GameLogic.ECharacteristics.SATIETY));
     }
 
     @Override
     public void refreshGradientInformation() {
 
+    }
+
+    public void onEatButtonClick(View view) {
+        controller.clickOnEatButton();
     }
 }

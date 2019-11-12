@@ -7,7 +7,7 @@ public class Student {
     private int money = 50;
     private int dollars = 0;
     private int health = 50;
-    private int hunger = 50;
+    private int satiety = 50;
     private int educationLevel = 0;
 
     public Student() {
@@ -22,11 +22,11 @@ public class Student {
             case HEALTH:
                 health = Math.min(health + add, 100);
                 break;
-            case HUNGER:
-                hunger += add;
+            case SATIETY:
+                satiety = Math.min(health + add, 100);
                 break;
             case EDUCATION_LEVEL:
-                educationLevel += add;
+                educationLevel = Math.min(health + add, 100);
                 break;
         }
     }
@@ -37,13 +37,13 @@ public class Student {
         }
         switch (characteristic) {
             case HEALTH:
-                health = Math.min(health - substract, 0);
+                health = Math.max(health - substract, 0);
                 break;
-            case HUNGER:
-                hunger -= substract;
+            case SATIETY:
+                satiety = Math.max(health - substract, 0);
                 break;
             case EDUCATION_LEVEL:
-                educationLevel -= substract;
+                educationLevel = Math.max(health - substract, 0);
                 break;
         }
     }
@@ -60,6 +60,22 @@ public class Student {
             throw new IllegalArgumentException("Subtrahend can't be less or equal than zero.");
         }
         money -= substract;
+    }
+
+    public int getParameter(GameLogic.ECharacteristics characteristic){
+        switch (characteristic) {
+            case HEALTH:
+                return health;
+            case SATIETY:
+                return satiety;
+            case EDUCATION_LEVEL:
+                return educationLevel;
+            case MONEY:
+                return money;
+            case DOLLARS:
+                return dollars;
+        }
+        return 0;
     }
 
     // методы для получения значений
