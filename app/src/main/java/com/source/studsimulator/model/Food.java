@@ -1,8 +1,8 @@
-package com.source.studsimulator;
+package com.source.studsimulator.model;
 
 public class Food extends Price {
 
-    Food(int price, String title, int satiety) {
+    public Food(int price, String title, int satiety) {
         setPrice(price);
         this.title = title;
         this.satiety = satiety;

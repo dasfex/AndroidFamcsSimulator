@@ -1,5 +1,9 @@
-package com.source.studsimulator;
+package com.source.studsimulator.relation;
 
+
+import com.source.studsimulator.model.Food;
+import com.source.studsimulator.model.GameLogic;
+import com.source.studsimulator.model.Price;
 
 public interface MainContract {
     public interface View {

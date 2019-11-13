@@ -1,15 +1,17 @@
-package com.source.studsimulator;
+package com.source.studsimulator.model;
 
+
+import com.source.studsimulator.relation.MainContract;
 
 public class GameLogic implements MainContract.Model {
     private Student student;
     private double dollarsCost = 2;
 
-    enum ECharacteristics {
+    public enum ECharacteristics {
         EDUCATION_LEVEL, HEALTH, SATIETY, MONEY, DOLLARS
     }
 
-    GameLogic() {
+    public GameLogic() {
         student = new Student();
     }
 
