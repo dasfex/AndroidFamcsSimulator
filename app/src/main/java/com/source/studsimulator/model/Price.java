@@ -1,4 +1,4 @@
-package com.source.studsimulator;
+package com.source.studsimulator.model;
 
 public class Price {
 

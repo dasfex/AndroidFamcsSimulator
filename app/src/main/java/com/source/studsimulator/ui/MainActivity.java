@@ -1,4 +1,4 @@
-package com.source.studsimulator;
+package com.source.studsimulator.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.source.studsimulator.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         newGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent newIntent = new Intent(MainActivity.this, GameMainWindow.class);
+                Intent newIntent = new Intent(MainActivity.this, GameLobbyActivity.class);
                 MainActivity.this.startActivity(newIntent);
             }
         });

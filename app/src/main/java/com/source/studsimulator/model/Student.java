@@ -1,4 +1,4 @@
-package com.source.studsimulator;
+package com.source.studsimulator.model;
 
 import java.lang.IllegalArgumentException;
 

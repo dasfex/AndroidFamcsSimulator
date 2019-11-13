@@ -1,6 +1,8 @@
-package com.source.studsimulator;
+package com.source.studsimulator.relation;
 
 
+import com.source.studsimulator.model.Food;
+import com.source.studsimulator.model.GameLogic;
 
 public class Controller implements MainContract.Presenter {
 
@@ -10,7 +12,7 @@ public class Controller implements MainContract.Presenter {
     private MainContract.Model model;
     private MainContract.View view;
 
-    Controller(MainContract.View newView, MainContract.Model newModel) {
+    public Controller(MainContract.View newView, MainContract.Model newModel) {
         view = newView;
         model = newModel;
     }
