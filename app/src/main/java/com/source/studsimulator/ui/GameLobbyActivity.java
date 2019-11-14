@@ -8,13 +8,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.source.studsimulator.relation.MainContract;
+import com.source.studsimulator.relation.GameContract;
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.GameLogic;
-import com.source.studsimulator.relation.Controller;
+import com.source.studsimulator.relation.GamePresenter;
+import com.source.studsimulator.ui.entity.PlayerStats;
 
-public class GameLobbyActivity extends AppCompatActivity implements MainContract.View {
-    private MainContract.Presenter controller = new Controller(this, new GameLogic());
+public class GameLobbyActivity extends AppCompatActivity implements GameContract.View {
+
+    private GameContract.Presenter presenter = new GamePresenter(this, new GameLogic());
 
     private Button eatButton;
     private Button sleepButton;
@@ -27,7 +29,7 @@ public class GameLobbyActivity extends AppCompatActivity implements MainContract
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_game_window);
+        setContentView(R.layout.game_lobby_activity);
         ImageButton info = findViewById(R.id.infoButton);
         info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,37 +37,36 @@ public class GameLobbyActivity extends AppCompatActivity implements MainContract
                 // запускаем фрагмент с информацией
             }
         });
+        initPlayerStatsView();
+        presenter.viewCreated();
+    }
 
+    private void initPlayerStatsView() {
         moneyTextView = findViewById(R.id.moneyCount);
         dollarsTextView = findViewById(R.id.dollarsCount);
 
         eatButton = findViewById(R.id.eatButton);
-        eatButton.setText(new StringBuilder().append("Сытость: ").append(controller.getParameter(GameLogic.ECharacteristics.SATIETY)).toString());
         eatButton.setOnClickListener(v -> {
-            controller.clickOnEatButton();
+            presenter.clickOnEatButton();
         });
 
         sleepButton = findViewById(R.id.sleepButton);
-        sleepButton.setText(new StringBuilder().append("Здоровье: ").append(controller.getParameter(GameLogic.ECharacteristics.HEALTH)).toString());
         sleepButton.setOnClickListener(
                 v -> {
-                    controller.clickOnSleepButton();
+                    presenter.clickOnSleepButton();
                 }
         );
 
         studyButton = findViewById(R.id.studyButton);
-        studyButton.setText(new StringBuilder().append("Успеваемость: ").append(controller.getParameter(GameLogic.ECharacteristics.EDUCATION_LEVEL)).toString());
         studyButton.setOnClickListener(v -> {
-            controller.clickOnLearnButton();
+            presenter.clickOnLearnButton();
         });
-
 
         workButton = findViewById(R.id.workButton);
         workButton.setOnClickListener(v -> {
-            controller.clickOnWorkButton();
+            presenter.clickOnWorkButton();
         });
     }
-
 
     @Override
     public void refreshGradientInformation() {
@@ -73,14 +74,11 @@ public class GameLobbyActivity extends AppCompatActivity implements MainContract
     }
 
     @Override
-    public void refreshTextInformation() {
-        studyButton.setText(new StringBuilder().append("Успеваемость: ").append(controller.
-                getParameter(GameLogic.ECharacteristics.EDUCATION_LEVEL)).toString());
-        sleepButton.setText(new StringBuilder().append("Здоровье: ").append(controller.
-                getParameter(GameLogic.ECharacteristics.HEALTH)).toString());
-        eatButton.setText(new StringBuilder().append("Сытость: ").append(controller.
-                getParameter(GameLogic.ECharacteristics.SATIETY)).toString());
-        moneyTextView.setText("" + controller.getParameter(GameLogic.ECharacteristics.MONEY));
-        dollarsTextView.setText("" + controller.getParameter(GameLogic.ECharacteristics.DOLLARS));
+    public void refreshPlayerStats(PlayerStats stats) {
+        studyButton.setText(String.format(getString(R.string.study), stats.getEducationLevel()));
+        sleepButton.setText(String.format(getString(R.string.sleep), stats.getHealth()));
+        eatButton.setText(String.format(getString(R.string.satiety), stats.getSatiety()));
+        moneyTextView.setText(stats.getMoney());
+        dollarsTextView.setText(stats.getDollars());
     }
 }

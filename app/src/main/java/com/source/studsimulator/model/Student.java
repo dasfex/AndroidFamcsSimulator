@@ -4,6 +4,7 @@ import java.lang.IllegalArgumentException;
 
 
 public class Student {
+
     private int money = 50;
     private int dollars = 0;
     private int health = 50;
@@ -14,7 +15,7 @@ public class Student {
 
     }
 
-    public void addCharacteristic(int add, GameLogic.ECharacteristics characteristic) throws IllegalArgumentException {
+    public void addCharacteristic(int add, GameLogic.PlayerStats characteristic) throws IllegalArgumentException {
         if (add <= 0) {
             throw new IllegalArgumentException("Addend can't be less or equal than zero.");
         }
@@ -31,7 +32,7 @@ public class Student {
         }
     }
 
-    public void substractCharacteristic(int substract, GameLogic.ECharacteristics characteristic) throws IllegalArgumentException {
+    public void substractCharacteristic(int substract, GameLogic.PlayerStats characteristic) throws IllegalArgumentException {
         if (substract <= 0) {
             throw new IllegalArgumentException("Subtrahend can't be less or equal than zero.");
         }
@@ -62,7 +63,7 @@ public class Student {
         money -= substract;
     }
 
-    public int getParameter(GameLogic.ECharacteristics characteristic){
+    public int getParameter(GameLogic.PlayerStats characteristic){
         switch (characteristic) {
             case HEALTH:
                 return health;
