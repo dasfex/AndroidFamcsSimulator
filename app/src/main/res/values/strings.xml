@@ -10,8 +10,8 @@
     <string name="dollarsCostText">Курс:</string>
     <string name="dollarsCost">2</string>
     <string name="action_settings">Settings</string>
-    <string name="satiety">Сытость:</string>
-    <string name="sleep">Здоровье:</string>
-    <string name="study">Успеваемость:</string>
+    <string name="satiety">Сытость: %s</string>
+    <string name="sleep">Здоровье: %s</string>
+    <string name="study">Успеваемость: %s</string>
     <string name="work">Работать</string>
 </resources>

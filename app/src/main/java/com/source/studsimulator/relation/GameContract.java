@@ -1,33 +1,35 @@
 package com.source.studsimulator.relation;
 
 
-import com.source.studsimulator.model.Food;
+import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.GameLogic;
-import com.source.studsimulator.model.Price;
+import com.source.studsimulator.model.entity.Payable;
 
-public interface MainContract {
-    public interface View {
-        void refreshTextInformation();
+public interface GameContract {
+
+    interface View {
+        void refreshPlayerStats(com.source.studsimulator.ui.entity.PlayerStats playerStats);
         void refreshGradientInformation();
     }
 
-    public interface Presenter {
+    interface Presenter {
+        void viewCreated();
         void clickOnEatButton();
         void clickOnLearnButton();
         void clickOnSleepButton();
         void clickOnWorkButton();
-        int getParameter(GameLogic.ECharacteristics characteristic);
+        int getParameter(GameLogic.PlayerStats characteristic);
     }
 
-    public interface Model {
+    interface Model {
         void eat(Food food);
-        void pay(Price price);
+        void pay(Payable payable);
         // как и с едой, добавить класс для методов обучения
         // и передавать его далее
         void learn();
         void sleep();
         // аналогично тут
         void work();
-        int getParameter(GameLogic.ECharacteristics characteristic);
+        int getParameter(GameLogic.PlayerStats characteristic);
     }
 }
