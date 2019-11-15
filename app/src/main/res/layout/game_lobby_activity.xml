@@ -35,17 +35,6 @@
         app:layout_constraintStart_toEndOf="@+id/ageTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="411dp"
-        android:layout_height="47dp"
-        android:background="@android:color/transparent"
-        android:minHeight="?attr/actionBarSize"
-        android:scrollbarThumbHorizontal="@android:color/transparent"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/moneyCount"
         android:layout_width="wrap_content"
@@ -65,42 +54,29 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:src="@drawable/info" />
 
-    <Button
-        android:id="@+id/eatButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="150dp"
-        android:text="@string/satiety"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <Button
-        android:id="@+id/sleepButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/sleep"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eatButton" />
-
-    <Button
-        android:id="@+id/studyButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/study"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sleepButton" />
-
-    <Button
-        android:id="@+id/workButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragmentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginStart="1dp"
         android:layout_marginTop="50dp"
-        android:text="@string/work"
-        app:layout_constraintTop_toBottomOf="@id/studyButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/infoButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moneyText"
+        app:layout_constraintVertical_bias="0.473">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/foodButton"
+        android:layout_width="82dp"
+        android:layout_height="79dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/infoButton"
+        app:srcCompat="@drawable/food_img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
