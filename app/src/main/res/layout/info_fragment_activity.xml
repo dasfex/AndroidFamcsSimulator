@@ -6,10 +6,5 @@
     android:layout_height="match_parent"
     tools:context=".ui.InfoFragment"
     android:background="#7700ff00">
-    <FrameLayout
-        android:id="@+id/infoFrg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

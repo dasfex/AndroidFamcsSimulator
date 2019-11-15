@@ -10,4 +10,5 @@
     <string name="sleep">Здоровье: %s</string>
     <string name="study">Успеваемость: %s</string>
     <string name="work">Работать</string>
+    <string name="foodString">Еда</string>
 </resources>

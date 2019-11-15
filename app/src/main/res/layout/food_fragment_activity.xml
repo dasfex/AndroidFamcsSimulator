@@ -4,12 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.InfoFragment"
+    tools:context=".ui.FoodFragment"
     android:background="#77ff0000">
-    <FrameLayout
-        android:id="@+id/foodFrg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
