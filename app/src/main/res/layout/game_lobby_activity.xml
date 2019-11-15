@@ -79,4 +79,12 @@
         app:layout_constraintStart_toEndOf="@+id/infoButton"
         app:srcCompat="@drawable/food_img" />
 
+    <ImageButton
+        android:id="@+id/studyButton"
+        android:layout_width="82dp"
+        android:layout_height="79dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/foodButton"
+        app:srcCompat="@drawable/study_img" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
