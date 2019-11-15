@@ -2,6 +2,7 @@ package com.source.studsimulator.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,26 +25,26 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     private Button workButton;
 
     private TextView moneyTextView;
-    private TextView dollarsTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_lobby_activity);
-        ImageButton info = findViewById(R.id.infoButton);
-        info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // запускаем фрагмент с информацией
-            }
-        });
+
         initPlayerStatsView();
         presenter.viewCreated();
     }
 
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.infoButton:
+
+        }
+    }
+
     private void initPlayerStatsView() {
         moneyTextView = findViewById(R.id.moneyCount);
-        dollarsTextView = findViewById(R.id.dollarsCount);
 
         eatButton = findViewById(R.id.eatButton);
         eatButton.setOnClickListener(v -> {
@@ -79,6 +80,5 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         sleepButton.setText(String.format(getString(R.string.sleep), stats.getHealth()));
         eatButton.setText(String.format(getString(R.string.satiety), stats.getSatiety()));
         moneyTextView.setText(stats.getMoney());
-        dollarsTextView.setText(stats.getDollars());
     }
 }

@@ -6,14 +6,12 @@ public class PlayerStats {
     private String health;
     private String satiety;
     private String money;
-    private String dollars;
 
-    public PlayerStats(String educationLevel, String health, String satiety, String money, String dollars) {
+    public PlayerStats(String educationLevel, String health, String satiety, String money) {
         this.educationLevel = educationLevel;
         this.health = health;
         this.satiety = satiety;
         this.money = money;
-        this.dollars = dollars;
     }
 
     public String getEducationLevel() {
@@ -46,13 +44,5 @@ public class PlayerStats {
 
     public void setMoney(String money) {
         this.money = money;
-    }
-
-    public String getDollars() {
-        return dollars;
-    }
-
-    public void setDollars(String dollars) {
-        this.dollars = dollars;
     }
 }

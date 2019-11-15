@@ -4,11 +4,7 @@
     <string name="age">Возраст:</string>
     <string name="actualAge">18 лет 0 дней</string>
     <string name="moneyText">Деньги</string>
-    <string name="dollarsText">Валюта</string>
     <string name="moneyCount">50</string>
-    <string name="dollarsCount">0</string>
-    <string name="dollarsCostText">Курс:</string>
-    <string name="dollarsCost">2</string>
     <string name="action_settings">Settings</string>
     <string name="satiety">Сытость: %s</string>
     <string name="sleep">Здоровье: %s</string>

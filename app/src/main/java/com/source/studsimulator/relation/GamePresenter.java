@@ -25,7 +25,7 @@ public class GamePresenter implements GameContract.Presenter {
 
     @Override
     public void clickOnEatButton() {
-        model.eat(new Food(10, "Apple", 10));
+        model.eat(new Food(10, "Apple", 10, 10));
         updatePlayerStats();
     }
 
@@ -53,12 +53,12 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     private void updatePlayerStats() {
-        com.source.studsimulator.ui.entity.PlayerStats playerStats = new com.source.studsimulator.ui.entity.PlayerStats(
+        com.source.studsimulator.ui.entity.PlayerStats playerStats = new
+                com.source.studsimulator.ui.entity.PlayerStats(
                 String.valueOf(getParameter(GameLogic.PlayerStats.EDUCATION_LEVEL)),
                 String.valueOf(getParameter(GameLogic.PlayerStats.HEALTH)),
                 String.valueOf(getParameter(GameLogic.PlayerStats.SATIETY)),
-                String.valueOf(getParameter(GameLogic.PlayerStats.MONEY)),
-                String.valueOf(getParameter(GameLogic.PlayerStats.DOLLARS)));
+                String.valueOf(getParameter(GameLogic.PlayerStats.MONEY)));
         view.refreshPlayerStats(playerStats);
     }
 }

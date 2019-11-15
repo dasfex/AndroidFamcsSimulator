@@ -11,7 +11,7 @@ public class GameLogic implements GameContract.Model {
     private double dollarsCost = 2;
 
     public enum PlayerStats {
-        EDUCATION_LEVEL, HEALTH, SATIETY, MONEY, DOLLARS
+        EDUCATION_LEVEL, HEALTH, SATIETY, MONEY
     }
 
     public GameLogic() {
@@ -24,34 +24,34 @@ public class GameLogic implements GameContract.Model {
 
     @Override
     public void work() {
-        student.substractCharacteristic(5, PlayerStats.HEALTH);
-        student.addMoney(15);
+        student.changeHealth(-5);
+        student.changeMoney(15);
     }
 
     // обсудим, нужно ли нам это
     @Override
     public void sleep() {
-        student.addCharacteristic(50, PlayerStats.HEALTH);
-        student.substractCharacteristic(20, PlayerStats.SATIETY);
+        student.changeHealth(50);
+        student.changeSatiety(-20);
     }
 
     @Override
     public void eat(Food food) {
-        student.addCharacteristic(food.getSatiety(), PlayerStats.SATIETY);
-        student.addCharacteristic(10, PlayerStats.HEALTH);
+        student.changeSatiety(food.getSatietyChanging());
+        student.changeHealth(food.getHealthChanging());
         pay(food);
     }
 
     @Override
     public void pay(Payable payable) {
-        student.substractMoney(payable.getPrice().toInt());
+        student.changeMoney(-payable.getPrice().toInt());
     }
 
     @Override
     public void learn() {
-        student.addCharacteristic(15, PlayerStats.EDUCATION_LEVEL);
-        student.substractCharacteristic(5, PlayerStats.HEALTH);
-        student.substractCharacteristic(5, PlayerStats.SATIETY);
+        student.changeEducationLevel(15);
+        student.changeHealth(-5);
+        student.changeSatiety(-5);
     }
 
     @Override

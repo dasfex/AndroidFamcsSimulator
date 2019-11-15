@@ -3,15 +3,22 @@ package com.source.studsimulator.model.entity;
 public class Food implements Payable {
 
     private Price price;
+    private String title;
+    private int satietyChanging;
+    private int healthChanging;
 
-    public Food(int price, String title, int satiety) {
+    public Food(int price, String title, int satiety, int health) throws IllegalArgumentException {
+        if (satiety <= 0) {
+            //return new IllegalArgumentException("Food can't have negative satiety.");
+        }
         this.price = new Price(price);
         this.title = title;
-        this.satiety = satiety;
+        this.satietyChanging = satiety;
+        this.healthChanging = health;
     }
 
-    public int getSatiety() {
-        return satiety;
+    public int getSatietyChanging() {
+        return satietyChanging;
     }
 
     public String getTitle() {
@@ -22,6 +29,5 @@ public class Food implements Payable {
         return price;
     }
 
-    private String title;
-    private int satiety;
+    public int getHealthChanging() {return healthChanging; }
 }

@@ -6,7 +6,6 @@ import java.lang.IllegalArgumentException;
 public class Student {
 
     private int money = 50;
-    private int dollars = 0;
     private int health = 50;
     private int satiety = 50;
     private int educationLevel = 0;
@@ -15,55 +14,28 @@ public class Student {
 
     }
 
-    public void addCharacteristic(int add, GameLogic.PlayerStats characteristic) throws IllegalArgumentException {
-        if (add <= 0) {
-            throw new IllegalArgumentException("Addend can't be less or equal than zero.");
-        }
-        switch (characteristic) {
-            case HEALTH:
-                health = Math.min(health + add, 100);
-                break;
-            case SATIETY:
-                satiety = Math.min(satiety + add, 100);
-                break;
-            case EDUCATION_LEVEL:
-                educationLevel = Math.min(educationLevel + add, 100);
-                break;
-        }
+    public void changeHealth(int change) {
+        health += change;
     }
 
-    public void substractCharacteristic(int substract, GameLogic.PlayerStats characteristic) throws IllegalArgumentException {
-        if (substract <= 0) {
-            throw new IllegalArgumentException("Subtrahend can't be less or equal than zero.");
-        }
-        switch (characteristic) {
-            case HEALTH:
-                health = Math.max(health - substract, 0);
-                break;
-            case SATIETY:
-                satiety = Math.max(satiety - substract, 0);
-                break;
-            case EDUCATION_LEVEL:
-                educationLevel = Math.max(educationLevel - substract, 0);
-                break;
-        }
+    public void changeSatiety(int change) {
+        satiety += change;
     }
 
-    public void addMoney(int add) throws IllegalArgumentException {
-        if (add <= 0) {
-            throw new IllegalArgumentException("Addend can't be less or equal than zero.");
-        }
-        money += add;
+    public void changeEducationLevel(int change) { educationLevel += change; }
+
+    public void changeMoney(int change) { money += change; }
+
+    public void normalizeCharacteristics() {
+        health = Math.min(health, 100);
+        satiety = Math.min(satiety, 100);
+        educationLevel = Math.min(educationLevel, 100);
+        health = Math.max(health, 0);
+        satiety = Math.max(satiety, 0);
+        educationLevel = Math.max(educationLevel, 0);
     }
 
-    public void substractMoney(int substract) throws IllegalArgumentException {
-        if (substract <= 0) {
-            throw new IllegalArgumentException("Subtrahend can't be less or equal than zero.");
-        }
-        money -= substract;
-    }
-
-    public int getParameter(GameLogic.PlayerStats characteristic){
+    public int getParameter(GameLogic.PlayerStats characteristic) {
         switch (characteristic) {
             case HEALTH:
                 return health;
@@ -73,11 +45,8 @@ public class Student {
                 return educationLevel;
             case MONEY:
                 return money;
-            case DOLLARS:
-                return dollars;
         }
         return 0;
     }
 
-    // методы для получения значений
 }
