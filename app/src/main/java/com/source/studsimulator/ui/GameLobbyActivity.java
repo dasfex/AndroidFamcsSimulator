@@ -26,10 +26,13 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     ImageButton infoButton;
     ImageButton foodButton;
     ImageButton studyButton;
+    ImageButton workButton;
 
     Fragment informationFragment;
     Fragment foodFragment;
     Fragment studyFragment;
+    Fragment workFragment;
+
     FragmentTransaction fragmentTransaction;
 
     @Override
@@ -40,10 +43,12 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         informationFragment = new InfoFragment();
         foodFragment = new FoodFragment();
         studyFragment = new StudyFragment();
+        workFragment = new WorkFragment();
 
         infoButton = findViewById(R.id.infoButton);
         foodButton = findViewById(R.id.foodButton);
         studyButton = findViewById(R.id.studyButton);
+        workButton = findViewById(R.id.workButton);
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentLayout, informationFragment).commit();
 
@@ -100,6 +105,17 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
                 if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != studyFragment) {
                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.fragmentLayout, studyFragment);
+                    fragmentTransaction.commit();
+                }
+            }
+        });
+
+        workButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != workFragment) {
+                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentLayout, workFragment);
                     fragmentTransaction.commit();
                 }
             }
