@@ -32,6 +32,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     Fragment foodFragment;
     Fragment studyFragment;
     Fragment workFragment;
+
     FragmentTransaction fragmentTransaction;
 
     @Override
@@ -43,10 +44,12 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         foodFragment = new FoodFragment();
         studyFragment = new StudyFragment();
         workFragment = new WorkFragment();
+
         infoButton = findViewById(R.id.infoButton);
         foodButton = findViewById(R.id.foodButton);
         studyButton = findViewById(R.id.studyButton);
         workButton = findViewById(R.id.workButton);
+
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentLayout, informationFragment).commit();
 
         setOnClickListenersForFragmentButtons();
