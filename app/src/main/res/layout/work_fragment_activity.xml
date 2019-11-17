@@ -5,4 +5,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#a80f00"
-    tools:context=".ui.WorkFragment"/>
+    tools:context=".ui.WorkFragment">
+
+    <Button
+        android:id="@+id/flyers"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="91dp"
+        android:background="@android:color/white"
+        android:text="Раздавать флаеры"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/loader"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:background="@android:color/white"
+        android:text="Разгружать вагоны"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flyers" />
+
+    <Button
+        android:id="@+id/musician"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:background="@android:color/white"
+        android:text="Играть в переходах"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/security" />
+
+    <Button
+        android:id="@+id/security"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:background="@android:color/white"
+        android:text="Подменить друга в клубе"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loader" />
+
+    <Button
+        android:id="@+id/freelancer"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:background="@android:color/white"
+        android:text="Пофрилансить"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/musician" />
+
+    <Button
+        android:id="@+id/itransition"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:background="@android:color/white"
+        android:text="Jtransition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mcdonalds" />
+
+    <Button
+        android:id="@+id/yandex"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:background="@android:color/white"
+        android:text="Тындекс"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itransition" />
+
+    <Button
+        android:id="@+id/facebook"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:background="@android:color/white"
+        android:text="Стажа Хэндбук"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yandex" />
+
+    <Button
+        android:id="@+id/mcdonalds"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:background="@android:color/white"
+        android:text="МакДак"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/freelancer" />
+</androidx.constraintlayout.widget.ConstraintLayout>

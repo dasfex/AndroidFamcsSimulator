@@ -1,8 +1,8 @@
 <resources>
     <string name="new_game">New Game</string>
     <string name="app_name">FAMCS Student simulator</string>
-    <string name="age">Возраст:</string>
-    <string name="actualAge">18 лет 0 дней</string>
+    <string name="gameTime">Время: </string>
+    <string name="actualTime">1 неделя</string>
     <string name="moneyText">Деньги</string>
     <string name="moneyCount">50</string>
     <string name="action_settings">Settings</string>
@@ -11,4 +11,16 @@
     <string name="study">Успеваемость: %s</string>
     <string name="work">Работать</string>
     <string name="foodString">Еда</string>
+
+    <string name="newWeek">Прожить неделю!</string>
+
+    <string name="foodHdrTxtView1">Выбери способ подкрепиться!</string>
+    <string name="getNeighbourFood">Брать у соседа</string>
+    <string name="doshik">Кушать дошик</string>
+    <string name="goToStolovaya">Ходить в столовую</string>
+    <string name="cook">Готовить самому</string>
+    <string name="fastfood">Питаться фастфудом</string>
+    <string name="sushi">Есть суши</string>
+    <string name="burgerstwo">Покупать бургеры за 2000</string>
+
 </resources>
