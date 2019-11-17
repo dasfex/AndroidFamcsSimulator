@@ -4,7 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.InfoFragment"
-    android:background="#7700ff00">
+    android:background="#7700ff00"
+    tools:context=".ui.InfoFragment">
+
+    <Button
+        android:id="@+id/newWeekButton"
+        android:layout_width="272dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="583dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="102dp"
+        android:backgroundTint="#10BE04"
+        android:text="@string/newWeek"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

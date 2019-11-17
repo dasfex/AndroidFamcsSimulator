@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     private GameContract.Presenter presenter = new GamePresenter(this, new GameLogic());
 
     private TextView moneyTextView;
+    private TextView timeTextView;
 
     ImageButton infoButton;
     ImageButton foodButton;
@@ -39,6 +41,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_lobby_activity);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         informationFragment = new InfoFragment();
         foodFragment = new FoodFragment();
@@ -60,7 +63,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
 
     private void initPlayerStatsView() {
         moneyTextView = findViewById(R.id.moneyCount);
-
+        timeTextView = findViewById(R.id.actualTime);
     }
 
     @Override
@@ -74,6 +77,11 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         //sleepButton.setText(String.format(getString(R.string.sleep), stats.getHealth()));
         //eatButton.setText(String.format(getString(R.string.satiety), stats.getSatiety()));
         moneyTextView.setText(stats.getMoney());
+    }
+
+    public void newWeek() {
+        presenter.clickOnNewWeekButton();
+        // тут изменять неделю
     }
 
     private void setOnClickListenersForFragmentButtons() {

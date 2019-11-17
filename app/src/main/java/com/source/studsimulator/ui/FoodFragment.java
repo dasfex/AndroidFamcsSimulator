@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,9 @@ public class FoodFragment extends Fragment {
 
     private final int BUTTONS_COUNT = 7;
 
-    public enum BUTTONS {
+    public enum FOOD_BUTTONS {
         NEGHBOUR, DOSHIK, STOLOVAYA, COOK, FASTFOOD, SUSHI, BURGERS;
-    };
+    }
 
     private ArrayList<Button> buttons = new ArrayList<>();
     private ArrayList<Boolean> isButtonActivated = new ArrayList<>();
@@ -28,6 +29,14 @@ public class FoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.food_fragment_activity, null);
+
+
+        // надо тут разобраться с жизненным циклом
+        // и нормально методы поперегружать
+        // а пока такая заглушка
+
+        isButtonActivated.clear();
+        buttons.clear();
 
         for (int i = 0; i < BUTTONS_COUNT; ++i) {
             isButtonActivated.add(false);
@@ -41,12 +50,18 @@ public class FoodFragment extends Fragment {
         buttons.add(view.findViewById(R.id.sushiButton));
         buttons.add(view.findViewById(R.id.burgersButton));
 
-        colorAndDisactivateButtons();
-
         addButtonsListeners();
+
+        colorAndDisactivateButtons();
 
         return view;
     }
+
+    /*@Override
+    public View onResumeView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+    }*/
 
     private void colorAndDisactivateButtons() {
         for (int i = 0; i < BUTTONS_COUNT; ++i) {
@@ -61,16 +76,24 @@ public class FoodFragment extends Fragment {
         isButtonActivated.set(ind, true);
     }
 
-    private int getIndexOfButton(BUTTONS BUTTON) {
+    private int getIndexOfButton(FOOD_BUTTONS BUTTON) {
         switch (BUTTON) {
-            case NEGHBOUR: return 0;
-            case DOSHIK: return 1;
-            case STOLOVAYA: return 2;
-            case COOK: return 3;
-            case FASTFOOD: return 4;
-            case SUSHI: return 5;
-            case BURGERS: return 6;
-            default: return -1;
+            case NEGHBOUR:
+                return 0;
+            case DOSHIK:
+                return 1;
+            case STOLOVAYA:
+                return 2;
+            case COOK:
+                return 3;
+            case FASTFOOD:
+                return 4;
+            case SUSHI:
+                return 5;
+            case BURGERS:
+                return 6;
+            default:
+                return -1;
         }
     }
 

@@ -24,6 +24,11 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
+    public void clickOnNewWeekButton() {
+        model.newWeek();
+    }
+
+    @Override
     public void clickOnEatButton() {
         model.eat(new Food(10, "Apple", 10, 10));
         updatePlayerStats();
@@ -50,6 +55,11 @@ public class GamePresenter implements GameContract.Presenter {
     @Override
     public int getParameter(GameLogic.PlayerStats characteristic) {
         return model.getParameter(characteristic);
+    }
+
+    @Override
+    public int getWeek() {
+        return model.getWeek();
     }
 
     private void updatePlayerStats() {

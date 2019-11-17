@@ -14,14 +14,17 @@ public interface GameContract {
 
     interface Presenter {
         void viewCreated();
+        void clickOnNewWeekButton();
         void clickOnEatButton();
         void clickOnLearnButton();
         void clickOnSleepButton();
         void clickOnWorkButton();
         int getParameter(GameLogic.PlayerStats characteristic);
+        int getWeek();
     }
 
     interface Model {
+        void newWeek();
         void eat(Food food);
         void pay(Payable payable);
         // как и с едой, добавить класс для методов обучения
@@ -31,5 +34,6 @@ public interface GameContract {
         // аналогично тут
         void work();
         int getParameter(GameLogic.PlayerStats characteristic);
+        int getWeek();
     }
 }
