@@ -17,14 +17,11 @@ public class FoodFragment extends Fragment {
 
     private final int BUTTONS_COUNT = 7;
 
-    private Button neighbourButton;
-    private Button doshikButton;
-    private Button stolovayaButton;
-    private Button cookButton;
-    private Button fastfoodButton;
-    private Button sushiButton;
-    private Button burgersButton;
+    public enum BUTTONS {
+        NEGHBOUR, DOSHIK, STOLOVAYA, COOK, FASTFOOD, SUSHI, BURGERS;
+    };
 
+    private ArrayList<Button> buttons = new ArrayList<>();
     private ArrayList<Boolean> isButtonActivated = new ArrayList<>();
 
     @Override
@@ -36,13 +33,13 @@ public class FoodFragment extends Fragment {
             isButtonActivated.add(false);
         }
 
-        neighbourButton = view.findViewById(R.id.neighbourButton);
-        doshikButton = view.findViewById(R.id.doshikButton);
-        stolovayaButton = view.findViewById(R.id.stolovayaButton);
-        cookButton = view.findViewById(R.id.cookButton);
-        fastfoodButton = view.findViewById(R.id.fastfoodButton);
-        sushiButton = view.findViewById(R.id.sushiButton);
-        burgersButton = view.findViewById(R.id.burgersButton);
+        buttons.add(view.findViewById(R.id.neighbourButton));
+        buttons.add(view.findViewById(R.id.doshikButton));
+        buttons.add(view.findViewById(R.id.stolovayaButton));
+        buttons.add(view.findViewById(R.id.cookButton));
+        buttons.add(view.findViewById(R.id.fastfoodButton));
+        buttons.add(view.findViewById(R.id.sushiButton));
+        buttons.add(view.findViewById(R.id.burgersButton));
 
         colorAndDisactivateButtons();
 
@@ -54,79 +51,42 @@ public class FoodFragment extends Fragment {
     private void colorAndDisactivateButtons() {
         for (int i = 0; i < BUTTONS_COUNT; ++i) {
             isButtonActivated.set(i, false);
+            buttons.get(i).setBackgroundColor(Color.WHITE);
         }
+    }
 
-        neighbourButton.setBackgroundColor(Color.WHITE);
-        doshikButton.setBackgroundColor(Color.WHITE);
-        stolovayaButton.setBackgroundColor(Color.WHITE);
-        cookButton.setBackgroundColor(Color.WHITE);
-        fastfoodButton.setBackgroundColor(Color.WHITE);
-        sushiButton.setBackgroundColor(Color.WHITE);
-        burgersButton.setBackgroundColor(Color.WHITE);
+    private void activateButton(int ind) {
+        colorAndDisactivateButtons();
+        buttons.get(ind).setBackgroundColor(Color.GREEN);
+        isButtonActivated.set(ind, true);
+    }
+
+    private int getIndexOfButton(BUTTONS BUTTON) {
+        switch (BUTTON) {
+            case NEGHBOUR: return 0;
+            case DOSHIK: return 1;
+            case STOLOVAYA: return 2;
+            case COOK: return 3;
+            case FASTFOOD: return 4;
+            case SUSHI: return 5;
+            case BURGERS: return 6;
+            default: return -1;
+        }
     }
 
     private void addButtonsListeners() {
-        neighbourButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                colorAndDisactivateButtons();
-                neighbourButton.setBackgroundColor(Color.GREEN);
-                isButtonActivated.set(0, true);
-            }
-        });
-
-        doshikButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                colorAndDisactivateButtons();
-                doshikButton.setBackgroundColor(Color.GREEN);
-                isButtonActivated.set(1, true);
-            }
-        });
-
-        stolovayaButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                colorAndDisactivateButtons();
-                stolovayaButton.setBackgroundColor(Color.GREEN);
-                isButtonActivated.set(2, true);
-            }
-        });
-
-        cookButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                colorAndDisactivateButtons();
-                cookButton.setBackgroundColor(Color.GREEN);
-                isButtonActivated.set(3, true);
-            }
-        });
-
-        fastfoodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                colorAndDisactivateButtons();
-                fastfoodButton.setBackgroundColor(Color.GREEN);
-                isButtonActivated.set(4, true);
-            }
-        });
-
-        sushiButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                colorAndDisactivateButtons();
-                sushiButton.setBackgroundColor(Color.GREEN);
-                isButtonActivated.set(5, true);
-            }
-        });
-
-        burgersButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                colorAndDisactivateButtons();
-                burgersButton.setBackgroundColor(Color.GREEN);
-                isButtonActivated.set(6, true);
-            }
-        });
+        for (int i = 0; i < BUTTONS_COUNT; ++i) {
+            int finalI = i;
+            buttons.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isButtonActivated.get(finalI)) {
+                        colorAndDisactivateButtons();
+                    } else {
+                        activateButton(finalI);
+                    }
+                }
+            });
+        }
     }
 }
