@@ -18,7 +18,8 @@ import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.relation.GamePresenter;
 import com.source.studsimulator.ui.entity.PlayerStats;
 
-public class GameLobbyActivity extends AppCompatActivity implements GameContract.View {
+public class GameLobbyActivity extends AppCompatActivity implements GameContract.View,
+        InfoFragment.OnInformationFragmentListener {
 
     private GameContract.Presenter presenter = new GamePresenter(this, new GameLogic());
 
@@ -83,17 +84,19 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         moneyTextView.setText(stats.getMoney());
     }
 
-    public void newWeek() {
-        presenter.clickOnNewWeekButton();
-        // тут изменять неделю
-    }
-
     private void replaceFragment(Fragment fragment) {
         if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != fragment) {
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragmentLayout, fragment);
             fragmentTransaction.commit();
         }
+    }
+
+    @Override
+    public void onNewWeekClicked() {
+        presenter.clickOnNewWeekButton();
+        timeTextView.setText(String.valueOf(presenter.getWeek()) + "ая неделя");
+        // тут изменять неделю
     }
 
     private void setOnClickListenersForFragmentButtons() {
