@@ -11,4 +11,14 @@
     <string name="study">Успеваемость: %s</string>
     <string name="work">Работать</string>
     <string name="foodString">Еда</string>
+
+    <string name="foodHdrTxtView1">Выбери способ подкрепиться!</string>
+    <string name="getNeighbourFood">Брать у соседа</string>
+    <string name="doshik">Кушать дошик</string>
+    <string name="goToStolovaya">Ходить в столовую</string>
+    <string name="cook">Готовить самому</string>
+    <string name="fastfood">Питаться фастфудом</string>
+    <string name="sushi">Есть суши</string>
+    <string name="burgerstwo">Покупать бургеры за 2000</string>
+
 </resources>
