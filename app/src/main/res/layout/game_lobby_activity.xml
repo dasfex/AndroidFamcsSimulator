@@ -95,4 +95,12 @@
         app:layout_constraintStart_toEndOf="@+id/studyButton"
         app:srcCompat="@drawable/work_img" />
 
+    <ImageButton
+        android:id="@+id/hobbyButton"
+        android:layout_width="82dp"
+        android:layout_height="79dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/workButton"
+        app:srcCompat="@drawable/info" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
