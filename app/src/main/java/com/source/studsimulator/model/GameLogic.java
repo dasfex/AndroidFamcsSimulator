@@ -8,7 +8,7 @@ import com.source.studsimulator.relation.GameContract;
 public class GameLogic implements GameContract.Model {
 
     private Student student;
-    private double dollarsCost = 2;
+    private int gameTime = 1;
 
     public enum PlayerStats {
         EDUCATION_LEVEL, HEALTH, SATIETY, MONEY
@@ -16,6 +16,12 @@ public class GameLogic implements GameContract.Model {
 
     public GameLogic() {
         student = new Student();
+    }
+
+    @Override
+    public void newWeek() {
+        // тут чекаем результаты всей недели
+        gameTime += 1;
     }
 
     // тут и далее показаны примерный план работы каждого метода
@@ -42,6 +48,7 @@ public class GameLogic implements GameContract.Model {
         pay(food);
     }
 
+    // важно не потерять минус, т.к. метод ИЗМЕНЯЕТ на заданную величину
     @Override
     public void pay(Payable payable) {
         student.changeMoney(-payable.getPrice().toInt());
@@ -57,5 +64,10 @@ public class GameLogic implements GameContract.Model {
     @Override
     public int getParameter(PlayerStats characteristic){
         return student.getParameter(characteristic);
+    }
+
+    @Override
+    public int getWeek() {
+        return gameTime;
     }
 }
