@@ -45,15 +45,6 @@
         app:layout_constraintStart_toEndOf="@+id/moneyText"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/infoButton"
-        android:layout_width="82dp"
-        android:layout_height="79dp"
-        android:src="@drawable/info"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:src="@drawable/info" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragmentLayout"
         android:layout_width="match_parent"
@@ -62,7 +53,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/infoButton"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,36 +62,62 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageButton
-        android:id="@+id/foodButton"
-        android:layout_width="82dp"
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
         android:layout_height="79dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/infoButton"
-        app:srcCompat="@drawable/food_img" />
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <ImageButton
-        android:id="@+id/studyButton"
-        android:layout_width="82dp"
-        android:layout_height="79dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/foodButton"
-        app:srcCompat="@drawable/study_img" />
+        <ImageButton
+            android:id="@+id/infoButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="20"
+            android:src="@drawable/info"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/info" />
 
-    <ImageButton
-        android:id="@+id/workButton"
-        android:layout_width="82dp"
-        android:layout_height="79dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/studyButton"
-        app:srcCompat="@drawable/work_img" />
+        <ImageButton
+            android:id="@+id/foodButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/infoButton"
+            app:srcCompat="@drawable/food_img" />
 
-    <ImageButton
-        android:id="@+id/hobbyButton"
-        android:layout_width="82dp"
-        android:layout_height="79dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/workButton"
-        app:srcCompat="@drawable/hobby_img" />
+        <ImageButton
+            android:id="@+id/studyButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/foodButton"
+            app:srcCompat="@drawable/study_img" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/workButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/studyButton"
+            app:srcCompat="@drawable/work_img" />
+
+        <ImageButton
+            android:id="@+id/hobbyButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/workButton"
+            app:srcCompat="@drawable/hobby_img" />
+    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
