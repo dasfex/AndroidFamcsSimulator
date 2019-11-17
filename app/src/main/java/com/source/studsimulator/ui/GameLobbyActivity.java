@@ -29,11 +29,13 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     ImageButton foodButton;
     ImageButton studyButton;
     ImageButton workButton;
+    ImageButton hobbyButton;
 
     Fragment informationFragment;
     Fragment foodFragment;
     Fragment studyFragment;
     Fragment workFragment;
+    Fragment hobbyFragment;
 
     FragmentTransaction fragmentTransaction;
 
@@ -47,11 +49,13 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         foodFragment = new FoodFragment();
         studyFragment = new StudyFragment();
         workFragment = new WorkFragment();
+        hobbyFragment = new HobbyFragment();
 
         infoButton = findViewById(R.id.infoButton);
         foodButton = findViewById(R.id.foodButton);
         studyButton = findViewById(R.id.studyButton);
         workButton = findViewById(R.id.workButton);
+        hobbyButton = findViewById(R.id.hobbyButton);
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentLayout, informationFragment).commit();
 
@@ -124,6 +128,17 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
                 if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != workFragment) {
                     fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.fragmentLayout, workFragment);
+                    fragmentTransaction.commit();
+                }
+            }
+        });
+
+        hobbyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != hobbyFragment) {
+                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentLayout, hobbyFragment);
                     fragmentTransaction.commit();
                 }
             }
