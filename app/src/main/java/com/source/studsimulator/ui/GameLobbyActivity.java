@@ -88,59 +88,47 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         // тут изменять неделю
     }
 
+    private void replaceFragment(Fragment fragment) {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != fragment) {
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentLayout, fragment);
+            fragmentTransaction.commit();
+        }
+    }
+
     private void setOnClickListenersForFragmentButtons() {
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != informationFragment) {
-                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentLayout, informationFragment);
-                    fragmentTransaction.commit();
-                }
+                replaceFragment(informationFragment);
             }
         });
 
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != foodFragment) {
-                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentLayout, foodFragment);
-                    fragmentTransaction.commit();
-                }
+                replaceFragment(foodFragment);
             }
         });
 
         studyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != studyFragment) {
-                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentLayout, studyFragment);
-                    fragmentTransaction.commit();
-                }
+                replaceFragment(studyFragment);
             }
         });
 
         workButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != workFragment) {
-                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentLayout, workFragment);
-                    fragmentTransaction.commit();
-                }
+                replaceFragment(workFragment);
             }
         });
 
         hobbyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getSupportFragmentManager().findFragmentById(R.id.fragmentLayout) != hobbyFragment) {
-                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentLayout, hobbyFragment);
-                    fragmentTransaction.commit();
-                }
+                replaceFragment(hobbyFragment);
             }
         });
     }
