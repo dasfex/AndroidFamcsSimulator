@@ -101,6 +101,6 @@
         android:layout_height="79dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/workButton"
-        app:srcCompat="@drawable/info" />
+        app:srcCompat="@drawable/hobby_img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
