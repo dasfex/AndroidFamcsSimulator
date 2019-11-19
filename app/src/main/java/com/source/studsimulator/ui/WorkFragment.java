@@ -1,5 +1,6 @@
 package com.source.studsimulator.ui;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.graphics.Color;
@@ -7,11 +8,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.source.studsimulator.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class WorkFragment extends Fragment {
 
@@ -21,9 +24,14 @@ public class WorkFragment extends Fragment {
 //        YANDEX, FACEBOOK
 //    }
 
+    public enum BUTTON_STATE {
+        ACTIVE, ACCECIBLE, INACCESIBLE
+    }
+
     private ArrayList<Button> buttons = new ArrayList<>();
     private ArrayList<Button> works = new ArrayList<>();
-    private ArrayList<Boolean> isButtonActivated = new ArrayList<>();
+    private ArrayList<BUTTON_STATE> isButtonActivated = new ArrayList<>();
+    private static final String BUTTON_COLOR = "BUTTON_COLOR_KEY";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,35 +57,56 @@ public class WorkFragment extends Fragment {
         works.add(view.findViewById(R.id.yandex));
         works.add(view.findViewById(R.id.mcdonalds));
 
-        for (int i = 0; i < buttons.size(); ++i) {
-            isButtonActivated.add(false);
+        if (isButtonActivated.size() == 0) {
+            for (int i = 0; i < workbuttons.size(); ++i) {
+                isButtonActivated.add(BUTTON_STATE.ACCECIBLE);
+            }
         }
 
+        onActivityCreated(null);
         addButtonsListeners();
 
         return view;
     }
 
-    private void activateOtherWorks(int index) {
-        if (works.contains(buttons.get(index))) {
-            for (int j = 0; j < works.size(); ++j) {
-                if (works.get(j) != buttons.get(index)) {
-                    works.get(j).setClickable(false);
-                    works.get(j).setBackgroundColor(Color.LTGRAY);
-                }
-
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        for (int i = 0; i < isButtonActivated.size(); ++i) {
+            switch (isButtonActivated.get(i)) {
+                case ACCECIBLE:
+                    buttons.get(i).setBackgroundColor(Color.WHITE);
+                    break;
+                case INACCESIBLE:
+                    buttons.get(i).setBackgroundColor(Color.LTGRAY);
+                    break;
+                case ACTIVE:
+                    buttons.get(i).setBackgroundColor(Color.GRAY);
+                    break;
             }
         }
     }
 
-    private void disactivatedOtherWorks(int index) {
+    private void activateOtherWorks(int index) {
         if (works.contains(buttons.get(index))) {
-            for (int j = 0; j < works.size(); ++j) {
-                if (works.get(j) != buttons.get(index)) {
-                    works.get(j).setClickable(true);
-                    works.get(j).setBackgroundColor(Color.WHITE);
+            for (android.widget.Button button : works) {
+                if (button != buttons.get(index)) {
+                    button.setClickable(false);
+                    button.setBackgroundColor(Color.LTGRAY);
+                    isButtonActivated.set(buttons.indexOf(button), BUTTON_STATE.INACCESIBLE);
                 }
+            }
+        }
+    }
 
+    private void disactivateOtherWorks(int index) {
+        if (works.contains(buttons.get(index))) {
+            for (android.widget.Button button : works) {
+                if (button != buttons.get(index)) {
+                    button.setClickable(true);
+                    button.setBackgroundColor(Color.WHITE);
+                    isButtonActivated.set(buttons.indexOf(button), BUTTON_STATE.ACCECIBLE);
+                }
             }
         }
     }
@@ -88,14 +117,14 @@ public class WorkFragment extends Fragment {
             buttons.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!isButtonActivated.get(finalI)) {
+                    if (isButtonActivated.get(finalI) == BUTTON_STATE.ACCECIBLE) {
                         buttons.get(finalI).setBackgroundColor(Color.GRAY);
                         activateOtherWorks(finalI);
-                        isButtonActivated.set(finalI, true);
+                        isButtonActivated.set(finalI, BUTTON_STATE.ACTIVE);
                     } else {
-                        isButtonActivated.set(finalI, false);
+                        isButtonActivated.set(finalI, BUTTON_STATE.ACCECIBLE);
                         buttons.get(finalI).setBackgroundColor(Color.WHITE);
-                        disactivatedOtherWorks(finalI);
+                        disactivateOtherWorks(finalI);
                     }
                 }
             });

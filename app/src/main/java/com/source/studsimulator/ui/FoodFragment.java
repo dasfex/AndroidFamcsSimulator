@@ -21,7 +21,7 @@ public class FoodFragment extends Fragment {
     }
 
     private ArrayList<Button> buttons = new ArrayList<>();
-    private ArrayList<Boolean> isButtonActivated = new ArrayList<>();
+    private int numberOfActivatedButton = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,7 +32,6 @@ public class FoodFragment extends Fragment {
         // и нормально методы поперегружать
         // а пока такая заглушка
 
-        isButtonActivated.clear();
         buttons.clear();
 
         buttons.add(view.findViewById(R.id.neighbourButton));
@@ -48,29 +47,25 @@ public class FoodFragment extends Fragment {
         }
 
         addButtonsListeners();
-
         colorAndDisactivateButtons();
 
         return view;
     }
 
-    /*@Override
-    public View onResumeView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-    }*/
-
     private void colorAndDisactivateButtons() {
-        for (int i = 0; i < buttons.size(); ++i) {
-            isButtonActivated.set(i, false);
-            buttons.get(i).setBackgroundColor(Color.WHITE);
+        if (numberOfActivatedButton != -1) {
+            buttons.get(numberOfActivatedButton).setBackgroundColor(Color.GREEN);
+        }
+        for (int i = 0; i < BUTTONS_COUNT; ++i) {
+            if (i != numberOfActivatedButton) {
+                buttons.get(i).setBackgroundColor(Color.WHITE);
+            }
         }
     }
 
     private void activateButton(int ind) {
+        numberOfActivatedButton = ind;
         colorAndDisactivateButtons();
-        buttons.get(ind).setBackgroundColor(Color.GREEN);
-        isButtonActivated.set(ind, true);
     }
 
     private int getIndexOfButton(FOOD_BUTTONS BUTTON) {
@@ -100,7 +95,8 @@ public class FoodFragment extends Fragment {
             buttons.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (isButtonActivated.get(finalI)) {
+                    if (numberOfActivatedButton == finalI) {
+                        numberOfActivatedButton = -1;
                         colorAndDisactivateButtons();
                     } else {
                         activateButton(finalI);

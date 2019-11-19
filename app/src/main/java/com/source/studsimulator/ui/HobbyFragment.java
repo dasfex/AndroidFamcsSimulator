@@ -19,25 +19,25 @@ public class HobbyFragment extends Fragment {
         READ, DANCE, BEER, FILM, VOTE
     }
 
-    private ArrayList<Button> buttons = new ArrayList<>();
-    private ArrayList<Boolean> isButtonActivated = new ArrayList<>();
+    private ArrayList<Button> lonelyHobbyButtons = new ArrayList<>();
+    private ArrayList<Boolean> isLonelyButtonActivated = new ArrayList<>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hobby_fragment_activity, null);
 
         // !!!
-        isButtonActivated.clear();
-        buttons.clear();
+        isLonelyButtonActivated.clear();
+        lonelyHobbyButtons.clear();
 
-        buttons.add(view.findViewById(R.id.readButton));
-        buttons.add(view.findViewById(R.id.danceButton));
-        buttons.add(view.findViewById(R.id.beerButton));
-        buttons.add(view.findViewById(R.id.filmButton));
-        buttons.add(view.findViewById(R.id.voteButton));
+        lonelyHobbyButtons.add(view.findViewById(R.id.readButton));
+        lonelyHobbyButtons.add(view.findViewById(R.id.danceButton));
+        lonelyHobbyButtons.add(view.findViewById(R.id.beerButton));
+        lonelyHobbyButtons.add(view.findViewById(R.id.filmButton));
+        lonelyHobbyButtons.add(view.findViewById(R.id.voteButton));
 
         for (int i = 0; i < buttons.size(); ++i) {
-            isButtonActivated.add(false);
+            isLonelyButtonActivated.add(false);
         }
 
         addButtonListeners();
@@ -48,15 +48,15 @@ public class HobbyFragment extends Fragment {
     private void addButtonListeners() {
         for (int i = 0; i < buttons.size(); ++i) {
             int finalI = i;
-            buttons.get(i).setOnClickListener(new View.OnClickListener() {
+            lonelyHobbyButtons.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!isButtonActivated.get(finalI)) {
-                        buttons.get(finalI).setBackgroundColor(0x7700ff00);
-                        isButtonActivated.set(finalI, true);
+                    if (!isLonelyButtonActivated.get(finalI)) {
+                        lonelyHobbyButtons.get(finalI).setBackgroundColor(0x7700ff00);
+                        isLonelyButtonActivated.set(finalI, true);
                     } else {
-                        buttons.get(finalI).setBackgroundColor(Color.WHITE);
-                        isButtonActivated.set(finalI, false);
+                        lonelyHobbyButtons.get(finalI).setBackgroundColor(Color.WHITE);
+                        isLonelyButtonActivated.set(finalI, false);
                     }
                 }
             });
