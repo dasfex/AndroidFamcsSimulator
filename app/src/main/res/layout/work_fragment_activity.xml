@@ -8,111 +8,111 @@
     tools:context=".ui.WorkFragment">
 
     <Button
-        android:id="@+id/flyers"
+        android:id="@+id/flyersButton"
         android:layout_width="230dp"
         android:layout_height="36dp"
         android:layout_marginStart="90dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="91dp"
         android:background="@android:color/white"
-        android:text="Раздавать флаеры"
+        android:text="@string/flyers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/loader"
+        android:id="@+id/loaderButton"
         android:layout_width="230dp"
         android:layout_height="36dp"
         android:layout_marginStart="90dp"
         android:layout_marginEnd="91dp"
         android:background="@android:color/white"
-        android:text="Разгружать вагоны"
+        android:text="@string/loader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flyers" />
+        app:layout_constraintTop_toBottomOf="@+id/flyersButton" />
 
     <Button
-        android:id="@+id/musician"
+        android:id="@+id/musicianButton"
         android:layout_width="230dp"
         android:layout_height="36dp"
         android:layout_marginStart="90dp"
         android:layout_marginEnd="91dp"
         android:background="@android:color/white"
-        android:text="Играть в переходах"
+        android:text="@string/musician"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/security" />
+        app:layout_constraintTop_toBottomOf="@+id/securityButton" />
 
     <Button
-        android:id="@+id/security"
+        android:id="@+id/securityButton"
         android:layout_width="230dp"
         android:layout_height="36dp"
         android:layout_marginStart="90dp"
         android:layout_marginEnd="91dp"
         android:background="@android:color/white"
-        android:text="Подменить друга в клубе"
+        android:text="@string/security"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loader" />
+        app:layout_constraintTop_toBottomOf="@+id/loaderButton" />
 
     <Button
-        android:id="@+id/freelancer"
+        android:id="@+id/freelancerButton"
         android:layout_width="230dp"
         android:layout_height="36dp"
         android:layout_marginStart="90dp"
         android:layout_marginEnd="91dp"
         android:background="@android:color/white"
-        android:text="Пофрилансить"
+        android:text="@string/freelancer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/musician" />
+        app:layout_constraintTop_toBottomOf="@+id/musicianButton" />
 
     <Button
-        android:id="@+id/itransition"
+        android:id="@+id/itransitionButton"
         android:layout_width="230dp"
         android:layout_height="36dp"
         android:layout_marginStart="90dp"
         android:layout_marginEnd="91dp"
         android:background="@android:color/white"
-        android:text="Jtransition"
+        android:text="@string/itra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mcdonalds" />
+        app:layout_constraintTop_toBottomOf="@+id/mcdonaldsButton" />
 
     <Button
-        android:id="@+id/yandex"
+        android:id="@+id/yandexButton"
         android:layout_width="230dp"
         android:layout_height="36dp"
         android:layout_marginStart="90dp"
         android:layout_marginEnd="91dp"
         android:background="@android:color/white"
-        android:text="Тындекс"
+        android:text="@string/yandex"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itransition" />
+        app:layout_constraintTop_toBottomOf="@+id/itransitionButton" />
 
     <Button
-        android:id="@+id/facebook"
+        android:id="@+id/facebookButton"
         android:layout_width="230dp"
         android:layout_height="36dp"
         android:layout_marginStart="90dp"
         android:layout_marginEnd="91dp"
         android:background="@android:color/white"
-        android:text="Стажа Хэндбук"
+        android:text="@string/facebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yandex" />
+        app:layout_constraintTop_toBottomOf="@+id/yandexButton" />
 
     <Button
-        android:id="@+id/mcdonalds"
+        android:id="@+id/mcdonaldsButton"
         android:layout_width="230dp"
         android:layout_height="36dp"
         android:layout_marginStart="90dp"
         android:layout_marginEnd="91dp"
         android:background="@android:color/white"
-        android:text="МакДак"
+        android:text="@string/mcdonalds"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freelancer" />
+        app:layout_constraintTop_toBottomOf="@+id/freelancerButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

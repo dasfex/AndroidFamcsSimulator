@@ -31,4 +31,14 @@
     <string name="film">посмотреть фильмец в одиночестве</string>
     <string name="vote">сходить на выборы</string>
 
+    <string name="flyers">Раздавать флаеры</string>
+    <string name="loader">Разгружать вагоны</string>
+    <string name="musician">Играть в переходах</string>
+    <string name="security">Подменить друга в клубе</string>
+    <string name="freelancer">Пофрилансить</string>
+    <string name="itra">Jtransition</string>
+    <string name="yandex">Тындекс</string>
+    <string name="mcdonalds">МакДак</string>
+    <string name="facebook">Стажа Хэндбук</string>
+
 </resources>

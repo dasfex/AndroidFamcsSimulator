@@ -19,44 +19,64 @@ public class HobbyFragment extends Fragment {
         READ, DANCE, BEER, FILM, VOTE
     }
 
-    private ArrayList<Button> lonelyHobbyButtons = new ArrayList<>();
-    private ArrayList<Boolean> isLonelyButtonActivated = new ArrayList<>();
+    public enum BUTTON_STATE {
+        ACTIVE, ACCECIBLE
+    }
+
+    private ArrayList<Button> lonelyButtons = new ArrayList<>();
+    private ArrayList<BUTTON_STATE> isLonelyButtonActivated = new ArrayList<>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hobby_fragment_activity, null);
 
-        // !!!
-        isLonelyButtonActivated.clear();
-        lonelyHobbyButtons.clear();
+        lonelyButtons.clear();
 
-        lonelyHobbyButtons.add(view.findViewById(R.id.readButton));
-        lonelyHobbyButtons.add(view.findViewById(R.id.danceButton));
-        lonelyHobbyButtons.add(view.findViewById(R.id.beerButton));
-        lonelyHobbyButtons.add(view.findViewById(R.id.filmButton));
-        lonelyHobbyButtons.add(view.findViewById(R.id.voteButton));
+        lonelyButtons.add(view.findViewById(R.id.readButton));
+        lonelyButtons.add(view.findViewById(R.id.danceButton));
+        lonelyButtons.add(view.findViewById(R.id.beerButton));
+        lonelyButtons.add(view.findViewById(R.id.filmButton));
+        lonelyButtons.add(view.findViewById(R.id.voteButton));
 
-        for (int i = 0; i < lonelyHobbyButtons.size(); ++i) {
-            isLonelyButtonActivated.add(false);
+        if (isLonelyButtonActivated.size() == 0) {
+            for (int i = 0; i < lonelyButtons.size(); ++i) {
+                isLonelyButtonActivated.add(BUTTON_STATE.ACCECIBLE);
+            }
         }
 
+        onActivityCreated(null);
         addButtonListeners();
 
         return view;
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        for (int i = 0; i < isLonelyButtonActivated.size(); ++i) {
+            switch (isLonelyButtonActivated.get(i)) {
+                case ACCECIBLE:
+                    lonelyButtons.get(i).setBackgroundColor(Color.WHITE);
+                    break;
+                case ACTIVE:
+                    lonelyButtons.get(i).setBackgroundColor(Color.GREEN);
+                    break;
+            }
+        }
+    }
+
     private void addButtonListeners() {
-        for (int i = 0; i < lonelyHobbyButtons.size(); ++i) {
+        for (int i = 0; i < lonelyButtons.size(); ++i) {
             int finalI = i;
-            lonelyHobbyButtons.get(i).setOnClickListener(new View.OnClickListener() {
+            lonelyButtons.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!isLonelyButtonActivated.get(finalI)) {
-                        lonelyHobbyButtons.get(finalI).setBackgroundColor(0x7700ff00);
-                        isLonelyButtonActivated.set(finalI, true);
+                    if (isLonelyButtonActivated.get(finalI) == BUTTON_STATE.ACCECIBLE) {
+                        lonelyButtons.get(finalI).setBackgroundColor(Color.GREEN);
+                        isLonelyButtonActivated.set(finalI, BUTTON_STATE.ACTIVE);
                     } else {
-                        lonelyHobbyButtons.get(finalI).setBackgroundColor(Color.WHITE);
-                        isLonelyButtonActivated.set(finalI, false);
+                        lonelyButtons.get(finalI).setBackgroundColor(Color.WHITE);
+                        isLonelyButtonActivated.set(finalI, BUTTON_STATE.ACCECIBLE);
                     }
                 }
             });

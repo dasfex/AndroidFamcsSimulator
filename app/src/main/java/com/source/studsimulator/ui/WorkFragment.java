@@ -1,6 +1,5 @@
 package com.source.studsimulator.ui;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.graphics.Color;
@@ -8,21 +7,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.source.studsimulator.R;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class WorkFragment extends Fragment {
 
 
-    //    public enum WORK_BUTTONS {
-//        FLUERS, LOADER, SECURITY, MUSICIAN, FREELANC, MCDONALDS, ITRANSITION,
-//        YANDEX, FACEBOOK
-//    }
+    public enum WORK_BUTTONS {
+        FLYERS, LOADER, SECURITY, MUSICIAN, FREELANCER,
+        MCDONALDS, ITRANSITION, YANDEX,
+        FACEBOOK
+    }
 
     public enum BUTTON_STATE {
         ACTIVE, ACCECIBLE, INACCESIBLE
@@ -31,7 +29,7 @@ public class WorkFragment extends Fragment {
     private ArrayList<Button> buttons = new ArrayList<>();
     private ArrayList<Button> works = new ArrayList<>();
     private ArrayList<BUTTON_STATE> isButtonActivated = new ArrayList<>();
-    private static final String BUTTON_COLOR = "BUTTON_COLOR_KEY";
+    private static final String BUTTON_COLOR = "BUTTON_COLOR_KEY"; //  на самом деле тут hex число
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,19 +40,19 @@ public class WorkFragment extends Fragment {
         works.clear();
         buttons.clear();
 
-        buttons.add(view.findViewById(R.id.flyers));
-        buttons.add(view.findViewById(R.id.loader));
-        buttons.add(view.findViewById(R.id.security));
-        buttons.add(view.findViewById(R.id.musician));
-        buttons.add(view.findViewById(R.id.freelancer));
-        buttons.add(view.findViewById(R.id.mcdonalds));
-        buttons.add(view.findViewById(R.id.itransition));
-        buttons.add(view.findViewById(R.id.yandex));
-        buttons.add(view.findViewById(R.id.facebook));
+        buttons.add(view.findViewById(R.id.flyersButton));
+        buttons.add(view.findViewById(R.id.loaderButton));
+        buttons.add(view.findViewById(R.id.securityButton));
+        buttons.add(view.findViewById(R.id.musicianButton));
+        buttons.add(view.findViewById(R.id.freelancerButton));
+        buttons.add(view.findViewById(R.id.mcdonaldsButton));
+        buttons.add(view.findViewById(R.id.itransitionButton));
+        buttons.add(view.findViewById(R.id.yandexButton));
+        buttons.add(view.findViewById(R.id.facebookButton));
 
-        works.add(view.findViewById(R.id.itransition));
-        works.add(view.findViewById(R.id.yandex));
-        works.add(view.findViewById(R.id.mcdonalds));
+        works.add(view.findViewById(R.id.itransitionButton));
+        works.add(view.findViewById(R.id.yandexButton));
+        works.add(view.findViewById(R.id.mcdonaldsButton));
 
         if (isButtonActivated.size() == 0) {
             for (int i = 0; i < buttons.size(); ++i) {
