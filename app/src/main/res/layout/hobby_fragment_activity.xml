@@ -66,35 +66,35 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/read"
+            android:id="@+id/readButton"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:text="@string/read" />
 
         <Button
-            android:id="@+id/dance"
+            android:id="@+id/danceButton"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:text="@string/dance" />
 
         <Button
-            android:id="@+id/beer"
+            android:id="@+id/beerButton"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:text="@string/beer" />
 
         <Button
-            android:id="@+id/film"
+            android:id="@+id/filmButton"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:text="@string/film" />
 
         <Button
-            android:id="@+id/vote"
+            android:id="@+id/voteButton"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
