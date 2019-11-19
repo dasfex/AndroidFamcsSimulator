@@ -36,7 +36,7 @@ public class HobbyFragment extends Fragment {
         lonelyHobbyButtons.add(view.findViewById(R.id.filmButton));
         lonelyHobbyButtons.add(view.findViewById(R.id.voteButton));
 
-        for (int i = 0; i < buttons.size(); ++i) {
+        for (int i = 0; i < lonelyHobbyButtons.size(); ++i) {
             isLonelyButtonActivated.add(false);
         }
 
@@ -46,7 +46,7 @@ public class HobbyFragment extends Fragment {
     }
 
     private void addButtonListeners() {
-        for (int i = 0; i < buttons.size(); ++i) {
+        for (int i = 0; i < lonelyHobbyButtons.size(); ++i) {
             int finalI = i;
             lonelyHobbyButtons.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override

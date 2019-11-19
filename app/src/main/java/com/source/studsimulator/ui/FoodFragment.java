@@ -42,10 +42,6 @@ public class FoodFragment extends Fragment {
         buttons.add(view.findViewById(R.id.sushiButton));
         buttons.add(view.findViewById(R.id.burgersButton));
 
-        for (int i = 0; i < buttons.size(); ++i) {
-            isButtonActivated.add(false);
-        }
-
         addButtonsListeners();
         colorAndDisactivateButtons();
 
@@ -56,7 +52,7 @@ public class FoodFragment extends Fragment {
         if (numberOfActivatedButton != -1) {
             buttons.get(numberOfActivatedButton).setBackgroundColor(Color.GREEN);
         }
-        for (int i = 0; i < BUTTONS_COUNT; ++i) {
+        for (int i = 0; i < buttons.size(); ++i) {
             if (i != numberOfActivatedButton) {
                 buttons.get(i).setBackgroundColor(Color.WHITE);
             }

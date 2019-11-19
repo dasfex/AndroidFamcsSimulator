@@ -41,7 +41,6 @@ public class WorkFragment extends Fragment {
 
         works.clear();
         buttons.clear();
-        isButtonActivated.clear();
 
         buttons.add(view.findViewById(R.id.flyers));
         buttons.add(view.findViewById(R.id.loader));
@@ -58,7 +57,7 @@ public class WorkFragment extends Fragment {
         works.add(view.findViewById(R.id.mcdonalds));
 
         if (isButtonActivated.size() == 0) {
-            for (int i = 0; i < workbuttons.size(); ++i) {
+            for (int i = 0; i < buttons.size(); ++i) {
                 isButtonActivated.add(BUTTON_STATE.ACCECIBLE);
             }
         }
