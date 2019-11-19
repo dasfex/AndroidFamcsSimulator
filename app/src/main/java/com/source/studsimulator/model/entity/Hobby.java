@@ -1,15 +1,16 @@
 package com.source.studsimulator.model.entity;
 
-public class Food implements Payable {
+
+public class Hobby implements Payable {
 
     private String title;
     private Price price;
     private int satietyChanging;
-    private int healthChanging;
+    private int moodChanging;
 
-    public Food(int price, String title, int satiety, int health) throws IllegalArgumentException {
-        if (satiety <= 0) {
-            throw new IllegalArgumentException("Food can't have nonpositive satiety.");
+    public Hobby(int price, String title, int moodChanging, int satietyChanging) throws IllegalArgumentException {
+        if (moodChanging <= 0) {
+            throw new IllegalArgumentException("Hobby can't have nonpositive mood changing.");
         }
         if (price < 0) {
             throw new IllegalArgumentException("Price can't be less than zero.");
@@ -19,12 +20,12 @@ public class Food implements Payable {
         }
         this.price = new Price(price);
         this.title = title;
-        this.satietyChanging = satiety;
-        this.healthChanging = health;
+        this.moodChanging = moodChanging;
+        this.satietyChanging = satietyChanging;
     }
 
-    public int getSatietyChanging() {
-        return satietyChanging;
+    public int getMoodChanging() {
+        return moodChanging;
     }
 
     public String getTitle() {
@@ -35,5 +36,5 @@ public class Food implements Payable {
         return price;
     }
 
-    public int getHealthChanging() {return healthChanging; }
+    public int getSatietyChanging() {return satietyChanging; }
 }
