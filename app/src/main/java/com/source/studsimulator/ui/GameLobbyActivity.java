@@ -95,8 +95,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     @Override
     public void onNewWeekClicked() {
         presenter.clickOnNewWeekButton();
-        timeTextView.setText(String.valueOf(presenter.getWeek()) + "ая неделя");
-        // тут изменять неделю
+        timeTextView.setText(String.format("%dая неделя", presenter.getWeek()));
     }
 
     private void setOnClickListenersForFragmentButtons() {

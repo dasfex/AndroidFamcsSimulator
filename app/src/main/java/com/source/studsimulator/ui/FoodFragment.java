@@ -16,8 +16,6 @@ import java.util.ArrayList;
 
 public class FoodFragment extends Fragment {
 
-    private final int BUTTONS_COUNT = 7;
-
     public enum FOOD_BUTTONS {
         NEGHBOUR, DOSHIK, STOLOVAYA, COOK, FASTFOOD, SUSHI, BURGERS;
     }
@@ -30,17 +28,12 @@ public class FoodFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.food_fragment_activity, null);
 
-
         // надо тут разобраться с жизненным циклом
         // и нормально методы поперегружать
         // а пока такая заглушка
 
         isButtonActivated.clear();
         buttons.clear();
-
-        for (int i = 0; i < BUTTONS_COUNT; ++i) {
-            isButtonActivated.add(false);
-        }
 
         buttons.add(view.findViewById(R.id.neighbourButton));
         buttons.add(view.findViewById(R.id.doshikButton));
@@ -49,6 +42,10 @@ public class FoodFragment extends Fragment {
         buttons.add(view.findViewById(R.id.fastfoodButton));
         buttons.add(view.findViewById(R.id.sushiButton));
         buttons.add(view.findViewById(R.id.burgersButton));
+
+        for (int i = 0; i < buttons.size(); ++i) {
+            isButtonActivated.add(false);
+        }
 
         addButtonsListeners();
 
@@ -64,7 +61,7 @@ public class FoodFragment extends Fragment {
     }*/
 
     private void colorAndDisactivateButtons() {
-        for (int i = 0; i < BUTTONS_COUNT; ++i) {
+        for (int i = 0; i < buttons.size(); ++i) {
             isButtonActivated.set(i, false);
             buttons.get(i).setBackgroundColor(Color.WHITE);
         }
@@ -98,7 +95,7 @@ public class FoodFragment extends Fragment {
     }
 
     private void addButtonsListeners() {
-        for (int i = 0; i < BUTTONS_COUNT; ++i) {
+        for (int i = 0; i < buttons.size(); ++i) {
             int finalI = i;
             buttons.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override

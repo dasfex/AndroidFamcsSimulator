@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +16,12 @@ import java.util.ArrayList;
 public class WorkFragment extends Fragment {
 
 
-    //    public enum WORKBUTTONS {
+    //    public enum WORK_BUTTONS {
 //        FLUERS, LOADER, SECURITY, MUSICIAN, FREELANC, MCDONALDS, ITRANSITION,
 //        YANDEX, FACEBOOK
 //    }
 
-    private ArrayList<Button> workbuttons = new ArrayList<>();
+    private ArrayList<Button> buttons = new ArrayList<>();
     private ArrayList<Button> works = new ArrayList<>();
     private ArrayList<Boolean> isButtonActivated = new ArrayList<>();
 
@@ -31,26 +30,26 @@ public class WorkFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.work_fragment_activity, null);
-        works.clear();
-        workbuttons.clear();
-        isButtonActivated.clear();
-        Log.println(Log.INFO, "INFO", "-------->>>>>>>>" + String.valueOf(workbuttons.size()));
 
-        workbuttons.add(view.findViewById(R.id.flyers));
-        workbuttons.add(view.findViewById(R.id.loader));
-        workbuttons.add(view.findViewById(R.id.security));
-        workbuttons.add(view.findViewById(R.id.musician));
-        workbuttons.add(view.findViewById(R.id.freelancer));
-        workbuttons.add(view.findViewById(R.id.mcdonalds));
-        workbuttons.add(view.findViewById(R.id.itransition));
-        workbuttons.add(view.findViewById(R.id.yandex));
-        workbuttons.add(view.findViewById(R.id.facebook));
+        works.clear();
+        buttons.clear();
+        isButtonActivated.clear();
+
+        buttons.add(view.findViewById(R.id.flyers));
+        buttons.add(view.findViewById(R.id.loader));
+        buttons.add(view.findViewById(R.id.security));
+        buttons.add(view.findViewById(R.id.musician));
+        buttons.add(view.findViewById(R.id.freelancer));
+        buttons.add(view.findViewById(R.id.mcdonalds));
+        buttons.add(view.findViewById(R.id.itransition));
+        buttons.add(view.findViewById(R.id.yandex));
+        buttons.add(view.findViewById(R.id.facebook));
 
         works.add(view.findViewById(R.id.itransition));
         works.add(view.findViewById(R.id.yandex));
         works.add(view.findViewById(R.id.mcdonalds));
 
-        for (int i = 0; i < workbuttons.size(); ++i) {
+        for (int i = 0; i < buttons.size(); ++i) {
             isButtonActivated.add(false);
         }
 
@@ -59,10 +58,10 @@ public class WorkFragment extends Fragment {
         return view;
     }
 
-    private void activatedOtherWorks(int index) {
-        if (works.contains(workbuttons.get(index))) {
+    private void activateOtherWorks(int index) {
+        if (works.contains(buttons.get(index))) {
             for (int j = 0; j < works.size(); ++j) {
-                if (works.get(j) != workbuttons.get(index)) {
+                if (works.get(j) != buttons.get(index)) {
                     works.get(j).setClickable(false);
                     works.get(j).setBackgroundColor(Color.LTGRAY);
                 }
@@ -70,10 +69,11 @@ public class WorkFragment extends Fragment {
             }
         }
     }
-    private void diactivatedOtherWorks(int index) {
-        if (works.contains(workbuttons.get(index))) {
+
+    private void disactivatedOtherWorks(int index) {
+        if (works.contains(buttons.get(index))) {
             for (int j = 0; j < works.size(); ++j) {
-                if (works.get(j) != workbuttons.get(index)) {
+                if (works.get(j) != buttons.get(index)) {
                     works.get(j).setClickable(true);
                     works.get(j).setBackgroundColor(Color.WHITE);
                 }
@@ -83,25 +83,22 @@ public class WorkFragment extends Fragment {
     }
 
     private void addButtonsListeners() {
-        for (int i = 0; i < workbuttons.size(); ++i) {
+        for (int i = 0; i < buttons.size(); ++i) {
             int finalI = i;
-            workbuttons.get(i).setOnClickListener(new View.OnClickListener() {
+            buttons.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!isButtonActivated.get(finalI)) {
-                        workbuttons.get(finalI).setBackgroundColor(Color.GRAY);
-                        activatedOtherWorks(finalI);
+                        buttons.get(finalI).setBackgroundColor(Color.GRAY);
+                        activateOtherWorks(finalI);
                         isButtonActivated.set(finalI, true);
                     } else {
                         isButtonActivated.set(finalI, false);
-                        workbuttons.get(finalI).setBackgroundColor(Color.WHITE);
-                        diactivatedOtherWorks(finalI);
-
+                        buttons.get(finalI).setBackgroundColor(Color.WHITE);
+                        disactivatedOtherWorks(finalI);
                     }
                 }
             });
         }
     }
-
-
 }
