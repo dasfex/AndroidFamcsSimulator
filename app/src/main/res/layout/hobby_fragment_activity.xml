@@ -7,4 +7,91 @@
     tools:context=".ui.HobbyFragment"
     android:background="#1fcecb">
 
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <TextView
+        android:id="@+id/textFriendView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="5dp"
+        android:text="@string/friendLabel"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.TextView"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="120dp"
+        android:id="@+id/spinner"
+        android:layout_width="140dp"
+        android:layout_height="36dp"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/textOtherHobbyView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="5dp"
+        android:text="@string/hobbyLabel"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        >
+        <Button
+            android:id="@+id/read"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/read" />
+        <Button
+            android:id="@+id/dance"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/dance" />
+        <Button
+            android:id="@+id/beer"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/beer" />
+        <Button
+            android:id="@+id/film"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/film" />
+        <Button
+            android:id="@+id/vote"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/vote" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

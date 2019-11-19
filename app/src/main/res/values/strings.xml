@@ -23,4 +23,12 @@
     <string name="sushi">Есть суши</string>
     <string name="burgerstwo">Покупать бургеры за 2000</string>
 
+    <string name="friendLabel">Выбери, с кем хочешь провести время</string>
+    <string name="hobbyLabel">Выбери занятие</string>
+    <string name="read">почитать книжку</string>
+    <string name="dance">танцевать в одиночестве</string>
+    <string name="beer">попить пева в одиночестве</string>
+    <string name="film">посмотреть фильмец в одиночестве</string>
+    <string name="vote">сходить на выборы</string>
+
 </resources>
