@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,16 +20,12 @@ public class FoodFragment extends Fragment {
     }
 
     private ArrayList<Button> buttons = new ArrayList<>();
-    private int numberOfActivatedButton = -1;
+    private int indexOfActivatedButton = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.food_fragment_activity, null);
-
-        // надо тут разобраться с жизненным циклом
-        // и нормально методы поперегружать
-        // а пока такая заглушка
 
         buttons.clear();
 
@@ -49,18 +44,18 @@ public class FoodFragment extends Fragment {
     }
 
     private void colorAndDisactivateButtons() {
-        if (numberOfActivatedButton != -1) {
-            buttons.get(numberOfActivatedButton).setBackgroundColor(Color.GREEN);
+        if (indexOfActivatedButton != -1) {
+            buttons.get(indexOfActivatedButton).setBackgroundColor(Color.GREEN);
         }
         for (int i = 0; i < buttons.size(); ++i) {
-            if (i != numberOfActivatedButton) {
+            if (i != indexOfActivatedButton) {
                 buttons.get(i).setBackgroundColor(Color.WHITE);
             }
         }
     }
 
     private void activateButton(int ind) {
-        numberOfActivatedButton = ind;
+        indexOfActivatedButton = ind;
         colorAndDisactivateButtons();
     }
 
@@ -91,8 +86,8 @@ public class FoodFragment extends Fragment {
             buttons.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (numberOfActivatedButton == finalI) {
-                        numberOfActivatedButton = -1;
+                    if (indexOfActivatedButton == finalI) {
+                        indexOfActivatedButton = -1;
                         colorAndDisactivateButtons();
                     } else {
                         activateButton(finalI);

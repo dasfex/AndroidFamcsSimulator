@@ -41,4 +41,15 @@
     <string name="mcdonalds">МакДак</string>
     <string name="facebook">Стажа Хэндбук</string>
 
+    <string name="cheat">Списывать в универе</string>
+    <string name="noVisit">Не ходить в университет</string>
+    <string name="visit">Ходить в университет</string>
+    <string name="workHard">Вкалывать в универе</string>
+    <string name="english">Курсы по анлийскому</string>
+    <string name="itransition">Курсы Jtransition</string>
+    <string name="proga">Курсы по проге</string>
+    <string name="cookingCourses">Кулинарные курсы</string>
+    <string name="shad">shАД</string>
+    <string name="epam">Курсы ЕРАТ</string>
+
 </resources>

@@ -4,5 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#770f0000"
-    tools:context=".ui.StudyFragment"/>
+    tools:context=".ui.StudyFragment">
+
+    <Button
+        android:id="@+id/noVisitButton"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/visit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/visitButton"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/visit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noVisitButton" />
+
+    <Button
+        android:id="@+id/cheatButton"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/cheat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/visitButton" />
+
+    <Button
+        android:id="@+id/hardUnButton"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/workHard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cheatButton" />
+
+    <Button
+        android:id="@+id/hellButton"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/shad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hardUnButton" />
+
+    <Button
+        android:id="@+id/languageButton"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/english"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hellButton" />
+
+    <Button
+        android:id="@+id/itraButton"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/itransition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/languageButton" />
+
+    <Button
+        android:id="@+id/epamButton"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/epam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itraButton" />
+
+    <Button
+        android:id="@+id/progaButton"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/proga"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/epamButton" />
+
+    <Button
+        android:id="@+id/cookingButton"
+        android:layout_width="230dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="91dp"
+        android:text="@string/cookingCourses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progaButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>
