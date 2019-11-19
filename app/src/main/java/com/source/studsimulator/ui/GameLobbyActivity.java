@@ -38,6 +38,8 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     Fragment workFragment;
     Fragment hobbyFragment;
 
+    Bundle workInterface;
+
     FragmentTransaction fragmentTransaction;
 
     @Override
