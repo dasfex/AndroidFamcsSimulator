@@ -46,31 +46,12 @@ public class FoodFragment extends Fragment {
         buttons.add(view.findViewById(R.id.burgersButton));
 
         addButtonsListeners();
-//        onActivityCreated(null);
         colorAndDisactivateButtons();
 
         return view;
     }
 
-
-//    @Override
-//    public void onActivityCreated(Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        for (int i = 0; i < isButtonActivated.size(); ++i) {
-//            if (isButtonActivated.get(i)) {
-//                buttons.get(i).setBackgroundColor(Color.GREEN);
-//            }
-//        }
-//    }
-
-    /*@Override
-    public View onResumeView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-    }*/
-
     private void colorAndDisactivateButtons() {
-
         if (numberOfActivatedButton != -1) {
             buttons.get(numberOfActivatedButton).setBackgroundColor(Color.GREEN);
         }

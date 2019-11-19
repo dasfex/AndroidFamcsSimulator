@@ -57,7 +57,6 @@ public class WorkFragment extends Fragment {
         works.add(view.findViewById(R.id.yandex));
         works.add(view.findViewById(R.id.mcdonalds));
         if (isButtonActivated.size() == 0) {
-            System.out.println("ACCESIBLE");
             for (int i = 0; i < workbuttons.size(); ++i) {
                 isButtonActivated.add(BUTTON_STATE.ACCECIBLE);
             }
@@ -101,10 +100,11 @@ public class WorkFragment extends Fragment {
 
     private void diactivatedOtherWorks(int index) {
         if (works.contains(workbuttons.get(index))) {
-            for (int j = 0; j < works.size(); ++j) {
-                if (works.get(j) != workbuttons.get(index)) {
-                    works.get(j).setClickable(true);
-                    works.get(j).setBackgroundColor(Color.WHITE);
+            for (android.widget.Button button : works) {
+                if (button != workbuttons.get(index)) {
+                    button.setClickable(true);
+                    button.setBackgroundColor(Color.WHITE);
+                    isButtonActivated.set(workbuttons.indexOf(button), BUTTON_STATE.ACCECIBLE);
                 }
 
             }
