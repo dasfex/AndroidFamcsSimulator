@@ -1,4 +1,4 @@
-package com.source.studsimulator.ui;
+package com.source.studsimulator.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -17,6 +16,11 @@ import com.source.studsimulator.R;
 import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.relation.GamePresenter;
 import com.source.studsimulator.ui.entity.PlayerStats;
+import com.source.studsimulator.ui.fragments.FoodFragment;
+import com.source.studsimulator.ui.fragments.HobbyFragment;
+import com.source.studsimulator.ui.fragments.InfoFragment;
+import com.source.studsimulator.ui.fragments.StudyFragment;
+import com.source.studsimulator.ui.fragments.WorkFragment;
 
 public class GameLobbyActivity extends AppCompatActivity implements GameContract.View,
         InfoFragment.OnInformationFragmentListener {

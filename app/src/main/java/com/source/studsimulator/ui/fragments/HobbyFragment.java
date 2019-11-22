@@ -1,4 +1,4 @@
-package com.source.studsimulator.ui;
+package com.source.studsimulator.ui.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#a80f00"
-    tools:context=".ui.WorkFragment">
+    tools:context=".ui.fragments.WorkFragment">
 
     <Button
         android:id="@+id/flyersButton"

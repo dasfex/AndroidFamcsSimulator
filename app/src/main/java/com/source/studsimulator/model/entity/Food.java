@@ -1,5 +1,6 @@
 package com.source.studsimulator.model.entity;
 
+
 public class Food implements Payable {
 
     private String title;

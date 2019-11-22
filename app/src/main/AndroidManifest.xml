@@ -12,8 +12,8 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:screenOrientation="portrait"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.GameLobbyActivity" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.activity.GameLobbyActivity" />
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.source.studsimulator.ui;
+package com.source.studsimulator.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
