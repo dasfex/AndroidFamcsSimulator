@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.ui.fragments.adapters.BlockUnactiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class FoodFragment extends Fragment {
 
         initializeFood();
 
-        OneActiveButtonAdapter foodRVAdapter = new OneActiveButtonAdapter(food);
+        BlockUnactiveButtonsAdapter foodRVAdapter = new BlockUnactiveButtonsAdapter(food);
         buttons.setAdapter(foodRVAdapter);
         foodRVAdapter.setAdapterListener(position -> {
             foodRVAdapter.setIndexOfActivatedButton(position);
