@@ -1,7 +1,6 @@
-package com.source.studsimulator.ui.fragments;
+package com.source.studsimulator.ui.fragments.adapters;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Payable;
 
-import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
-public class OneActiveButtonAdapter
-        extends RecyclerView.Adapter<OneActiveButtonAdapter.ViewHolder> {
+public class ActiveButtonsAdapter
+        extends RecyclerView.Adapter<ActiveButtonsAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -29,19 +28,20 @@ public class OneActiveButtonAdapter
     }
 
     private List<Payable> buttons;
-    private int indexOfActivatedButton = -1;
+    private ArrayList<Boolean> isButtonActivated;
     AdapterListener adapterListener;
 
-    public void setIndexOfActivatedButton(int indexOfActivatedButton) {
-        if (indexOfActivatedButton == this.indexOfActivatedButton) {
-            this.indexOfActivatedButton = -1;
-        } else {
-            this.indexOfActivatedButton = indexOfActivatedButton;
-        }
+    public void setButonDisActivate(int indexOfActivatedButton) {
+        isButtonActivated.set(indexOfActivatedButton, !isButtonActivated.get(indexOfActivatedButton));
     }
 
-    public OneActiveButtonAdapter(List<Payable> buttons) {
+    public ActiveButtonsAdapter(List<Payable> buttons) {
         this.buttons = buttons;
+
+        isButtonActivated = new ArrayList<>();
+        for (int i = 0; i < buttons.size(); ++i) {
+            isButtonActivated.add(false);
+        }
     }
 
     public AdapterListener getAdapterListener() {
@@ -67,7 +67,7 @@ public class OneActiveButtonAdapter
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int ind) {
         viewHolder.button.setText(buttons.get(ind).getTitle());
-        viewHolder.button.setBackgroundColor(ind == indexOfActivatedButton ? Color.GREEN : Color.WHITE);
+        viewHolder.button.setBackgroundColor(isButtonActivated.get(ind) ? Color.GREEN : Color.WHITE);
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +76,7 @@ public class OneActiveButtonAdapter
         });
     }
 
-    interface AdapterListener {
+    public interface AdapterListener {
         void onClick(int position);
     }
 }

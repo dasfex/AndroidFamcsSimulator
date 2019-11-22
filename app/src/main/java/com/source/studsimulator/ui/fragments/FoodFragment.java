@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
