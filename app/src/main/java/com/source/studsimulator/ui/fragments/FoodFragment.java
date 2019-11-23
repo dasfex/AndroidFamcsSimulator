@@ -31,6 +31,8 @@ public class FoodFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setRetainInstance(true);
+
         View view = inflater.inflate(R.layout.food_fragment_activity, null);
 
         buttons = view.findViewById(R.id.buttonsRecyclerView);
@@ -41,7 +43,7 @@ public class FoodFragment extends Fragment {
 
         initializeFood();
 
-        BlockUnactiveButtonsAdapter foodRVAdapter = new BlockUnactiveButtonsAdapter(food);
+        OneActiveButtonAdapter foodRVAdapter = new OneActiveButtonAdapter(food);
         buttons.setAdapter(foodRVAdapter);
         foodRVAdapter.setAdapterListener(position -> {
             foodRVAdapter.setIndexOfActivatedButton(position);
