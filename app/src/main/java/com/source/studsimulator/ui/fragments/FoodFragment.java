@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Payable;
-import com.source.studsimulator.ui.fragments.adapters.BlockUnactiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.ArrayList;
@@ -22,40 +21,54 @@ import java.util.List;
 public class FoodFragment extends Fragment {
 
     public enum FOOD_BUTTONS {
-        NEGHBOUR, DOSHIK, STOLOVAYA, COOK, FASTFOOD, SUSHI, BURGERS;
+        NEIGHBOUR, DOSHIK, STOLOVAYA, COOK, FASTFOOD, SUSHI, BURGERS;
     }
 
     private RecyclerView buttons;
     private List<Payable> food;
+    private int activeButtonIndex = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        setRetainInstance(true);
-
         View view = inflater.inflate(R.layout.food_fragment_activity, null);
 
         buttons = view.findViewById(R.id.buttonsRecyclerView);
-
         buttons.setLayoutManager(new LinearLayoutManager(getContext()));
-
         buttons.setHasFixedSize(true);
 
         initializeFood();
 
         OneActiveButtonAdapter foodRVAdapter = new OneActiveButtonAdapter(food);
         buttons.setAdapter(foodRVAdapter);
+        foodRVAdapter.setIndexOfActivatedButton(activeButtonIndex);
         foodRVAdapter.setAdapterListener(position -> {
             foodRVAdapter.setIndexOfActivatedButton(position);
+            changeButtonActivity(position);
             foodRVAdapter.notifyDataSetChanged();
         });
 
         return view;
     }
 
+    private void initializeFood() {
+        food = new ArrayList<>();
+        food.add(new Food(0, "Брать у соседа", 4, 10));
+        food.add(new Food(3, "Кушать дошик", 7, -5));
+        food.add(new Food(7, "Ходить в столовую", 12, 7));
+        food.add(new Food(5, "Готовить самому", 8, 10));
+        food.add(new Food(10, "Кушать фастфуд", 20, -10));
+        food.add(new Food(13, "Кушать суши", 15, 5));
+        food.add(new Food(20, "Покупать бургеры за 2000", 40, -15));
+    }
+
+    private void changeButtonActivity(int position) {
+        activeButtonIndex = activeButtonIndex == position ? -1 : position;
+    }
+
     private int getIndexOfButton(FOOD_BUTTONS BUTTON) {
         switch (BUTTON) {
-            case NEGHBOUR:
+            case NEIGHBOUR:
                 return 0;
             case DOSHIK:
                 return 1;
@@ -72,16 +85,5 @@ public class FoodFragment extends Fragment {
             default:
                 return -1;
         }
-    }
-
-    private void initializeFood() {
-        food = new ArrayList<>();
-        food.add(new Food(0, "Брать у соседа", 4, 10));
-        food.add(new Food(3, "Кушать дошик", 7, -5));
-        food.add(new Food(7, "Ходить в столовую", 12, 7));
-        food.add(new Food(5, "Готовить самому", 8, 10));
-        food.add(new Food(10, "Кушать фастфуд", 20, -10));
-        food.add(new Food(13, "Кушать суши", 15, 5));
-        food.add(new Food(20, "Покупать бургеры за 2000", 40, -15));
     }
 }
