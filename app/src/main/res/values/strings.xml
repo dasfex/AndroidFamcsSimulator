@@ -52,4 +52,12 @@
     <string name="shad">shАД</string>
     <string name="epam">Курсы ЕРАТ</string>
 
+    <string name="neighbourFood">Брать у соседа</string>
+    <string name="doshikFood">Кушать дошик</string>
+    <string name="stolovkaFood">Ходить в столовую</string>
+    <string name="yourselfFood">Готовить самому</string>
+    <string name="fastFood">Кушать фастфуд</string>
+    <string name="sushiFood">Кушать суши</string>
+    <string name="burgerFood">Покупать бургеры за 2000</string>
+
 </resources>

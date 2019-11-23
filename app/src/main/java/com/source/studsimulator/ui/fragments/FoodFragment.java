@@ -76,12 +76,12 @@ public class FoodFragment extends Fragment {
 
     private void initializeFood() {
         food = new ArrayList<>();
-        food.add(new Food(0, "Брать у соседа", 4, 10));
-        food.add(new Food(3, "Кушать дошик", 7, -5));
-        food.add(new Food(7, "Ходить в столовую", 12, 7));
-        food.add(new Food(5, "Готовить самому", 8, 10));
-        food.add(new Food(10, "Кушать фастфуд", 20, -10));
-        food.add(new Food(13, "Кушать суши", 15, 5));
-        food.add(new Food(20, "Покупать бургеры за 2000", 40, -15));
+        food.add(new Food(0, getString(R.string.neighbourFood), 4, 10));
+        food.add(new Food(3, getString(R.string.doshikFood), 7, -5));
+        food.add(new Food(7, getString(R.string.stolovkaFood), 12, 7));
+        food.add(new Food(5, getString(R.string.yourselfFood), 8, 10));
+        food.add(new Food(10, getString(R.string.fastFood), 20, -10));
+        food.add(new Food(13, getString(R.string.sushiFood), 15, 5));
+        food.add(new Food(20, getString(R.string.burgerFood), 40, -15));
     }
 }
