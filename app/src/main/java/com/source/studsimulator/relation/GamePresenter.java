@@ -6,10 +6,6 @@ import com.source.studsimulator.model.GameLogic;
 
 public class GamePresenter implements GameContract.Presenter {
 
-    enum PlayerAction {
-        LEARN, WORK, SLEEP
-    }
-
     private GameContract.Model model;
     private GameContract.View view;
 
@@ -21,45 +17,41 @@ public class GamePresenter implements GameContract.Presenter {
     @Override
     public void viewCreated() {
         updatePlayerStats();
+        view.updateWeek(model.getWeek());
     }
 
     @Override
     public void clickOnNewWeekButton() {
         model.newWeek();
+        updatePlayerStats();
+        view.updateWeek(model.getWeek());
     }
 
     @Override
     public void clickOnEatButton() {
         model.eat(new Food(10, "Apple", 10, 10));
-        updatePlayerStats();
+        //поскольку характеристики добавляются не сразу, updatePlayerStats() здесь и далее быть не должно,
+        // но можно добавлять для наглядности во время тестирования
+        //updatePlayerStats();
     }
 
     @Override
     public void clickOnSleepButton() {
         model.sleep();
-        updatePlayerStats();
     }
 
     @Override
     public void clickOnLearnButton() {
         model.learn();
-        updatePlayerStats();
     }
 
     @Override
     public void clickOnWorkButton() {
         model.work();
-        updatePlayerStats();
     }
 
-    @Override
-    public int getParameter(GameLogic.PlayerStats characteristic) {
+    private int getParameter(GameLogic.PlayerStats characteristic) {
         return model.getParameter(characteristic);
-    }
-
-    @Override
-    public int getWeek() {
-        return model.getWeek();
     }
 
     private void updatePlayerStats() {

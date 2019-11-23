@@ -10,6 +10,7 @@ public interface GameContract {
     interface View {
         void refreshPlayerStats(com.source.studsimulator.ui.entity.PlayerStats playerStats);
         void refreshGradientInformation();
+        void updateWeek(int weekNumber);
     }
 
     interface Presenter {
@@ -19,8 +20,6 @@ public interface GameContract {
         void clickOnLearnButton();
         void clickOnSleepButton();
         void clickOnWorkButton();
-        int getParameter(GameLogic.PlayerStats characteristic);
-        int getWeek();
     }
 
     interface Model {

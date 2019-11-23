@@ -1,8 +1,8 @@
 <resources>
     <string name="new_game">New Game</string>
     <string name="app_name">FAMCS Student simulator</string>
+    <string name="weekNumber">%dая неделя</string>
     <string name="gameTime">Время: </string>
-    <string name="actualTime">1 неделя</string>
     <string name="moneyText">Деньги</string>
     <string name="moneyCount">50</string>
     <string name="action_settings">Settings</string>
