@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/friendSpinner"
         android:layout_width="140dp"
         android:layout_height="36dp"
         android:layout_marginStart="20dp"
