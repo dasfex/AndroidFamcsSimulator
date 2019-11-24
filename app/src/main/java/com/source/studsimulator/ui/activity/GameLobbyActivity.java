@@ -96,11 +96,6 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void refreshGradientInformation() {
-
-    }
-
-    @Override
     public void refreshPlayerStats(PlayerStats stats) {
         moneyTextView.setText(String.valueOf(stats.getMoney()));
 
@@ -142,39 +137,14 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     private void setOnClickListenersForFragmentButtons() {
-        infoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment(informationFragment);
-            }
-        });
+        infoButton.setOnClickListener(v -> replaceFragment(informationFragment));
 
-        foodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment(foodFragment);
-            }
-        });
+        foodButton.setOnClickListener(v -> replaceFragment(foodFragment));
 
-        studyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment(studyFragment);
-            }
-        });
+        studyButton.setOnClickListener(v -> replaceFragment(studyFragment));
 
-        workButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment(workFragment);
-            }
-        });
+        workButton.setOnClickListener(v -> replaceFragment(workFragment));
 
-        hobbyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceFragment(hobbyFragment);
-            }
-        });
+        hobbyButton.setOnClickListener(v -> replaceFragment(hobbyFragment));
     }
 }
