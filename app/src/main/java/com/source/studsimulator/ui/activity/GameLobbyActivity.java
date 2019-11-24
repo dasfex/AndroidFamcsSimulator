@@ -9,8 +9,10 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.relation.GameContract;
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.GameLogic;
@@ -23,12 +25,20 @@ import com.source.studsimulator.ui.fragments.StudyFragment;
 import com.source.studsimulator.ui.fragments.WorkFragment;
 
 public class GameLobbyActivity extends AppCompatActivity implements GameContract.View,
-        InfoFragment.OnInformationFragmentListener {
+        InfoFragment.OnInformationFragmentListener, FoodFragment.OnFoodFragmentListener {
 
     private GameContract.Presenter presenter = new GamePresenter(this, new GameLogic());
 
     private TextView moneyTextView;
     private TextView timeTextView;
+
+    ProgressBar satietyBar;
+    ProgressBar healthBar;
+    ProgressBar educationBar;
+
+    TextView satietyTextView;
+    TextView healthTextView;
+    TextView educationTextView;
 
     ImageButton infoButton;
     ImageButton foodButton;
@@ -75,6 +85,14 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     private void initPlayerStatsView() {
         moneyTextView = findViewById(R.id.moneyCount);
         timeTextView = findViewById(R.id.actualTime);
+
+        satietyTextView = findViewById(R.id.satietyText);
+        healthTextView = findViewById(R.id.healthText);
+        educationTextView = findViewById(R.id.educationText);
+
+        satietyBar = findViewById(R.id.satietyBar);
+        healthBar = findViewById(R.id.healthBar);
+        educationBar = findViewById(R.id.educationBar);
     }
 
     @Override
@@ -84,10 +102,15 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
 
     @Override
     public void refreshPlayerStats(PlayerStats stats) {
-        //studyButton.setText(String.format(getString(R.string.study), stats.getEducationLevel()));
-        //sleepButton.setText(String.format(getString(R.string.sleep), stats.getHealth()));
-        //eatButton.setText(String.format(getString(R.string.satiety), stats.getSatiety()));
-        moneyTextView.setText(stats.getMoney());
+        moneyTextView.setText(String.valueOf(stats.getMoney()));
+
+        satietyBar.setProgress(stats.getSatiety());
+        healthBar.setProgress(stats.getHealth());
+        educationBar.setProgress(stats.getEducationLevel());
+
+        satietyTextView.setText(String.valueOf(stats.getSatiety()));
+        healthTextView.setText(String.valueOf(stats.getHealth()));
+        educationTextView.setText(String.valueOf(stats.getEducationLevel()));
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -101,7 +124,21 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     @Override
     public void onNewWeekClicked() {
         presenter.clickOnNewWeekButton();
-        timeTextView.setText(String.format("%dая неделя", presenter.getWeek()));
+    }
+
+    @Override
+    public void clickOnFoodButton(Food food) {
+        presenter.clickOnFoodButton(food);
+    }
+
+    @Override
+    public void unclickFoodButton(Food food){
+        presenter.unclickFoodButton(food);
+    }
+
+    @Override
+    public void updateWeek(int weekNumber) {
+        timeTextView.setText(String.format(getString(R.string.weekNumber), weekNumber));
     }
 
     private void setOnClickListenersForFragmentButtons() {

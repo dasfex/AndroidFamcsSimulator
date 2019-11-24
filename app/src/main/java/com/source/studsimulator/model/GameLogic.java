@@ -48,10 +48,22 @@ public class GameLogic implements GameContract.Model {
         pay(food);
     }
 
+    @Override
+    public void eatBack(Food food) {
+        student.changeSatiety(-food.getSatietyChanging());
+        student.changeHealth(-food.getHealthChanging());
+        payBack(food);
+    }
+
     // важно не потерять минус, т.к. метод ИЗМЕНЯЕТ на заданную величину
     @Override
     public void pay(Payable payable) {
         student.changeMoney(-payable.getPrice().toInt());
+    }
+
+
+    private void payBack(Payable payable) {
+        student.changeMoney(payable.getPrice().toInt());
     }
 
     @Override

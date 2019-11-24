@@ -1,8 +1,8 @@
 <resources>
     <string name="new_game">New Game</string>
     <string name="app_name">FAMCS Student simulator</string>
+    <string name="weekNumber">%dая неделя</string>
     <string name="gameTime">Время: </string>
-    <string name="actualTime">1 неделя</string>
     <string name="moneyText">Деньги</string>
     <string name="moneyCount">50</string>
     <string name="action_settings">Settings</string>
@@ -51,5 +51,13 @@
     <string name="cookingCourses">Кулинарные курсы</string>
     <string name="shad">shАД</string>
     <string name="epam">Курсы ЕРАТ</string>
+
+    <string name="neighbourFood">Брать у соседа</string>
+    <string name="doshikFood">Кушать дошик</string>
+    <string name="stolovkaFood">Ходить в столовую</string>
+    <string name="yourselfFood">Готовить самому</string>
+    <string name="fastFood">Кушать фастфуд</string>
+    <string name="sushiFood">Кушать суши</string>
+    <string name="burgerFood">Покупать бургеры за 2000</string>
 
 </resources>

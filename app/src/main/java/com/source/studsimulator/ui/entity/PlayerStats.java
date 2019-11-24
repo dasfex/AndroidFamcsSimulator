@@ -2,39 +2,39 @@ package com.source.studsimulator.ui.entity;
 
 public class PlayerStats {
 
-    private String educationLevel;
-    private String health;
-    private String satiety;
+    private int educationLevel;
+    private int health;
+    private int satiety;
     private String money;
 
-    public PlayerStats(String educationLevel, String health, String satiety, String money) {
+    public PlayerStats(int educationLevel, int health, int satiety, String money) {
         this.educationLevel = educationLevel;
         this.health = health;
         this.satiety = satiety;
         this.money = money;
     }
 
-    public String getEducationLevel() {
+    public int getEducationLevel() {
         return educationLevel;
     }
 
-    public void setEducationLevel(String educationLevel) {
+    public void setEducationLevel(int educationLevel) {
         this.educationLevel = educationLevel;
     }
 
-    public String getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(String health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
-    public String getSatiety() {
+    public int getSatiety() {
         return satiety;
     }
 
-    public void setSatiety(String satiety) {
+    public void setSatiety(int satiety) {
         this.satiety = satiety;
     }
 
