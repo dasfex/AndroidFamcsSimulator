@@ -28,8 +28,8 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void clickOnEatButton() {
-        model.eat(new Food(10, "Apple", 10, 10));
+    public void clickOnFoodButton(Food food) {
+        model.eat(food);
         //поскольку характеристики добавляются не сразу, updatePlayerStats() здесь и далее быть не должно,
         // но можно добавлять для наглядности во время тестирования
         //updatePlayerStats();

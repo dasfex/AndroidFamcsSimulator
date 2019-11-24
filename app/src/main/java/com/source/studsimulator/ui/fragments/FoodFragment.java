@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,8 @@ public class FoodFragment extends Fragment {
     private RecyclerView buttons;
     private List<Payable> food;
 
+    private FoodFragment.OnFoodFragmentListener activityListener;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,9 +51,21 @@ public class FoodFragment extends Fragment {
         foodRVAdapter.setAdapterListener(position -> {
             foodRVAdapter.setIndexOfActivatedButton(position);
             foodRVAdapter.notifyDataSetChanged();
+            activityListener.clickOnFoodButton((Food)food.get(position));
         });
-
         return view;
+    }
+
+    public interface OnFoodFragmentListener {
+        void clickOnFoodButton(Food food);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof FoodFragment.OnFoodFragmentListener) {
+            activityListener = (FoodFragment.OnFoodFragmentListener) context;
+        }
     }
 
     private int getIndexOfButton(FOOD_BUTTONS BUTTON) {
