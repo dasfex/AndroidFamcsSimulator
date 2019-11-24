@@ -132,6 +132,11 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
+    public void unclickFoodButton(Food food){
+        presenter.unclickFoodButton(food);
+    }
+
+    @Override
     public void updateWeek(int weekNumber) {
         timeTextView.setText(String.format(getString(R.string.weekNumber), weekNumber));
     }

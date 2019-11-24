@@ -38,6 +38,10 @@ public class OneActiveButtonAdapter
         }
     }
 
+    public int getIndexOfActivatedButton() {
+        return this.indexOfActivatedButton;
+    }
+
     public OneActiveButtonAdapter(List<Payable> buttons) {
         this.buttons = buttons;
     }
