@@ -45,16 +45,13 @@ public class Work {
         if (title.equals("")) {
             throw new IllegalArgumentException("Title can't be empty string.");
         }
-        if (healthChanging >= 0) {
-            throw new IllegalArgumentException("Work can't have positive health.");
-        }
         if (amountOfMoney < 0) {
             throw new IllegalArgumentException("Work can't reduce money.");
         }
         if (programmingSkillRequied < 0) {
             throw new IllegalArgumentException("Work can't require negative programming skill.");
         }
-        if (this.englishSkillRequied < 0) {
+        if (englishSkillRequied < 0) {
             throw new IllegalArgumentException("Work can't require negative English skill.");
         }
         this.title = title;
