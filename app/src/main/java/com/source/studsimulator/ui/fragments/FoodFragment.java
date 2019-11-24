@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Payable;
-import com.source.studsimulator.ui.fragments.adapters.BlockUnactiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.ArrayList;
@@ -23,43 +22,46 @@ import java.util.List;
 public class FoodFragment extends Fragment {
 
     public enum FOOD_BUTTONS {
-        NEGHBOUR, DOSHIK, STOLOVAYA, COOK, FASTFOOD, SUSHI, BURGERS;
+        NEIGHBOUR, DOSHIK, STOLOVAYA, COOK, FASTFOOD, SUSHI, BURGERS;
     }
 
     private RecyclerView buttons;
     private List<Payable> food;
+    private int activeButtonIndex = -1;
 
     private FoodFragment.OnFoodFragmentListener activityListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        setRetainInstance(true);
-
         View view = inflater.inflate(R.layout.food_fragment_activity, null);
 
         buttons = view.findViewById(R.id.buttonsRecyclerView);
-
         buttons.setLayoutManager(new LinearLayoutManager(getContext()));
-
         buttons.setHasFixedSize(true);
 
         initializeFood();
 
         OneActiveButtonAdapter foodRVAdapter = new OneActiveButtonAdapter(food);
         buttons.setAdapter(foodRVAdapter);
+        foodRVAdapter.setIndexOfActivatedButton(activeButtonIndex);
         foodRVAdapter.setAdapterListener(position -> {
             int currentPosition = foodRVAdapter.getIndexOfActivatedButton();
             if (currentPosition != -1) {
                 activityListener.unclickFoodButton((Food) food.get(currentPosition));
             }
             foodRVAdapter.setIndexOfActivatedButton(position);
+            changeButtonActivity(position);
             foodRVAdapter.notifyDataSetChanged();
             activityListener.clickOnFoodButton((Food)food.get(position));
         });
         return view;
     }
 
+    private void changeButtonActivity(int position) {
+        activeButtonIndex = activeButtonIndex == position ? -1 : position;
+    }
+  
     public interface OnFoodFragmentListener {
         void clickOnFoodButton(Food food);
         void unclickFoodButton(Food food);
@@ -75,7 +77,7 @@ public class FoodFragment extends Fragment {
 
     private int getIndexOfButton(FOOD_BUTTONS BUTTON) {
         switch (BUTTON) {
-            case NEGHBOUR:
+            case NEIGHBOUR:
                 return 0;
             case DOSHIK:
                 return 1;
@@ -93,7 +95,7 @@ public class FoodFragment extends Fragment {
                 return -1;
         }
     }
-
+      
     private void initializeFood() {
         food = new ArrayList<>();
         food.add(new Food(0, getString(R.string.neighbourFood), 4, 10));

@@ -1,15 +1,21 @@
 package com.source.studsimulator.ui.fragments;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.model.entity.Friend;
+import com.source.studsimulator.ui.fragments.adapters.FriendAdapter;
 
 import java.util.ArrayList;
 
@@ -25,6 +31,8 @@ public class HobbyFragment extends Fragment {
 
     private ArrayList<Button> lonelyButtons = new ArrayList<>();
     private ArrayList<BUTTON_STATE> isLonelyButtonActivated = new ArrayList<>();
+    private Spinner friendSpinner;
+    private ArrayList<Friend> friendList;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +54,30 @@ public class HobbyFragment extends Fragment {
 
         onActivityCreated(null);
         addButtonListeners();
+
+        initializeFriends();
+
+        friendSpinner = view.findViewById(R.id.friendSpinner);
+
+        FriendAdapter friendAdapter =
+                new FriendAdapter((Activity) getContext(), android.R.layout.simple_spinner_dropdown_item, friendList);
+
+        friendSpinner.setAdapter(friendAdapter);
+
+        friendSpinner.setSelection(0);
+
+        friendSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                friendSpinner.setSelection(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                friendSpinner.setSelection(0);
+            }
+        });
+
 
         return view;
     }
@@ -81,5 +113,12 @@ public class HobbyFragment extends Fragment {
                 }
             });
         }
+    }
+
+    private void initializeFriends() {
+        friendList = new ArrayList<>();
+        friendList.add(new Friend(50, 0, 0.0, "NoOne", R.drawable.hobby));
+        friendList.add(new Friend(50, 0, 0.0, "Vitya", R.drawable.food));
+        friendList.add(new Friend(50, 0, 0.0, "Zhenya", R.drawable.info));
     }
 }
