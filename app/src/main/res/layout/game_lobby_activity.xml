@@ -31,7 +31,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="@string/actualTime"
         app:layout_constraintStart_toEndOf="@+id/timeTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,4 +119,70 @@
             app:srcCompat="@drawable/hobby_img" />
     </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/healthBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/timeTextView"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/healthText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="1dp"
+        android:textSize = "12sp"
+        app:layout_constraintStart_toStartOf="@+id/healthBar"
+        app:layout_constraintBottom_toBottomOf="@id/healthBar"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ProgressBar
+        android:id="@+id/satietyBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/timeTextView"
+        app:layout_constraintTop_toTopOf="@+id/healthBar" />
+
+    <TextView
+        android:id="@+id/satietyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="1dp"
+        android:textSize = "12sp"
+        app:layout_constraintStart_toStartOf="@+id/satietyBar"
+        app:layout_constraintBottom_toBottomOf="@id/satietyBar"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <ProgressBar
+        android:id="@+id/educationBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/timeTextView"
+        app:layout_constraintTop_toTopOf="@+id/satietyBar" />
+
+    <TextView
+        android:id="@+id/educationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="1dp"
+        android:textSize = "12sp"
+        app:layout_constraintStart_toStartOf="@+id/educationBar"
+        app:layout_constraintBottom_toBottomOf="@id/educationBar"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

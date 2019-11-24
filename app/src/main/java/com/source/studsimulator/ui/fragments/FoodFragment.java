@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,8 @@ public class FoodFragment extends Fragment {
     private List<Payable> food;
     private int activeButtonIndex = -1;
 
+    private FoodFragment.OnFoodFragmentListener activityListener;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,27 +46,33 @@ public class FoodFragment extends Fragment {
         buttons.setAdapter(foodRVAdapter);
         foodRVAdapter.setIndexOfActivatedButton(activeButtonIndex);
         foodRVAdapter.setAdapterListener(position -> {
+            int currentPosition = foodRVAdapter.getIndexOfActivatedButton();
+            if (currentPosition != -1) {
+                activityListener.unclickFoodButton((Food) food.get(currentPosition));
+            }
             foodRVAdapter.setIndexOfActivatedButton(position);
             changeButtonActivity(position);
             foodRVAdapter.notifyDataSetChanged();
+            activityListener.clickOnFoodButton((Food)food.get(position));
         });
-
         return view;
-    }
-
-    private void initializeFood() {
-        food = new ArrayList<>();
-        food.add(new Food(0, "Брать у соседа", 4, 10));
-        food.add(new Food(3, "Кушать дошик", 7, -5));
-        food.add(new Food(7, "Ходить в столовую", 12, 7));
-        food.add(new Food(5, "Готовить самому", 8, 10));
-        food.add(new Food(10, "Кушать фастфуд", 20, -10));
-        food.add(new Food(13, "Кушать суши", 15, 5));
-        food.add(new Food(20, "Покупать бургеры за 2000", 40, -15));
     }
 
     private void changeButtonActivity(int position) {
         activeButtonIndex = activeButtonIndex == position ? -1 : position;
+    }
+  
+    public interface OnFoodFragmentListener {
+        void clickOnFoodButton(Food food);
+        void unclickFoodButton(Food food);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof FoodFragment.OnFoodFragmentListener) {
+            activityListener = (FoodFragment.OnFoodFragmentListener) context;
+        }
     }
 
     private int getIndexOfButton(FOOD_BUTTONS BUTTON) {
@@ -85,5 +94,16 @@ public class FoodFragment extends Fragment {
             default:
                 return -1;
         }
+    }
+      
+    private void initializeFood() {
+        food = new ArrayList<>();
+        food.add(new Food(0, getString(R.string.neighbourFood), 4, 10));
+        food.add(new Food(3, getString(R.string.doshikFood), 7, -5));
+        food.add(new Food(7, getString(R.string.stolovkaFood), 12, 7));
+        food.add(new Food(5, getString(R.string.yourselfFood), 8, 10));
+        food.add(new Food(10, getString(R.string.fastFood), 20, -10));
+        food.add(new Food(13, getString(R.string.sushiFood), 15, 5));
+        food.add(new Food(20, getString(R.string.burgerFood), 40, -15));
     }
 }
