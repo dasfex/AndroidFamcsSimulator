@@ -57,9 +57,9 @@ public class GamePresenter implements GameContract.Presenter {
     private void updatePlayerStats() {
         com.source.studsimulator.ui.entity.PlayerStats playerStats = new
                 com.source.studsimulator.ui.entity.PlayerStats(
-                String.valueOf(getParameter(GameLogic.PlayerStats.EDUCATION_LEVEL)),
-                String.valueOf(getParameter(GameLogic.PlayerStats.HEALTH)),
-                String.valueOf(getParameter(GameLogic.PlayerStats.SATIETY)),
+                (getParameter(GameLogic.PlayerStats.EDUCATION_LEVEL)),
+                (getParameter(GameLogic.PlayerStats.HEALTH)),
+                (getParameter(GameLogic.PlayerStats.SATIETY)),
                 String.valueOf(getParameter(GameLogic.PlayerStats.MONEY)));
         view.refreshPlayerStats(playerStats);
     }
