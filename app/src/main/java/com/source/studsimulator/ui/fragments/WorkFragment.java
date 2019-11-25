@@ -1,17 +1,24 @@
 package com.source.studsimulator.ui.fragments;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.StudentActivity;
+import com.source.studsimulator.model.entity.Work;
+import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
+import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WorkFragment extends Fragment {
 
@@ -26,10 +33,11 @@ public class WorkFragment extends Fragment {
         ACTIVE, ACCECIBLE, INACCESIBLE
     }
 
-    private ArrayList<Button> buttons = new ArrayList<>();
-    private ArrayList<Button> works = new ArrayList<>();
-    private ArrayList<BUTTON_STATE> isButtonActivated = new ArrayList<>();
-    private static final String BUTTON_COLOR = "BUTTON_COLOR_KEY"; //  на самом деле тут hex число
+    private RecyclerView sideJobButtons;
+    private List<StudentActivity> sideJobList;
+    //private RecyclerView Job;
+
+    private WorkFragment.OnWorkFragmentListener activityListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,94 +45,47 @@ public class WorkFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.work_fragment_activity, null);
 
-        works.clear();
-        buttons.clear();
+        sideJobButtons = view.findViewById(R.id.side_job);
+        sideJobButtons.setLayoutManager(new LinearLayoutManager(getContext()));
+        sideJobButtons.setHasFixedSize(true);
 
-        buttons.add(view.findViewById(R.id.flyersButton));
-        buttons.add(view.findViewById(R.id.loaderButton));
-        buttons.add(view.findViewById(R.id.securityButton));
-        buttons.add(view.findViewById(R.id.musicianButton));
-        buttons.add(view.findViewById(R.id.freelancerButton));
-        buttons.add(view.findViewById(R.id.mcdonaldsButton));
-        buttons.add(view.findViewById(R.id.itransitionButton));
-        buttons.add(view.findViewById(R.id.yandexButton));
-        buttons.add(view.findViewById(R.id.facebookButton));
+        initializeSideJob();
 
-        works.add(view.findViewById(R.id.itransitionButton));
-        works.add(view.findViewById(R.id.yandexButton));
-        works.add(view.findViewById(R.id.mcdonaldsButton));
+        ActiveButtonsAdapter sideJobsAdapter = new ActiveButtonsAdapter(sideJobList);
+        sideJobButtons.setAdapter(sideJobsAdapter);
+        sideJobsAdapter.setAdapterListener(position -> {
+            sideJobsAdapter.setButtonDisActivate(position);
+            activityListener.clickOnWorkButton((Work) sideJobList.get(position));
+        });
 
-        if (isButtonActivated.size() == 0) {
-            for (int i = 0; i < buttons.size(); ++i) {
-                isButtonActivated.add(BUTTON_STATE.ACCECIBLE);
-            }
-        }
-
-        onActivityCreated(null);
-        addButtonsListeners();
+//        Job = view.findViewById(R.id.job);
+//        sideJobButtons.setLayoutManager(new LinearLayoutManager(getContext()));
+//        sideJobButtons.setHasFixedSize(true);
 
         return view;
     }
 
+    public interface OnWorkFragmentListener {
+        void clickOnWorkButton(Work work);
+    }
+
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        for (int i = 0; i < isButtonActivated.size(); ++i) {
-            switch (isButtonActivated.get(i)) {
-                case ACCECIBLE:
-                    buttons.get(i).setBackgroundColor(Color.WHITE);
-                    break;
-                case INACCESIBLE:
-                    buttons.get(i).setBackgroundColor(Color.LTGRAY);
-                    break;
-                case ACTIVE:
-                    buttons.get(i).setBackgroundColor(Color.GRAY);
-                    break;
-            }
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof WorkFragment.OnWorkFragmentListener) {
+            activityListener = (WorkFragment.OnWorkFragmentListener) context;
         }
     }
 
-    private void activateOtherWorks(int index) {
-        if (works.contains(buttons.get(index))) {
-            for (android.widget.Button button : works) {
-                if (button != buttons.get(index)) {
-                    button.setClickable(false);
-                    button.setBackgroundColor(Color.LTGRAY);
-                    isButtonActivated.set(buttons.indexOf(button), BUTTON_STATE.INACCESIBLE);
-                }
-            }
-        }
+    private void initializeSideJob() {
+        sideJobList = new ArrayList<>();
+        sideJobList.add(new Work("Раздавать флаеры", -5, 5, 0, 0, 1, 1));
+        sideJobList.add(new Work("Разгружать вагоны", -15, 10, 0, 0, 0, 2));
+        sideJobList.add(new Work("Подменить друга в клубе", -5, 10, 0, 3, 0, 2));
+        sideJobList.add(new Work("Играть в переходах", 0, 3, 0, 0, -1, 0));
+        sideJobList.add(new Work("пофрилансить", -5, 25, 10, 10, 3, 3));
+
     }
 
-    private void disactivateOtherWorks(int index) {
-        if (works.contains(buttons.get(index))) {
-            for (android.widget.Button button : works) {
-                if (button != buttons.get(index)) {
-                    button.setClickable(true);
-                    button.setBackgroundColor(Color.WHITE);
-                    isButtonActivated.set(buttons.indexOf(button), BUTTON_STATE.ACCECIBLE);
-                }
-            }
-        }
-    }
 
-    private void addButtonsListeners() {
-        for (int i = 0; i < buttons.size(); ++i) {
-            int finalI = i;
-            buttons.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (isButtonActivated.get(finalI) == BUTTON_STATE.ACCECIBLE) {
-                        buttons.get(finalI).setBackgroundColor(Color.GRAY);
-                        activateOtherWorks(finalI);
-                        isButtonActivated.set(finalI, BUTTON_STATE.ACTIVE);
-                    } else {
-                        isButtonActivated.set(finalI, BUTTON_STATE.ACCECIBLE);
-                        buttons.get(finalI).setBackgroundColor(Color.WHITE);
-                        disactivateOtherWorks(finalI);
-                    }
-                }
-            });
-        }
-    }
 }

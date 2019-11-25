@@ -3,6 +3,7 @@ package com.source.studsimulator.model;
 
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.relation.GameContract;
 
 public class GameLogic implements GameContract.Model {
@@ -29,7 +30,7 @@ public class GameLogic implements GameContract.Model {
     // и передавать их сюда
 
     @Override
-    public void work() {
+    public void work(Work work) {
         student.changeHealth(-5);
         student.changeMoney(15);
     }

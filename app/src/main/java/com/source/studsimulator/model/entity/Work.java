@@ -1,6 +1,8 @@
 package com.source.studsimulator.model.entity;
 
-public class Work {
+import com.source.studsimulator.model.Student;
+
+public class Work implements StudentActivity {
 
     private String title;
     private int healthChanging;

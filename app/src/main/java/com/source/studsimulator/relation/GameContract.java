@@ -4,6 +4,7 @@ package com.source.studsimulator.relation;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.Work;
 
 public interface GameContract {
 
@@ -19,7 +20,7 @@ public interface GameContract {
         void unclickFoodButton(Food food);
         void clickOnLearnButton();
         void clickOnSleepButton();
-        void clickOnWorkButton();
+        void clickOnWorkButton(Work work);
     }
 
     interface Model {
@@ -32,7 +33,7 @@ public interface GameContract {
         void learn();
         void sleep();
         // аналогично тут
-        void work();
+        void work(Work work);
         int getParameter(GameLogic.PlayerStats characteristic);
         int getWeek();
     }

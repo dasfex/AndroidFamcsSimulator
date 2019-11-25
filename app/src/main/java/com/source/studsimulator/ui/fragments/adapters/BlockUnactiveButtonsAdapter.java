@@ -9,7 +9,9 @@ import android.widget.Button;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.model.Student;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.StudentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,7 @@ public class BlockUnactiveButtonsAdapter
         }
     }
 
-    private List<Payable> buttons;
+    private List<StudentActivity> buttons;
     private int indexOfActivatedButton = -1;
     AdapterListener adapterListener;
 
@@ -39,7 +41,7 @@ public class BlockUnactiveButtonsAdapter
         }
     }
 
-    public BlockUnactiveButtonsAdapter(List<Payable> buttons) {
+    public BlockUnactiveButtonsAdapter(List<StudentActivity> buttons) {
         this.buttons = buttons;
     }
 

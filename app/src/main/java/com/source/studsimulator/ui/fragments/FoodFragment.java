@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class FoodFragment extends Fragment {
     }
 
     private RecyclerView buttons;
-    private List<Payable> food;
+    private List<StudentActivity> food;
     private int activeButtonIndex = -1;
 
     private FoodFragment.OnFoodFragmentListener activityListener;

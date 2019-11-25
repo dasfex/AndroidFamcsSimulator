@@ -3,6 +3,7 @@ package com.source.studsimulator.relation;
 
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.GameLogic;
+import com.source.studsimulator.model.entity.Work;
 
 public class GamePresenter implements GameContract.Presenter {
 
@@ -48,8 +49,8 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void clickOnWorkButton() {
-        model.work();
+    public void clickOnWorkButton(Work work) {
+        model.work(work);
     }
 
     private int getParameter(GameLogic.PlayerStats characteristic) {

@@ -7,112 +7,37 @@
     android:background="#a80f00"
     tools:context=".ui.fragments.WorkFragment">
 
-    <Button
-        android:id="@+id/flyersButton"
-        android:layout_width="230dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="91dp"
-        android:background="@android:color/white"
-        android:text="@string/flyers"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/side_job"
+        android:layout_width="222dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="65dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/loaderButton"
-        android:layout_width="230dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginEnd="91dp"
-        android:background="@android:color/white"
-        android:text="@string/loader"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/job"
+        android:layout_width="222dp"
+        android:layout_height="236dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="65dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flyersButton" />
+        app:layout_constraintTop_toBottomOf="@+id/side_job" />
 
-    <Button
-        android:id="@+id/musicianButton"
-        android:layout_width="230dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginEnd="91dp"
-        android:background="@android:color/white"
-        android:text="@string/musician"
+    <TextView
+        android:id="@+id/sideJobText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Иди рабоать"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/securityButton" />
-
-    <Button
-        android:id="@+id/securityButton"
-        android:layout_width="230dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginEnd="91dp"
-        android:background="@android:color/white"
-        android:text="@string/security"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loaderButton" />
-
-    <Button
-        android:id="@+id/freelancerButton"
-        android:layout_width="230dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginEnd="91dp"
-        android:background="@android:color/white"
-        android:text="@string/freelancer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/musicianButton" />
-
-    <Button
-        android:id="@+id/itransitionButton"
-        android:layout_width="230dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginEnd="91dp"
-        android:background="@android:color/white"
-        android:text="@string/itra"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mcdonaldsButton" />
-
-    <Button
-        android:id="@+id/yandexButton"
-        android:layout_width="230dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginEnd="91dp"
-        android:background="@android:color/white"
-        android:text="@string/yandex"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itransitionButton" />
-
-    <Button
-        android:id="@+id/facebookButton"
-        android:layout_width="230dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginEnd="91dp"
-        android:background="@android:color/white"
-        android:text="@string/facebook"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yandexButton" />
-
-    <Button
-        android:id="@+id/mcdonaldsButton"
-        android:layout_width="230dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginEnd="91dp"
-        android:background="@android:color/white"
-        android:text="@string/mcdonalds"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freelancerButton" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

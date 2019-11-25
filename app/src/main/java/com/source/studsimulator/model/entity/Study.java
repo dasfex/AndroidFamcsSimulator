@@ -1,6 +1,6 @@
 package com.source.studsimulator.model.entity;
 
-public class Study implements Payable {
+public class Study implements Payable, StudentActivity {
 
     private String title;
     private Price price;

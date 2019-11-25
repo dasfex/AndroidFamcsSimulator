@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.StudentActivity;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class OneActiveButtonAdapter
         }
     }
 
-    private List<Payable> buttons;
+    private List<StudentActivity> buttons;
     private int indexOfActivatedButton = -1;
     AdapterListener adapterListener;
 
@@ -42,7 +43,7 @@ public class OneActiveButtonAdapter
         return this.indexOfActivatedButton;
     }
 
-    public OneActiveButtonAdapter(List<Payable> buttons) {
+    public OneActiveButtonAdapter(List<StudentActivity> buttons) {
         this.buttons = buttons;
     }
 

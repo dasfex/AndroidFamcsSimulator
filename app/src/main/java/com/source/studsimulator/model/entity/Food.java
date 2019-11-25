@@ -1,7 +1,7 @@
 package com.source.studsimulator.model.entity;
 
 
-public class Food implements Payable {
+public class Food implements Payable, StudentActivity {
 
     private String title;
     private Price price;

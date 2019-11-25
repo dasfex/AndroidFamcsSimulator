@@ -1,7 +1,7 @@
 package com.source.studsimulator.model.entity;
 
 
-public class Hobby implements Payable {
+public class Hobby implements Payable, StudentActivity {
 
     private String title;
     private Price price;
