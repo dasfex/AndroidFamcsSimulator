@@ -1,7 +1,5 @@
 package com.source.studsimulator.model;
 
-import java.lang.IllegalArgumentException;
-
 
 public class Student {
 

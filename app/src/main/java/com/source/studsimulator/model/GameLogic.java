@@ -1,6 +1,7 @@
 package com.source.studsimulator.model;
 
 
+import com.source.studsimulator.model.Student;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.Work;
@@ -42,7 +43,6 @@ public class GameLogic implements GameContract.Model {
     public void pay(Payable payable) {
         student.changeMoney(-payable.getPrice().toInt());
     }
-
 
     @Override
     public void learn() {

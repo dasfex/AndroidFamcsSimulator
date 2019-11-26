@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ import com.source.studsimulator.relation.GameContract;
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.relation.GamePresenter;
-import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.fragments.FoodFragment;
 import com.source.studsimulator.ui.fragments.HobbyFragment;
 import com.source.studsimulator.ui.fragments.InfoFragment;
@@ -53,8 +51,6 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     Fragment studyFragment;
     Fragment workFragment;
     Fragment hobbyFragment;
-
-    Bundle workInterface;
 
     FragmentTransaction fragmentTransaction;
 
@@ -98,16 +94,16 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void refreshPlayerStats(PlayerStats stats) {
-        moneyTextView.setText(String.valueOf(stats.getMoney()));
+    public void refreshPlayerStats(GamePresenter.PlayerStatsObject playerStats) {
+        moneyTextView.setText(playerStats.getMoney());
 
-        satietyBar.setProgress(stats.getSatiety());
-        healthBar.setProgress(stats.getHealth());
-        educationBar.setProgress(stats.getEducationLevel());
+        satietyBar.setProgress(playerStats.getSatiety());
+        healthBar.setProgress(playerStats.getHealth());
+        educationBar.setProgress(playerStats.getEducationLevel());
 
-        satietyTextView.setText(String.valueOf(stats.getSatiety()));
-        healthTextView.setText(String.valueOf(stats.getHealth()));
-        educationTextView.setText(String.valueOf(stats.getEducationLevel()));
+        satietyTextView.setText(String.valueOf(playerStats.getSatiety()));
+        healthTextView.setText(String.valueOf(playerStats.getHealth()));
+        educationTextView.setText(String.valueOf(playerStats.getEducationLevel()));
     }
 
     private void replaceFragment(Fragment fragment) {

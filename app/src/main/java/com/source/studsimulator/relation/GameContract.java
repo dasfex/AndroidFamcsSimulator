@@ -2,14 +2,14 @@ package com.source.studsimulator.relation;
 
 
 import com.source.studsimulator.model.GameLogic;
-import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.Work;
 
 public interface GameContract {
 
     interface View {
-        void refreshPlayerStats(com.source.studsimulator.ui.entity.PlayerStats playerStats);
+        void refreshPlayerStats(GamePresenter.PlayerStatsObject playerStats);
         void updateWeek(int weekNumber);
     }
 
