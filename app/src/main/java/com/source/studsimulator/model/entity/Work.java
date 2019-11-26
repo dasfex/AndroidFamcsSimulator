@@ -1,14 +1,41 @@
 package com.source.studsimulator.model.entity;
 
-import com.source.studsimulator.model.Student;
-
 public class Work implements StudentActivity {
 
     private String title;
     private int healthChanging;
+    private int satietyChanging;
     private int amountOfMoney;
-    private int programmingSkillRequied;
-    private int englishSkillRequied;
+    private int programmingSkillRequired;
+    private int englishSkillRequired;
+    private int programmingSkillIncrease;
+    private int englishSkillIncrease;
+
+    public Work(String title, int healthChanging,
+                int satietyChanging, int amountOfMoney,
+                int programmingSkillRequired, int englishSkillRequired,
+                int programmingSkillIncrease, int englishSkillIncrease) {
+        if (title.equals("")) {
+            throw new IllegalArgumentException("Title can't be empty string.");
+        }
+        if (amountOfMoney < 0) {
+            throw new IllegalArgumentException("Work can't reduce money.");
+        }
+        if (programmingSkillRequired < 0) {
+            throw new IllegalArgumentException("Work can't require negative programming skill.");
+        }
+        if (englishSkillRequired < 0) {
+            throw new IllegalArgumentException("Work can't require negative English skill.");
+        }
+        this.title = title;
+        this.healthChanging = healthChanging;
+        this.satietyChanging = satietyChanging;
+        this.amountOfMoney = amountOfMoney;
+        this.programmingSkillRequired = programmingSkillRequired;
+        this.englishSkillRequired = englishSkillRequired;
+        this.programmingSkillIncrease = programmingSkillIncrease;
+        this.englishSkillIncrease = englishSkillIncrease;
+    }
 
     public int getProgrammingSkillIncrease() {
         return programmingSkillIncrease;
@@ -17,9 +44,6 @@ public class Work implements StudentActivity {
     public int getEnglishSkillIncrease() {
         return englishSkillIncrease;
     }
-
-    private int programmingSkillIncrease;
-    private int englishSkillIncrease;
 
     public String getTitle() {
         return title;
@@ -34,34 +58,14 @@ public class Work implements StudentActivity {
     }
 
     public int getProgrammingSkillRequied() {
-        return programmingSkillRequied;
+        return programmingSkillRequired;
     }
 
     public int getEnglishSkillRequied() {
-        return englishSkillRequied;
+        return englishSkillRequired;
     }
 
-    public Work(String title, int healthChanging, int amountOfMoney,
-                int programmingSkillRequied, int englishSkillRequied,
-                int programmingSkillIncrease, int englishSkillIncrease) {
-        if (title.equals("")) {
-            throw new IllegalArgumentException("Title can't be empty string.");
-        }
-        if (amountOfMoney < 0) {
-            throw new IllegalArgumentException("Work can't reduce money.");
-        }
-        if (programmingSkillRequied < 0) {
-            throw new IllegalArgumentException("Work can't require negative programming skill.");
-        }
-        if (englishSkillRequied < 0) {
-            throw new IllegalArgumentException("Work can't require negative English skill.");
-        }
-        this.title = title;
-        this.healthChanging = healthChanging;
-        this.amountOfMoney = amountOfMoney;
-        this.programmingSkillRequied = programmingSkillRequied;
-        this.englishSkillRequied = englishSkillRequied;
-        this.programmingSkillIncrease = programmingSkillIncrease;
-        this.englishSkillIncrease = englishSkillIncrease;
+    public int getSatietyChanging() {
+        return satietyChanging;
     }
 }

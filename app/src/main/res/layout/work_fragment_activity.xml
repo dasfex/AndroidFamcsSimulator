@@ -8,36 +8,73 @@
     tools:context=".ui.fragments.WorkFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/side_job"
-        android:layout_width="222dp"
-        android:layout_height="240dp"
+        android:id="@+id/sideJobRV"
+        android:layout_width="232dp"
+        android:layout_height="245dp"
         android:layout_marginStart="65dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="65dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sideJobText" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/job"
-        android:layout_width="222dp"
-        android:layout_height="236dp"
+        android:id="@+id/workRV"
+        android:layout_width="228dp"
+        android:layout_height="145dp"
         android:layout_marginStart="65dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="65dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/side_job" />
+        app:layout_constraintTop_toBottomOf="@+id/workTextView" />
 
     <TextView
         android:id="@+id/sideJobText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Иди рабоать"
+        android:layout_marginTop="10dp"
+        android:text="@string/sideJobHeader"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/workTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="177dp"
+        android:text="@string/workHeader"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sideJobRV" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="140dp"
+        android:text="@string/summerWork"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workRV" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/summerWorkRV"
+        android:layout_width="228dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="65dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

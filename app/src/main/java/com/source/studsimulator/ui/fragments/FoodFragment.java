@@ -1,6 +1,5 @@
 package com.source.studsimulator.ui.fragments;
 
-import com.source.studsimulator.model.entity.Food;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.source.studsimulator.R;
-import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
@@ -48,9 +47,6 @@ public class FoodFragment extends Fragment {
         foodRVAdapter.setIndexOfActivatedButton(activeButtonIndex);
         foodRVAdapter.setAdapterListener(position -> {
             int currentPosition = foodRVAdapter.getIndexOfActivatedButton();
-            if (currentPosition != -1) {
-                activityListener.unclickFoodButton((Food) food.get(currentPosition));
-            }
             foodRVAdapter.setIndexOfActivatedButton(position);
             changeButtonActivity(position);
             foodRVAdapter.notifyDataSetChanged();
@@ -65,7 +61,6 @@ public class FoodFragment extends Fragment {
   
     public interface OnFoodFragmentListener {
         void clickOnFoodButton(Food food);
-        void unclickFoodButton(Food food);
     }
 
     @Override

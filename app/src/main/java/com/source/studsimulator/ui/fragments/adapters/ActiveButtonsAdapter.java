@@ -9,13 +9,12 @@ import android.widget.Button;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.source.studsimulator.R;
-import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.StudentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class        ActiveButtonsAdapter
+public class ActiveButtonsAdapter
         extends RecyclerView.Adapter<ActiveButtonsAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -30,7 +29,7 @@ public class        ActiveButtonsAdapter
 
     private List<StudentActivity> buttons;
     private ArrayList<Boolean> isButtonActivated;
-    AdapterListener adapterListener;
+    private AdapterListener adapterListener;
 
     public void setButtonDisActivate(int indexOfActivatedButton) {
         isButtonActivated.set(indexOfActivatedButton, !isButtonActivated.get(indexOfActivatedButton));
@@ -69,13 +68,8 @@ public class        ActiveButtonsAdapter
     public void onBindViewHolder(ViewHolder viewHolder, int ind) {
         viewHolder.button.setText(buttons.get(ind).getTitle());
         viewHolder.button.setBackgroundColor(isButtonActivated.get(ind) ? Color.GREEN : Color.WHITE);
-        System.out.println("smt");
-        viewHolder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adapterListener.onClick(ind);
-            }
-        });
+
+        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {

@@ -34,16 +34,6 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void unclickFoodButton(Food food) {
-        model.eatBack(food);
-    }
-
-    @Override
-    public void clickOnSleepButton() {
-        model.sleep();
-    }
-
-    @Override
     public void clickOnLearnButton() {
         model.learn();
     }

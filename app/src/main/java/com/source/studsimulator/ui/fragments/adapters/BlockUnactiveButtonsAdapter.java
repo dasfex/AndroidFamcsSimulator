@@ -9,8 +9,6 @@ import android.widget.Button;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.source.studsimulator.R;
-import com.source.studsimulator.model.Student;
-import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.StudentActivity;
 
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ public class BlockUnactiveButtonsAdapter
 
     private List<StudentActivity> buttons;
     private int indexOfActivatedButton = -1;
-    AdapterListener adapterListener;
+    private AdapterListener adapterListener;
 
     public void setIndexOfActivatedButton(int indexOfActivatedButton) {
         if (indexOfActivatedButton == this.indexOfActivatedButton) {
@@ -80,12 +78,7 @@ public class BlockUnactiveButtonsAdapter
                 viewHolder.button.setClickable(true);
             }
         }
-        viewHolder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adapterListener.onClick(ind);
-            }
-        });
+        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {

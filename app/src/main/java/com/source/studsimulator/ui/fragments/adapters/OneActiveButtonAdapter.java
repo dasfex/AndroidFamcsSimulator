@@ -9,7 +9,6 @@ import android.widget.Button;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.source.studsimulator.R;
-import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.StudentActivity;
 
 import java.util.List;
@@ -71,12 +70,7 @@ public class OneActiveButtonAdapter
     public void onBindViewHolder(ViewHolder viewHolder, int ind) {
         viewHolder.button.setText(buttons.get(ind).getTitle());
         viewHolder.button.setBackgroundColor(ind == indexOfActivatedButton ? Color.GREEN : Color.WHITE);
-        viewHolder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adapterListener.onClick(ind);
-            }
-        });
+        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {

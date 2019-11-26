@@ -26,7 +26,8 @@ import com.source.studsimulator.ui.fragments.StudyFragment;
 import com.source.studsimulator.ui.fragments.WorkFragment;
 
 public class GameLobbyActivity extends AppCompatActivity implements GameContract.View,
-        InfoFragment.OnInformationFragmentListener, FoodFragment.OnFoodFragmentListener, WorkFragment.OnWorkFragmentListener {
+        InfoFragment.OnInformationFragmentListener, FoodFragment.OnFoodFragmentListener,
+        WorkFragment.OnWorkFragmentListener {
 
     private GameContract.Presenter presenter = new GamePresenter(this, new GameLogic());
 
@@ -125,11 +126,6 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     @Override
     public void clickOnFoodButton(Food food) {
         presenter.clickOnFoodButton(food);
-    }
-
-    @Override
-    public void unclickFoodButton(Food food) {
-        presenter.unclickFoodButton(food);
     }
 
     @Override

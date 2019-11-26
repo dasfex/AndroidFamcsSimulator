@@ -21,25 +21,13 @@ public class GameLogic implements GameContract.Model {
 
     @Override
     public void newWeek() {
-        // тут чекаем результаты всей недели
         gameTime += 1;
     }
 
-    // тут и далее показаны примерный план работы каждого метода
-    // по красоте далее нужно будет сделать енамы в controller(а может даже во вью)
-    // и передавать их сюда
-
     @Override
     public void work(Work work) {
-        student.changeHealth(-5);
-        student.changeMoney(15);
-    }
-
-    // обсудим, нужно ли нам это
-    @Override
-    public void sleep() {
-        student.changeHealth(50);
-        student.changeSatiety(-20);
+        student.changeHealth(work.getHealthChanging());
+        student.changeMoney(work.getAmountOfMoney());
     }
 
     @Override
@@ -49,23 +37,12 @@ public class GameLogic implements GameContract.Model {
         pay(food);
     }
 
-    @Override
-    public void eatBack(Food food) {
-        student.changeSatiety(-food.getSatietyChanging());
-        student.changeHealth(-food.getHealthChanging());
-        payBack(food);
-    }
-
     // важно не потерять минус, т.к. метод ИЗМЕНЯЕТ на заданную величину
     @Override
     public void pay(Payable payable) {
         student.changeMoney(-payable.getPrice().toInt());
     }
 
-
-    private void payBack(Payable payable) {
-        student.changeMoney(payable.getPrice().toInt());
-    }
 
     @Override
     public void learn() {
