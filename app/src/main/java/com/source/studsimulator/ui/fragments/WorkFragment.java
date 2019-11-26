@@ -15,7 +15,6 @@ import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.BlockUnactiveButtonsAdapter;
-import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +36,10 @@ public class WorkFragment extends Fragment {
     private List<StudentActivity> workList;
     private List<StudentActivity> summerWorkList;
 
+    private ArrayList<Boolean> isSideJobActive = new ArrayList<>();
+    private int activeWorkIndex = -1;
+    private int activeSummerWorkIndex = -1;
+
     private WorkFragment.OnWorkFragmentListener activityListener;
 
     @Override
@@ -47,38 +50,13 @@ public class WorkFragment extends Fragment {
 
         initializeLists();
 
-        sideJobRV = view.findViewById(R.id.sideJobRV);
-        sideJobRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        sideJobRV.setHasFixedSize(true);
-        ActiveButtonsAdapter sideJobsAdapter = new ActiveButtonsAdapter(sideJobList);
-        sideJobRV.setAdapter(sideJobsAdapter);
-        sideJobsAdapter.setAdapterListener(position -> {
-            sideJobsAdapter.setButtonDisActivate(position);
-            sideJobsAdapter.notifyDataSetChanged();
-            activityListener.clickOnWorkButton((Work) sideJobList.get(position));
-        });
+        initializeRecyclerView(view);
 
-        workRV = view.findViewById(R.id.workRV);
-        workRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        workRV.setHasFixedSize(true);
-        BlockUnactiveButtonsAdapter workAdapter = new BlockUnactiveButtonsAdapter(workList);
-        workRV.setAdapter(workAdapter);
-        workAdapter.setAdapterListener(position -> {
-            workAdapter.setIndexOfActivatedButton(position);
-            workAdapter.notifyDataSetChanged();
-            activityListener.clickOnWorkButton((Work) workList.get(position));
-        });
-
-        summerWorkRV = view.findViewById(R.id.summerWorkRV);
-        summerWorkRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        summerWorkRV.setHasFixedSize(true);
-        BlockUnactiveButtonsAdapter summerWorkAdapter = new BlockUnactiveButtonsAdapter(summerWorkList);
-        summerWorkRV.setAdapter(summerWorkAdapter);
-        summerWorkAdapter.setAdapterListener(position -> {
-            summerWorkAdapter.setIndexOfActivatedButton(position);
-            summerWorkAdapter.notifyDataSetChanged();
-            activityListener.clickOnWorkButton((Work) summerWorkList.get(position));
-        });
+        if (isSideJobActive.size() == 0) {
+            for (int i = 0; i < sideJobList.size(); ++i) {
+                isSideJobActive.add(false);
+            }
+        }
 
         return view;
     }
@@ -110,6 +88,64 @@ public class WorkFragment extends Fragment {
 
         summerWorkList = new ArrayList<>();
         summerWorkList.add(new Work(getString(R.string.facebook), -20, -20, 150, 30, 50, 20, 20));
+    }
+
+    private void changeAccessForSideButton(int pos) {
+        isSideJobActive.set(pos, !isSideJobActive.get(pos));
+    }
+
+    private void changeWorkButtonActivity(int pos) {
+        activeWorkIndex = activeWorkIndex == pos ? -1 : pos;
+    }
+
+    private void changeSummerWorkButtonActivity(int pos) {
+        activeSummerWorkIndex = activeSummerWorkIndex == pos ? -1 : pos;
+    }
+
+    private void initializeRecyclerView(View view) {
+        sideJobRV = view.findViewById(R.id.sideJobRV);
+        sideJobRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        sideJobRV.setHasFixedSize(true);
+        ActiveButtonsAdapter sideJobsAdapter = new ActiveButtonsAdapter(sideJobList);
+        sideJobRV.setAdapter(sideJobsAdapter);
+        sideJobsAdapter.setAdapterListener(position -> {
+            sideJobsAdapter.setButtonDisActivate(position);
+            changeAccessForSideButton(position);
+            sideJobsAdapter.notifyDataSetChanged();
+            activityListener.clickOnWorkButton((Work) sideJobList.get(position));
+        });
+
+        for (int i = 0; i < isSideJobActive.size(); ++i) {
+            if (isSideJobActive.get(i)) {
+                sideJobsAdapter.setButtonDisActivate(i);
+            }
+        }
+
+        workRV = view.findViewById(R.id.workRV);
+        workRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        workRV.setHasFixedSize(true);
+        BlockUnactiveButtonsAdapter workAdapter = new BlockUnactiveButtonsAdapter(workList);
+        workRV.setAdapter(workAdapter);
+        workAdapter.setIndexOfActivatedButton(activeWorkIndex);
+        workAdapter.setAdapterListener(position -> {
+            workAdapter.setIndexOfActivatedButton(position);
+            changeWorkButtonActivity(position);
+            workAdapter.notifyDataSetChanged();
+            activityListener.clickOnWorkButton((Work) workList.get(position));
+        });
+
+        summerWorkRV = view.findViewById(R.id.summerWorkRV);
+        summerWorkRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        summerWorkRV.setHasFixedSize(true);
+        BlockUnactiveButtonsAdapter summerWorkAdapter = new BlockUnactiveButtonsAdapter(summerWorkList);
+        summerWorkRV.setAdapter(summerWorkAdapter);
+        summerWorkAdapter.setIndexOfActivatedButton(activeSummerWorkIndex);
+        summerWorkAdapter.setAdapterListener(position -> {
+            summerWorkAdapter.setIndexOfActivatedButton(position);
+            changeSummerWorkButtonActivity(position);
+            summerWorkAdapter.notifyDataSetChanged();
+            activityListener.clickOnWorkButton((Work) summerWorkList.get(position));
+        });
     }
 
 }

@@ -36,15 +36,16 @@ public class FoodFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.food_fragment_activity, null);
 
+        initializeFood();
+
         buttons = view.findViewById(R.id.buttonsRecyclerView);
         buttons.setLayoutManager(new LinearLayoutManager(getContext()));
         buttons.setHasFixedSize(true);
 
-        initializeFood();
-
         OneActiveButtonAdapter foodRVAdapter = new OneActiveButtonAdapter(food);
         buttons.setAdapter(foodRVAdapter);
         foodRVAdapter.setIndexOfActivatedButton(activeButtonIndex);
+
         foodRVAdapter.setAdapterListener(position -> {
             int currentPosition = foodRVAdapter.getIndexOfActivatedButton();
             foodRVAdapter.setIndexOfActivatedButton(position);
@@ -52,6 +53,7 @@ public class FoodFragment extends Fragment {
             foodRVAdapter.notifyDataSetChanged();
             activityListener.clickOnFoodButton((Food)food.get(position));
         });
+
         return view;
     }
 
