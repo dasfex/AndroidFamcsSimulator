@@ -32,7 +32,7 @@ public class Study implements Payable, StudentActivity {
         return healthChanging;
     }
 
-    public int getProgrammingSkillRequied() {
+    public int getProgrammingSkillRequired() {
         return programmingSkillRequied;
     }
 

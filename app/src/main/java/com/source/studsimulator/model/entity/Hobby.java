@@ -8,7 +8,7 @@ public class Hobby implements Payable, StudentActivity {
     private int satietyChanging;
     private int moodChanging;
 
-    public Hobby(int price, String title, int moodChanging, int satietyChanging) throws IllegalArgumentException {
+    public Hobby(String title, int price, int moodChanging, int satietyChanging) throws IllegalArgumentException {
         if (moodChanging <= 0) {
             throw new IllegalArgumentException("Hobby can't have nonpositive mood changing.");
         }

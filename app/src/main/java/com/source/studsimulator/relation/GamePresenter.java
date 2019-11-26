@@ -2,6 +2,8 @@ package com.source.studsimulator.relation;
 
 import com.source.studsimulator.model.GameLogic.PlayerStats;
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Hobby;
+import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 
 public class GamePresenter implements GameContract.Presenter {
@@ -33,13 +35,18 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void clickOnLearnButton() {
-        model.learn();
+    public void clickOnLearnButton(Study study) {
+        model.learn(study);
     }
 
     @Override
     public void clickOnWorkButton(Work work) {
         model.work(work);
+    }
+
+    @Override
+    public void clickOnHobbyButton(Hobby hobby) {
+        //
     }
 
     private int getParameter(PlayerStats characteristic) {
@@ -62,7 +69,7 @@ public class GamePresenter implements GameContract.Presenter {
         private int satiety;
         private String money;
 
-        public PlayerStatsObject(int educationLevel, int health, int satiety, String money) {
+        PlayerStatsObject(int educationLevel, int health, int satiety, String money) {
             this.educationLevel = educationLevel;
             this.health = health;
             this.satiety = satiety;

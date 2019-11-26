@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.relation.GameContract;
 import com.source.studsimulator.R;
@@ -25,7 +26,7 @@ import com.source.studsimulator.ui.fragments.WorkFragment;
 
 public class GameLobbyActivity extends AppCompatActivity implements GameContract.View,
         InfoFragment.OnInformationFragmentListener, FoodFragment.OnFoodFragmentListener,
-        WorkFragment.OnWorkFragmentListener {
+        WorkFragment.OnWorkFragmentListener, HobbyFragment.OnHobbyFragmentListener {
 
     private GameContract.Presenter presenter = new GamePresenter(this, new GameLogic());
 
@@ -122,6 +123,11 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     @Override
     public void clickOnFoodButton(Food food) {
         presenter.clickOnFoodButton(food);
+    }
+
+    @Override
+    public void clickOnHobbyButton(Hobby hobby) {
+        presenter.clickOnHobbyButton(hobby);
     }
 
     @Override
