@@ -24,12 +24,7 @@ public class InfoFragment extends Fragment {
 
         newWeekButton = view.findViewById(R.id.newWeekButton);
 
-        newWeekButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityListener.onNewWeekClicked();
-            }
-        });
+        newWeekButton.setOnClickListener(v -> activityListener.onNewWeekClicked());
 
         return view;
     }

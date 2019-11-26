@@ -31,14 +31,20 @@
     <string name="film">посмотреть фильмец в одиночестве</string>
     <string name="vote">сходить на выборы</string>
 
+    <string name="sideJobHeader">Иди работать!</string>
+    <string name="workHeader">Работа</string>
+    <string name="summerWork">Летняя стажировка</string>
+
     <string name="flyers">Раздавать флаеры</string>
     <string name="loader">Разгружать вагоны</string>
     <string name="musician">Играть в переходах</string>
     <string name="security">Подменить друга в клубе</string>
     <string name="freelancer">Пофрилансить</string>
+
+    <string name="mcdonalds">МакДак</string>
     <string name="itra">Jtransition</string>
     <string name="yandex">Тындекс</string>
-    <string name="mcdonalds">МакДак</string>
+
     <string name="facebook">Стажа Хэндбук</string>
 
     <string name="cheat">Списывать в универе</string>
@@ -59,5 +65,8 @@
     <string name="fastFood">Кушать фастфуд</string>
     <string name="sushiFood">Кушать суши</string>
     <string name="burgerFood">Покупать бургеры за 2000</string>
+    <string name="lostYouth">Выбери, как терять молодость!</string>
+    <string name="lostYouthAgain1">У тебя осталась лишняя молодость? </string>
+    <string name="lostYouthAgain2">Выбери, где прокачаться! </string>
 
 </resources>

@@ -1,17 +1,23 @@
 package com.source.studsimulator.ui.fragments;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.model.entity.StudentActivity;
+import com.source.studsimulator.model.entity.Work;
+import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
+import com.source.studsimulator.ui.fragments.adapters.BlockUnactiveButtonsAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WorkFragment extends Fragment {
 
@@ -22,14 +28,19 @@ public class WorkFragment extends Fragment {
         FACEBOOK
     }
 
-    public enum BUTTON_STATE {
-        ACTIVE, ACCECIBLE, INACCESIBLE
-    }
+    private RecyclerView sideJobRV;
+    private RecyclerView workRV;
+    private RecyclerView summerWorkRV;
 
-    private ArrayList<Button> buttons = new ArrayList<>();
-    private ArrayList<Button> works = new ArrayList<>();
-    private ArrayList<BUTTON_STATE> isButtonActivated = new ArrayList<>();
-    private static final String BUTTON_COLOR = "BUTTON_COLOR_KEY"; //  на самом деле тут hex число
+    private List<StudentActivity> sideJobList;
+    private List<StudentActivity> workList;
+    private List<StudentActivity> summerWorkList;
+
+    private ArrayList<Boolean> isSideJobActive = new ArrayList<>();
+    private int activeWorkIndex = -1;
+    private int activeSummerWorkIndex = -1;
+
+    private WorkFragment.OnWorkFragmentListener activityListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,94 +48,104 @@ public class WorkFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.work_fragment_activity, null);
 
-        works.clear();
-        buttons.clear();
+        initializeLists();
 
-        buttons.add(view.findViewById(R.id.flyersButton));
-        buttons.add(view.findViewById(R.id.loaderButton));
-        buttons.add(view.findViewById(R.id.securityButton));
-        buttons.add(view.findViewById(R.id.musicianButton));
-        buttons.add(view.findViewById(R.id.freelancerButton));
-        buttons.add(view.findViewById(R.id.mcdonaldsButton));
-        buttons.add(view.findViewById(R.id.itransitionButton));
-        buttons.add(view.findViewById(R.id.yandexButton));
-        buttons.add(view.findViewById(R.id.facebookButton));
+        initializeRecyclerView(view);
 
-        works.add(view.findViewById(R.id.itransitionButton));
-        works.add(view.findViewById(R.id.yandexButton));
-        works.add(view.findViewById(R.id.mcdonaldsButton));
-
-        if (isButtonActivated.size() == 0) {
-            for (int i = 0; i < buttons.size(); ++i) {
-                isButtonActivated.add(BUTTON_STATE.ACCECIBLE);
+        if (isSideJobActive.size() == 0) {
+            for (int i = 0; i < sideJobList.size(); ++i) {
+                isSideJobActive.add(false);
             }
         }
-
-        onActivityCreated(null);
-        addButtonsListeners();
 
         return view;
     }
 
+    public interface OnWorkFragmentListener {
+        void clickOnWorkButton(Work work);
+    }
+
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        for (int i = 0; i < isButtonActivated.size(); ++i) {
-            switch (isButtonActivated.get(i)) {
-                case ACCECIBLE:
-                    buttons.get(i).setBackgroundColor(Color.WHITE);
-                    break;
-                case INACCESIBLE:
-                    buttons.get(i).setBackgroundColor(Color.LTGRAY);
-                    break;
-                case ACTIVE:
-                    buttons.get(i).setBackgroundColor(Color.GRAY);
-                    break;
-            }
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof WorkFragment.OnWorkFragmentListener) {
+            activityListener = (WorkFragment.OnWorkFragmentListener) context;
         }
     }
 
-    private void activateOtherWorks(int index) {
-        if (works.contains(buttons.get(index))) {
-            for (android.widget.Button button : works) {
-                if (button != buttons.get(index)) {
-                    button.setClickable(false);
-                    button.setBackgroundColor(Color.LTGRAY);
-                    isButtonActivated.set(buttons.indexOf(button), BUTTON_STATE.INACCESIBLE);
-                }
-            }
-        }
+    private void initializeLists() {
+        sideJobList = new ArrayList<>();
+        sideJobList.add(new Work(getString(R.string.flyers), -5, -5, 5, 0, 0, 0, 1));
+        sideJobList.add(new Work(getString(R.string.loader), -15, -15, 10, 0, 0, 0, 0));
+        sideJobList.add(new Work(getString(R.string.security), -5, - 10, 10, 0, 3, 0, 1));
+        sideJobList.add(new Work(getString(R.string.musician), -4, -8,  3, 0, 0, 0, 1));
+        sideJobList.add(new Work(getString(R.string.freelancer), -2, -5,  25, 10, 10, 3, 1));
+
+        workList = new ArrayList<>();
+        workList.add(new Work(getString(R.string.mcdonalds), -10, -10, 50, 20, 30, 10, 6));
+        workList.add(new Work(getString(R.string.itra), -6, -7, 40, 5, 2, 5, 4));
+        workList.add(new Work(getString(R.string.yandex), -20, -20, 100, 50, 3, 20, 1));
+
+        summerWorkList = new ArrayList<>();
+        summerWorkList.add(new Work(getString(R.string.facebook), -20, -20, 150, 30, 50, 20, 20));
     }
 
-    private void disactivateOtherWorks(int index) {
-        if (works.contains(buttons.get(index))) {
-            for (android.widget.Button button : works) {
-                if (button != buttons.get(index)) {
-                    button.setClickable(true);
-                    button.setBackgroundColor(Color.WHITE);
-                    isButtonActivated.set(buttons.indexOf(button), BUTTON_STATE.ACCECIBLE);
-                }
-            }
-        }
+    private void changeAccessForSideButton(int pos) {
+        isSideJobActive.set(pos, !isSideJobActive.get(pos));
     }
 
-    private void addButtonsListeners() {
-        for (int i = 0; i < buttons.size(); ++i) {
-            int finalI = i;
-            buttons.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (isButtonActivated.get(finalI) == BUTTON_STATE.ACCECIBLE) {
-                        buttons.get(finalI).setBackgroundColor(Color.GRAY);
-                        activateOtherWorks(finalI);
-                        isButtonActivated.set(finalI, BUTTON_STATE.ACTIVE);
-                    } else {
-                        isButtonActivated.set(finalI, BUTTON_STATE.ACCECIBLE);
-                        buttons.get(finalI).setBackgroundColor(Color.WHITE);
-                        disactivateOtherWorks(finalI);
-                    }
-                }
-            });
-        }
+    private void changeWorkButtonActivity(int pos) {
+        activeWorkIndex = activeWorkIndex == pos ? -1 : pos;
     }
+
+    private void changeSummerWorkButtonActivity(int pos) {
+        activeSummerWorkIndex = activeSummerWorkIndex == pos ? -1 : pos;
+    }
+
+    private void initializeRecyclerView(View view) {
+        sideJobRV = view.findViewById(R.id.sideJobRV);
+        sideJobRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        sideJobRV.setHasFixedSize(true);
+        ActiveButtonsAdapter sideJobsAdapter = new ActiveButtonsAdapter(sideJobList);
+        sideJobRV.setAdapter(sideJobsAdapter);
+        sideJobsAdapter.setAdapterListener(position -> {
+            sideJobsAdapter.setButtonDisActivate(position);
+            changeAccessForSideButton(position);
+            sideJobsAdapter.notifyDataSetChanged();
+            activityListener.clickOnWorkButton((Work) sideJobList.get(position));
+        });
+
+        for (int i = 0; i < isSideJobActive.size(); ++i) {
+            if (isSideJobActive.get(i)) {
+                sideJobsAdapter.setButtonDisActivate(i);
+            }
+        }
+
+        workRV = view.findViewById(R.id.workRV);
+        workRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        workRV.setHasFixedSize(true);
+        BlockUnactiveButtonsAdapter workAdapter = new BlockUnactiveButtonsAdapter(workList);
+        workRV.setAdapter(workAdapter);
+        workAdapter.setIndexOfActivatedButton(activeWorkIndex);
+        workAdapter.setAdapterListener(position -> {
+            workAdapter.setIndexOfActivatedButton(position);
+            changeWorkButtonActivity(position);
+            workAdapter.notifyDataSetChanged();
+            activityListener.clickOnWorkButton((Work) workList.get(position));
+        });
+
+        summerWorkRV = view.findViewById(R.id.summerWorkRV);
+        summerWorkRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        summerWorkRV.setHasFixedSize(true);
+        BlockUnactiveButtonsAdapter summerWorkAdapter = new BlockUnactiveButtonsAdapter(summerWorkList);
+        summerWorkRV.setAdapter(summerWorkAdapter);
+        summerWorkAdapter.setIndexOfActivatedButton(activeSummerWorkIndex);
+        summerWorkAdapter.setAdapterListener(position -> {
+            summerWorkAdapter.setIndexOfActivatedButton(position);
+            changeSummerWorkButtonActivity(position);
+            summerWorkAdapter.notifyDataSetChanged();
+            activityListener.clickOnWorkButton((Work) summerWorkList.get(position));
+        });
+    }
+
 }

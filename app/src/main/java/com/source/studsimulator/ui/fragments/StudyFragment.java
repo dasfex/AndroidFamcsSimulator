@@ -1,118 +1,117 @@
 package com.source.studsimulator.ui.fragments;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.model.entity.StudentActivity;
+import com.source.studsimulator.model.entity.Study;
+import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
+import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.ArrayList;
 
+
 public class StudyFragment extends Fragment {
 
-    public enum BUTTON_STATE {
-        ACTIVE, ACCECIBLE, INACCESIBLE
-    }
+    private RecyclerView universityRV;
+    private RecyclerView extraActivityRV;
+    private ArrayList<StudentActivity> university;
+    private ArrayList<StudentActivity> extraActivity;
+    private ArrayList<Boolean> isCourseActive = new ArrayList<>();
 
-    private ArrayList<Button> universityButtons = new ArrayList<>();
-    private ArrayList<Button> extraActivity = new ArrayList<>();
-    private ArrayList<BUTTON_STATE> isButtonActivated = new ArrayList<>();
-    private int indexOfActivatedButton = -1;
-
+    private StudyFragment.OnStudyFragmentListener activityListener;
+    private int activeButtonIndex = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.study_fragment_activity, null);
-        universityButtons.clear();
-        extraActivity.clear();
 
-        universityButtons.add(view.findViewById(R.id.visitButton));
-        universityButtons.add(view.findViewById(R.id.noVisitButton));
-        universityButtons.add(view.findViewById(R.id.cheatButton));
-        universityButtons.add(view.findViewById(R.id.hardUnButton));
+        initializeLists();
 
-        extraActivity.add(view.findViewById(R.id.hellButton));
-        extraActivity.add(view.findViewById(R.id.languageButton));
-        extraActivity.add(view.findViewById(R.id.itraButton));
-        extraActivity.add(view.findViewById(R.id.epamButton));
-        extraActivity.add(view.findViewById(R.id.progaButton));
-        extraActivity.add(view.findViewById(R.id.cookingButton));
+        universityRV = view.findViewById(R.id.universityRV);
+        universityRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        universityRV.setHasFixedSize(true);
+        OneActiveButtonAdapter universityRVAdapter = new OneActiveButtonAdapter(university);
+        universityRV.setAdapter(universityRVAdapter);
+        universityRVAdapter.setIndexOfActivatedButton(activeButtonIndex);
 
-        if (isButtonActivated.size() == 0) {
+        universityRVAdapter.setAdapterListener(position -> {
+            universityRVAdapter.setIndexOfActivatedButton(position);
+            changeButtonActivity(position);
+            universityRVAdapter.notifyDataSetChanged();
+            activityListener.clickOnStudyButton((Study) university.get(position));
+        });
+
+        extraActivityRV = view.findViewById(R.id.extraActivityRV);
+        extraActivityRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        extraActivityRV.setHasFixedSize(true);
+        ActiveButtonsAdapter extraActivityRVAdapter = new ActiveButtonsAdapter(extraActivity);
+        extraActivityRV.setAdapter(extraActivityRVAdapter);
+
+        extraActivityRVAdapter.setAdapterListener(position -> {
+            extraActivityRVAdapter.setButtonDisActivate(position);
+            changeAccessForSideButton(position);
+            extraActivityRVAdapter.notifyDataSetChanged();
+            activityListener.clickOnStudyButton((Study) extraActivity.get(position));
+        });
+
+        if (isCourseActive.size() == 0) {
             for (int i = 0; i < extraActivity.size(); ++i) {
-                isButtonActivated.add(StudyFragment.BUTTON_STATE.ACCECIBLE);
+                isCourseActive.add(false);
             }
         }
 
-        onActivityCreated(null);
-        addButtonsListeners();
-        colorUniversityButtons();
+        for (int i = 0; i < isCourseActive.size(); ++i) {
+            if (isCourseActive.get(i)) {
+                extraActivityRVAdapter.setButtonDisActivate(i);
+            }
+        }
+
 
         return view;
     }
 
+    private void initializeLists() {
+        university = new ArrayList<>();
+        university.add(new Study(getString(R.string.noVisit), 0, 0, 0, 5, 0));
+        university.add(new Study(getString(R.string.visit), 0, 15, -4, -15, 0));
+        university.add(new Study(getString(R.string.cheat), 0, 2, -1, -10, 0));
+        university.add(new Study(getString(R.string.workHard), 0, 20, -6, -20, 0));
+        extraActivity = new ArrayList<>();
+        extraActivity.add(new Study(getString(R.string.english), 5, 8, -2, -5, 0));
+        extraActivity.add(new Study(getString(R.string.itransition), 0, 10, -4, -8, 6));
+        extraActivity.add(new Study(getString(R.string.epam), 0, 12, -6, -10, 8));
+        extraActivity.add(new Study(getString(R.string.shad), 0, 30, -12, -50, 10));
+        extraActivity.add(new Study(getString(R.string.cookingCourses), 0, 20, 4, 0, 0));
+
+    }
+
+    private void changeButtonActivity(int position) {
+        activeButtonIndex = activeButtonIndex == position ? -1 : position;
+    }
+
+    private void changeAccessForSideButton(int pos) {
+        isCourseActive.set(pos, !isCourseActive.get(pos));
+    }
+
+    public interface OnStudyFragmentListener {
+        void clickOnStudyButton(Study study);
+    }
+
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        for (int i = 0; i < isButtonActivated.size(); ++i) {
-            switch (isButtonActivated.get(i)) {
-                case ACCECIBLE:
-                    extraActivity.get(i).setBackgroundColor(Color.WHITE);
-                    break;
-                case ACTIVE:
-                    extraActivity.get(i).setBackgroundColor(Color.RED);
-                    break;
-            }
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof StudyFragment.OnStudyFragmentListener) {
+            activityListener = (StudyFragment.OnStudyFragmentListener) context;
         }
     }
-
-    private void addButtonsListeners() {
-        for (int i = 0; i < universityButtons.size(); ++i) {
-            int finalI = i;
-            universityButtons.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (indexOfActivatedButton == finalI) {
-                        indexOfActivatedButton = -1;
-                    } else {
-                        indexOfActivatedButton = finalI;
-                    }
-                    colorUniversityButtons();
-                }
-            });
-        }
-        for (int i = 0; i < extraActivity.size(); ++i) {
-            int finalI = i;
-            extraActivity.get(finalI).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (isButtonActivated.get(finalI) == StudyFragment.BUTTON_STATE.ACCECIBLE) {
-                        isButtonActivated.set(finalI, StudyFragment.BUTTON_STATE.ACTIVE);
-                        extraActivity.get(finalI).setBackgroundColor(Color.RED);
-                    } else {
-                        extraActivity.get(finalI).setBackgroundColor(Color.WHITE);
-                        isButtonActivated.set(finalI, StudyFragment.BUTTON_STATE.ACCECIBLE);
-                    }
-                }
-            });
-        }
-    }
-
-    private void colorUniversityButtons() {
-        if (indexOfActivatedButton != -1) {
-            universityButtons.get(indexOfActivatedButton).setBackgroundColor(Color.RED);
-        }
-        for (int i = 0; i < universityButtons.size(); ++i) {
-            if (i != indexOfActivatedButton) {
-                universityButtons.get(i).setBackgroundColor(Color.WHITE);
-            }
-        }
-    }
-
 }

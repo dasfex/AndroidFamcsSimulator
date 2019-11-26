@@ -1,6 +1,5 @@
 package com.source.studsimulator.ui.fragments;
 
-import com.source.studsimulator.model.entity.Food;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.source.studsimulator.R;
-import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class FoodFragment extends Fragment {
     }
 
     private RecyclerView buttons;
-    private List<Payable> food;
+    private List<StudentActivity> food;
     private int activeButtonIndex = -1;
 
     private FoodFragment.OnFoodFragmentListener activityListener;
@@ -36,25 +36,24 @@ public class FoodFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.food_fragment_activity, null);
 
+        initializeFood();
+
         buttons = view.findViewById(R.id.buttonsRecyclerView);
         buttons.setLayoutManager(new LinearLayoutManager(getContext()));
         buttons.setHasFixedSize(true);
 
-        initializeFood();
-
         OneActiveButtonAdapter foodRVAdapter = new OneActiveButtonAdapter(food);
         buttons.setAdapter(foodRVAdapter);
         foodRVAdapter.setIndexOfActivatedButton(activeButtonIndex);
+
         foodRVAdapter.setAdapterListener(position -> {
             int currentPosition = foodRVAdapter.getIndexOfActivatedButton();
-            if (currentPosition != -1) {
-                activityListener.unclickFoodButton((Food) food.get(currentPosition));
-            }
             foodRVAdapter.setIndexOfActivatedButton(position);
             changeButtonActivity(position);
             foodRVAdapter.notifyDataSetChanged();
             activityListener.clickOnFoodButton((Food)food.get(position));
         });
+
         return view;
     }
 
@@ -64,7 +63,6 @@ public class FoodFragment extends Fragment {
   
     public interface OnFoodFragmentListener {
         void clickOnFoodButton(Food food);
-        void unclickFoodButton(Food food);
     }
 
     @Override

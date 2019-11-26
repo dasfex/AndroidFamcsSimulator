@@ -1,14 +1,14 @@
 package com.source.studsimulator.model.entity;
 
 
-public class Hobby implements Payable {
+public class Hobby implements Payable, StudentActivity {
 
     private String title;
     private Price price;
     private int satietyChanging;
     private int moodChanging;
 
-    public Hobby(int price, String title, int moodChanging, int satietyChanging) throws IllegalArgumentException {
+    public Hobby(String title, int price, int moodChanging, int satietyChanging) throws IllegalArgumentException {
         if (moodChanging <= 0) {
             throw new IllegalArgumentException("Hobby can't have nonpositive mood changing.");
         }

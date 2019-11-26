@@ -1,8 +1,10 @@
 package com.source.studsimulator.relation;
 
-
+import com.source.studsimulator.model.GameLogic.PlayerStats;
 import com.source.studsimulator.model.entity.Food;
-import com.source.studsimulator.model.GameLogic;
+import com.source.studsimulator.model.entity.Hobby;
+import com.source.studsimulator.model.entity.Study;
+import com.source.studsimulator.model.entity.Work;
 
 public class GamePresenter implements GameContract.Presenter {
 
@@ -33,36 +35,61 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void unclickFoodButton(Food food) {
-        model.eatBack(food);
+    public void clickOnLearnButton(Study study) {
+        model.learn(study);
     }
 
     @Override
-    public void clickOnSleepButton() {
-        model.sleep();
+    public void clickOnWorkButton(Work work) {
+        model.work(work);
     }
 
     @Override
-    public void clickOnLearnButton() {
-        model.learn();
+    public void clickOnHobbyButton(Hobby hobby) {
+        //
     }
 
-    @Override
-    public void clickOnWorkButton() {
-        model.work();
-    }
-
-    private int getParameter(GameLogic.PlayerStats characteristic) {
+    private int getParameter(PlayerStats characteristic) {
         return model.getParameter(characteristic);
     }
 
     private void updatePlayerStats() {
-        com.source.studsimulator.ui.entity.PlayerStats playerStats = new
-                com.source.studsimulator.ui.entity.PlayerStats(
-                (getParameter(GameLogic.PlayerStats.EDUCATION_LEVEL)),
-                (getParameter(GameLogic.PlayerStats.HEALTH)),
-                (getParameter(GameLogic.PlayerStats.SATIETY)),
-                String.valueOf(getParameter(GameLogic.PlayerStats.MONEY)));
+        PlayerStatsObject playerStats = new
+                PlayerStatsObject(
+                model.getParameter(PlayerStats.EDUCATION_LEVEL),
+                model.getParameter(PlayerStats.HEALTH),
+                model.getParameter(PlayerStats.SATIETY),
+                String.valueOf(model.getParameter(PlayerStats.MONEY)));
         view.refreshPlayerStats(playerStats);
+    }
+
+    public class PlayerStatsObject {
+        private int educationLevel;
+        private int health;
+        private int satiety;
+        private String money;
+
+        PlayerStatsObject(int educationLevel, int health, int satiety, String money) {
+            this.educationLevel = educationLevel;
+            this.health = health;
+            this.satiety = satiety;
+            this.money = money;
+        }
+
+        public int getEducationLevel() {
+            return educationLevel;
+        }
+
+        public int getHealth() {
+            return health;
+        }
+
+        public int getSatiety() {
+            return satiety;
+        }
+
+        public String getMoney() {
+            return money;
+        }
     }
 }

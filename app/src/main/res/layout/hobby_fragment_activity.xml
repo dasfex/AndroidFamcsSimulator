@@ -53,52 +53,14 @@
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="153dp"
-        android:layout_height="443dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="20dp"
-        android:baselineAligned="false"
-        android:orientation="vertical"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hobbyRV"
+        android:layout_width="147dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/readButton"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:text="@string/read" />
-
-        <Button
-            android:id="@+id/danceButton"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:text="@string/dance" />
-
-        <Button
-            android:id="@+id/beerButton"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:text="@string/beer" />
-
-        <Button
-            android:id="@+id/filmButton"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:text="@string/film" />
-
-        <Button
-            android:id="@+id/voteButton"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:text="@string/vote" />
-    </LinearLayout>
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textOtherHobbyView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

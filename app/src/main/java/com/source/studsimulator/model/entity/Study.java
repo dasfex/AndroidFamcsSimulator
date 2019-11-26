@@ -1,6 +1,6 @@
 package com.source.studsimulator.model.entity;
 
-public class Study implements Payable {
+public class Study implements Payable, StudentActivity {
 
     private String title;
     private Price price;
@@ -9,7 +9,7 @@ public class Study implements Payable {
     private int healthChanging;
     private int programmingSkillRequied;
 
-    public Study(String title, Price price, int educationChanging, int satietyChanging, int healthChanging, int programmingSkillRequied) {
+    public Study(String title, int price, int educationChanging, int satietyChanging, int healthChanging, int programmingSkillRequied) {
         if (title.equals("")) {
             throw new IllegalArgumentException("Title can't be empty string.");
         }
@@ -17,7 +17,7 @@ public class Study implements Payable {
             throw new IllegalArgumentException("Study can't require negative programming skill.");
         }
         this.title = title;
-        this.price = price;
+        this.price = new Price(price);
         this.educationChanging = educationChanging;
         this.satietyChanging = satietyChanging;
         this.healthChanging = healthChanging;
@@ -32,7 +32,7 @@ public class Study implements Payable {
         return healthChanging;
     }
 
-    public int getProgrammingSkillRequied() {
+    public int getProgrammingSkillRequired() {
         return programmingSkillRequied;
     }
 

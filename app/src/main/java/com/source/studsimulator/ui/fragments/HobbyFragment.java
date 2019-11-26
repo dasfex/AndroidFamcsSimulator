@@ -1,20 +1,23 @@
 package com.source.studsimulator.ui.fragments;
 
 import android.app.Activity;
-import android.graphics.Color;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Friend;
+import com.source.studsimulator.model.entity.Hobby;
+import com.source.studsimulator.model.entity.StudentActivity;
+import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.FriendAdapter;
 
 import java.util.ArrayList;
@@ -25,37 +28,47 @@ public class HobbyFragment extends Fragment {
         READ, DANCE, BEER, FILM, VOTE
     }
 
-    public enum BUTTON_STATE {
-        ACTIVE, ACCECIBLE
-    }
-
-    private ArrayList<Button> lonelyButtons = new ArrayList<>();
-    private ArrayList<BUTTON_STATE> isLonelyButtonActivated = new ArrayList<>();
+    private RecyclerView hobbyRV;
     private Spinner friendSpinner;
+
     private ArrayList<Friend> friendList;
+    private ArrayList<StudentActivity> hobbies;
+    private ArrayList<Boolean> isHobbyActive = new ArrayList<>();
+
+    private HobbyFragment.OnHobbyFragmentListener activityListener;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hobby_fragment_activity, null);
 
-        lonelyButtons.clear();
+        initializeFriends();
+        initializeHobbies();
 
-        lonelyButtons.add(view.findViewById(R.id.readButton));
-        lonelyButtons.add(view.findViewById(R.id.danceButton));
-        lonelyButtons.add(view.findViewById(R.id.beerButton));
-        lonelyButtons.add(view.findViewById(R.id.filmButton));
-        lonelyButtons.add(view.findViewById(R.id.voteButton));
+        hobbyRV = view.findViewById(R.id.hobbyRV);
+        hobbyRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        hobbyRV.setHasFixedSize(true);
 
-        if (isLonelyButtonActivated.size() == 0) {
-            for (int i = 0; i < lonelyButtons.size(); ++i) {
-                isLonelyButtonActivated.add(BUTTON_STATE.ACCECIBLE);
+        ActiveButtonsAdapter hobbyRVAdapter = new ActiveButtonsAdapter(hobbies);
+        hobbyRV.setAdapter(hobbyRVAdapter);
+
+        hobbyRVAdapter.setAdapterListener(position -> {
+            hobbyRVAdapter.setButtonDisActivate(position);
+            changeAccessForSideButton(position);
+            hobbyRVAdapter.notifyDataSetChanged();
+            activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
+        });
+
+        if (isHobbyActive.size() == 0) {
+            for (int i = 0; i < hobbies.size(); ++i) {
+                isHobbyActive.add(false);
             }
         }
 
-        onActivityCreated(null);
-        addButtonListeners();
-
-        initializeFriends();
+        for (int i = 0; i < hobbies.size(); ++i) {
+            if (isHobbyActive.get(i)) {
+                hobbyRVAdapter.setButtonDisActivate(i);
+            }
+        }
 
         friendSpinner = view.findViewById(R.id.friendSpinner);
 
@@ -82,37 +95,29 @@ public class HobbyFragment extends Fragment {
         return view;
     }
 
+    private void changeAccessForSideButton(int pos) {
+        isHobbyActive.set(pos, !isHobbyActive.get(pos));
+    }
+
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        for (int i = 0; i < isLonelyButtonActivated.size(); ++i) {
-            switch (isLonelyButtonActivated.get(i)) {
-                case ACCECIBLE:
-                    lonelyButtons.get(i).setBackgroundColor(Color.WHITE);
-                    break;
-                case ACTIVE:
-                    lonelyButtons.get(i).setBackgroundColor(Color.GREEN);
-                    break;
-            }
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof HobbyFragment.OnHobbyFragmentListener) {
+            activityListener = (HobbyFragment.OnHobbyFragmentListener) context;
         }
     }
 
-    private void addButtonListeners() {
-        for (int i = 0; i < lonelyButtons.size(); ++i) {
-            int finalI = i;
-            lonelyButtons.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (isLonelyButtonActivated.get(finalI) == BUTTON_STATE.ACCECIBLE) {
-                        lonelyButtons.get(finalI).setBackgroundColor(Color.GREEN);
-                        isLonelyButtonActivated.set(finalI, BUTTON_STATE.ACTIVE);
-                    } else {
-                        lonelyButtons.get(finalI).setBackgroundColor(Color.WHITE);
-                        isLonelyButtonActivated.set(finalI, BUTTON_STATE.ACCECIBLE);
-                    }
-                }
-            });
-        }
+    public interface OnHobbyFragmentListener {
+        void clickOnHobbyButton(Hobby hobby);
+    }
+
+    private void initializeHobbies() {
+        hobbies = new ArrayList<>();
+        hobbies.add(new Hobby(getString(R.string.read), 0, 1, 1));
+        hobbies.add(new Hobby(getString(R.string.dance), 0, 1, 1));
+        hobbies.add(new Hobby(getString(R.string.beer), 0, 1, 1));
+        hobbies.add(new Hobby(getString(R.string.film), 0, 1, 1));
+        hobbies.add(new Hobby(getString(R.string.vote), 0, 1, 1));
     }
 
     private void initializeFriends() {

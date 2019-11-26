@@ -1,14 +1,17 @@
 package com.source.studsimulator.relation;
 
 
-import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.GameLogic;
+import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.Study;
+import com.source.studsimulator.model.entity.Work;
 
 public interface GameContract {
 
     interface View {
-        void refreshPlayerStats(com.source.studsimulator.ui.entity.PlayerStats playerStats);
+        void refreshPlayerStats(GamePresenter.PlayerStatsObject playerStats);
         void updateWeek(int weekNumber);
     }
 
@@ -16,23 +19,17 @@ public interface GameContract {
         void viewCreated();
         void clickOnNewWeekButton();
         void clickOnFoodButton(Food food);
-        void unclickFoodButton(Food food);
-        void clickOnLearnButton();
-        void clickOnSleepButton();
-        void clickOnWorkButton();
+        void clickOnLearnButton(Study study);
+        void clickOnWorkButton(Work work);
+        void clickOnHobbyButton(Hobby hobby);
     }
 
     interface Model {
         void newWeek();
         void eat(Food food);
-        void eatBack(Food food);
         void pay(Payable payable);
-        // как и с едой, добавить класс для методов обучения
-        // и передавать его далее
-        void learn();
-        void sleep();
-        // аналогично тут
-        void work();
+        void learn(Study study);
+        void work(Work work);
         int getParameter(GameLogic.PlayerStats characteristic);
         int getWeek();
     }

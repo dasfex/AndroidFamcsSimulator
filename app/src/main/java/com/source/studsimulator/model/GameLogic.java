@@ -1,8 +1,11 @@
 package com.source.studsimulator.model;
 
 
+import com.source.studsimulator.model.Student;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.Study;
+import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.relation.GameContract;
 
 public class GameLogic implements GameContract.Model {
@@ -20,25 +23,13 @@ public class GameLogic implements GameContract.Model {
 
     @Override
     public void newWeek() {
-        // тут чекаем результаты всей недели
         gameTime += 1;
     }
 
-    // тут и далее показаны примерный план работы каждого метода
-    // по красоте далее нужно будет сделать енамы в controller(а может даже во вью)
-    // и передавать их сюда
-
     @Override
-    public void work() {
-        student.changeHealth(-5);
-        student.changeMoney(15);
-    }
-
-    // обсудим, нужно ли нам это
-    @Override
-    public void sleep() {
-        student.changeHealth(50);
-        student.changeSatiety(-20);
+    public void work(Work work) {
+        student.changeHealth(work.getHealthChanging());
+        student.changeMoney(work.getAmountOfMoney());
     }
 
     @Override
@@ -48,26 +39,14 @@ public class GameLogic implements GameContract.Model {
         pay(food);
     }
 
-    @Override
-    public void eatBack(Food food) {
-        student.changeSatiety(-food.getSatietyChanging());
-        student.changeHealth(-food.getHealthChanging());
-        payBack(food);
-    }
-
     // важно не потерять минус, т.к. метод ИЗМЕНЯЕТ на заданную величину
     @Override
     public void pay(Payable payable) {
         student.changeMoney(-payable.getPrice().toInt());
     }
 
-
-    private void payBack(Payable payable) {
-        student.changeMoney(payable.getPrice().toInt());
-    }
-
     @Override
-    public void learn() {
+    public void learn(Study study) {
         student.changeEducationLevel(15);
         student.changeHealth(-5);
         student.changeSatiety(-5);
