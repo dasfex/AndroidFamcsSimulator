@@ -65,5 +65,8 @@
     <string name="fastFood">Кушать фастфуд</string>
     <string name="sushiFood">Кушать суши</string>
     <string name="burgerFood">Покупать бургеры за 2000</string>
+    <string name="lostYouth">Выбери, как терять молодость!</string>
+    <string name="lostYouthAgain1">У тебя осталась лишняя молодость? </string>
+    <string name="lostYouthAgain2">Выбери, где прокачаться! </string>
 
 </resources>

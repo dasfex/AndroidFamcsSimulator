@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.StudentActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BlockUnactiveButtonsAdapter

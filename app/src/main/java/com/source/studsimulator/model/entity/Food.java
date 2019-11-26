@@ -3,7 +3,6 @@ package com.source.studsimulator.model.entity;
 
 import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.Price;
-import com.source.studsimulator.model.entity.StudentActivity;
 
 public class Food implements Payable, StudentActivity {
 
