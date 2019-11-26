@@ -9,7 +9,7 @@ public class Study implements Payable, StudentActivity {
     private int healthChanging;
     private int programmingSkillRequied;
 
-    public Study(String title, Price price, int educationChanging, int satietyChanging, int healthChanging, int programmingSkillRequied) {
+    public Study(String title, int price, int educationChanging, int satietyChanging, int healthChanging, int programmingSkillRequied) {
         if (title.equals("")) {
             throw new IllegalArgumentException("Title can't be empty string.");
         }
@@ -17,7 +17,7 @@ public class Study implements Payable, StudentActivity {
             throw new IllegalArgumentException("Study can't require negative programming skill.");
         }
         this.title = title;
-        this.price = price;
+        this.price = new Price(price);
         this.educationChanging = educationChanging;
         this.satietyChanging = satietyChanging;
         this.healthChanging = healthChanging;

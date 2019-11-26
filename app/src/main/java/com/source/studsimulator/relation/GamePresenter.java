@@ -2,6 +2,7 @@ package com.source.studsimulator.relation;
 
 import com.source.studsimulator.model.GameLogic.PlayerStats;
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 
 public class GamePresenter implements GameContract.Presenter {
@@ -33,8 +34,8 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void clickOnLearnButton() {
-        model.learn();
+    public void clickOnLearnButton(Study study) {
+        model.learn(study);
     }
 
     @Override

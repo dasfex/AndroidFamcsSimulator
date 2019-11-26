@@ -4,6 +4,7 @@ package com.source.studsimulator.model;
 import com.source.studsimulator.model.Student;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.relation.GameContract;
 
@@ -45,7 +46,7 @@ public class GameLogic implements GameContract.Model {
     }
 
     @Override
-    public void learn() {
+    public void learn(Study study) {
         student.changeEducationLevel(15);
         student.changeHealth(-5);
         student.changeSatiety(-5);
