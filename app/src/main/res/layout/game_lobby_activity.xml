@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="550dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonLayout"
@@ -65,9 +65,9 @@
         android:id="@+id/buttonLayout"
         android:layout_width="match_parent"
         android:layout_height="79dp"
-        android:layout_marginBottom="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal"
         android:weightSum="100"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -135,9 +135,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="1dp"
-        android:textSize = "12sp"
-        app:layout_constraintStart_toStartOf="@+id/healthBar"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/healthBar"
+        app:layout_constraintStart_toStartOf="@+id/healthBar"
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="2dp" />
 
@@ -157,9 +157,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="1dp"
-        android:textSize = "12sp"
-        app:layout_constraintStart_toStartOf="@+id/satietyBar"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/satietyBar"
+        app:layout_constraintStart_toStartOf="@+id/satietyBar"
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="2dp" />
 
@@ -179,10 +179,29 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="1dp"
-        android:textSize = "12sp"
-        app:layout_constraintStart_toStartOf="@+id/educationBar"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/educationBar"
+        app:layout_constraintStart_toStartOf="@+id/educationBar"
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="2dp" />
+
+    <ImageView
+        android:id="@+id/energyImage"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/electricity_symbol"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragmentLayout"/>
+
+    <TextView
+        android:id="@+id/energyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintStart_toEndOf="@id/energyImage"
+        app:layout_constraintBottom_toTopOf="@id/fragmentLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -82,16 +82,16 @@ public class StudyFragment extends Fragment {
 
     private void initializeLists() {
         university = new ArrayList<>();
-        university.add(new Study(getString(R.string.noVisit), 0, 0, 0, 5, 0));
-        university.add(new Study(getString(R.string.visit), 0, 15, -4, -15, 0));
-        university.add(new Study(getString(R.string.cheat), 0, 2, -1, -10, 0));
-        university.add(new Study(getString(R.string.workHard), 0, 20, -6, -20, 0));
+        university.add(new Study(getString(R.string.noVisit), 0, 0, 0, 5, 0, 0));
+        university.add(new Study(getString(R.string.visit), 0, 15, -4, -15, 0,1));
+        university.add(new Study(getString(R.string.cheat), 0, 2, -1, -10, 0,2));
+        university.add(new Study(getString(R.string.workHard), 0, 20, -6, -20, 0,3));
         extraActivity = new ArrayList<>();
-        extraActivity.add(new Study(getString(R.string.english), 5, 8, -2, -5, 0));
-        extraActivity.add(new Study(getString(R.string.itransition), 0, 10, -4, -8, 6));
-        extraActivity.add(new Study(getString(R.string.epam), 0, 12, -6, -10, 8));
-        extraActivity.add(new Study(getString(R.string.shad), 0, 30, -12, -50, 10));
-        extraActivity.add(new Study(getString(R.string.cookingCourses), 0, 20, 4, 0, 0));
+        extraActivity.add(new Study(getString(R.string.english), 5, 8, -2, -5, 0,1));
+        extraActivity.add(new Study(getString(R.string.itransition), 0, 10, -4, -8, 6,1));
+        extraActivity.add(new Study(getString(R.string.epam), 0, 12, -6, -10, 8,1));
+        extraActivity.add(new Study(getString(R.string.shad), 0, 30, -12, -50, 10,5));
+        extraActivity.add(new Study(getString(R.string.cookingCourses), 0, 20, 4, 0, 0,1));
 
     }
 

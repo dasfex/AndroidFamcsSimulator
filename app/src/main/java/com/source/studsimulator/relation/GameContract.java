@@ -13,6 +13,7 @@ public interface GameContract {
     interface View {
         void refreshPlayerStats(GamePresenter.PlayerStatsObject playerStats);
         void updateWeek(int weekNumber);
+        void updateEnergyLevel(int energyLevel);
     }
 
     interface Presenter {
@@ -31,6 +32,8 @@ public interface GameContract {
         void learn(Study study);
         void work(Work work);
         int getParameter(GameLogic.PlayerStats characteristic);
+        int getEnergyLevel();
+        void changeEnergyLevel(int energyLevelPoints);
         int getWeek();
     }
 }

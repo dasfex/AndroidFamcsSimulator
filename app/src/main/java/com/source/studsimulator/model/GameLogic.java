@@ -12,18 +12,30 @@ public class GameLogic implements GameContract.Model {
 
     private Student student;
     private int gameTime = 1;
+    private int energyLevel = 16;
 
     public enum PlayerStats {
-        EDUCATION_LEVEL, HEALTH, SATIETY, MONEY
-    }
+        EDUCATION_LEVEL, HEALTH, SATIETY, MONEY;
 
+    }
     public GameLogic() {
         student = new Student();
     }
 
     @Override
+    public int getEnergyLevel() {
+        return energyLevel;
+    }
+
+    @Override
+    public void changeEnergyLevel(int energyLevelPoints) {
+        energyLevel += energyLevelPoints;
+    }
+
+    @Override
     public void newWeek() {
         gameTime += 1;
+        energyLevel = 16;
     }
 
     @Override
