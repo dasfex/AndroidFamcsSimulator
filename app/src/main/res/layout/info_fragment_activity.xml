@@ -26,11 +26,13 @@
         android:id="@+id/artyomTheStudent"
         android:layout_width="192dp"
         android:layout_height="173dp"
-        android:layout_marginStart="203dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="playerPhoto"
         android:src="@drawable/student"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,10 +41,11 @@
         android:layout_width="192dp"
         android:layout_height="21dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="187dp"
-        android:text="Уровень образования:"
+        android:text="@string/educationalLevel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/artyomTheStudent" />
 
@@ -50,12 +53,12 @@
         android:id="@+id/programmingLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="203dp"
-        android:text="Навыки программистера:"
+        android:text="@string/programmingLevel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eduLevel" />
 
@@ -63,10 +66,10 @@
         android:id="@+id/englishLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="184dp"
-        android:text="Уровень английского языка:"
+        android:text="@string/englishLevel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/programmingLevel" />
@@ -75,22 +78,30 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="31dp"
-        android:text="Имя:"
-        app:layout_constraintEnd_toStartOf="@+id/studentName"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/playerName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/studentName"
+        android:id="@+id/playerCourseTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="46dp"
-        android:text="неАртём"
-        app:layout_constraintEnd_toStartOf="@+id/artyomTheStudent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/playerCourseTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/playerCourse"
+        android:layout_width="8dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/playerCourseString"
+        app:layout_constraintStart_toEndOf="@+id/playerCourseTV"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

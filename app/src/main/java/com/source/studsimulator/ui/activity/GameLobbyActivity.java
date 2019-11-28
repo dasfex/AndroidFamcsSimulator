@@ -19,6 +19,7 @@ import com.source.studsimulator.relation.GameContract;
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.relation.GamePresenter;
+import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.fragments.FoodFragment;
 import com.source.studsimulator.ui.fragments.HobbyFragment;
 import com.source.studsimulator.ui.fragments.InfoFragment;
@@ -99,7 +100,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void refreshPlayerStats(GamePresenter.PlayerStatsObject playerStats) {
+    public void refreshPlayerStats(PlayerStats playerStats) {
         moneyTextView.setText(playerStats.getMoney());
 
         satietyBar.setProgress(playerStats.getSatiety());

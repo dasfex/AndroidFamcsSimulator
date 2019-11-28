@@ -1,10 +1,11 @@
 package com.source.studsimulator.relation;
 
-import com.source.studsimulator.model.GameLogic.PlayerStats;
+import com.source.studsimulator.model.GameLogic.PlayerStatsEnum;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
+import com.source.studsimulator.ui.entity.PlayerStats;
 
 public class GamePresenter implements GameContract.Presenter {
 
@@ -51,51 +52,59 @@ public class GamePresenter implements GameContract.Presenter {
         //
     }
 
-    private int getParameter(PlayerStats characteristic) {
-        return model.getParameter(characteristic);
-    }
-
-    private void updatePlayerStats() {
-        PlayerStatsObject playerStats = new
-                PlayerStatsObject(
-                model.getParameter(PlayerStats.EDUCATION_LEVEL),
-                model.getParameter(PlayerStats.HEALTH),
-                model.getParameter(PlayerStats.SATIETY),
-                String.valueOf(model.getParameter(PlayerStats.MONEY)));
-        view.refreshPlayerStats(playerStats);
-    }
-
     private void changeEnergyLevel() {
         view.updateEnergyLevel(model.getEnergyLevel());
     }
 
-    public class PlayerStatsObject {
-        private int educationLevel;
-        private int health;
-        private int satiety;
-        private String money;
+    private int getParameter(PlayerStatsEnum characteristic) {
+        return model.getParameter(characteristic);
+    }
 
-        PlayerStatsObject(int educationLevel, int health, int satiety, String money) {
-            this.educationLevel = educationLevel;
-            this.health = health;
-            this.satiety = satiety;
-            this.money = money;
+    private void updatePlayerStats() {
+        PlayerStats playerStats = new
+                PlayerStats(
+                model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL),
+                model.getParameter(PlayerStatsEnum.HEALTH),
+                model.getParameter(PlayerStatsEnum.SATIETY),
+                String.valueOf(model.getParameter(PlayerStatsEnum.MONEY)),
+                getProgrammingSkillString(model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)),
+                getEnglishSkillString(model.getParameter(PlayerStatsEnum.ENGLISH_SKILL)));
+        view.refreshPlayerStats(playerStats);
+    }
+
+    private String getProgrammingSkillString(int param) {
+        if (param < 20) {
+            return "Begginer";
+        } else if (param < 40) {
+            return "Lubitel";
+        } else if (param < 80) {
+            return "Junior";
+        } else if (param < 140) {
+            return "Middle";
+        } else if (param < 220) {
+            return "Senior";
+        } else if (param < 300) {
+            return "Lead";
+        } else {
+            return "Korotkevich";
         }
+    }
 
-        public int getEducationLevel() {
-            return educationLevel;
-        }
-
-        public int getHealth() {
-            return health;
-        }
-
-        public int getSatiety() {
-            return satiety;
-        }
-
-        public String getMoney() {
-            return money;
+    private String getEnglishSkillString(int param) {
+        if (param < 20) {
+            return "A1";
+        } else if (param < 40) {
+            return "A2";
+        } else if (param < 60) {
+            return "B1";
+        } else if (param < 80) {
+            return "B2";
+        } else if (param < 100) {
+            return "C1";
+        } else if (param < 120) {
+            return "C2";
+        } else {
+            return "D13";
         }
     }
 }

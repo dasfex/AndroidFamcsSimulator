@@ -1,7 +1,6 @@
 package com.source.studsimulator.model;
 
 
-import com.source.studsimulator.model.Student;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.Study;
@@ -14,8 +13,9 @@ public class GameLogic implements GameContract.Model {
     private int gameTime = 1;
     private int energyLevel = 16;
 
-    public enum PlayerStats {
-        EDUCATION_LEVEL, HEALTH, SATIETY, MONEY;
+    public enum PlayerStatsEnum {
+        EDUCATION_LEVEL, HEALTH, SATIETY, MONEY,
+        PROGRAMMING_SKILL, ENGLISH_SKILL
 
     }
     public GameLogic() {
@@ -65,7 +65,7 @@ public class GameLogic implements GameContract.Model {
     }
 
     @Override
-    public int getParameter(PlayerStats characteristic){
+    public int getParameter(PlayerStatsEnum characteristic){
         return student.getParameter(characteristic);
     }
 

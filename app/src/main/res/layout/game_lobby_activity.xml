@@ -89,7 +89,7 @@
             android:layout_weight="20"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/infoButton"
-            app:srcCompat="@drawable/food_img" />
+            app:srcCompat="@drawable/food" />
 
         <ImageButton
             android:id="@+id/studyButton"
@@ -98,7 +98,7 @@
             android:layout_weight="20"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/foodButton"
-            app:srcCompat="@drawable/study_img" />
+            app:srcCompat="@drawable/study" />
 
         <ImageButton
             android:id="@+id/workButton"
@@ -107,7 +107,7 @@
             android:layout_weight="20"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/studyButton"
-            app:srcCompat="@drawable/work_img" />
+            app:srcCompat="@drawable/work" />
 
         <ImageButton
             android:id="@+id/hobbyButton"
@@ -116,7 +116,7 @@
             android:layout_weight="20"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/workButton"
-            app:srcCompat="@drawable/hobby_img" />
+            app:srcCompat="@drawable/hobby" />
     </LinearLayout>
 
     <ProgressBar

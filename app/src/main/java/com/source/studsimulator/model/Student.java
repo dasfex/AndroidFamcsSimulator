@@ -7,6 +7,8 @@ public class Student {
     private int health = 50;
     private int satiety = 50;
     private int educationLevel = 0;
+    private int programmingSkill = 0;
+    private int englishSkill = 0;
 
     public Student() {
 
@@ -33,7 +35,7 @@ public class Student {
         educationLevel = Math.max(educationLevel, 0);
     }
 
-    public int getParameter(GameLogic.PlayerStats characteristic) {
+    public int getParameter(GameLogic.PlayerStatsEnum characteristic) {
         switch (characteristic) {
             case HEALTH:
                 return health;
@@ -43,6 +45,10 @@ public class Student {
                 return educationLevel;
             case MONEY:
                 return money;
+            case PROGRAMMING_SKILL:
+                return programmingSkill;
+            case ENGLISH_SKILL:
+                return englishSkill;
         }
         return 0;
     }

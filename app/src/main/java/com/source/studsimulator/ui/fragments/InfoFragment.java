@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.relation.GamePresenter;
 
 public class InfoFragment extends Fragment {
 
@@ -29,34 +30,34 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.info_fragment_activity, null);
-        photo = view.findViewById(R.id.artyomTheStudent);
-        photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               showToast(v);
-            }
-        });
-        newWeekButton = view.findViewById(R.id.newWeekButton);
 
-        newWeekButton.setOnClickListener(v -> activityListener.onNewWeekClicked());
+        initializeWidgets(view);
+
 
         return view;
     }
 
-    public void showToast(View view) {
-        Toast toast3 = Toast.makeText(view.getContext(),
-                R.string.art, Toast.LENGTH_SHORT);
-        toast3.setGravity(Gravity.NO_GRAVITY, 0, 0);
+    private void initializeWidgets(View view) {
+        photo = view.findViewById(R.id.artyomTheStudent);
+        photo.setOnClickListener(this::showToast);
 
-        LinearLayout toastContainer = (LinearLayout) toast3.getView();
-            toastContainer.setBackgroundColor(Color.TRANSPARENT);
+        newWeekButton = view.findViewById(R.id.newWeekButton);
+        newWeekButton.setOnClickListener(v -> activityListener.onNewWeekClicked());
+    }
+
+    private void showToast(View view) {
+        Toast clickToast = Toast.makeText(view.getContext(),
+                R.string.art, Toast.LENGTH_SHORT);
+        clickToast.setGravity(Gravity.NO_GRAVITY, 0, 0);
+
+        LinearLayout toastContainer = (LinearLayout) clickToast.getView();
+        toastContainer.setBackgroundColor(Color.TRANSPARENT);
+
         ImageView artImage = new ImageView(view.getContext());
         artImage.setImageResource(R.drawable.hello_artyom);
-        artImage.setMaxWidth(300);
-        artImage.setMaxHeight(300);
-            toastContainer.addView(artImage, 0);
+        toastContainer.addView(artImage, 0);
 
-        toast3.show();
+        clickToast.show();
     }
 
     @Override

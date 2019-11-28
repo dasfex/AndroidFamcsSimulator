@@ -15,13 +15,13 @@
     <string name="newWeek">Прожить неделю!</string>
 
     <string name="foodHdrTxtView1">Выбери способ подкрепиться!</string>
-    <string name="getNeighbourFood">Брать у соседа</string>
-    <string name="doshik">Кушать дошик</string>
-    <string name="goToStolovaya">Ходить в столовую</string>
-    <string name="cook">Готовить самому</string>
-    <string name="fastfood">Питаться фастфудом</string>
-    <string name="sushi">Есть суши</string>
-    <string name="burgerstwo">Покупать бургеры за 2000</string>
+    <string name="neighbourFood">Брать у соседа</string>
+    <string name="doshikFood">Кушать дошик</string>
+    <string name="stolovkaFood">Ходить в столовую</string>
+    <string name="yourselfFood">Готовить самому</string>
+    <string name="fastFood">Кушать фастфуд</string>
+    <string name="sushiFood">Кушать суши</string>
+    <string name="burgerFood">Покупать бургеры за 2000</string>
 
     <string name="friendLabel">Выбери, с кем хочешь провести время</string>
     <string name="hobbyLabel">Выбери занятие</string>
@@ -58,17 +58,17 @@
     <string name="shad">shАД</string>
     <string name="epam">Курсы ЕРАТ</string>
 
-    <string name="neighbourFood">Брать у соседа</string>
-    <string name="doshikFood">Кушать дошик</string>
-    <string name="stolovkaFood">Ходить в столовую</string>
-    <string name="yourselfFood">Готовить самому</string>
-    <string name="fastFood">Кушать фастфуд</string>
-    <string name="sushiFood">Кушать суши</string>
-    <string name="burgerFood">Покупать бургеры за 2000</string>
     <string name="lostYouth">Выбери, как терять молодость!</string>
     <string name="lostYouthAgain1">У тебя осталась лишняя молодость? </string>
     <string name="lostYouthAgain2">Выбери, где прокачаться! </string>
 
     <string name="art">Чего кликаешь??? </string>
+
+    <string name="playerName">Имя: неАртём.</string>
+    <string name="playerCourseTV">Курс:</string>
+    <string name="playerCourseString">1</string>
+    <string name="educationalLevel">Уровень образования: %d</string>
+    <string name="englishLevel">Уровень английского языка:</string>
+    <string name="programmingLevel">Навыки программистера:</string>
 
 </resources>

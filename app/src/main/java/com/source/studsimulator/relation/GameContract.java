@@ -7,11 +7,12 @@ import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
+import com.source.studsimulator.ui.entity.PlayerStats;
 
 public interface GameContract {
 
     interface View {
-        void refreshPlayerStats(GamePresenter.PlayerStatsObject playerStats);
+        void refreshPlayerStats(PlayerStats playerStats);
         void updateWeek(int weekNumber);
         void updateEnergyLevel(int energyLevel);
     }
@@ -31,7 +32,7 @@ public interface GameContract {
         void pay(Payable payable);
         void learn(Study study);
         void work(Work work);
-        int getParameter(GameLogic.PlayerStats characteristic);
+        int getParameter(GameLogic.PlayerStatsEnum characteristic);
         int getEnergyLevel();
         void changeEnergyLevel(int energyLevelPoints);
         int getWeek();
