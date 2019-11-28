@@ -7,8 +7,9 @@ public class Hobby implements Payable, StudentActivity {
     private Price price;
     private int satietyChanging;
     private int moodChanging;
+    private int energyNeeded;
 
-    public Hobby(String title, int price, int moodChanging, int satietyChanging) throws IllegalArgumentException {
+    public Hobby(String title, int price, int moodChanging, int satietyChanging, int energy) throws IllegalArgumentException {
         if (moodChanging <= 0) {
             throw new IllegalArgumentException("Hobby can't have nonpositive mood changing.");
         }
@@ -18,10 +19,19 @@ public class Hobby implements Payable, StudentActivity {
         if (title.equals("")) {
             throw new IllegalArgumentException("Title can't be empty string.");
         }
+        if (energy < 0) {
+            throw new IllegalArgumentException("Energy must be positive.");
+        }
         this.price = new Price(price);
         this.title = title;
         this.moodChanging = moodChanging;
         this.satietyChanging = satietyChanging;
+        this.energyNeeded = energy;
+    }
+
+    @Override
+    public int getEnergyNeeded() {
+        return energyNeeded;
     }
 
     public int getMoodChanging() {

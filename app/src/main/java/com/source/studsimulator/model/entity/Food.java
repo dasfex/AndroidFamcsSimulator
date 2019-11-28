@@ -10,8 +10,9 @@ public class Food implements Payable, StudentActivity {
     private Price price;
     private int satietyChanging;
     private int healthChanging;
+    private int energyNeeded;
 
-    public Food(int price, String title, int satiety, int health) throws IllegalArgumentException {
+    public Food(int price, String title, int satiety, int health, int energy) throws IllegalArgumentException {
         if (satiety <= 0) {
             throw new IllegalArgumentException("Food can't have nonpositive satiety.");
         }
@@ -21,16 +22,26 @@ public class Food implements Payable, StudentActivity {
         if (title.equals("")) {
             throw new IllegalArgumentException("Title can't be empty string.");
         }
+        if (energy < 0) {
+            throw new IllegalArgumentException("Energy must be positive.");
+        }
         this.price = new Price(price);
         this.title = title;
         this.satietyChanging = satiety;
         this.healthChanging = health;
+        this.energyNeeded = energy;
+    }
+
+    @Override
+    public int getEnergyNeeded() {
+        return energyNeeded;
     }
 
     public int getSatietyChanging() {
         return satietyChanging;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }

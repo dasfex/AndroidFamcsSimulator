@@ -20,6 +20,7 @@ public class GamePresenter implements GameContract.Presenter {
     public void viewCreated() {
         updatePlayerStats();
         view.updateWeek(model.getWeek());
+        view.updateEnergyLevel(model.getEnergyLevel());
     }
 
     @Override
@@ -27,6 +28,7 @@ public class GamePresenter implements GameContract.Presenter {
         model.newWeek();
         updatePlayerStats();
         view.updateWeek(model.getWeek());
+        view.updateEnergyLevel(model.getEnergyLevel());
     }
 
     @Override
@@ -61,6 +63,10 @@ public class GamePresenter implements GameContract.Presenter {
                 model.getParameter(PlayerStats.SATIETY),
                 String.valueOf(model.getParameter(PlayerStats.MONEY)));
         view.refreshPlayerStats(playerStats);
+    }
+
+    private void changeEnergyLevel() {
+        view.updateEnergyLevel(model.getEnergyLevel());
     }
 
     public class PlayerStatsObject {

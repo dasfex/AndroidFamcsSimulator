@@ -113,11 +113,11 @@ public class HobbyFragment extends Fragment {
 
     private void initializeHobbies() {
         hobbies = new ArrayList<>();
-        hobbies.add(new Hobby(getString(R.string.read), 0, 1, 1));
-        hobbies.add(new Hobby(getString(R.string.dance), 0, 1, 1));
-        hobbies.add(new Hobby(getString(R.string.beer), 0, 1, 1));
-        hobbies.add(new Hobby(getString(R.string.film), 0, 1, 1));
-        hobbies.add(new Hobby(getString(R.string.vote), 0, 1, 1));
+        hobbies.add(new Hobby(getString(R.string.read), 0, 1, 1,1));
+        hobbies.add(new Hobby(getString(R.string.dance), 0, 1, 1,1));
+        hobbies.add(new Hobby(getString(R.string.beer), 0, 1, 1,1));
+        hobbies.add(new Hobby(getString(R.string.film), 0, 1, 1,1));
+        hobbies.add(new Hobby(getString(R.string.vote), 0, 1, 1,1));
     }
 
     private void initializeFriends() {

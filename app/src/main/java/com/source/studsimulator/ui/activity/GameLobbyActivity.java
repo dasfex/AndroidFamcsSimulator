@@ -34,6 +34,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
 
     private TextView moneyTextView;
     private TextView timeTextView;
+    private TextView energyTextView;
 
     ProgressBar satietyBar;
     ProgressBar healthBar;
@@ -86,6 +87,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     private void initPlayerStatsView() {
         moneyTextView = findViewById(R.id.moneyCount);
         timeTextView = findViewById(R.id.actualTime);
+        energyTextView = findViewById(R.id.energyTextView);
 
         satietyTextView = findViewById(R.id.satietyText);
         healthTextView = findViewById(R.id.healthText);
@@ -145,6 +147,11 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     @Override
     public void updateWeek(int weekNumber) {
         timeTextView.setText(String.format(getString(R.string.weekNumber), weekNumber));
+    }
+
+    @Override
+    public void updateEnergyLevel(int energyLevel) {
+        energyTextView.setText(String.valueOf(energyLevel));
     }
 
     private void setOnClickListenersForFragmentButtons() {

@@ -10,11 +10,12 @@ public class Work implements StudentActivity {
     private int englishSkillRequired;
     private int programmingSkillIncrease;
     private int englishSkillIncrease;
+    private int energyNeeded;
 
     public Work(String title, int healthChanging,
                 int satietyChanging, int amountOfMoney,
                 int programmingSkillRequired, int englishSkillRequired,
-                int programmingSkillIncrease, int englishSkillIncrease) {
+                int programmingSkillIncrease, int englishSkillIncrease, int energy) {
         if (title.equals("")) {
             throw new IllegalArgumentException("Title can't be empty string.");
         }
@@ -27,6 +28,9 @@ public class Work implements StudentActivity {
         if (englishSkillRequired < 0) {
             throw new IllegalArgumentException("Work can't require negative English skill.");
         }
+        if (energy < 0) {
+            throw new IllegalArgumentException("Energy must be positive.");
+        }
         this.title = title;
         this.healthChanging = healthChanging;
         this.satietyChanging = satietyChanging;
@@ -35,6 +39,12 @@ public class Work implements StudentActivity {
         this.englishSkillRequired = englishSkillRequired;
         this.programmingSkillIncrease = programmingSkillIncrease;
         this.englishSkillIncrease = englishSkillIncrease;
+        this.energyNeeded = energy;
+    }
+
+    @Override
+    public int getEnergyNeeded() {
+        return energyNeeded;
     }
 
     public int getProgrammingSkillIncrease() {

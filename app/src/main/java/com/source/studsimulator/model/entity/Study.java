@@ -8,13 +8,17 @@ public class Study implements Payable, StudentActivity {
     private int satietyChanging;
     private int healthChanging;
     private int programmingSkillRequied;
+    private int energyNeeded;
 
-    public Study(String title, int price, int educationChanging, int satietyChanging, int healthChanging, int programmingSkillRequied) {
+    public Study(String title, int price, int educationChanging, int satietyChanging, int healthChanging, int programmingSkillRequied, int energy) {
         if (title.equals("")) {
             throw new IllegalArgumentException("Title can't be empty string.");
         }
         if (programmingSkillRequied < 0) {
             throw new IllegalArgumentException("Study can't require negative programming skill.");
+        }
+        if (energy < 0) {
+            throw new IllegalArgumentException("Energy must be positive.");
         }
         this.title = title;
         this.price = new Price(price);
@@ -22,6 +26,12 @@ public class Study implements Payable, StudentActivity {
         this.satietyChanging = satietyChanging;
         this.healthChanging = healthChanging;
         this.programmingSkillRequied = programmingSkillRequied;
+        this.energyNeeded = energy;
+    }
+
+    @Override
+    public int getEnergyNeeded() {
+        return energyNeeded;
     }
 
     public int getSatietyChanging() {
