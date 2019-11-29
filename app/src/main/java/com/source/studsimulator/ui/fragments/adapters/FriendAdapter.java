@@ -18,11 +18,11 @@ public class FriendAdapter extends ArrayAdapter<Friend> {
     public FriendAdapter(Activity context, int resource, ArrayList<Friend> data) {
         super(context, resource, data);
         this.context = context;
-        this.data = data;
+        this.friends = data;
     }
 
     private Activity context;
-    private ArrayList<Friend> data;
+    private ArrayList<Friend> friends;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -37,7 +37,7 @@ public class FriendAdapter extends ArrayAdapter<Friend> {
             row = inflater.inflate(R.layout.friend_template, parent, false);
         }
 
-        Friend friend = data.get(position);
+        Friend friend = friends.get(position);
 
         if (friend != null) {
             ImageView friendPhotoIV = row.findViewById(R.id.friendPhoto);

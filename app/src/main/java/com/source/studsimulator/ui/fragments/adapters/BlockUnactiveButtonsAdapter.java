@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,15 +18,15 @@ public class BlockUnactiveButtonsAdapter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private Button button;
+        private TextView textView;
 
         ViewHolder(View view) {
             super(view);
-            button = view.findViewById(R.id.button);
+            textView = view.findViewById(R.id.text_view);
         }
     }
 
-    private List<StudentActivity> buttons;
+    private List<StudentActivity> studentActivities;
     private int indexOfActivatedButton = -1;
     private AdapterListener adapterListener;
 
@@ -38,8 +38,8 @@ public class BlockUnactiveButtonsAdapter
         }
     }
 
-    public BlockUnactiveButtonsAdapter(List<StudentActivity> buttons) {
-        this.buttons = buttons;
+    public BlockUnactiveButtonsAdapter(List<StudentActivity> activities) {
+        this.studentActivities = activities;
     }
 
     public AdapterListener getAdapterListener() {
@@ -52,7 +52,7 @@ public class BlockUnactiveButtonsAdapter
 
     @Override
     public int getItemCount() {
-        return buttons.size();
+        return studentActivities.size();
     }
 
     @Override
@@ -64,20 +64,20 @@ public class BlockUnactiveButtonsAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int ind) {
-        viewHolder.button.setText(buttons.get(ind).getTitle());
+        viewHolder.textView.setText(studentActivities.get(ind).getTitle());
         if (indexOfActivatedButton == ind) {
-            viewHolder.button.setBackgroundColor(Color.GREEN);
-            viewHolder.button.setClickable(true);
+            viewHolder.textView.setBackgroundColor(Color.GREEN);
+            viewHolder.textView.setClickable(true);
         } else {
             if (indexOfActivatedButton != -1) {
-                viewHolder.button.setBackgroundColor(Color.GRAY);
-                viewHolder.button.setClickable(false);
+                viewHolder.textView.setBackgroundColor(Color.GRAY);
+                viewHolder.textView.setClickable(false);
             } else {
-                viewHolder.button.setBackgroundColor(Color.WHITE);
-                viewHolder.button.setClickable(true);
+                viewHolder.textView.setBackgroundColor(Color.WHITE);
+                viewHolder.textView.setClickable(true);
             }
         }
-        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
+        viewHolder.textView.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {

@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,15 +19,15 @@ public class ActiveButtonsAdapter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private Button button;
+        private TextView textView;
 
         ViewHolder(View view) {
             super(view);
-            button = view.findViewById(R.id.button);
+            textView = view.findViewById(R.id.text_view);
         }
     }
 
-    private List<StudentActivity> buttons;
+    private List<StudentActivity> studentActivities;
     private ArrayList<Boolean> isButtonActivated;
     private AdapterListener adapterListener;
 
@@ -35,11 +35,11 @@ public class ActiveButtonsAdapter
         isButtonActivated.set(indexOfActivatedButton, !isButtonActivated.get(indexOfActivatedButton));
     }
 
-    public ActiveButtonsAdapter(List<StudentActivity> buttons) {
-        this.buttons = buttons;
+    public ActiveButtonsAdapter(List<StudentActivity> activities) {
+        this.studentActivities = activities;
 
         isButtonActivated = new ArrayList<>();
-        for (int i = 0; i < buttons.size(); ++i) {
+        for (int i = 0; i < activities.size(); ++i) {
             isButtonActivated.add(false);
         }
     }
@@ -54,7 +54,7 @@ public class ActiveButtonsAdapter
 
     @Override
     public int getItemCount() {
-        return buttons.size();
+        return studentActivities.size();
     }
 
     @Override
@@ -66,10 +66,10 @@ public class ActiveButtonsAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int ind) {
-        viewHolder.button.setText(buttons.get(ind).getTitle());
-        viewHolder.button.setBackgroundColor(isButtonActivated.get(ind) ? Color.GREEN : Color.WHITE);
+        viewHolder.textView.setText(studentActivities.get(ind).getTitle());
+        viewHolder.textView.setBackgroundColor(isButtonActivated.get(ind) ? Color.GREEN : Color.WHITE);
 
-        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
+        viewHolder.textView.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {

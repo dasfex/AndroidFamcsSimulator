@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,15 +18,15 @@ public class OneActiveButtonAdapter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private Button button;
+        private TextView textView;
 
         ViewHolder(View view) {
             super(view);
-            button = view.findViewById(R.id.button);
+            textView = view.findViewById(R.id.text_view);
         }
     }
 
-    private List<StudentActivity> buttons;
+    private List<StudentActivity> studentActivities;
     private int indexOfActivatedButton = -1;
     AdapterListener adapterListener;
 
@@ -42,8 +42,8 @@ public class OneActiveButtonAdapter
         return this.indexOfActivatedButton;
     }
 
-    public OneActiveButtonAdapter(List<StudentActivity> buttons) {
-        this.buttons = buttons;
+    public OneActiveButtonAdapter(List<StudentActivity> studentActivities) {
+        this.studentActivities = studentActivities;
     }
 
     public AdapterListener getAdapterListener() {
@@ -56,7 +56,7 @@ public class OneActiveButtonAdapter
 
     @Override
     public int getItemCount() {
-        return buttons.size();
+        return studentActivities.size();
     }
 
     @Override
@@ -68,9 +68,9 @@ public class OneActiveButtonAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int ind) {
-        viewHolder.button.setText(buttons.get(ind).getTitle());
-        viewHolder.button.setBackgroundColor(ind == indexOfActivatedButton ? Color.GREEN : Color.WHITE);
-        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
+        viewHolder.textView.setText(studentActivities.get(ind).getTitle());
+        viewHolder.textView.setBackgroundColor(ind == indexOfActivatedButton ? Color.GREEN : Color.WHITE);
+        viewHolder.textView.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {
