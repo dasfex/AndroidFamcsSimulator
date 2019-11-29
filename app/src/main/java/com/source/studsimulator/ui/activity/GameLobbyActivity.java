@@ -37,27 +37,27 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     private TextView timeTextView;
     private TextView energyTextView;
 
-    ProgressBar satietyBar;
-    ProgressBar healthBar;
-    ProgressBar educationBar;
+    private ProgressBar satietyBar;
+    private ProgressBar healthBar;
+    private ProgressBar educationBar;
 
-    TextView satietyTextView;
-    TextView healthTextView;
-    TextView educationTextView;
+    private TextView satietyTextView;
+    private TextView healthTextView;
+    private TextView educationTextView;
 
-    ImageButton infoButton;
-    ImageButton foodButton;
-    ImageButton studyButton;
-    ImageButton workButton;
-    ImageButton hobbyButton;
+    private ImageButton infoButton;
+    private ImageButton foodButton;
+    private ImageButton studyButton;
+    private ImageButton workButton;
+    private ImageButton hobbyButton;
 
-    Fragment informationFragment;
-    Fragment foodFragment;
-    Fragment studyFragment;
-    Fragment workFragment;
-    Fragment hobbyFragment;
+    private Fragment informationFragment;
+    private Fragment foodFragment;
+    private Fragment studyFragment;
+    private Fragment workFragment;
+    private Fragment hobbyFragment;
 
-    FragmentTransaction fragmentTransaction;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

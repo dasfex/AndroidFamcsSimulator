@@ -14,14 +14,15 @@ import com.source.studsimulator.model.entity.Friend;
 import java.util.ArrayList;
 
 public class FriendAdapter extends ArrayAdapter<Friend> {
-    private Activity context;
-    private ArrayList<Friend> data;
 
     public FriendAdapter(Activity context, int resource, ArrayList<Friend> data) {
         super(context, resource, data);
         this.context = context;
         this.data = data;
     }
+
+    private Activity context;
+    private ArrayList<Friend> data;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
