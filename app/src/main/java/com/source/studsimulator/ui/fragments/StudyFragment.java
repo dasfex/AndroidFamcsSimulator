@@ -21,8 +21,8 @@ import java.util.ArrayList;
 
 public class StudyFragment extends Fragment {
 
-    private RecyclerView universityRV;
-    private RecyclerView extraActivityRV;
+    private RecyclerView universityRv;
+    private RecyclerView extraActivityRv;
     private ArrayList<StudentActivity> university;
     private ArrayList<StudentActivity> extraActivity;
     private ArrayList<Boolean> isCourseActive = new ArrayList<>();
@@ -37,11 +37,11 @@ public class StudyFragment extends Fragment {
 
         initializeLists();
 
-        universityRV = view.findViewById(R.id.universityRV);
-        universityRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        universityRV.setHasFixedSize(true);
+        universityRv = view.findViewById(R.id.universityRV);
+        universityRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        universityRv.setHasFixedSize(true);
         OneActiveButtonAdapter universityRVAdapter = new OneActiveButtonAdapter(university);
-        universityRV.setAdapter(universityRVAdapter);
+        universityRv.setAdapter(universityRVAdapter);
         universityRVAdapter.setIndexOfActivatedButton(activeButtonIndex);
 
         universityRVAdapter.setAdapterListener(position -> {
@@ -51,11 +51,11 @@ public class StudyFragment extends Fragment {
             activityListener.clickOnStudyButton((Study) university.get(position));
         });
 
-        extraActivityRV = view.findViewById(R.id.extraActivityRV);
-        extraActivityRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        extraActivityRV.setHasFixedSize(true);
+        extraActivityRv = view.findViewById(R.id.extraActivityRV);
+        extraActivityRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        extraActivityRv.setHasFixedSize(true);
         ActiveButtonsAdapter extraActivityRVAdapter = new ActiveButtonsAdapter(extraActivity);
-        extraActivityRV.setAdapter(extraActivityRVAdapter);
+        extraActivityRv.setAdapter(extraActivityRVAdapter);
 
         extraActivityRVAdapter.setAdapterListener(position -> {
             extraActivityRVAdapter.setButtonDisActivate(position);

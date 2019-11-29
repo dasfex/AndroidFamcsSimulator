@@ -25,7 +25,7 @@ public class FoodFragment extends Fragment {
         NEIGHBOUR, DOSHIK, STOLOVAYA, COOK, FASTFOOD, SUSHI, BURGERS;
     }
 
-    private RecyclerView buttons;
+    private RecyclerView foodRv;
     private List<StudentActivity> food;
     private int activeButtonIndex = -1;
 
@@ -38,12 +38,12 @@ public class FoodFragment extends Fragment {
 
         initializeFood();
 
-        buttons = view.findViewById(R.id.buttonsRecyclerView);
-        buttons.setLayoutManager(new LinearLayoutManager(getContext()));
-        buttons.setHasFixedSize(true);
+        foodRv = view.findViewById(R.id.buttonsRecyclerView);
+        foodRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        foodRv.setHasFixedSize(true);
 
         OneActiveButtonAdapter foodRVAdapter = new OneActiveButtonAdapter(food);
-        buttons.setAdapter(foodRVAdapter);
+        foodRv.setAdapter(foodRVAdapter);
         foodRVAdapter.setIndexOfActivatedButton(activeButtonIndex);
 
         foodRVAdapter.setAdapterListener(position -> {

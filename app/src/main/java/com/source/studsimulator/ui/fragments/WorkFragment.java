@@ -28,9 +28,9 @@ public class WorkFragment extends Fragment {
         FACEBOOK
     }
 
-    private RecyclerView sideJobRV;
-    private RecyclerView workRV;
-    private RecyclerView summerWorkRV;
+    private RecyclerView sideJobRv;
+    private RecyclerView workRv;
+    private RecyclerView summerWorkRv;
 
     private List<StudentActivity> sideJobList;
     private List<StudentActivity> workList;
@@ -103,11 +103,11 @@ public class WorkFragment extends Fragment {
     }
 
     private void initializeRecyclerView(View view) {
-        sideJobRV = view.findViewById(R.id.sideJobRV);
-        sideJobRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        sideJobRV.setHasFixedSize(true);
+        sideJobRv = view.findViewById(R.id.sideJobRV);
+        sideJobRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        sideJobRv.setHasFixedSize(true);
         ActiveButtonsAdapter sideJobsAdapter = new ActiveButtonsAdapter(sideJobList);
-        sideJobRV.setAdapter(sideJobsAdapter);
+        sideJobRv.setAdapter(sideJobsAdapter);
         sideJobsAdapter.setAdapterListener(position -> {
             sideJobsAdapter.setButtonDisActivate(position);
             changeAccessForSideButton(position);
@@ -121,11 +121,11 @@ public class WorkFragment extends Fragment {
             }
         }
 
-        workRV = view.findViewById(R.id.workRV);
-        workRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        workRV.setHasFixedSize(true);
+        workRv = view.findViewById(R.id.workRV);
+        workRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        workRv.setHasFixedSize(true);
         BlockUnactiveButtonsAdapter workAdapter = new BlockUnactiveButtonsAdapter(workList);
-        workRV.setAdapter(workAdapter);
+        workRv.setAdapter(workAdapter);
         workAdapter.setIndexOfActivatedButton(activeWorkIndex);
         workAdapter.setAdapterListener(position -> {
             workAdapter.setIndexOfActivatedButton(position);
@@ -134,11 +134,11 @@ public class WorkFragment extends Fragment {
             activityListener.clickOnWorkButton((Work) workList.get(position));
         });
 
-        summerWorkRV = view.findViewById(R.id.summerWorkRV);
-        summerWorkRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        summerWorkRV.setHasFixedSize(true);
+        summerWorkRv = view.findViewById(R.id.summerWorkRV);
+        summerWorkRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        summerWorkRv.setHasFixedSize(true);
         BlockUnactiveButtonsAdapter summerWorkAdapter = new BlockUnactiveButtonsAdapter(summerWorkList);
-        summerWorkRV.setAdapter(summerWorkAdapter);
+        summerWorkRv.setAdapter(summerWorkAdapter);
         summerWorkAdapter.setIndexOfActivatedButton(activeSummerWorkIndex);
         summerWorkAdapter.setAdapterListener(position -> {
             summerWorkAdapter.setIndexOfActivatedButton(position);

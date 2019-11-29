@@ -33,7 +33,6 @@ public class InfoFragment extends Fragment {
 
         initializeWidgets(view);
 
-
         return view;
     }
 

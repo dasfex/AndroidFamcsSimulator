@@ -28,7 +28,7 @@ public class HobbyFragment extends Fragment {
         READ, DANCE, BEER, FILM, VOTE
     }
 
-    private RecyclerView hobbyRV;
+    private RecyclerView hobbyRv;
     private Spinner friendSpinner;
 
     private ArrayList<Friend> friendList;
@@ -44,12 +44,12 @@ public class HobbyFragment extends Fragment {
         initializeFriends();
         initializeHobbies();
 
-        hobbyRV = view.findViewById(R.id.hobbyRV);
-        hobbyRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        hobbyRV.setHasFixedSize(true);
+        hobbyRv = view.findViewById(R.id.hobbyRV);
+        hobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        hobbyRv.setHasFixedSize(true);
 
         ActiveButtonsAdapter hobbyRVAdapter = new ActiveButtonsAdapter(hobbies);
-        hobbyRV.setAdapter(hobbyRVAdapter);
+        hobbyRv.setAdapter(hobbyRVAdapter);
 
         hobbyRVAdapter.setAdapterListener(position -> {
             hobbyRVAdapter.setButtonDisActivate(position);
