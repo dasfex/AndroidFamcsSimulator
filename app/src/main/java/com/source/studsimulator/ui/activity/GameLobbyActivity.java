@@ -131,6 +131,11 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
+    public void unclickFoodButton(Food food) {
+        presenter.unclickOnFoodButton(food);
+    }
+
+    @Override
     public void clickOnHobbyButton(Hobby hobby) {
         presenter.clickOnHobbyButton(hobby);
     }

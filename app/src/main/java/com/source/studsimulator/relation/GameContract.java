@@ -20,6 +20,7 @@ public interface GameContract {
     interface Presenter {
         void viewCreated();
         void clickOnNewWeekButton();
+        void unclickOnFoodButton(Food food);
         void clickOnFoodButton(Food food);
         void clickOnLearnButton(Study study);
         void clickOnWorkButton(Work work);

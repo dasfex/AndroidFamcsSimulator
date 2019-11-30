@@ -43,16 +43,21 @@ public class FoodFragment extends Fragment {
         foodRv.setLayoutManager(new LinearLayoutManager(getContext()));
         foodRv.setHasFixedSize(true);
 
-        OneActiveButtonAdapter foodRVAdapter = new OneActiveButtonAdapter(food);
-        foodRv.setAdapter(foodRVAdapter);
-        foodRVAdapter.setIndexOfActivatedButton(activeButtonIndex);
+        OneActiveButtonAdapter foodRvAdapter = new OneActiveButtonAdapter(food);
+        foodRv.setAdapter(foodRvAdapter);
+        foodRvAdapter.setIndexOfActivatedButton(activeButtonIndex);
 
-        foodRVAdapter.setAdapterListener(position -> {
-            int currentPosition = foodRVAdapter.getIndexOfActivatedButton();
-            foodRVAdapter.setIndexOfActivatedButton(position);
+        foodRvAdapter.setAdapterListener(position -> {
+            int currentPosition = foodRvAdapter.getIndexOfActivatedButton();
+            if (currentPosition != -1) {
+                activityListener.unclickFoodButton((Food) food.get(currentPosition));
+            }
+            foodRvAdapter.setIndexOfActivatedButton(position);
             changeButtonActivity(position);
-            foodRVAdapter.notifyDataSetChanged();
-            activityListener.clickOnFoodButton((Food)food.get(position));
+            foodRvAdapter.notifyDataSetChanged();
+            if (currentPosition != position) {
+                activityListener.clickOnFoodButton((Food) food.get(position));
+            }
         });
 
         return view;
@@ -64,6 +69,7 @@ public class FoodFragment extends Fragment {
   
     public interface OnFoodFragmentListener {
         void clickOnFoodButton(Food food);
+        void unclickFoodButton(Food food);
     }
 
     @Override
