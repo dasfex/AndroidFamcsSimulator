@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
@@ -95,13 +96,9 @@ public class FoodFragment extends Fragment {
     }
       
     private void initializeFood() {
-        food = new ArrayList<>();
-        food.add(new Food(0, getString(R.string.neighbourFood), 4, 10, 1));
-        food.add(new Food(3, getString(R.string.doshikFood), 7, -5, 2));
-        food.add(new Food(7, getString(R.string.stolovkaFood), 12, 7,1));
-        food.add(new Food(5, getString(R.string.yourselfFood), 8, 10, 3));
-        food.add(new Food(10, getString(R.string.fastFood), 20, -10, 1));
-        food.add(new Food(13, getString(R.string.sushiFood), 15, 5,1));
-        food.add(new Food(20, getString(R.string.burgerFood), 40, -15, 1));
+        food = ActionObjects.getFoodList();
+        for (StudentActivity it : food) {
+            System.out.println(it.toString());
+        }
     }
 }
