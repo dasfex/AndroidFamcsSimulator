@@ -6,15 +6,20 @@ import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.entity.PlayerStats;
+import com.source.studsimulator.ui.entity.ViewState;
+
+import java.util.List;
 
 public class GamePresenter implements GameContract.Presenter {
 
     private GameContract.Model model;
     private GameContract.View view;
+    private ViewState weekLiveChoicesStaff;
 
     public GamePresenter(GameContract.View newView, GameContract.Model newModel) {
         view = newView;
         model = newModel;
+        weekLiveChoicesStaff = new ViewState();
     }
 
     @Override
@@ -26,15 +31,30 @@ public class GamePresenter implements GameContract.Presenter {
 
     @Override
     public void clickOnNewWeekButton() {
+        applyLiveChoices(weekLiveChoicesStaff);
         model.newWeek();
         updatePlayerStats();
         view.updateWeek(model.getWeek());
         view.updateEnergyLevel(model.getEnergyLevel());
     }
 
+    private void applyLiveChoices(ViewState weekLiveChoicesStaff) {
+        for (Food foodItem : weekLiveChoicesStaff.getFoodList()) {
+            System.out.println(foodItem.getTitle() + " apply");
+            model.eat(foodItem);
+        }
+    }
+
     @Override
     public void clickOnFoodButton(Food food) {
-        model.eat(food);
+        System.out.println(food.getTitle() + " add");
+        weekLiveChoicesStaff.addFood(food);
+    }
+
+    @Override
+    public void unclickOnFoodButton(Food food) {
+        System.out.println(food.getTitle() + " delete");
+        weekLiveChoicesStaff.removeFood(food);
     }
 
     @Override

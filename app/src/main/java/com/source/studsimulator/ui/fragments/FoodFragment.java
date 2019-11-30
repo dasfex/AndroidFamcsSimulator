@@ -49,10 +49,15 @@ public class FoodFragment extends Fragment {
 
         foodRvAdapter.setAdapterListener(position -> {
             int currentPosition = foodRvAdapter.getIndexOfActivatedButton();
+            if (currentPosition != -1) {
+                activityListener.unclickFoodButton((Food) food.get(currentPosition));
+            }
             foodRvAdapter.setIndexOfActivatedButton(position);
             changeButtonActivity(position);
             foodRvAdapter.notifyDataSetChanged();
-            activityListener.clickOnFoodButton((Food)food.get(position));
+            if (currentPosition != position) {
+                activityListener.clickOnFoodButton((Food) food.get(position));
+            }
         });
 
         return view;
@@ -64,6 +69,7 @@ public class FoodFragment extends Fragment {
   
     public interface OnFoodFragmentListener {
         void clickOnFoodButton(Food food);
+        void unclickFoodButton(Food food);
     }
 
     @Override
