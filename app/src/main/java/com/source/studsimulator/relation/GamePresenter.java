@@ -40,20 +40,17 @@ public class GamePresenter implements GameContract.Presenter {
 
     private void applyLiveChoices(ViewState weekLiveChoicesStaff) {
         for (Food foodItem : weekLiveChoicesStaff.getFoodList()) {
-            System.out.println(foodItem.getTitle() + " apply");
             model.eat(foodItem);
         }
     }
 
     @Override
     public void clickOnFoodButton(Food food) {
-        System.out.println(food.getTitle() + " add");
         weekLiveChoicesStaff.addFood(food);
     }
 
     @Override
     public void unclickOnFoodButton(Food food) {
-        System.out.println(food.getTitle() + " delete");
         weekLiveChoicesStaff.removeFood(food);
     }
 
