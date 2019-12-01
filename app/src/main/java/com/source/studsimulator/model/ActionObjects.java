@@ -2,6 +2,8 @@ package com.source.studsimulator.model;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Friend;
+import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.ui.StudSimulatorApplication;
@@ -14,6 +16,9 @@ public class ActionObjects {
     private static List<StudentActivity> foodList = new ArrayList<>();
     private static List<StudentActivity> universityList = new ArrayList<>();
     private static List<StudentActivity> extraActivityList = new ArrayList<>();
+    private static List<StudentActivity> hobbyList = new ArrayList<>();
+
+    private static List<Friend> friendList = new ArrayList<>();
 
 
     public static List<StudentActivity> getFoodList() {
@@ -32,9 +37,9 @@ public class ActionObjects {
     public static List<StudentActivity> getUniversityList() {
         if (universityList.isEmpty()) {
             universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 0, 0, 5, 0, 0));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 15, -4, -15, 0,1));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 2, -1, -10, 0,2));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 20, -6, -20, 0,3));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 15, -4, -15, 0, 1));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 2, -1, -10, 0, 2));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 20, -6, -20, 0, 3));
         }
         return universityList;
     }
@@ -48,5 +53,25 @@ public class ActionObjects {
             extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cookingCourses), 5, 20, 4, 0, 0, 1));
         }
         return extraActivityList;
+    }
+
+    public static List<StudentActivity> getHobbyList() {
+        if (hobbyList.isEmpty()) {
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 1, 1, 1));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 0, 1, 1, 1));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 0, 1, 1, 1));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 0, 1, 1, 1));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 1, 1, 1));
+        }
+        return hobbyList;
+    }
+
+    public static List<Friend> getFriendList() {
+        if (friendList.isEmpty()) {
+            friendList.add(new Friend(50, 0, 0.0, "NoOne", R.drawable.hobby));
+            friendList.add(new Friend(50, 0, 0.0, "Vitya", R.drawable.food));
+            friendList.add(new Friend(50, 0, 0.0, "Zhenya", R.drawable.info));
+        }
+        return friendList;
     }
 }

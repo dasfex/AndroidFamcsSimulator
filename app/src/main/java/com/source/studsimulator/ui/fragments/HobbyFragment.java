@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.StudentActivity;
@@ -21,14 +22,15 @@ import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.FriendAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HobbyFragment extends Fragment {
 
     private RecyclerView hobbyRv;
     private Spinner friendSpinner;
 
-    private ArrayList<Friend> friendList;
-    private ArrayList<StudentActivity> hobbies;
+    private List<Friend> friendList;
+    private List<StudentActivity> hobbies;
     private ArrayList<Boolean> isHobbyActive = new ArrayList<>();
 
     private HobbyFragment.OnHobbyFragmentListener activityListener;
@@ -37,8 +39,7 @@ public class HobbyFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hobby_fragment_activity, null);
 
-        initializeFriends();
-        initializeHobbies();
+        initializeLists();
 
         hobbyRv = view.findViewById(R.id.hobbyRV);
         hobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -69,7 +70,8 @@ public class HobbyFragment extends Fragment {
         friendSpinner = view.findViewById(R.id.friendSpinner);
 
         FriendAdapter friendAdapter =
-                new FriendAdapter((Activity) getContext(), android.R.layout.simple_spinner_dropdown_item, friendList);
+                new FriendAdapter((Activity) getContext(), android.R.layout.simple_spinner_dropdown_item,
+                        (ArrayList<Friend>) friendList);
 
         friendSpinner.setAdapter(friendAdapter);
 
@@ -107,19 +109,8 @@ public class HobbyFragment extends Fragment {
         void clickOnHobbyButton(Hobby hobby);
     }
 
-    private void initializeHobbies() {
-        hobbies = new ArrayList<>();
-        hobbies.add(new Hobby(getString(R.string.read), 0, 1, 1,1));
-        hobbies.add(new Hobby(getString(R.string.dance), 0, 1, 1,1));
-        hobbies.add(new Hobby(getString(R.string.beer), 0, 1, 1,1));
-        hobbies.add(new Hobby(getString(R.string.film), 0, 1, 1,1));
-        hobbies.add(new Hobby(getString(R.string.vote), 0, 1, 1,1));
-    }
-
-    private void initializeFriends() {
-        friendList = new ArrayList<>();
-        friendList.add(new Friend(50, 0, 0.0, "NoOne", R.drawable.hobby));
-        friendList.add(new Friend(50, 0, 0.0, "Vitya", R.drawable.food));
-        friendList.add(new Friend(50, 0, 0.0, "Zhenya", R.drawable.info));
+    private void initializeLists() {
+        hobbies = ActionObjects.getHobbyList();
+        friendList = ActionObjects.getFriendList();
     }
 }
