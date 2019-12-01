@@ -8,8 +8,6 @@ import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.entity.ViewState;
 
-import java.util.List;
-
 public class GamePresenter implements GameContract.Presenter {
 
     private GameContract.Model model;
@@ -42,6 +40,14 @@ public class GamePresenter implements GameContract.Presenter {
         for (Food foodItem : weekLiveChoicesStaff.getFoodList()) {
             model.eat(foodItem);
         }
+
+        for (Study studyItem : weekLiveChoicesStaff.getStudyList()) {
+            model.learn(studyItem);
+        }
+
+        for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
+            model.work(workItem);
+        }
     }
 
     @Override
@@ -56,12 +62,22 @@ public class GamePresenter implements GameContract.Presenter {
 
     @Override
     public void clickOnLearnButton(Study study) {
-        model.learn(study);
+        weekLiveChoicesStaff.addStudy(study);
+    }
+
+    @Override
+    public void unclickOnStudyButton(Study study) {
+        weekLiveChoicesStaff.removeStudy(study);
     }
 
     @Override
     public void clickOnWorkButton(Work work) {
-        model.work(work);
+        weekLiveChoicesStaff.addWork(work);
+    }
+
+    @Override
+    public void unclickOnWorkButton(Work work) {
+        weekLiveChoicesStaff.removeWork(work);
     }
 
     @Override

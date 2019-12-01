@@ -11,20 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class StudyFragment extends Fragment {
 
     private RecyclerView universityRv;
     private RecyclerView extraActivityRv;
-    private ArrayList<StudentActivity> university;
-    private ArrayList<StudentActivity> extraActivity;
+    private List<StudentActivity> university;
+    private List<StudentActivity> extraActivity;
     private ArrayList<Boolean> isCourseActive = new ArrayList<>();
 
     private StudyFragment.OnStudyFragmentListener activityListener;
@@ -52,6 +53,7 @@ public class StudyFragment extends Fragment {
 
     public interface OnStudyFragmentListener {
         void clickOnStudyButton(Study study);
+        void unclickOnStudyButton(Study study);
     }
 
     @Override
@@ -63,17 +65,8 @@ public class StudyFragment extends Fragment {
     }
 
     private void initializeLists() {
-        university = new ArrayList<>();
-        university.add(new Study(getString(R.string.noVisit), 0, 0, 0, 5, 0, 0));
-        university.add(new Study(getString(R.string.visit), 0, 15, -4, -15, 0,1));
-        university.add(new Study(getString(R.string.cheat), 0, 2, -1, -10, 0,2));
-        university.add(new Study(getString(R.string.workHard), 0, 20, -6, -20, 0,3));
-        extraActivity = new ArrayList<>();
-        extraActivity.add(new Study(getString(R.string.english), 5, 8, -2, -5, 0,1));
-        extraActivity.add(new Study(getString(R.string.itransition), 0, 10, -4, -8, 6,1));
-        extraActivity.add(new Study(getString(R.string.epam), 0, 12, -6, -10, 8,1));
-        extraActivity.add(new Study(getString(R.string.shad), 0, 30, -12, -50, 10,5));
-        extraActivity.add(new Study(getString(R.string.cookingCourses), 0, 20, 4, 0, 0,1));
+        university = ActionObjects.getUniversityList();
+        extraActivity = ActionObjects.getExtraActivityList();
     }
 
     private void initializeRv(View view) {
@@ -85,10 +78,16 @@ public class StudyFragment extends Fragment {
         universityRvAdapter.setIndexOfActivatedButton(activeButtonIndex);
 
         universityRvAdapter.setAdapterListener(position -> {
+            int currentPosition = universityRvAdapter.getIndexOfActivatedButton();
+            if (currentPosition != -1) {
+                activityListener.unclickOnStudyButton((Study) university.get(currentPosition));
+            }
             universityRvAdapter.setIndexOfActivatedButton(position);
             changeButtonActivity(position);
             universityRvAdapter.notifyDataSetChanged();
-            activityListener.clickOnStudyButton((Study) university.get(position));
+            if (currentPosition != position) {
+                activityListener.clickOnStudyButton((Study) university.get(position));
+            }
         });
 
         extraActivityRv = view.findViewById(R.id.extraActivityRV);
@@ -98,10 +97,15 @@ public class StudyFragment extends Fragment {
         extraActivityRv.setAdapter(extraActivityRvAdapter);
 
         extraActivityRvAdapter.setAdapterListener(position -> {
+            List<Integer> currentIndices = extraActivityRvAdapter.getActiveButtonsIndices();
+            if (currentIndices.contains(position)) {
+                activityListener.unclickOnStudyButton((Study) extraActivity.get(position));
+            } else {
+                activityListener.clickOnStudyButton((Study) extraActivity.get(position));
+            }
             extraActivityRvAdapter.setButtonDisActivate(position);
             changeAccessForSideButton(position);
             extraActivityRvAdapter.notifyDataSetChanged();
-            activityListener.clickOnStudyButton((Study) extraActivity.get(position));
         });
 
         if (isCourseActive.size() == 0) {

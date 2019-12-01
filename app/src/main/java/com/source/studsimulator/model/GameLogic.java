@@ -16,8 +16,8 @@ public class GameLogic implements GameContract.Model {
     public enum PlayerStatsEnum {
         EDUCATION_LEVEL, HEALTH, SATIETY, MONEY,
         PROGRAMMING_SKILL, ENGLISH_SKILL
-
     }
+
     public GameLogic() {
         student = new Student();
     }
@@ -65,9 +65,10 @@ public class GameLogic implements GameContract.Model {
 
     @Override
     public void learn(Study study) {
-        student.changeEducationLevel(15);
-        student.changeHealth(-5);
-        student.changeSatiety(-5);
+        student.changeEducationLevel(study.getEducationChanging());
+        student.changeHealth(study.getHealthChanging());
+        student.changeSatiety(study.getSatietyChanging());
+        pay(study);
     }
 
     @Override

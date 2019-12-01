@@ -17,14 +17,9 @@ import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FoodFragment extends Fragment {
-
-    public enum FOOD_BUTTONS {
-        NEIGHBOUR, DOSHIK, STOLOVAYA, COOK, FASTFOOD, SUSHI, BURGERS;
-    }
 
     private RecyclerView foodRv;
     private List<StudentActivity> food;
@@ -77,27 +72,6 @@ public class FoodFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof FoodFragment.OnFoodFragmentListener) {
             activityListener = (FoodFragment.OnFoodFragmentListener) context;
-        }
-    }
-
-    private int getIndexOfButton(FOOD_BUTTONS BUTTON) {
-        switch (BUTTON) {
-            case NEIGHBOUR:
-                return 0;
-            case DOSHIK:
-                return 1;
-            case STOLOVAYA:
-                return 2;
-            case COOK:
-                return 3;
-            case FASTFOOD:
-                return 4;
-            case SUSHI:
-                return 5;
-            case BURGERS:
-                return 6;
-            default:
-                return -1;
         }
     }
       

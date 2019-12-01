@@ -3,7 +3,7 @@ package com.source.studsimulator.ui;
 import android.app.Application;
 import android.content.Context;
 
-public class StupSimulatorApplication extends Application {
+public class StudSimulatorApplication extends Application {
 
     private static Context context;
 
