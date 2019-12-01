@@ -23,6 +23,7 @@ public interface GameContract {
         void unclickOnFoodButton(Food food);
         void clickOnFoodButton(Food food);
         void clickOnLearnButton(Study study);
+        void unclickOnStudyButton(Study study);
         void clickOnWorkButton(Work work);
         void clickOnHobbyButton(Hobby hobby);
     }

@@ -42,6 +42,10 @@ public class GamePresenter implements GameContract.Presenter {
         for (Food foodItem : weekLiveChoicesStaff.getFoodList()) {
             model.eat(foodItem);
         }
+
+        for (Study studyItem : weekLiveChoicesStaff.getStudyList()) {
+            model.learn(studyItem);
+        }
     }
 
     @Override
@@ -56,7 +60,12 @@ public class GamePresenter implements GameContract.Presenter {
 
     @Override
     public void clickOnLearnButton(Study study) {
-        model.learn(study);
+        weekLiveChoicesStaff.addStudy(study);
+    }
+
+    @Override
+    public void unclickOnStudyButton(Study study) {
+        weekLiveChoicesStaff.removeStudy(study);
     }
 
     @Override

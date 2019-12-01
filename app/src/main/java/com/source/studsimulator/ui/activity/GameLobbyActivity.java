@@ -151,6 +151,11 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
+    public void unclickOnStudyButton(Study study) {
+        presenter.unclickOnStudyButton(study);
+    }
+
+    @Override
     public void updateWeek(int weekNumber) {
         timeTextView.setText(String.format(getString(R.string.weekNumber), weekNumber));
     }

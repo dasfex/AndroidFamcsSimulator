@@ -44,6 +44,16 @@ public class ActiveButtonsAdapter
         }
     }
 
+    public List<Integer> getActiveButtonsIndices() {
+        List<Integer> indices = new ArrayList<Integer>();
+        for (int i = 0; i < isButtonActivated.size(); ++i) {
+            if (isButtonActivated.get(i)) {
+                indices.add(i);
+            }
+        }
+        return indices;
+    }
+
     public AdapterListener getAdapterListener() {
         return adapterListener;
     }
