@@ -31,6 +31,7 @@ public interface GameContract {
         void newWeek();
         void eat(Food food);
         void pay(Payable payable);
+        void getMoney(Payable payable);
         void learn(Study study);
         void work(Work work);
         int getParameter(GameLogic.PlayerStatsEnum characteristic);

@@ -73,23 +73,6 @@ public class WorkFragment extends Fragment {
         }
     }
 
-    private void initializeLists() {
-        sideJobList = new ArrayList<>();
-        sideJobList.add(new Work(getString(R.string.flyers), -5, -5, 5, 0, 0, 0, 1, 2));
-        sideJobList.add(new Work(getString(R.string.loader), -15, -15, 10, 0, 0, 0, 0,3));
-        sideJobList.add(new Work(getString(R.string.security), -5, - 10, 10, 0, 3, 0, 1, 1));
-        sideJobList.add(new Work(getString(R.string.musician), -4, -8,  3, 0, 0, 0, 1, 1));
-        sideJobList.add(new Work(getString(R.string.freelancer), -2, -5,  25, 10, 10, 3, 1, 2));
-
-        workList = new ArrayList<>();
-        workList.add(new Work(getString(R.string.mcdonalds), -10, -10, 50, 20, 30, 10, 6, 2));
-        workList.add(new Work(getString(R.string.itra), -6, -7, 40, 5, 2, 5, 4,3));
-        workList.add(new Work(getString(R.string.yandex), -20, -20, 100, 50, 3, 20, 1,3));
-
-        summerWorkList = new ArrayList<>();
-        summerWorkList.add(new Work(getString(R.string.facebook), -20, -20, 150, 30, 50, 20, 20,4));
-    }
-
     private void changeAccessForSideButton(int pos) {
         isSideJobActive.set(pos, !isSideJobActive.get(pos));
     }
@@ -146,6 +129,23 @@ public class WorkFragment extends Fragment {
             summerWorkAdapter.notifyDataSetChanged();
             activityListener.clickOnWorkButton((Work) summerWorkList.get(position));
         });
+    }
+
+    private void initializeLists() {
+        sideJobList = new ArrayList<>();
+        sideJobList.add(new Work(getString(R.string.flyers), -5, -5, 5, 0, 0, 0, 1, 2));
+        sideJobList.add(new Work(getString(R.string.loader), -15, -15, 10, 0, 0, 0, 0,3));
+        sideJobList.add(new Work(getString(R.string.security), -5, - 10, 10, 0, 3, 0, 1, 1));
+        sideJobList.add(new Work(getString(R.string.musician), -4, -8,  3, 0, 0, 0, 1, 1));
+        sideJobList.add(new Work(getString(R.string.freelancer), -2, -5,  25, 10, 10, 3, 1, 2));
+
+        workList = new ArrayList<>();
+        workList.add(new Work(getString(R.string.mcdonalds), -10, -10, 50, 20, 30, 10, 6, 2));
+        workList.add(new Work(getString(R.string.itra), -6, -7, 40, 5, 2, 5, 4,3));
+        workList.add(new Work(getString(R.string.yandex), -20, -20, 100, 50, 3, 20, 1,3));
+
+        summerWorkList = new ArrayList<>();
+        summerWorkList.add(new Work(getString(R.string.facebook), -20, -20, 150, 30, 50, 20, 20,4));
     }
 
 }

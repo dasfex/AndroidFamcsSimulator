@@ -48,13 +48,13 @@ public class HobbyFragment extends Fragment {
         hobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
         hobbyRv.setHasFixedSize(true);
 
-        ActiveButtonsAdapter hobbyRVAdapter = new ActiveButtonsAdapter(hobbies);
-        hobbyRv.setAdapter(hobbyRVAdapter);
+        ActiveButtonsAdapter hobbyRvAdapter = new ActiveButtonsAdapter(hobbies);
+        hobbyRv.setAdapter(hobbyRvAdapter);
 
-        hobbyRVAdapter.setAdapterListener(position -> {
-            hobbyRVAdapter.setButtonDisActivate(position);
+        hobbyRvAdapter.setAdapterListener(position -> {
+            hobbyRvAdapter.setButtonDisActivate(position);
             changeAccessForSideButton(position);
-            hobbyRVAdapter.notifyDataSetChanged();
+            hobbyRvAdapter.notifyDataSetChanged();
             activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
         });
 
@@ -66,7 +66,7 @@ public class HobbyFragment extends Fragment {
 
         for (int i = 0; i < hobbies.size(); ++i) {
             if (isHobbyActive.get(i)) {
-                hobbyRVAdapter.setButtonDisActivate(i);
+                hobbyRvAdapter.setButtonDisActivate(i);
             }
         }
 
