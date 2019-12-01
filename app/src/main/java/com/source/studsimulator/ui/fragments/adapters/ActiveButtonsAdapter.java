@@ -54,10 +54,6 @@ public class ActiveButtonsAdapter
         return indices;
     }
 
-    public AdapterListener getAdapterListener() {
-        return adapterListener;
-    }
-
     public void setAdapterListener(AdapterListener adapterListener) {
         this.adapterListener = adapterListener;
     }

@@ -19,12 +19,9 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Button newGameButton = findViewById(R.id.newGameButton);
-        newGameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GameLobbyActivity.class);
-                startActivity(intent);
-            }
+        newGameButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GameLobbyActivity.class);
+            startActivity(intent);
         });
     }
 }

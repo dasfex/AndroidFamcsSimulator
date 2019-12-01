@@ -46,10 +46,6 @@ public class OneActiveButtonAdapter
         this.studentActivities = studentActivities;
     }
 
-    public AdapterListener getAdapterListener() {
-        return adapterListener;
-    }
-
     public void setAdapterListener(AdapterListener adapterListener) {
         this.adapterListener = adapterListener;
     }

@@ -8,8 +8,6 @@ import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.entity.ViewState;
 
-import java.util.List;
-
 public class GamePresenter implements GameContract.Presenter {
 
     private GameContract.Model model;

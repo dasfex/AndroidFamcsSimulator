@@ -42,10 +42,6 @@ public class BlockUnactiveButtonsAdapter
         this.studentActivities = activities;
     }
 
-    public AdapterListener getAdapterListener() {
-        return adapterListener;
-    }
-
     public void setAdapterListener(AdapterListener adapterListener) {
         this.adapterListener = adapterListener;
     }

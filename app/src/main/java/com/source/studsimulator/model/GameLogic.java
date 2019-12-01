@@ -16,8 +16,8 @@ public class GameLogic implements GameContract.Model {
     public enum PlayerStatsEnum {
         EDUCATION_LEVEL, HEALTH, SATIETY, MONEY,
         PROGRAMMING_SKILL, ENGLISH_SKILL
-
     }
+
     public GameLogic() {
         student = new Student();
     }

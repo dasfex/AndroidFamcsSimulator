@@ -24,10 +24,6 @@ import java.util.ArrayList;
 
 public class HobbyFragment extends Fragment {
 
-    public enum HOBBY_BUTTONS {
-        READ, DANCE, BEER, FILM, VOTE
-    }
-
     private RecyclerView hobbyRv;
     private Spinner friendSpinner;
 
