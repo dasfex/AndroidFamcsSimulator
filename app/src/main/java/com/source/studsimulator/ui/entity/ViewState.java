@@ -12,7 +12,6 @@ public class ViewState {
     private List<Study> studyList;
     private List<Work> workList;
 
-
     public ViewState() {
         foodList = new ArrayList<>();
         studyList = new ArrayList<>();
@@ -54,6 +53,5 @@ public class ViewState {
     public void removeWork(Work work) {
         workList.remove(work);
     }
-
 
 }
