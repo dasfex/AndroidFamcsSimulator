@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,11 +18,11 @@ public class BlockUnactiveButtonsAdapter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textView;
+        private Button button;
 
         ViewHolder(View view) {
             super(view);
-            textView = view.findViewById(R.id.text_view);
+            button = view.findViewById(R.id.button);
         }
     }
 
@@ -64,20 +64,20 @@ public class BlockUnactiveButtonsAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int ind) {
-        viewHolder.textView.setText(studentActivities.get(ind).getTitle());
+        viewHolder.button.setText(studentActivities.get(ind).getTitle());
         if (indexOfActivatedButton == ind) {
-            viewHolder.textView.setBackgroundColor(Color.GREEN);
-            viewHolder.textView.setClickable(true);
+            viewHolder.button.setBackgroundColor(Color.GREEN);
+            viewHolder.button.setClickable(true);
         } else {
             if (indexOfActivatedButton != -1) {
-                viewHolder.textView.setBackgroundColor(Color.GRAY);
-                viewHolder.textView.setClickable(false);
+                viewHolder.button.setBackgroundColor(Color.GRAY);
+                viewHolder.button.setClickable(false);
             } else {
-                viewHolder.textView.setBackgroundColor(Color.WHITE);
-                viewHolder.textView.setClickable(true);
+                viewHolder.button.setBackgroundColor(Color.WHITE);
+                viewHolder.button.setClickable(true);
             }
         }
-        viewHolder.textView.setOnClickListener(v -> adapterListener.onClick(ind));
+        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {

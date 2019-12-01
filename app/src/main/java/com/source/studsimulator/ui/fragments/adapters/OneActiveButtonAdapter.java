@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,11 +18,11 @@ public class OneActiveButtonAdapter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textView;
+        private Button button;
 
         ViewHolder(View view) {
             super(view);
-            textView = view.findViewById(R.id.text_view);
+            button = view.findViewById(R.id.button);
         }
     }
 
@@ -68,9 +68,9 @@ public class OneActiveButtonAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int ind) {
-        viewHolder.textView.setText(studentActivities.get(ind).getTitle());
-        viewHolder.textView.setBackgroundColor(ind == indexOfActivatedButton ? Color.GREEN : Color.WHITE);
-        viewHolder.textView.setOnClickListener(v -> adapterListener.onClick(ind));
+        viewHolder.button.setText(studentActivities.get(ind).getTitle());
+        viewHolder.button.setBackgroundColor(ind == indexOfActivatedButton ? Color.GREEN : Color.WHITE);
+        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {
