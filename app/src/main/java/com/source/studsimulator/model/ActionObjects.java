@@ -6,6 +6,7 @@ import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.model.entity.Study;
+import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.StudSimulatorApplication;
 
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class ActionObjects {
     private static List<StudentActivity> universityList = new ArrayList<>();
     private static List<StudentActivity> extraActivityList = new ArrayList<>();
     private static List<StudentActivity> hobbyList = new ArrayList<>();
+    private static List<StudentActivity> sideJobList = new ArrayList<>();
+    private static List<StudentActivity> workList = new ArrayList<>();
+    private static List<StudentActivity> summerWorkList = new ArrayList<>();
 
     private static List<Friend> friendList = new ArrayList<>();
 
@@ -74,4 +78,32 @@ public class ActionObjects {
         }
         return friendList;
     }
+
+    public static List<StudentActivity> getSideJobList() {
+        if (sideJobList.isEmpty()) {
+            sideJobList.add(new Work("Раздавать флаеры", -5, -5, 5, 0, 0, 0, 1, 2));
+            sideJobList.add(new Work("Разгружать вагоны", -15, -15, 10, 0, 0, 0, 0, 3));
+            sideJobList.add(new Work("Поохранять клуб", -5, -10, 10, 0, 3, 0, 1, 1));
+            sideJobList.add(new Work("Играть в переходах", -4, -8, 3, 0, 0, 0, 1, 1));
+            sideJobList.add(new Work("Пофрилансить", -2, -5, 25, 10, 10, 3, 1, 2));
+        }
+        return sideJobList;
+    }
+
+    public static List<StudentActivity> getWorkList() {
+        if (workList.isEmpty()) {
+            workList.add(new Work("MCDonald's", -10, -10, 50, 20, 30, 10, 6, 2));
+            workList.add(new Work("Jtransition", -6, -7, 40, 5, 2, 5, 4, 3));
+            workList.add(new Work("Тындекс", -20, -20, 100, 50, 3, 20, 1, 3));
+        }
+        return workList;
+    }
+
+    public static List<StudentActivity> getSummerWorkList() {
+        if (summerWorkList.isEmpty()) {
+            summerWorkList.add(new Work("Handbook", -20, -20, 150, 30, 50, 20, 20, 4));
+        }
+        return summerWorkList;
+    }
+
 }
