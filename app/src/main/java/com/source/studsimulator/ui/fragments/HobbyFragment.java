@@ -26,7 +26,8 @@ import java.util.List;
 
 public class HobbyFragment extends Fragment {
 
-    private RecyclerView hobbyRv;
+    private RecyclerView lonelyHobbyRv;
+    private RecyclerView friendHobbyRv;
     private Spinner friendSpinner;
 
     private List<Friend> friendList;
@@ -41,54 +42,7 @@ public class HobbyFragment extends Fragment {
 
         initializeLists();
 
-        hobbyRv = view.findViewById(R.id.hobbyRV);
-        hobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
-        hobbyRv.setHasFixedSize(true);
-
-        ActiveButtonsAdapter hobbyRvAdapter = new ActiveButtonsAdapter(hobbies);
-        hobbyRv.setAdapter(hobbyRvAdapter);
-
-        hobbyRvAdapter.setAdapterListener(position -> {
-            hobbyRvAdapter.setButtonDisActivate(position);
-            changeAccessForSideButton(position);
-            hobbyRvAdapter.notifyDataSetChanged();
-            activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
-        });
-
-        if (isHobbyActive.size() == 0) {
-            for (int i = 0; i < hobbies.size(); ++i) {
-                isHobbyActive.add(false);
-            }
-        }
-
-        for (int i = 0; i < hobbies.size(); ++i) {
-            if (isHobbyActive.get(i)) {
-                hobbyRvAdapter.setButtonDisActivate(i);
-            }
-        }
-
-        friendSpinner = view.findViewById(R.id.friendSpinner);
-
-        FriendAdapter friendAdapter =
-                new FriendAdapter((Activity) getContext(), android.R.layout.simple_spinner_dropdown_item,
-                        (ArrayList<Friend>) friendList);
-
-        friendSpinner.setAdapter(friendAdapter);
-
-        friendSpinner.setSelection(0);
-
-        friendSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                friendSpinner.setSelection(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                friendSpinner.setSelection(0);
-            }
-        });
-
+        initializeWidgets(view);
 
         return view;
     }
@@ -112,5 +66,54 @@ public class HobbyFragment extends Fragment {
     private void initializeLists() {
         hobbies = ActionObjects.getHobbyList();
         friendList = ActionObjects.getFriendList();
+    }
+
+    private void initializeWidgets(View view) {
+        lonelyHobbyRv = view.findViewById(R.id.lonelyHobbyRv);
+        lonelyHobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        lonelyHobbyRv.setHasFixedSize(true);
+
+        ActiveButtonsAdapter hobbyRvAdapter = new ActiveButtonsAdapter(hobbies);
+        lonelyHobbyRv.setAdapter(hobbyRvAdapter);
+
+        hobbyRvAdapter.setAdapterListener(position -> {
+            hobbyRvAdapter.setButtonDisActivate(position);
+            changeAccessForSideButton(position);
+            hobbyRvAdapter.notifyDataSetChanged();
+            activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
+        });
+
+        if (isHobbyActive.size() == 0) {
+            for (int i = 0; i < hobbies.size(); ++i) {
+                isHobbyActive.add(false);
+            }
+        }
+
+        for (int i = 0; i < hobbies.size(); ++i) {
+            if (isHobbyActive.get(i)) {
+                hobbyRvAdapter.setButtonDisActivate(i);
+            }
+        }
+
+
+        friendSpinner = view.findViewById(R.id.friendSpinner);
+
+        FriendAdapter friendAdapter =
+                new FriendAdapter((Activity) getContext(), android.R.layout.simple_spinner_dropdown_item,
+                        (ArrayList<Friend>) friendList);
+
+        friendSpinner.setAdapter(friendAdapter);
+        friendSpinner.setSelection(0);
+        friendSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                friendSpinner.setSelection(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                friendSpinner.setSelection(0);
+            }
+        });
     }
 }
