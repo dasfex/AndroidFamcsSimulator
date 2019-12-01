@@ -25,6 +25,7 @@ public interface GameContract {
         void clickOnLearnButton(Study study);
         void unclickOnStudyButton(Study study);
         void clickOnWorkButton(Work work);
+        void unclickOnWorkButton(Work work);
         void clickOnHobbyButton(Hobby hobby);
     }
 
