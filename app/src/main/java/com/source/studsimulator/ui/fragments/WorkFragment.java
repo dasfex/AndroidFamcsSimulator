@@ -138,7 +138,11 @@ public class WorkFragment extends Fragment {
             summerWorkAdapter.setIndexOfActivatedButton(position);
             changeSummerWorkButtonActivity(position);
             summerWorkAdapter.notifyDataSetChanged();
-            activityListener.clickOnWorkButton((Work) summerWorkList.get(position));
+            if (activeSummerWorkIndex != -1) {
+                activityListener.clickOnWorkButton((Work) summerWorkList.get(position));
+            } else {
+                activityListener.unclickOnWorkButton((Work) summerWorkList.get(position));
+            }
         });
     }
 }
