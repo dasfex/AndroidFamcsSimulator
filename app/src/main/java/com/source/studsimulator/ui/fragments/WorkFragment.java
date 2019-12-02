@@ -23,13 +23,6 @@ import java.util.List;
 
 public class WorkFragment extends Fragment {
 
-
-    public enum WORK_BUTTONS {
-        FLYERS, LOADER, SECURITY, MUSICIAN, FREELANCER,
-        MCDONALDS, ITRANSITION, YANDEX,
-        FACEBOOK
-    }
-
     private RecyclerView sideJobRv;
     private RecyclerView workRv;
     private RecyclerView summerWorkRv;
@@ -64,11 +57,10 @@ public class WorkFragment extends Fragment {
     }
 
     public interface OnWorkFragmentListener {
-
         void clickOnWorkButton(Work work);
         void unclickOnWorkButton(Work work);
-
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -87,6 +79,12 @@ public class WorkFragment extends Fragment {
 
     private void changeSummerWorkButtonActivity(int pos) {
         activeSummerWorkIndex = activeSummerWorkIndex == pos ? -1 : pos;
+    }
+
+    private void initializeLists() {
+        sideJobList = ActionObjects.getSideJobList();
+        workList = ActionObjects.getWorkList();
+        summerWorkList = ActionObjects.getSummerWorkList();
     }
 
     private void initializeRecyclerView(View view) {
@@ -120,14 +118,14 @@ public class WorkFragment extends Fragment {
         workAdapter.setIndexOfActivatedButton(activeWorkIndex);
         workAdapter.setAdapterListener(position -> {
             workAdapter.setIndexOfActivatedButton(position);
-            if (activeWorkIndex != -1){
+            if (activeWorkIndex != -1) {
                 activityListener.unclickOnWorkButton((Work) workList.get(activeWorkIndex));
             }
             changeWorkButtonActivity(position);
             workAdapter.notifyDataSetChanged();
-             if (activeWorkIndex != -1) {
-                 activityListener.clickOnWorkButton((Work) workList.get(position));
-             }
+            if (activeWorkIndex != -1) {
+                activityListener.clickOnWorkButton((Work) workList.get(position));
+            }
         });
 
         summerWorkRv = view.findViewById(R.id.summerWorkRV);
@@ -147,11 +145,4 @@ public class WorkFragment extends Fragment {
             }
         });
     }
-
-    private void initializeLists() {
-        sideJobList = ActionObjects.getSideJobList();
-        workList = ActionObjects.getWorkList();
-        summerWorkList = ActionObjects.getSummerWorkList();
-    }
-
 }

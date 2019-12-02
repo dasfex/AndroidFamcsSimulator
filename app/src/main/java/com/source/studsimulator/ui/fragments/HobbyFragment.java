@@ -27,7 +27,6 @@ import java.util.List;
 public class HobbyFragment extends Fragment {
 
     private RecyclerView lonelyHobbyRv;
-    private RecyclerView friendHobbyRv;
     private Spinner friendSpinner;
 
     private List<Friend> friendList;
