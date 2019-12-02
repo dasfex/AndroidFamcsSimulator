@@ -148,8 +148,6 @@ public class WorkFragment extends Fragment {
         });
     }
 
-
-
     private void initializeLists() {
         sideJobList = ActionObjects.getSideJobList();
         workList = ActionObjects.getWorkList();
