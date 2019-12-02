@@ -140,18 +140,19 @@ public class WorkFragment extends Fragment {
             summerWorkAdapter.setIndexOfActivatedButton(position);
             changeSummerWorkButtonActivity(position);
             summerWorkAdapter.notifyDataSetChanged();
-            activityListener.clickOnWorkButton((Work) summerWorkList.get(position));
+            if (activeSummerWorkIndex != -1) {
+                activityListener.clickOnWorkButton((Work) summerWorkList.get(position));
+            } else {
+                activityListener.unclickOnWorkButton((Work) summerWorkList.get(position));
+            }
         });
     }
 
-    private void initializeSideJob() {
-        sideJobList = ActionObjects.getSideJobList();
-    }
+
 
     private void initializeLists() {
         sideJobList = ActionObjects.getSideJobList();
         workList = ActionObjects.getWorkList();
-
         summerWorkList = ActionObjects.getSummerWorkList();
     }
 
