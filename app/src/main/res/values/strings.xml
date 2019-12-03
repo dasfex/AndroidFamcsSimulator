@@ -1,11 +1,13 @@
 <resources>
     <string name="new_game">Новая игра</string>
     <string name="app_name">FAMCS Student simulator</string>
+    <string name="action_settings">Настройки</string>
+    <string name="exit">Выход</string>
+
     <string name="weekNumber">%dая неделя</string>
     <string name="gameTime">Время: </string>
     <string name="moneyText">Деньги</string>
     <string name="moneyCount">50</string>
-    <string name="action_settings">Настройки</string>
     <string name="satiety">Сытость: %s</string>
     <string name="sleep">Здоровье: %s</string>
     <string name="study">Успеваемость: %s</string>
@@ -70,5 +72,7 @@
     <string name="educationalLevel">Уровень образования: %d</string>
     <string name="englishLevel">Уровень английского языка:</string>
     <string name="programmingLevel">Навыки программистера:</string>
+    <string name="github_of_project">Github of project!</string>
+    <string name="github">https://github.com/KhodorVan/AndroidFamcsSimulator</string>
 
 </resources>

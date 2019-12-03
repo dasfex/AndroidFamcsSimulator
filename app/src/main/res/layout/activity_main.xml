@@ -9,8 +9,8 @@
 
     <Button
         android:id="@+id/newGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="143dp"
+        android:layout_height="50dp"
         android:layout_marginStart="153dp"
         android:layout_marginTop="250dp"
         android:layout_marginEnd="161dp"
@@ -21,11 +21,11 @@
 
     <Button
         android:id="@+id/settingsButton"
-        android:layout_width="96dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="153dp"
+        android:layout_width="143dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="131dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="161dp"
+        android:layout_marginEnd="138dp"
         android:scaleX="0.9"
         android:scaleY="1.1"
         android:text="@string/action_settings"
@@ -45,5 +45,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/header" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="143dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="138dp"
+        android:text="@string/exit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
