@@ -67,11 +67,11 @@ public class Work implements StudentActivity {
         return amountOfMoney;
     }
 
-    public int getProgrammingSkillRequied() {
+    public int getProgrammingSkillRequired() {
         return programmingSkillRequired;
     }
 
-    public int getEnglishSkillRequied() {
+    public int getEnglishSkillRequired() {
         return englishSkillRequired;
     }
 

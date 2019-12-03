@@ -7,15 +7,25 @@ public class Study implements Payable, StudentActivity {
     private int educationChanging;
     private int satietyChanging;
     private int healthChanging;
-    private int programmingSkillRequied;
+    private int programmingSkillIncrease;
+    private int programmingSkillRequired;
+    private int englishSkillIncrease;
+    private int englishSkillRequired;
     private int energyNeeded;
 
-    public Study(String title, int price, int educationChanging, int satietyChanging, int healthChanging, int programmingSkillRequied, int energy) {
+    public Study(String title, int price,
+                 int educationChanging, int satietyChanging, int healthChanging,
+                 int programmingSkillIncrease, int programmingSkillRequired,
+                 int englishSkillIncrease, int englishSkillRequired,
+                 int energy) {
         if (title.equals("")) {
             throw new IllegalArgumentException("Title can't be empty string.");
         }
-        if (programmingSkillRequied < 0) {
-            throw new IllegalArgumentException("Study can't require negative programming skill.");
+        if (programmingSkillIncrease < 0 || englishSkillIncrease < 0) {
+            throw new IllegalArgumentException("Skill can't decrease.");
+        }
+        if (programmingSkillRequired < 0 || englishSkillRequired < 0) {
+            throw new IllegalArgumentException("Study can't require negative skill.");
         }
         if (energy < 0) {
             throw new IllegalArgumentException("Energy must be positive.");
@@ -25,7 +35,10 @@ public class Study implements Payable, StudentActivity {
         this.educationChanging = educationChanging;
         this.satietyChanging = satietyChanging;
         this.healthChanging = healthChanging;
-        this.programmingSkillRequied = programmingSkillRequied;
+        this.programmingSkillIncrease = programmingSkillIncrease;
+        this.programmingSkillRequired = programmingSkillRequired;
+        this.englishSkillIncrease = englishSkillIncrease;
+        this.englishSkillRequired = englishSkillRequired;
         this.energyNeeded = energy;
     }
 
@@ -42,12 +55,24 @@ public class Study implements Payable, StudentActivity {
         return healthChanging;
     }
 
-    public int getProgrammingSkillRequired() {
-        return programmingSkillRequied;
-    }
-
     public int getEducationChanging() {
         return educationChanging;
+    }
+
+    public int getProgrammingSkillIncrease() {
+        return programmingSkillIncrease;
+    }
+
+    public int getProgrammingSkillRequired() {
+        return programmingSkillRequired;
+    }
+
+    public int getEnglishSkillIncrease() {
+        return englishSkillIncrease;
+    }
+
+    public int getEnglishSkillRequired() {
+        return englishSkillRequired;
     }
 
     @Override

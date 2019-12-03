@@ -42,7 +42,7 @@ public class GamePresenter implements GameContract.Presenter {
         }
 
         for (Study studyItem : weekLiveChoicesStaff.getStudyList()) {
-            model.learn(studyItem);
+            model.study(studyItem);
         }
 
         for (Work workItem : weekLiveChoicesStaff.getWorkList()) {

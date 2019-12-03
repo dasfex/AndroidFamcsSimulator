@@ -41,7 +41,10 @@ public class GameLogic implements GameContract.Model {
     @Override
     public void work(Work work) {
         student.changeHealth(work.getHealthChanging());
+        student.changeSatiety(work.getSatietyChanging());
         student.changeMoney(work.getAmountOfMoney());
+        student.changeEnglishSkill(work.getEnglishSkillIncrease());
+        student.changeProgrammingSkill(work.getProgrammingSkillIncrease());
     }
 
     @Override
@@ -64,15 +67,17 @@ public class GameLogic implements GameContract.Model {
     }
 
     @Override
-    public void learn(Study study) {
-        student.changeEducationLevel(study.getEducationChanging());
+    public void study(Study study) {
         student.changeHealth(study.getHealthChanging());
         student.changeSatiety(study.getSatietyChanging());
+        student.changeEducationLevel(study.getEducationChanging());
+        student.changeEnglishSkill(study.getEnglishSkillIncrease());
+        student.changeProgrammingSkill(study.getProgrammingSkillIncrease());
         pay(study);
     }
 
     @Override
-    public int getParameter(PlayerStatsEnum characteristic){
+    public int getParameter(PlayerStatsEnum characteristic) {
         return student.getParameter(characteristic);
     }
 

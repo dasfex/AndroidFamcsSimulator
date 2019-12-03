@@ -20,8 +20,8 @@ public interface GameContract {
     interface Presenter {
         void viewCreated();
         void clickOnNewWeekButton();
-        void unclickOnFoodButton(Food food);
         void clickOnFoodButton(Food food);
+        void unclickOnFoodButton(Food food);
         void clickOnLearnButton(Study study);
         void unclickOnStudyButton(Study study);
         void clickOnWorkButton(Work work);
@@ -33,8 +33,7 @@ public interface GameContract {
         void newWeek();
         void eat(Food food);
         void pay(Payable payable);
-        void getMoney(Payable payable);
-        void learn(Study study);
+        void study(Study study);
         void work(Work work);
         int getParameter(GameLogic.PlayerStatsEnum characteristic);
         int getEnergyLevel();
