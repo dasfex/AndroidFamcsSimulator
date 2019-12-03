@@ -60,6 +60,7 @@ public class HobbyFragment extends Fragment {
 
     public interface OnHobbyFragmentListener {
         void clickOnHobbyButton(Hobby hobby);
+        void unclickOnHobbyButton(Hobby hobby);
     }
 
     private void initializeLists() {
@@ -76,10 +77,15 @@ public class HobbyFragment extends Fragment {
         lonelyHobbyRv.setAdapter(hobbyRvAdapter);
 
         hobbyRvAdapter.setAdapterListener(position -> {
+            List<Integer> currentIndices = hobbyRvAdapter.getActiveButtonsIndices();
+            if (currentIndices.contains(position)) {
+                activityListener.unclickOnHobbyButton((Hobby) hobbies.get(position));
+            } else {
+                activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
+            }
             hobbyRvAdapter.setButtonDisActivate(position);
             changeAccessForSideButton(position);
             hobbyRvAdapter.notifyDataSetChanged();
-            activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
         });
 
         if (isHobbyActive.size() == 0) {
@@ -93,7 +99,6 @@ public class HobbyFragment extends Fragment {
                 hobbyRvAdapter.setButtonDisActivate(i);
             }
         }
-
 
         friendSpinner = view.findViewById(R.id.friendSpinner);
 

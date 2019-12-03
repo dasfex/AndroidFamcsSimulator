@@ -6,11 +6,12 @@ public class Hobby implements Payable, StudentActivity {
     private String title;
     private Price price;
     private int satietyChanging;
-    private int moodChanging;
+    private int healthChanging;
     private int energyNeeded;
 
-    public Hobby(String title, int price, int moodChanging, int satietyChanging, int energy) throws IllegalArgumentException {
-        if (moodChanging <= 0) {
+    public Hobby(String title, int price,
+                 int healthChanging, int satietyChanging, int energy) throws IllegalArgumentException {
+        if (healthChanging <= 0) {
             throw new IllegalArgumentException("Hobby can't have nonpositive mood changing.");
         }
         if (price < 0) {
@@ -24,7 +25,7 @@ public class Hobby implements Payable, StudentActivity {
         }
         this.price = new Price(price);
         this.title = title;
-        this.moodChanging = moodChanging;
+        this.healthChanging = healthChanging;
         this.satietyChanging = satietyChanging;
         this.energyNeeded = energy;
     }
@@ -34,8 +35,8 @@ public class Hobby implements Payable, StudentActivity {
         return energyNeeded;
     }
 
-    public int getMoodChanging() {
-        return moodChanging;
+    public int getHealthChanging() {
+        return healthChanging;
     }
 
     public String getTitle() {

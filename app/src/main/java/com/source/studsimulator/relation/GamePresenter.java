@@ -48,6 +48,10 @@ public class GamePresenter implements GameContract.Presenter {
         for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
             model.work(workItem);
         }
+
+        for (Hobby hobbyItem : weekLiveChoicesStaff.getHobbyList()) {
+            model.hobby(hobbyItem);
+        }
     }
 
     @Override
@@ -82,7 +86,12 @@ public class GamePresenter implements GameContract.Presenter {
 
     @Override
     public void clickOnHobbyButton(Hobby hobby) {
-        //
+        weekLiveChoicesStaff.addHobby(hobby);
+    }
+
+    @Override
+    public void unclickOnHobbyButton(Hobby hobby) {
+        weekLiveChoicesStaff.removeHobby(hobby);
     }
 
     private void changeEnergyLevel() {

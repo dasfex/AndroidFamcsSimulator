@@ -1,6 +1,7 @@
 package com.source.studsimulator.ui.entity;
 
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 
@@ -11,11 +12,13 @@ public class ViewState {
     private List<Food> foodList;
     private List<Study> studyList;
     private List<Work> workList;
+    private List<Hobby> hobbyList;
 
     public ViewState() {
         foodList = new ArrayList<>();
         studyList = new ArrayList<>();
         workList = new ArrayList<>();
+        hobbyList = new ArrayList<>();
     }
 
     public void addFood(Food foodItem) {
@@ -54,4 +57,15 @@ public class ViewState {
         workList.remove(work);
     }
 
+    public void addHobby(Hobby hobbyItem) {
+        hobbyList.add(hobbyItem);
+    }
+
+    public List<Hobby> getHobbyList() {
+        return hobbyList;
+    }
+
+    public void removeHobby(Hobby hobby) {
+        hobbyList.remove(hobby);
+    }
 }
