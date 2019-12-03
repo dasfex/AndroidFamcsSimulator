@@ -9,6 +9,7 @@ public class Hobby implements Payable, StudentActivity {
     private int healthChanging;
     private int energyNeeded;
     private int friendshipLevelRequired;
+    private boolean isEnable = true;
 
     public Hobby(String title, int price,
                  int healthChanging, int satietyChanging, int energy,
@@ -56,5 +57,15 @@ public class Hobby implements Payable, StudentActivity {
 
     public int getFriendshipLevelRequired() {
         return friendshipLevelRequired;
+    }
+
+    @Override
+    public void setEnable(int characteristicForBlock) {
+        isEnable = characteristicForBlock > friendshipLevelRequired;
+    }
+
+    @Override
+    public boolean isEnable() {
+        return isEnable;
     }
 }

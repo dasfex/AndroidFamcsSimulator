@@ -74,18 +74,23 @@ public class HobbyFragment extends Fragment {
         hobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
         hobbyRv.setHasFixedSize(true);
 
-        OneActiveButtonAdapter hobbyRvAdapter =
-                new OneActiveButtonAdapter(hobbies);
+        OneActiveButtonWithBlockCharacteristics hobbyRvAdapter =
+                new OneActiveButtonWithBlockCharacteristics(hobbies);
         hobbyRv.setAdapter(hobbyRvAdapter);
 
         hobbyRvAdapter.setAdapterListener(position -> {
             int currentPosition = hobbyRvAdapter.getIndexOfActivatedButton();
             if (currentPosition != -1) {
                 activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition));
+            } else {
+
             }
             hobbyRvAdapter.setIndexOfActivatedButton(position);
             changeAccessForHobby(position);
             hobbyRvAdapter.notifyDataSetChanged();
+            if (currentPosition != position) {
+                activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
+            }
         });
 
         if (indexOfActivatedButton != -1) {
@@ -104,14 +109,17 @@ public class HobbyFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 friendSpinner.setSelection(position);
-                //Friend friend = (Friend) friendSpinner.getSelectedItem();
-                //hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel());
-                //hobbyRvAdapter.notifyDataSetChanged();
+                Friend friend = (Friend) friendSpinner.getSelectedItem();
+                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel());
+                hobbyRvAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 friendSpinner.setSelection(0);
+                Friend friend = (Friend) friendSpinner.getSelectedItem();
+                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel());
+                hobbyRvAdapter.notifyDataSetChanged();
             }
         });
     }

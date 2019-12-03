@@ -51,4 +51,12 @@ public class Food implements Payable, StudentActivity {
     }
 
     public int getHealthChanging() {return healthChanging; }
+
+    @Override
+    public void setEnable(int characteristicForBlock) {}
+
+    @Override
+    public boolean isEnable() {
+        return true;
+    }
 }

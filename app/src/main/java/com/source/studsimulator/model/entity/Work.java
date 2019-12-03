@@ -11,6 +11,7 @@ public class Work implements StudentActivity {
     private int programmingSkillIncrease;
     private int englishSkillIncrease;
     private int energyNeeded;
+    private boolean isEnable = true;
 
     public Work(String title, int healthChanging,
                 int satietyChanging, int amountOfMoney,
@@ -77,5 +78,19 @@ public class Work implements StudentActivity {
 
     public int getSatietyChanging() {
         return satietyChanging;
+    }
+
+    @Override
+    public void setEnable(int characteristicForBlock) {
+        isEnable = isGood(characteristicForBlock);
+    }
+
+    @Override
+    public boolean isEnable() {
+        return isEnable;
+    }
+
+    private boolean isGood(int characteristicForBlock) {
+        return true;
     }
 }

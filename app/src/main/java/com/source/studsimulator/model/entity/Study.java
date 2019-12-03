@@ -84,4 +84,12 @@ public class Study implements Payable, StudentActivity {
     public String getTitle() {
         return title;
     }
+
+    @Override
+    public void setEnable(int characteristicForBlock) {}
+
+    @Override
+    public boolean isEnable() {
+        return true;
+    }
 }
