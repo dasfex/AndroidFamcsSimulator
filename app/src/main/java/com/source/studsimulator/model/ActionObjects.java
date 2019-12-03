@@ -61,20 +61,21 @@ public class ActionObjects {
 
     public static List<StudentActivity> getHobbyList() {
         if (hobbyList.isEmpty()) {
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 1, 1, 1));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 0, 1, 1, 1));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 0, 1, 1, 1));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 0, 1, 1, 1));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 1, 1, 1));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 1, 1, 1, 0));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 0, 1, 1, 1, 20));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 0, 1, 1, 1, 40));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 0, 1, 1, 1, 60));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 1, 1, 1, 80));
         }
         return hobbyList;
     }
 
     public static List<Friend> getFriendList() {
         if (friendList.isEmpty()) {
-            friendList.add(new Friend(50, 0, 0.0, "NoOne", R.drawable.hobby));
-            friendList.add(new Friend(50, 0, 0.0, "Vitya", R.drawable.food));
-            friendList.add(new Friend(50, 0, 0.0, "Zhenya", R.drawable.info));
+            // нужно как-то не менять уровень дружбы с собой
+            friendList.add(new Friend(100, 0, 0.0, "С собой", R.drawable.hobby));
+            friendList.add(new Friend(50, 0, 0.0, "Витя", R.drawable.food));
+            friendList.add(new Friend(50, 0, 0.0, "Женя", R.drawable.info));
         }
         return friendList;
     }

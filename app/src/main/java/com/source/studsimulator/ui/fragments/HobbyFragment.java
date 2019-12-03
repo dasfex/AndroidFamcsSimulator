@@ -18,20 +18,21 @@ import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.StudentActivity;
-import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.FriendAdapter;
+import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
+import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonWithBlockCharacteristics;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HobbyFragment extends Fragment {
 
-    private RecyclerView lonelyHobbyRv;
+    private RecyclerView hobbyRv;
     private Spinner friendSpinner;
 
     private List<Friend> friendList;
     private List<StudentActivity> hobbies;
-    private ArrayList<Boolean> isHobbyActive = new ArrayList<>();
+    private int indexOfActivatedButton = -1;
 
     private HobbyFragment.OnHobbyFragmentListener activityListener;
 
@@ -46,8 +47,8 @@ public class HobbyFragment extends Fragment {
         return view;
     }
 
-    private void changeAccessForSideButton(int pos) {
-        isHobbyActive.set(pos, !isHobbyActive.get(pos));
+    private void changeAccessForHobby(int pos) {
+        indexOfActivatedButton = indexOfActivatedButton == pos ? -1 : pos;
     }
 
     @Override
@@ -69,35 +70,26 @@ public class HobbyFragment extends Fragment {
     }
 
     private void initializeWidgets(View view) {
-        lonelyHobbyRv = view.findViewById(R.id.lonelyHobbyRv);
-        lonelyHobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
-        lonelyHobbyRv.setHasFixedSize(true);
+        hobbyRv = view.findViewById(R.id.lonelyHobbyRv);
+        hobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        hobbyRv.setHasFixedSize(true);
 
-        ActiveButtonsAdapter hobbyRvAdapter = new ActiveButtonsAdapter(hobbies);
-        lonelyHobbyRv.setAdapter(hobbyRvAdapter);
+        OneActiveButtonAdapter hobbyRvAdapter =
+                new OneActiveButtonAdapter(hobbies);
+        hobbyRv.setAdapter(hobbyRvAdapter);
 
         hobbyRvAdapter.setAdapterListener(position -> {
-            List<Integer> currentIndices = hobbyRvAdapter.getActiveButtonsIndices();
-            if (currentIndices.contains(position)) {
-                activityListener.unclickOnHobbyButton((Hobby) hobbies.get(position));
-            } else {
-                activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
+            int currentPosition = hobbyRvAdapter.getIndexOfActivatedButton();
+            if (currentPosition != -1) {
+                activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition));
             }
-            hobbyRvAdapter.setButtonDisActivate(position);
-            changeAccessForSideButton(position);
+            hobbyRvAdapter.setIndexOfActivatedButton(position);
+            changeAccessForHobby(position);
             hobbyRvAdapter.notifyDataSetChanged();
         });
 
-        if (isHobbyActive.size() == 0) {
-            for (int i = 0; i < hobbies.size(); ++i) {
-                isHobbyActive.add(false);
-            }
-        }
-
-        for (int i = 0; i < hobbies.size(); ++i) {
-            if (isHobbyActive.get(i)) {
-                hobbyRvAdapter.setButtonDisActivate(i);
-            }
+        if (indexOfActivatedButton != -1) {
+            hobbyRvAdapter.setIndexOfActivatedButton(indexOfActivatedButton);
         }
 
         friendSpinner = view.findViewById(R.id.friendSpinner);
@@ -112,6 +104,9 @@ public class HobbyFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 friendSpinner.setSelection(position);
+                //Friend friend = (Friend) friendSpinner.getSelectedItem();
+                //hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel());
+                //hobbyRvAdapter.notifyDataSetChanged();
             }
 
             @Override
