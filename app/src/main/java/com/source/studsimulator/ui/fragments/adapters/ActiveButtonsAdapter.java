@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,11 +19,11 @@ public class ActiveButtonsAdapter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textView;
+        private Button button;
 
         ViewHolder(View view) {
             super(view);
-            textView = view.findViewById(R.id.text_view);
+            button = view.findViewById(R.id.button);
         }
     }
 
@@ -44,8 +44,14 @@ public class ActiveButtonsAdapter
         }
     }
 
-    public AdapterListener getAdapterListener() {
-        return adapterListener;
+    public List<Integer> getActiveButtonsIndices() {
+        List<Integer> indices = new ArrayList<Integer>();
+        for (int i = 0; i < isButtonActivated.size(); ++i) {
+            if (isButtonActivated.get(i)) {
+                indices.add(i);
+            }
+        }
+        return indices;
     }
 
     public void setAdapterListener(AdapterListener adapterListener) {
@@ -66,10 +72,10 @@ public class ActiveButtonsAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int ind) {
-        viewHolder.textView.setText(studentActivities.get(ind).getTitle());
-        viewHolder.textView.setBackgroundColor(isButtonActivated.get(ind) ? Color.GREEN : Color.WHITE);
+        viewHolder.button.setText(studentActivities.get(ind).getTitle());
+        viewHolder.button.setBackgroundColor(isButtonActivated.get(ind) ? Color.GREEN : Color.WHITE);
 
-        viewHolder.textView.setOnClickListener(v -> adapterListener.onClick(ind));
+        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {

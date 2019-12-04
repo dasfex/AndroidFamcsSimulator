@@ -8,8 +8,6 @@ import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.entity.ViewState;
 
-import java.util.List;
-
 public class GamePresenter implements GameContract.Presenter {
 
     private GameContract.Model model;
@@ -40,36 +38,60 @@ public class GamePresenter implements GameContract.Presenter {
 
     private void applyLiveChoices(ViewState weekLiveChoicesStaff) {
         for (Food foodItem : weekLiveChoicesStaff.getFoodList()) {
-            System.out.println(foodItem.getTitle() + " apply");
             model.eat(foodItem);
+        }
+
+        for (Study studyItem : weekLiveChoicesStaff.getStudyList()) {
+            model.study(studyItem);
+        }
+
+        for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
+            model.work(workItem);
+        }
+
+        for (Hobby hobbyItem : weekLiveChoicesStaff.getHobbyList()) {
+            model.hobby(hobbyItem);
         }
     }
 
     @Override
     public void clickOnFoodButton(Food food) {
-        System.out.println(food.getTitle() + " add");
         weekLiveChoicesStaff.addFood(food);
     }
 
     @Override
     public void unclickOnFoodButton(Food food) {
-        System.out.println(food.getTitle() + " delete");
         weekLiveChoicesStaff.removeFood(food);
     }
 
     @Override
     public void clickOnLearnButton(Study study) {
-        model.learn(study);
+        weekLiveChoicesStaff.addStudy(study);
+    }
+
+    @Override
+    public void unclickOnStudyButton(Study study) {
+        weekLiveChoicesStaff.removeStudy(study);
     }
 
     @Override
     public void clickOnWorkButton(Work work) {
-        model.work(work);
+        weekLiveChoicesStaff.addWork(work);
+    }
+
+    @Override
+    public void unclickOnWorkButton(Work work) {
+        weekLiveChoicesStaff.removeWork(work);
     }
 
     @Override
     public void clickOnHobbyButton(Hobby hobby) {
-        //
+        weekLiveChoicesStaff.addHobby(hobby);
+    }
+
+    @Override
+    public void unclickOnHobbyButton(Hobby hobby) {
+        weekLiveChoicesStaff.removeHobby(hobby);
     }
 
     private void changeEnergyLevel() {

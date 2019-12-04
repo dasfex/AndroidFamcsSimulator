@@ -14,26 +14,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.StudentActivity;
-import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.FriendAdapter;
+import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
+import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonWithBlockCharacteristics;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HobbyFragment extends Fragment {
-
-    public enum HOBBY_BUTTONS {
-        READ, DANCE, BEER, FILM, VOTE
-    }
 
     private RecyclerView hobbyRv;
     private Spinner friendSpinner;
 
-    private ArrayList<Friend> friendList;
-    private ArrayList<StudentActivity> hobbies;
-    private ArrayList<Boolean> isHobbyActive = new ArrayList<>();
+    private List<Friend> friendList;
+    private List<StudentActivity> hobbies;
+    private int indexOfActivatedButton = -1;
 
     private HobbyFragment.OnHobbyFragmentListener activityListener;
 
@@ -41,62 +40,15 @@ public class HobbyFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hobby_fragment_activity, null);
 
-        initializeFriends();
-        initializeHobbies();
+        initializeLists();
 
-        hobbyRv = view.findViewById(R.id.hobbyRV);
-        hobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
-        hobbyRv.setHasFixedSize(true);
-
-        ActiveButtonsAdapter hobbyRvAdapter = new ActiveButtonsAdapter(hobbies);
-        hobbyRv.setAdapter(hobbyRvAdapter);
-
-        hobbyRvAdapter.setAdapterListener(position -> {
-            hobbyRvAdapter.setButtonDisActivate(position);
-            changeAccessForSideButton(position);
-            hobbyRvAdapter.notifyDataSetChanged();
-            activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
-        });
-
-        if (isHobbyActive.size() == 0) {
-            for (int i = 0; i < hobbies.size(); ++i) {
-                isHobbyActive.add(false);
-            }
-        }
-
-        for (int i = 0; i < hobbies.size(); ++i) {
-            if (isHobbyActive.get(i)) {
-                hobbyRvAdapter.setButtonDisActivate(i);
-            }
-        }
-
-        friendSpinner = view.findViewById(R.id.friendSpinner);
-
-        FriendAdapter friendAdapter =
-                new FriendAdapter((Activity) getContext(), android.R.layout.simple_spinner_dropdown_item, friendList);
-
-        friendSpinner.setAdapter(friendAdapter);
-
-        friendSpinner.setSelection(0);
-
-        friendSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                friendSpinner.setSelection(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                friendSpinner.setSelection(0);
-            }
-        });
-
+        initializeWidgets(view);
 
         return view;
     }
 
-    private void changeAccessForSideButton(int pos) {
-        isHobbyActive.set(pos, !isHobbyActive.get(pos));
+    private void changeAccessForHobby(int pos) {
+        indexOfActivatedButton = indexOfActivatedButton == pos ? -1 : pos;
     }
 
     @Override
@@ -109,21 +61,66 @@ public class HobbyFragment extends Fragment {
 
     public interface OnHobbyFragmentListener {
         void clickOnHobbyButton(Hobby hobby);
+        void unclickOnHobbyButton(Hobby hobby);
     }
 
-    private void initializeHobbies() {
-        hobbies = new ArrayList<>();
-        hobbies.add(new Hobby(getString(R.string.read), 0, 1, 1,1));
-        hobbies.add(new Hobby(getString(R.string.dance), 0, 1, 1,1));
-        hobbies.add(new Hobby(getString(R.string.beer), 0, 1, 1,1));
-        hobbies.add(new Hobby(getString(R.string.film), 0, 1, 1,1));
-        hobbies.add(new Hobby(getString(R.string.vote), 0, 1, 1,1));
+    private void initializeLists() {
+        hobbies = ActionObjects.getHobbyList();
+        friendList = ActionObjects.getFriendList();
     }
 
-    private void initializeFriends() {
-        friendList = new ArrayList<>();
-        friendList.add(new Friend(50, 0, 0.0, "NoOne", R.drawable.hobby));
-        friendList.add(new Friend(50, 0, 0.0, "Vitya", R.drawable.food));
-        friendList.add(new Friend(50, 0, 0.0, "Zhenya", R.drawable.info));
+    private void initializeWidgets(View view) {
+        hobbyRv = view.findViewById(R.id.lonelyHobbyRv);
+        hobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        hobbyRv.setHasFixedSize(true);
+
+        OneActiveButtonWithBlockCharacteristics hobbyRvAdapter =
+                new OneActiveButtonWithBlockCharacteristics(hobbies);
+        hobbyRv.setAdapter(hobbyRvAdapter);
+
+        hobbyRvAdapter.setAdapterListener(position -> {
+            int currentPosition = hobbyRvAdapter.getIndexOfActivatedButton();
+            if (currentPosition != -1) {
+                activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition));
+            } else {
+
+            }
+            hobbyRvAdapter.setIndexOfActivatedButton(position);
+            changeAccessForHobby(position);
+            hobbyRvAdapter.notifyDataSetChanged();
+            if (currentPosition != position) {
+                activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
+            }
+        });
+
+        if (indexOfActivatedButton != -1) {
+            hobbyRvAdapter.setIndexOfActivatedButton(indexOfActivatedButton);
+        }
+
+        friendSpinner = view.findViewById(R.id.friendSpinner);
+
+        FriendAdapter friendAdapter =
+                new FriendAdapter((Activity) getContext(), android.R.layout.simple_spinner_dropdown_item,
+                        (ArrayList<Friend>) friendList);
+
+        friendSpinner.setAdapter(friendAdapter);
+        friendSpinner.setSelection(0);
+        friendSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                friendSpinner.setSelection(position);
+                Friend friend = (Friend) friendSpinner.getSelectedItem();
+                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel());
+                hobbyRvAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                friendSpinner.setSelection(0);
+                Friend friend = (Friend) friendSpinner.getSelectedItem();
+                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel());
+                hobbyRvAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }

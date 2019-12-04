@@ -20,23 +20,35 @@ public interface GameContract {
     interface Presenter {
         void viewCreated();
         void clickOnNewWeekButton();
-        void unclickOnFoodButton(Food food);
+
         void clickOnFoodButton(Food food);
+        void unclickOnFoodButton(Food food);
+
         void clickOnLearnButton(Study study);
+        void unclickOnStudyButton(Study study);
+
         void clickOnWorkButton(Work work);
+        void unclickOnWorkButton(Work work);
+
         void clickOnHobbyButton(Hobby hobby);
+        void unclickOnHobbyButton(Hobby hobby);
     }
 
     interface Model {
         void newWeek();
-        void eat(Food food);
+
         void pay(Payable payable);
         void getMoney(Payable payable);
-        void learn(Study study);
+
+        void eat(Food food);
+        void study(Study study);
         void work(Work work);
+        void hobby(Hobby hobby);
+
+        void changeEnergyLevel(int energyLevelPoints);
+
         int getParameter(GameLogic.PlayerStatsEnum characteristic);
         int getEnergyLevel();
-        void changeEnergyLevel(int energyLevelPoints);
         int getWeek();
     }
 }
