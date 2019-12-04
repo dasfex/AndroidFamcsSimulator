@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -185,15 +188,18 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
                 .setMessage("Похоже вы не расчитали свои силы и умерли. А ведь мама говорила," +
                         "что надо было идти в БГУИР. Ну иди теперь в армейку. Кыш-кыш")
                 .setCancelable(false)
-                .setNegativeButton("Сеевеееец",
+                .setNegativeButton("Мам, я стану рэпером!",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                finish();
                                 dialog.cancel();
-                                setContentView(R.layout.activity_main);
                             }
                         });
         AlertDialog alert = builder.create();
         alert.show();
+
+        alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLUE);
+
     }
 
     private void setOnClickListenersForFragmentButtons() {
