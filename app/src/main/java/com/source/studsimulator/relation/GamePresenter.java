@@ -61,41 +61,57 @@ public class GamePresenter implements GameContract.Presenter {
     @Override
     public void clickOnFoodButton(Food food) {
         weekLiveChoicesStaff.addFood(food);
+        model.changeEnergyLevel(-food.getEnergyNeeded());
+        changeEnergyLevel();
     }
 
     @Override
     public void unclickOnFoodButton(Food food) {
         weekLiveChoicesStaff.removeFood(food);
+        model.changeEnergyLevel(food.getEnergyNeeded());
+        changeEnergyLevel();
     }
 
     @Override
     public void clickOnLearnButton(Study study) {
         weekLiveChoicesStaff.addStudy(study);
+        model.changeEnergyLevel(-study.getEnergyNeeded());
+        changeEnergyLevel();
     }
 
     @Override
     public void unclickOnStudyButton(Study study) {
         weekLiveChoicesStaff.removeStudy(study);
+        model.changeEnergyLevel(study.getEnergyNeeded());
+        changeEnergyLevel();
     }
 
     @Override
     public void clickOnWorkButton(Work work) {
         weekLiveChoicesStaff.addWork(work);
+        model.changeEnergyLevel(-work.getEnergyNeeded());
+        changeEnergyLevel();
     }
 
     @Override
     public void unclickOnWorkButton(Work work) {
         weekLiveChoicesStaff.removeWork(work);
+        model.changeEnergyLevel(work.getEnergyNeeded());
+        changeEnergyLevel();
     }
 
     @Override
     public void clickOnHobbyButton(Hobby hobby) {
         weekLiveChoicesStaff.addHobby(hobby);
+        model.changeEnergyLevel(-hobby.getEnergyNeeded());
+        changeEnergyLevel();
     }
 
     @Override
     public void unclickOnHobbyButton(Hobby hobby) {
         weekLiveChoicesStaff.removeHobby(hobby);
+        model.changeEnergyLevel(hobby.getEnergyNeeded());
+        changeEnergyLevel();
     }
 
     private void changeEnergyLevel() {

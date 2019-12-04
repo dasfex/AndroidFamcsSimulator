@@ -9,11 +9,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.model.entity.Study;
+import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
@@ -54,6 +56,7 @@ public class StudyFragment extends Fragment {
     public interface OnStudyFragmentListener {
         void clickOnStudyButton(Study study);
         void unclickOnStudyButton(Study study);
+        int getEnergy();
     }
 
     @Override
@@ -79,14 +82,25 @@ public class StudyFragment extends Fragment {
 
         universityRvAdapter.setAdapterListener(position -> {
             int currentPosition = universityRvAdapter.getIndexOfActivatedButton();
+            int currentEnergy = activityListener.getEnergy();
             if (currentPosition != -1) {
-                activityListener.unclickOnStudyButton((Study) university.get(currentPosition));
+                currentEnergy += university.get(currentPosition).getEnergyNeeded();
             }
-            universityRvAdapter.setIndexOfActivatedButton(position);
-            changeButtonActivity(position);
-            universityRvAdapter.notifyDataSetChanged();
-            if (currentPosition != position) {
-                activityListener.clickOnStudyButton((Study) university.get(position));
+            StudentActivity newStudy = university.get(position);
+            if (currentEnergy >= newStudy.getEnergyNeeded()) {
+                if (currentPosition != -1) {
+                    activityListener.unclickOnStudyButton((Study) university.get(currentPosition));
+                }
+                universityRvAdapter.setIndexOfActivatedButton(position);
+                changeButtonActivity(position);
+                universityRvAdapter.notifyDataSetChanged();
+                if (currentPosition != position) {
+                    activityListener.clickOnStudyButton((Study) university.get(position));
+                }
+            } else {
+                Toast.makeText(getContext(),
+                        StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -100,12 +114,23 @@ public class StudyFragment extends Fragment {
             List<Integer> currentIndices = extraActivityRvAdapter.getActiveButtonsIndices();
             if (currentIndices.contains(position)) {
                 activityListener.unclickOnStudyButton((Study) extraActivity.get(position));
+                extraActivityRvAdapter.setButtonDisActivate(position);
+                changeAccessForSideButton(position);
+                extraActivityRvAdapter.notifyDataSetChanged();
             } else {
-                activityListener.clickOnStudyButton((Study) extraActivity.get(position));
+                int currentEnergy = activityListener.getEnergy();
+                StudentActivity newStudy = extraActivity.get(position);
+                if (currentEnergy >= newStudy.getEnergyNeeded()) {
+                    activityListener.clickOnStudyButton((Study) extraActivity.get(position));
+                    extraActivityRvAdapter.setButtonDisActivate(position);
+                    changeAccessForSideButton(position);
+                    extraActivityRvAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getContext(),
+                            StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
-            extraActivityRvAdapter.setButtonDisActivate(position);
-            changeAccessForSideButton(position);
-            extraActivityRvAdapter.notifyDataSetChanged();
         });
 
         if (isCourseActive.size() == 0) {

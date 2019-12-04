@@ -60,11 +60,11 @@ public class ActionObjects {
 
     public static List<StudentActivity> getHobbyList() {
         if (hobbyList.isEmpty()) {
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 1, 1, 1, 0));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 0, 1, 1, 1, 20));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 0, 1, 1, 1, 40));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 0, 1, 1, 1, 60));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 1, 1, 1, 80));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 7, 0, 1, 0));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 0, 15, -2, 3, 20));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 0, 12, -1, 1, 40));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 0, 10, -1, 2, 60));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 15, 5, 4, 80));
         }
         return hobbyList;
     }

@@ -53,7 +53,7 @@
     <string name="visit">Ходить в университет</string>
     <string name="cheat">Списывать в универе</string>
     <string name="workHard">Вкалывать в универе</string>
-    <string name="english">Курсы по анлийскому</string>
+    <string name="english">Курсы по английскому</string>
     <string name="itransition">Курсы Jtransition</string>
     <string name="proga">Курсы по проге</string>
     <string name="cookingCourses">Кулинарные курсы</string>
@@ -74,5 +74,7 @@
     <string name="programmingLevel">Навыки программистера:</string>
     <string name="github_of_project">Github of project!</string>
     <string name="github">https://github.com/KhodorVan/AndroidFamcsSimulator</string>
+
+    <string name="notEnoughEnergy">Недостаточно энергии!</string>
 
 </resources>

@@ -10,11 +10,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.ActionObjects;
+import com.source.studsimulator.model.Student;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.model.entity.Work;
+import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.BlockUnactiveButtonsAdapter;
 
@@ -59,6 +62,7 @@ public class WorkFragment extends Fragment {
     public interface OnWorkFragmentListener {
         void clickOnWorkButton(Work work);
         void unclickOnWorkButton(Work work);
+        int getEnergy();
     }
 
     @Override
@@ -94,13 +98,25 @@ public class WorkFragment extends Fragment {
         ActiveButtonsAdapter sideJobsAdapter = new ActiveButtonsAdapter(sideJobList);
         sideJobRv.setAdapter(sideJobsAdapter);
         sideJobsAdapter.setAdapterListener(position -> {
-            sideJobsAdapter.setButtonDisActivate(position);
-            changeAccessForSideButton(position);
-            sideJobsAdapter.notifyDataSetChanged();
-            if (isSideJobActive.get(position)) {
-                activityListener.clickOnWorkButton((Work) sideJobList.get(position));
-            } else {
+            List<Integer> currentIndices = sideJobsAdapter.getActiveButtonsIndices();
+            if (currentIndices.contains(position)) {
                 activityListener.unclickOnWorkButton((Work) sideJobList.get(position));
+                sideJobsAdapter.setButtonDisActivate(position);
+                changeAccessForSideButton(position);
+                sideJobsAdapter.notifyDataSetChanged();
+            } else {
+                int currentEnergy = activityListener.getEnergy();
+                StudentActivity newStudy = sideJobList.get(position);
+                if (currentEnergy >= newStudy.getEnergyNeeded()) {
+                    activityListener.clickOnWorkButton((Work) sideJobList.get(position));
+                    sideJobsAdapter.setButtonDisActivate(position);
+                    changeAccessForSideButton(position);
+                    sideJobsAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getContext(),
+                            StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -117,15 +133,25 @@ public class WorkFragment extends Fragment {
         workRv.setAdapter(workAdapter);
         workAdapter.setIndexOfActivatedButton(activeWorkIndex);
         workAdapter.setAdapterListener(position -> {
-            workAdapter.setIndexOfActivatedButton(position);
-            if (activeWorkIndex != -1) {
+            int currentPosition = workAdapter.getIndexOfActivatedButton();
+            if (currentPosition == position) {
                 activityListener.unclickOnWorkButton((Work) workList.get(activeWorkIndex));
+                workAdapter.setIndexOfActivatedButton(position);
+                changeWorkButtonActivity(position);
+            } else {
+                int currentEnergy = activityListener.getEnergy();
+                StudentActivity newWork = workList.get(position);
+                if (currentEnergy >= newWork.getEnergyNeeded()) {
+                    activityListener.clickOnWorkButton((Work) workList.get(position));
+                    workAdapter.setIndexOfActivatedButton(position);
+                    changeWorkButtonActivity(position);
+                } else {
+                    Toast.makeText(getContext(),
+                            StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
-            changeWorkButtonActivity(position);
             workAdapter.notifyDataSetChanged();
-            if (activeWorkIndex != -1) {
-                activityListener.clickOnWorkButton((Work) workList.get(position));
-            }
         });
 
         summerWorkRv = view.findViewById(R.id.summerWorkRV);
@@ -135,14 +161,25 @@ public class WorkFragment extends Fragment {
         summerWorkRv.setAdapter(summerWorkAdapter);
         summerWorkAdapter.setIndexOfActivatedButton(activeSummerWorkIndex);
         summerWorkAdapter.setAdapterListener(position -> {
-            summerWorkAdapter.setIndexOfActivatedButton(position);
-            changeSummerWorkButtonActivity(position);
-            summerWorkAdapter.notifyDataSetChanged();
-            if (activeSummerWorkIndex != -1) {
-                activityListener.clickOnWorkButton((Work) summerWorkList.get(position));
+            int currentPosition = summerWorkAdapter.getIndexOfActivatedButton();
+            if (currentPosition == position) {
+                activityListener.unclickOnWorkButton((Work) summerWorkList.get(activeSummerWorkIndex));
+                summerWorkAdapter.setIndexOfActivatedButton(position);
+                changeSummerWorkButtonActivity(position);
             } else {
-                activityListener.unclickOnWorkButton((Work) summerWorkList.get(position));
+                int currentEnergy = activityListener.getEnergy();
+                StudentActivity newSummerWork = summerWorkList.get(position);
+                if (currentEnergy >= newSummerWork.getEnergyNeeded()) {
+                    activityListener.clickOnWorkButton((Work) summerWorkList.get(position));
+                    summerWorkAdapter.setIndexOfActivatedButton(position);
+                    changeSummerWorkButtonActivity(position);
+                } else {
+                    Toast.makeText(getContext(),
+                            StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
+            summerWorkAdapter.notifyDataSetChanged();
         });
     }
 }
