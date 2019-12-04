@@ -38,6 +38,10 @@ public class BlockUnactiveButtonsAdapter
         }
     }
 
+    public int getIndexOfActivatedButton() {
+        return indexOfActivatedButton;
+    }
+
     public BlockUnactiveButtonsAdapter(List<StudentActivity> activities) {
         this.studentActivities = activities;
     }
@@ -64,6 +68,7 @@ public class BlockUnactiveButtonsAdapter
         if (indexOfActivatedButton == ind) {
             viewHolder.button.setBackgroundColor(Color.GREEN);
             viewHolder.button.setClickable(true);
+            viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
         } else {
             if (indexOfActivatedButton != -1) {
                 viewHolder.button.setBackgroundColor(Color.GRAY);
@@ -71,9 +76,9 @@ public class BlockUnactiveButtonsAdapter
             } else {
                 viewHolder.button.setBackgroundColor(Color.WHITE);
                 viewHolder.button.setClickable(true);
+                viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
             }
         }
-        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {

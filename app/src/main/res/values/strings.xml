@@ -53,7 +53,7 @@
     <string name="visit">Ходить в университет</string>
     <string name="cheat">Списывать в универе</string>
     <string name="workHard">Вкалывать в универе</string>
-    <string name="english">Курсы по анлийскому</string>
+    <string name="english">Курсы по английскому</string>
     <string name="itransition">Курсы Jtransition</string>
     <string name="proga">Курсы по проге</string>
     <string name="cookingCourses">Кулинарные курсы</string>
@@ -87,5 +87,7 @@
     <string name="klub">Поохранять клуб</string>
     <string name="perehody">Играть в переходах</string>
     <string name="freelance">Пофрилансить</string>
+  
+    <string name="notEnoughEnergy">Недостаточно энергии!</string>
 
 </resources>

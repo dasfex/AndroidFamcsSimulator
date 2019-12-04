@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.StudentActivity;
+import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.fragments.adapters.FriendAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonWithBlockCharacteristics;
@@ -62,6 +64,7 @@ public class HobbyFragment extends Fragment {
     public interface OnHobbyFragmentListener {
         void clickOnHobbyButton(Hobby hobby);
         void unclickOnHobbyButton(Hobby hobby);
+        int getEnergy();
     }
 
     private void initializeLists() {
@@ -80,16 +83,25 @@ public class HobbyFragment extends Fragment {
 
         hobbyRvAdapter.setAdapterListener(position -> {
             int currentPosition = hobbyRvAdapter.getIndexOfActivatedButton();
+            int currentEnergy = activityListener.getEnergy();
             if (currentPosition != -1) {
-                activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition));
-            } else {
-
+                currentEnergy += hobbies.get(currentPosition).getEnergyNeeded();
             }
-            hobbyRvAdapter.setIndexOfActivatedButton(position);
-            changeAccessForHobby(position);
-            hobbyRvAdapter.notifyDataSetChanged();
-            if (currentPosition != position) {
-                activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
+            StudentActivity newHobby = hobbies.get(position);
+            if (currentEnergy >= newHobby.getEnergyNeeded()) {
+                if (currentPosition != -1) {
+                    activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition));
+                }
+                hobbyRvAdapter.setIndexOfActivatedButton(position);
+                changeAccessForHobby(position);
+                hobbyRvAdapter.notifyDataSetChanged();
+                if (currentPosition != position) {
+                    activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
+                }
+            } else {
+                Toast.makeText(getContext(),
+                        StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

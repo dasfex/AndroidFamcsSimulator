@@ -18,6 +18,7 @@ public interface GameContract {
         void updateEnergyLevel(int energyLevel);
         void cleanMessages();
         void writeMessage(String message);
+        void printDeadMessage();
     }
 
     interface Presenter {
