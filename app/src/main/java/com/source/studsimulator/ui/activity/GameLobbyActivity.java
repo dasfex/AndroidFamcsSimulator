@@ -5,7 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -175,6 +181,27 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         energyTextView.setText(String.valueOf(energyLevel));
     }
 
+    @Override
+    public void printDeadMessage() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("СМЭРЦЬ!")
+                .setMessage("Похоже вы не расчитали свои силы и умерли. А ведь мама говорила," +
+                        "что надо было идти в БГУИР. Ну иди теперь в армейку. Кыш-кыш")
+                .setCancelable(false)
+                .setNegativeButton("Мам, я стану рэпером!",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                finish();
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+        alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLUE);
+
+    }
+
     private void setOnClickListenersForFragmentButtons() {
         infoButton.setOnClickListener(v -> replaceFragment(informationFragment));
 
@@ -185,5 +212,10 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         workButton.setOnClickListener(v -> replaceFragment(workFragment));
 
         hobbyButton.setOnClickListener(v -> replaceFragment(hobbyFragment));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
