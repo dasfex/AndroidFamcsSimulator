@@ -2,6 +2,7 @@ package com.source.studsimulator.model;
 
 
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
@@ -41,7 +42,10 @@ public class GameLogic implements GameContract.Model {
     @Override
     public void work(Work work) {
         student.changeHealth(work.getHealthChanging());
+        student.changeSatiety(work.getSatietyChanging());
         student.changeMoney(work.getAmountOfMoney());
+        student.changeEnglishSkill(work.getEnglishSkillIncrease());
+        student.changeProgrammingSkill(work.getProgrammingSkillIncrease());
     }
 
     @Override
@@ -49,6 +53,13 @@ public class GameLogic implements GameContract.Model {
         student.changeSatiety(food.getSatietyChanging());
         student.changeHealth(food.getHealthChanging());
         pay(food);
+    }
+
+    @Override
+    public void hobby(Hobby hobby) {
+        student.changeSatiety(hobby.getSatietyChanging());
+        student.changeHealth(hobby.getHealthChanging());
+        pay(hobby);
     }
 
     // важно не потерять минус, т.к. метод ИЗМЕНЯЕТ на заданную величину
@@ -64,15 +75,17 @@ public class GameLogic implements GameContract.Model {
     }
 
     @Override
-    public void learn(Study study) {
-        student.changeEducationLevel(study.getEducationChanging());
+    public void study(Study study) {
         student.changeHealth(study.getHealthChanging());
         student.changeSatiety(study.getSatietyChanging());
+        student.changeEducationLevel(study.getEducationChanging());
+        student.changeEnglishSkill(study.getEnglishSkillIncrease());
+        student.changeProgrammingSkill(study.getProgrammingSkillIncrease());
         pay(study);
     }
 
     @Override
-    public int getParameter(PlayerStatsEnum characteristic){
+    public int getParameter(PlayerStatsEnum characteristic) {
         return student.getParameter(characteristic);
     }
 

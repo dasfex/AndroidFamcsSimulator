@@ -6,11 +6,15 @@ public class Hobby implements Payable, StudentActivity {
     private String title;
     private Price price;
     private int satietyChanging;
-    private int moodChanging;
+    private int healthChanging;
     private int energyNeeded;
+    private int friendshipLevelRequired;
+    private boolean isEnable = true;
 
-    public Hobby(String title, int price, int moodChanging, int satietyChanging, int energy) throws IllegalArgumentException {
-        if (moodChanging <= 0) {
+    public Hobby(String title, int price,
+                 int healthChanging, int satietyChanging, int energy,
+                 int friendshipLevelRequired) throws IllegalArgumentException {
+        if (healthChanging <= 0) {
             throw new IllegalArgumentException("Hobby can't have nonpositive mood changing.");
         }
         if (price < 0) {
@@ -24,18 +28,10 @@ public class Hobby implements Payable, StudentActivity {
         }
         this.price = new Price(price);
         this.title = title;
-        this.moodChanging = moodChanging;
+        this.healthChanging = healthChanging;
         this.satietyChanging = satietyChanging;
         this.energyNeeded = energy;
-    }
-
-    @Override
-    public int getEnergyNeeded() {
-        return energyNeeded;
-    }
-
-    public int getMoodChanging() {
-        return moodChanging;
+        this.friendshipLevelRequired = friendshipLevelRequired;
     }
 
     public String getTitle() {
@@ -46,5 +42,30 @@ public class Hobby implements Payable, StudentActivity {
         return price;
     }
 
-    public int getSatietyChanging() {return satietyChanging; }
+    @Override
+    public int getEnergyNeeded() {
+        return energyNeeded;
+    }
+
+    public int getHealthChanging() {
+        return healthChanging;
+    }
+
+    public int getSatietyChanging() {
+        return satietyChanging;
+    }
+
+    public int getFriendshipLevelRequired() {
+        return friendshipLevelRequired;
+    }
+
+    @Override
+    public void setEnable(int characteristicForBlock) {
+        isEnable = characteristicForBlock > friendshipLevelRequired;
+    }
+
+    @Override
+    public boolean isEnable() {
+        return isEnable;
+    }
 }

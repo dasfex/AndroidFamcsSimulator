@@ -1,11 +1,13 @@
 <resources>
-    <string name="new_game">New Game</string>
+    <string name="new_game">Новая игра</string>
     <string name="app_name">FAMCS Student simulator</string>
+    <string name="action_settings">Настройки</string>
+    <string name="exit">Выход</string>
+
     <string name="weekNumber">%dая неделя</string>
     <string name="gameTime">Время: </string>
     <string name="moneyText">Деньги</string>
     <string name="moneyCount">50</string>
-    <string name="action_settings">Settings</string>
     <string name="satiety">Сытость: %s</string>
     <string name="sleep">Здоровье: %s</string>
     <string name="study">Успеваемость: %s</string>
@@ -26,9 +28,9 @@
     <string name="friendLabel">Выбери, с кем хочешь провести время</string>
     <string name="hobbyLabel">Выбери занятие</string>
     <string name="read">почитать книжку</string>
-    <string name="dance">танцевать в одиночестве</string>
-    <string name="beer">попить пева в одиночестве</string>
-    <string name="film">посмотреть фильмец в одиночестве</string>
+    <string name="dance">танцевать</string>
+    <string name="beer">попить пева</string>
+    <string name="film">посмотреть фильмец</string>
     <string name="vote">сходить на выборы</string>
 
     <string name="sideJobHeader">Иди работать!</string>
@@ -47,9 +49,9 @@
 
     <string name="facebook">Стажа Хэндбук</string>
 
-    <string name="cheat">Списывать в универе</string>
-    <string name="noVisit">Не ходить в университет</string>
+    <string name="noVisit">Иногда заглядывать</string>
     <string name="visit">Ходить в университет</string>
+    <string name="cheat">Списывать в универе</string>
     <string name="workHard">Вкалывать в универе</string>
     <string name="english">Курсы по анлийскому</string>
     <string name="itransition">Курсы Jtransition</string>
@@ -70,5 +72,7 @@
     <string name="educationalLevel">Уровень образования: %d</string>
     <string name="englishLevel">Уровень английского языка:</string>
     <string name="programmingLevel">Навыки программистера:</string>
+    <string name="github_of_project">Github of project!</string>
+    <string name="github">https://github.com/KhodorVan/AndroidFamcsSimulator</string>
 
 </resources>

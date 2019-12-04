@@ -34,6 +34,36 @@ public class FoodFragment extends Fragment {
 
         initializeFood();
 
+        initializeRv(view);
+
+        return view;
+    }
+
+    private void changeButtonActivity(int position) {
+        activeButtonIndex = activeButtonIndex == position ? -1 : position;
+    }
+
+    public interface OnFoodFragmentListener {
+
+        void clickOnFoodButton(Food food);
+        void unclickFoodButton(Food food);
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof FoodFragment.OnFoodFragmentListener) {
+            activityListener = (FoodFragment.OnFoodFragmentListener) context;
+        }
+    }
+
+    private void initializeFood() {
+        food = ActionObjects.getFoodList();
+        for (StudentActivity it : food) {
+            System.out.println(it.toString());
+        }
+    }
+
+    private void initializeRv(View view) {
         foodRv = view.findViewById(R.id.buttonsRecyclerView);
         foodRv.setLayoutManager(new LinearLayoutManager(getContext()));
         foodRv.setHasFixedSize(true);
@@ -54,31 +84,5 @@ public class FoodFragment extends Fragment {
                 activityListener.clickOnFoodButton((Food) food.get(position));
             }
         });
-
-        return view;
-    }
-
-    private void changeButtonActivity(int position) {
-        activeButtonIndex = activeButtonIndex == position ? -1 : position;
-    }
-  
-    public interface OnFoodFragmentListener {
-        void clickOnFoodButton(Food food);
-        void unclickFoodButton(Food food);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof FoodFragment.OnFoodFragmentListener) {
-            activityListener = (FoodFragment.OnFoodFragmentListener) context;
-        }
-    }
-      
-    private void initializeFood() {
-        food = ActionObjects.getFoodList();
-        for (StudentActivity it : food) {
-            System.out.println(it.toString());
-        }
     }
 }

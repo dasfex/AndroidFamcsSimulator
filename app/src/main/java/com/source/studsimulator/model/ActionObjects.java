@@ -40,41 +40,42 @@ public class ActionObjects {
 
     public static List<StudentActivity> getUniversityList() {
         if (universityList.isEmpty()) {
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 0, 0, 5, 0, 0));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 15, -4, -15, 0, 1));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 2, -1, -10, 0, 2));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 20, -6, -20, 0, 3));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 0, 0, 5, 0, 0, 0, 0, 0));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 15, -4, -15, 1, 1, 0, 0, 1));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 2, -1, -10, 2, 2, 0, 0, 2));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 20, -6, -20, 4, 0, 5, 0, 3));
         }
         return universityList;
     }
 
     public static List<StudentActivity> getExtraActivityList() {
         if (extraActivityList.isEmpty()) {
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.english), 5, 8, -2, -5, 0, 1));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.itransition), 0, 10, -4, -8, 6, 1));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.epam), 0, 12, -6, -10, 8, 1));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.shad), 0, 30, -12, -50, 10, 5));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cookingCourses), 5, 20, 4, 0, 0, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.english), 5, 8, -2, -5, 0, 0, 10, 0, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.itransition), 0, 10, -4, -8, 4, 20, 2, 0, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.epam), 0, 12, -6, -10, 8, 50, 6, 50, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.shad), 0, 30, -12, -50, 14, 100, 0, 0, 5));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cookingCourses), 5, 20, 4, 0, 0, 0, 0, 0, 1));
         }
         return extraActivityList;
     }
 
     public static List<StudentActivity> getHobbyList() {
         if (hobbyList.isEmpty()) {
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 1, 1, 1));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 0, 1, 1, 1));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 0, 1, 1, 1));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 0, 1, 1, 1));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 1, 1, 1));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 1, 1, 1, 0));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 0, 1, 1, 1, 20));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 0, 1, 1, 1, 40));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 0, 1, 1, 1, 60));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 1, 1, 1, 80));
         }
         return hobbyList;
     }
 
     public static List<Friend> getFriendList() {
         if (friendList.isEmpty()) {
-            friendList.add(new Friend(50, 0, 0.0, "NoOne", R.drawable.hobby));
-            friendList.add(new Friend(50, 0, 0.0, "Vitya", R.drawable.food));
-            friendList.add(new Friend(50, 0, 0.0, "Zhenya", R.drawable.info));
+            // нужно как-то не менять уровень дружбы с собой
+            friendList.add(new Friend(100, 0, 0.0, "С собой", R.drawable.hobby));
+            friendList.add(new Friend(50, 0, 0.0, "Витя", R.drawable.food));
+            friendList.add(new Friend(50, 0, 0.0, "Женя", R.drawable.info));
         }
         return friendList;
     }
