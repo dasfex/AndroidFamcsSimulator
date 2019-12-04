@@ -5,16 +5,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.StudentActivity;
+import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 
 import java.util.List;
@@ -44,10 +48,11 @@ public class FoodFragment extends Fragment {
     }
 
     public interface OnFoodFragmentListener {
-
         void clickOnFoodButton(Food food);
         void unclickFoodButton(Food food);
+        int getEnergy();
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -58,11 +63,9 @@ public class FoodFragment extends Fragment {
 
     private void initializeFood() {
         food = ActionObjects.getFoodList();
-        for (StudentActivity it : food) {
-            System.out.println(it.toString());
-        }
     }
 
+    @SuppressLint("ShowToast")
     private void initializeRv(View view) {
         foodRv = view.findViewById(R.id.buttonsRecyclerView);
         foodRv.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -74,14 +77,25 @@ public class FoodFragment extends Fragment {
 
         foodRvAdapter.setAdapterListener(position -> {
             int currentPosition = foodRvAdapter.getIndexOfActivatedButton();
+            int currentEnergy = activityListener.getEnergy();
             if (currentPosition != -1) {
-                activityListener.unclickFoodButton((Food) food.get(currentPosition));
+                currentEnergy += food.get(currentPosition).getEnergyNeeded();
             }
-            foodRvAdapter.setIndexOfActivatedButton(position);
-            changeButtonActivity(position);
-            foodRvAdapter.notifyDataSetChanged();
-            if (currentPosition != position) {
-                activityListener.clickOnFoodButton((Food) food.get(position));
+            StudentActivity newFood = food.get(position);
+            if (currentEnergy >= newFood.getEnergyNeeded()) {
+                if (currentPosition != -1) {
+                    activityListener.unclickFoodButton((Food) food.get(currentPosition));
+                }
+                foodRvAdapter.setIndexOfActivatedButton(position);
+                changeButtonActivity(position);
+                foodRvAdapter.notifyDataSetChanged();
+                if (currentPosition != position) {
+                    activityListener.clickOnFoodButton((Food) food.get(position));
+                }
+            } else {
+                Toast.makeText(getContext(),
+                        StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
