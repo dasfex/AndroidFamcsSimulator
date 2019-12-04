@@ -35,7 +35,6 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.info_fragment_activity, null);
 
-
         initializeWidgets(view);
 
         return view;
@@ -79,6 +78,9 @@ public class InfoFragment extends Fragment {
     }
 
     public void writeMessage(String message) {
+        if (!randomActionsMessages.getText().equals("")) {
+            randomActionsMessages.append("\n");
+        }
         randomActionsMessages.append(message);
     }
 

@@ -109,15 +109,15 @@ public class ActionObjects {
         return summerWorkList;
     }
 
-    public static RandomAction getAction(int index){
+    public static RandomAction getAction(int index) {
         if(randomActionsList.isEmpty()) {
-            randomActionsList.add(new RandomAction(                                    StudSimulatorApplication.getContext().getString(R.string.neightbour_action_message),
-                    4, 0, -10, 0)
-
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.neightbour_action_message),
+                    20, 0, -10, 0)
             );
-            randomActionsList.add(new RandomAction(                                    StudSimulatorApplication.getContext().getString(R.string.spisyvanie_action_message),
-                    2, 0, 0, -40)
-
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.spisyvanie_action_message),
+                    20, 0, 0, -40)
             );
         }
         return randomActionsList.get(index);
