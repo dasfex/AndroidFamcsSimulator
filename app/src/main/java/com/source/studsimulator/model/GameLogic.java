@@ -4,6 +4,7 @@ package com.source.studsimulator.model;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Payable;
+import com.source.studsimulator.model.entity.RandomAction;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.relation.GameContract;
@@ -92,5 +93,15 @@ public class GameLogic implements GameContract.Model {
     @Override
     public int getWeek() {
         return gameTime;
+    }
+
+    public void applyRandomAction(RandomAction action){
+            student.changeHealth(action.getHealthChanging());
+            pay(action);
+    }
+
+    @Override
+    public void normalizeCharacteristics() {
+        student.normalizeCharacteristics();
     }
 }

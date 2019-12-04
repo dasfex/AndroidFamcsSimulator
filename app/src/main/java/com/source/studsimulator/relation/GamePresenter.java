@@ -1,12 +1,15 @@
 package com.source.studsimulator.relation;
 
 import com.source.studsimulator.model.GameLogic.PlayerStatsEnum;
+import com.source.studsimulator.model.entity.ContainsRandomAction;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.entity.ViewState;
+
+import java.util.Random;
 
 public class GamePresenter implements GameContract.Presenter {
 
@@ -29,6 +32,7 @@ public class GamePresenter implements GameContract.Presenter {
 
     @Override
     public void clickOnNewWeekButton() {
+        view.cleanMessages();
         applyLiveChoices(weekLiveChoicesStaff);
         model.newWeek();
         updatePlayerStats();
@@ -36,24 +40,36 @@ public class GamePresenter implements GameContract.Presenter {
         view.updateEnergyLevel(model.getEnergyLevel());
     }
 
+    @Override
+    public void writeMessage(String message) {
+        view.writeMessage(message);
+    }
+
     private void applyLiveChoices(ViewState weekLiveChoicesStaff) {
         for (Food foodItem : weekLiveChoicesStaff.getFoodList()) {
             model.eat(foodItem);
+            applyRandomAction(foodItem);
         }
 
         for (Study studyItem : weekLiveChoicesStaff.getStudyList()) {
             model.study(studyItem);
+            applyRandomAction(studyItem);
         }
 
         for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
             model.work(workItem);
+            applyRandomAction(workItem);
         }
 
         for (Hobby hobbyItem : weekLiveChoicesStaff.getHobbyList()) {
             model.hobby(hobbyItem);
+            applyRandomAction(hobbyItem);
         }
-        if (model.getParameter(PlayerStatsEnum.SATIETY) <= 0 ||
-                model.getParameter(PlayerStatsEnum.HEALTH) <= 0) {
+
+        model.normalizeCharacteristics();
+      
+        if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
+                model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
             view.printDeadMessage();
         }
     }
@@ -169,4 +185,14 @@ public class GamePresenter implements GameContract.Presenter {
             return "D13";
         }
     }
+
+    private void applyRandomAction(ContainsRandomAction item) {
+        if (item.getRandomAction() != null) {
+            if (item.getRandomAction().isActive()) {
+                model.applyRandomAction(item.getRandomAction());
+                view.writeMessage(item.getRandomAction().getMessage());
+            }
+        }
+    }
+
 }

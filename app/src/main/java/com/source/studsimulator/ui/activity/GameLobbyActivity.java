@@ -187,6 +187,18 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
+    public void cleanMessages() {
+        InfoFragment infoFragment = (InfoFragment) informationFragment;
+        infoFragment.cleanView();
+    }
+
+    @Override
+    public void writeMessage(String message) {
+        InfoFragment infoFragment = (InfoFragment) informationFragment;
+        infoFragment.writeMessage(message);
+    }
+          
+    @Override
     public void printDeadMessage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("СМЭРЦЬ!")
@@ -204,7 +216,6 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         alert.show();
 
         alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLUE);
-
     }
 
     private void setOnClickListenersForFragmentButtons() {
