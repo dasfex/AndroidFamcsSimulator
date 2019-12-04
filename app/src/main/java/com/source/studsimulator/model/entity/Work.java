@@ -1,6 +1,6 @@
 package com.source.studsimulator.model.entity;
 
-public class Work implements StudentActivity {
+public class Work implements StudentActivity, ContainsRandomAction {
 
     private String title;
     private int healthChanging;
@@ -12,6 +12,7 @@ public class Work implements StudentActivity {
     private int englishSkillIncrease;
     private int energyNeeded;
     private boolean isEnable = true;
+    RandomAction randomAction;
 
     public Work(String title, int healthChanging,
                 int satietyChanging, int amountOfMoney,
@@ -43,6 +44,36 @@ public class Work implements StudentActivity {
         this.energyNeeded = energy;
     }
 
+    public Work(String title, int healthChanging,
+                int satietyChanging, int amountOfMoney,
+                int programmingSkillRequired, int englishSkillRequired,
+                int programmingSkillIncrease, int englishSkillIncrease, int energy, RandomAction randomAction) {
+        if (title.equals("")) {
+            throw new IllegalArgumentException("Title can't be empty string.");
+        }
+        if (amountOfMoney < 0) {
+            throw new IllegalArgumentException("Work can't reduce money.");
+        }
+        if (programmingSkillRequired < 0) {
+            throw new IllegalArgumentException("Work can't require negative programming skill.");
+        }
+        if (englishSkillRequired < 0) {
+            throw new IllegalArgumentException("Work can't require negative English skill.");
+        }
+        if (energy < 0) {
+            throw new IllegalArgumentException("Energy must be positive.");
+        }
+        this.title = title;
+        this.healthChanging = healthChanging;
+        this.satietyChanging = satietyChanging;
+        this.amountOfMoney = amountOfMoney;
+        this.programmingSkillRequired = programmingSkillRequired;
+        this.englishSkillRequired = englishSkillRequired;
+        this.programmingSkillIncrease = programmingSkillIncrease;
+        this.englishSkillIncrease = englishSkillIncrease;
+        this.energyNeeded = energy;
+        this.randomAction = randomAction;
+    }
     @Override
     public int getEnergyNeeded() {
         return energyNeeded;
@@ -92,5 +123,10 @@ public class Work implements StudentActivity {
 
     private boolean isGood(int characteristicForBlock) {
         return true;
+    }
+
+    @Override
+    public RandomAction getRandomAction() {
+        return randomAction;
     }
 }

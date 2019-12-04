@@ -51,7 +51,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     private ImageButton workButton;
     private ImageButton hobbyButton;
 
-    private Fragment informationFragment;
+    private InfoFragment informationFragment;
     private Fragment foodFragment;
     private Fragment studyFragment;
     private Fragment workFragment;
@@ -173,6 +173,16 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     @Override
     public void updateEnergyLevel(int energyLevel) {
         energyTextView.setText(String.valueOf(energyLevel));
+    }
+
+    @Override
+    public void cleanMessages() {
+        informationFragment.cleanView();
+    }
+
+    @Override
+    public void writeMessage(String message) {
+        informationFragment.writeMessage(message);
     }
 
     private void setOnClickListenersForFragmentButtons() {

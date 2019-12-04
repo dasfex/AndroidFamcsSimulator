@@ -19,10 +19,14 @@ import android.widget.Toast;
 import com.source.studsimulator.R;
 import com.source.studsimulator.relation.GamePresenter;
 
+import java.util.List;
+
 public class InfoFragment extends Fragment {
 
     private Button newWeekButton;
     private ImageView photo;
+    private List<String > messagesList;
+    private TextView randomActionsMessages;
 
     private OnInformationFragmentListener activityListener;
 
@@ -30,6 +34,7 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.info_fragment_activity, null);
+
 
         initializeWidgets(view);
 
@@ -42,6 +47,8 @@ public class InfoFragment extends Fragment {
 
         newWeekButton = view.findViewById(R.id.newWeekButton);
         newWeekButton.setOnClickListener(v -> activityListener.onNewWeekClicked());
+
+        randomActionsMessages = view.findViewById(R.id.randomActionsMessages);
     }
 
     private void showToast(View view) {
@@ -66,6 +73,15 @@ public class InfoFragment extends Fragment {
             activityListener = (OnInformationFragmentListener) context;
         }
     }
+
+    public void cleanView(){
+        randomActionsMessages.setText("");
+    }
+
+    public void writeMessage(String message) {
+        randomActionsMessages.append(message);
+    }
+
 
     public interface OnInformationFragmentListener {
         void onNewWeekClicked();

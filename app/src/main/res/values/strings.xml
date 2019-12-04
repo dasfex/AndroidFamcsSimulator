@@ -75,4 +75,17 @@
     <string name="github_of_project">Github of project!</string>
     <string name="github">https://github.com/KhodorVan/AndroidFamcsSimulator</string>
 
+    <string name="neightbour_action_message">Сосед обнаружил, что вы тырите его еду, и хорошенько вас отмутузил. Ваше здоровье уменьшилось.</string>
+    <string name="spisyvanie_action_message">Вас спалили за списыванием. Уровень вашей успеваемости снизился. </string>
+
+    <string name="handbook">Handbook</string>
+    <string name="Jtransition">Jtransition</string>
+    <string name="Mak">MCDonald\'s</string>
+    <string name="tyndex">Тындекс</string>
+    <string name="flaery">Раздавать флаеры</string>
+    <string name="vagony">Разгружать вагоны</string>
+    <string name="klub">Поохранять клуб</string>
+    <string name="perehody">Играть в переходах</string>
+    <string name="freelance">Пофрилансить</string>
+
 </resources>
