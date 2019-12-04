@@ -89,7 +89,7 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void clickOnLearnButton(Study study) {
+    public void clickOnStudyButton(Study study) {
         weekLiveChoicesStaff.addStudy(study);
         model.changeEnergyLevel(-study.getEnergyNeeded());
         changeEnergyLevel();

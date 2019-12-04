@@ -69,12 +69,6 @@ public class GameLogic implements GameContract.Model {
         student.changeMoney(-payable.getPrice().toInt());
     }
 
-    // а это получать деньги
-    @Override
-    public void getMoney(Payable payable) {
-        student.changeMoney(payable.getPrice().toInt());
-    }
-
     @Override
     public void study(Study study) {
         student.changeHealth(study.getHealthChanging());

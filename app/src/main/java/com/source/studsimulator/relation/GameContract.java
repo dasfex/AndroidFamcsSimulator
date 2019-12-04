@@ -29,7 +29,7 @@ public interface GameContract {
         void clickOnFoodButton(Food food);
         void unclickOnFoodButton(Food food);
 
-        void clickOnLearnButton(Study study);
+        void clickOnStudyButton(Study study);
         void unclickOnStudyButton(Study study);
 
         void clickOnWorkButton(Work work);
@@ -43,7 +43,6 @@ public interface GameContract {
         void newWeek();
 
         void pay(Payable payable);
-        void getMoney(Payable payable);
 
         void eat(Food food);
         void study(Study study);
