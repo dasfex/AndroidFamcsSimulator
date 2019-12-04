@@ -52,6 +52,10 @@ public class GamePresenter implements GameContract.Presenter {
         for (Hobby hobbyItem : weekLiveChoicesStaff.getHobbyList()) {
             model.hobby(hobbyItem);
         }
+        if (model.getParameter(PlayerStatsEnum.SATIETY) <= 0 ||
+                model.getParameter(PlayerStatsEnum.HEALTH) <= 0) {
+            view.printDeadMessage();
+        }
     }
 
     @Override

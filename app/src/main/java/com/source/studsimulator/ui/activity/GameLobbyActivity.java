@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -175,6 +178,24 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         energyTextView.setText(String.valueOf(energyLevel));
     }
 
+    @Override
+    public void printDeadMessage() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("СМЭРЦЬ!")
+                .setMessage("Похоже вы не расчитали свои силы и умерли. А ведь мама говорила," +
+                        "что надо было идти в БГУИР. Ну иди теперь в армейку. Кыш-кыш")
+                .setCancelable(false)
+                .setNegativeButton("Сеевеееец",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                setContentView(R.layout.activity_main);
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
     private void setOnClickListenersForFragmentButtons() {
         infoButton.setOnClickListener(v -> replaceFragment(informationFragment));
 
@@ -185,5 +206,10 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         workButton.setOnClickListener(v -> replaceFragment(workFragment));
 
         hobbyButton.setOnClickListener(v -> replaceFragment(hobbyFragment));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

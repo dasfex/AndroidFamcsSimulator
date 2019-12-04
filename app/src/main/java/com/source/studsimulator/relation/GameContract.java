@@ -15,6 +15,7 @@ public interface GameContract {
         void refreshPlayerStats(PlayerStats playerStats);
         void updateWeek(int weekNumber);
         void updateEnergyLevel(int energyLevel);
+        void printDeadMessage();
     }
 
     interface Presenter {
