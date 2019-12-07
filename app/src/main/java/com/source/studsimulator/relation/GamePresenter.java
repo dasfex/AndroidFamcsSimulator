@@ -31,10 +31,10 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void clickOnNewWeekButton() {
+    public void clickOnNewWeekButton(int energy) {
         view.cleanMessages();
         applyLiveChoices(weekLiveChoicesStaff);
-        model.newWeek();
+        model.newWeek(energy);
         updatePlayerStats();
         view.updateWeek(model.getWeek());
         view.updateEnergyLevel(model.getEnergyLevel());
