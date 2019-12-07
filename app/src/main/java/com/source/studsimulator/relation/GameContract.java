@@ -23,7 +23,7 @@ public interface GameContract {
 
     interface Presenter {
         void viewCreated();
-        void clickOnNewWeekButton();
+        void clickOnNewWeekButton(int energy);
         void writeMessage(String message);
 
         void clickOnFoodButton(Food food);
@@ -40,7 +40,7 @@ public interface GameContract {
     }
 
     interface Model {
-        void newWeek();
+        void newWeek(int energy);
 
         void pay(Payable payable);
 

@@ -35,9 +35,9 @@ public class GameLogic implements GameContract.Model {
     }
 
     @Override
-    public void newWeek() {
+    public void newWeek(int energy) {
         gameTime += 1;
-        energyLevel = 16;
+        energyLevel = energy;
     }
 
     @Override

@@ -125,7 +125,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
 
     @Override
     public void onNewWeekClicked() {
-        presenter.clickOnNewWeekButton();
+        presenter.clickOnNewWeekButton(Integer.valueOf(String.valueOf(energyTextView.getText())));
     }
 
     @Override
