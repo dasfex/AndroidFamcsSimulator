@@ -11,6 +11,7 @@ import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.StudSimulatorApplication;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class ActionObjects {
 
     private static List<Friend> friendList = new ArrayList<>();
 
-    private static List< RandomAction> randomActionsList = new ArrayList<>();
+    private static List<RandomAction> randomActionsList = new ArrayList<>();
 
 
     public static List<StudentActivity> getFoodList() {
@@ -70,6 +71,11 @@ public class ActionObjects {
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 0, 12, -1, 1, 40));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 0, 10, -1, 2, 60));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 15, 5, 4, 80));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 15, 5, 4, 80));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.eurovision), 0, 11, -5, 3, 10));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.help), 0, 6, 1, 3, 25));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.sport), 0, 15, 0, 15, 100));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.walk), 0, 10, 2, 7, 100));
         }
         return hobbyList;
     }
@@ -77,9 +83,13 @@ public class ActionObjects {
     public static List<Friend> getFriendList() {
         if (friendList.isEmpty()) {
             // нужно как-то не менять уровень дружбы с собой
-            friendList.add(new Friend(100, 0, 0.0, "С собой", R.drawable.hobby));
-            friendList.add(new Friend(50, 0, 0.0, "Витя", R.drawable.food));
-            friendList.add(new Friend(50, 0, 0.0, "Женя", R.drawable.info));
+            friendList.add(new Friend(100, 0, 0.0, "С собой", R.drawable.alone));
+            friendList.add(new Friend(50, 0, 0.0, "Витя", R.drawable.vitya));
+            friendList.add(new Friend(50, 0, 0.0, "Женя", R.drawable.zhenya));
+            friendList.add(new Friend(50, 0, 0.0, "Саша Спилберг", R.drawable.sasha));
+            friendList.add(new Friend(50, 0, 0.0, "Карла", R.drawable.karla));
+            friendList.add(new Friend(50, 0, 0.0, "Ник", R.drawable.nick));
+            friendList.add(new Friend(50, 0, 0.0, "Стар", R.drawable.star));
         }
         return friendList;
     }
@@ -112,7 +122,7 @@ public class ActionObjects {
     }
 
     public static RandomAction getAction(int index) {
-        if(randomActionsList.isEmpty()) {
+        if (randomActionsList.isEmpty()) {
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.neighbour_action_message),
                     4, -3, 0, 0, 0)

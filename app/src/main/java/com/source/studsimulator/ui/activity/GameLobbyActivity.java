@@ -203,6 +203,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
           
     @Override
     public void printDeadMessage() {
+        SoundActivity.hearSound(this, R.raw.death);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(StudSimulatorApplication.getContext().getString(R.string.death))
                 .setMessage(StudSimulatorApplication.getContext().getString(R.string.death_text))

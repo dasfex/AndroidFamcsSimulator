@@ -24,12 +24,14 @@ public class MainActivity extends AppCompatActivity {
 
         newGameButton = findViewById(R.id.newGameButton);
         newGameButton.setOnClickListener(v -> {
+            SoundActivity.hearSound(this, R.raw.pisk);
             Intent intent = new Intent(MainActivity.this, GameLobbyActivity.class);
             startActivity(intent);
         });
 
         settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(v -> {
+            SoundActivity.hearSound(this, R.raw.pisk);
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         });

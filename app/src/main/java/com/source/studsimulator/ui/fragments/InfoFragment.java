@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.relation.GamePresenter;
+import com.source.studsimulator.ui.activity.SoundActivity;
 
 
 public class InfoFragment extends Fragment {
@@ -58,6 +59,7 @@ public class InfoFragment extends Fragment {
     }
 
     private void showToast(View view) {
+        SoundActivity.hearSound(this.getContext(), R.raw.toast);
         Toast clickToast = Toast.makeText(view.getContext(),
                 R.string.art, Toast.LENGTH_SHORT);
         clickToast.setGravity(Gravity.NO_GRAVITY, 0, 0);

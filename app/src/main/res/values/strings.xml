@@ -25,13 +25,17 @@
     <string name="sushiFood">Кушать суши</string>
     <string name="burgerFood">Покупать бургеры за 2000</string>
 
-    <string name="friendLabel">Выбери, с кем хочешь провести время</string>
-    <string name="hobbyLabel">Выбери занятие</string>
+    <string name="friendLabel">Выбери, с кем хочешь провести время!</string>
+    <string name="hobbyLabel">Выбери занятие!</string>
     <string name="read">почитать книжку</string>
     <string name="dance">танцевать</string>
     <string name="beer">попить пева</string>
     <string name="film">посмотреть фильмец</string>
     <string name="vote">сходить на выборы</string>
+    <string name="eurovision">посмотреть Евровидение</string>
+    <string name="sport">культурно померяться силами</string>
+    <string name="help">помочь кому-нибудь кодить</string>
+    <string name="walk">прогуляться по набережной</string>
 
     <string name="sideJobHeader">Иди работать!</string>
     <string name="workHeader">Работа</string>
@@ -97,7 +101,7 @@
   
     <string name="notEnoughEnergy">Недостаточно энергии!</string>
     <string name="death">СМЭРЦЬ!</string>
-    <string name="death_text">Похоже вы не расчитали свои силы и умерли. А ведь мама говорила, что надо было идти в БГУИР. Ну иди теперь в армейку. Кыш-кыш</string>
+    <string name="death_text">Похоже вы не расчитали свои силы и умерли. А ведь мама говорила, что надо было идти в БГУИР. Ну иди теперь в армейку. Кыш-кыш!</string>
     <string name="death_button">Мам, я стану рэпером!</string>
     <string name="studyStage">Этап обучения:</string>
 
