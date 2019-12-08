@@ -26,14 +26,11 @@
         android:id="@+id/artyomTheStudent"
         android:layout_width="192dp"
         android:layout_height="173dp"
-        android:layout_marginStart="210dp"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="10dp"
         android:contentDescription="playerPhoto"
         android:src="@drawable/student"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/studyStage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
