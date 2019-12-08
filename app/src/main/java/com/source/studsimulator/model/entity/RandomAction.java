@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomAction {
     private String message;
-    //вероятность от 1 до 20
+    //вероятность от 1 до 100
     private int probability;
     private int healthChanging;
     private int studyChanging;
@@ -24,7 +24,7 @@ public class RandomAction {
     }
 
     public boolean isActive() {
-        int x = rand.nextInt(20);
+        int x = rand.nextInt(100);
         return (x <= probability);
     }
 

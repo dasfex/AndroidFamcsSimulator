@@ -127,7 +127,7 @@ public class ActionObjects {
             );
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.parents_money_message),
-                    4, 0, 0, 0, 50)
+                    0, 0, 0, 0, 10)
             );
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.friend_fastfood_message),
@@ -139,7 +139,7 @@ public class ActionObjects {
             );
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.player_bd_message),
-                    20, 30, 30, 30, 100)
+                    100, 30, 30, 30, 100)
             );
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.draka_message),

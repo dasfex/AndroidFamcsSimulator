@@ -105,9 +105,12 @@ public class GamePresenter implements GameContract.Presenter {
             view.printDeadMessage();
         }
 
+        // birthday
         if (model.getWeek() % 52 == 1) {
             applyRandomAction(ActionObjects.getAction(6));
         }
+        // money from parents
+        applyRandomAction(ActionObjects.getAction(3));
     }
 
     @Override
