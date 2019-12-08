@@ -59,6 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/moneyText"
         app:layout_constraintVertical_bias="0.473">
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -141,6 +142,16 @@
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="2dp" />
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:src="@drawable/icon_health"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/healthBar"
+        app:layout_constraintEnd_toStartOf="@+id/healthBar"/>
+
     <ProgressBar
         android:id="@+id/satietyBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -150,6 +161,16 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toEndOf="@+id/timeTextView"
         app:layout_constraintTop_toTopOf="@+id/healthBar" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:src="@drawable/icon_food"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/satietyBar"
+        app:layout_constraintEnd_toStartOf="@+id/satietyBar"/>
 
     <TextView
         android:id="@+id/satietyText"
@@ -186,6 +207,16 @@
         tools:layout_editor_absoluteY="2dp" />
 
     <ImageView
+        android:id="@+id/study_icon"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/icon_education"
+        app:layout_constraintBottom_toBottomOf="@id/educationBar"
+        app:layout_constraintEnd_toStartOf="@+id/educationBar" />
+
+    <ImageView
         android:id="@+id/energyImage"
         android:layout_width="15dp"
         android:layout_height="15dp"
@@ -203,5 +234,8 @@
         android:layout_marginBottom="5dp"
         app:layout_constraintStart_toEndOf="@id/energyImage"
         app:layout_constraintBottom_toTopOf="@id/fragmentLayout" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
