@@ -22,6 +22,7 @@ import com.source.studsimulator.relation.GameContract;
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.relation.GamePresenter;
+import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.fragments.FoodFragment;
 import com.source.studsimulator.ui.fragments.HobbyFragment;
@@ -198,16 +199,14 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     @Override
     public void printDeadMessage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("СМЭРЦЬ!")
-                .setMessage("Похоже вы не расчитали свои силы и умерли. А ведь мама говорила," +
-                        "что надо было идти в БГУИР. Ну иди теперь в армейку. Кыш-кыш")
+        builder.setTitle(StudSimulatorApplication.getContext().getString(R.string.death))
+                .setMessage(StudSimulatorApplication.getContext().getString(R.string.death_text))
                 .setCancelable(false)
-                .setNegativeButton("Мам, я стану рэпером!",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                finish();
-                                dialog.cancel();
-                            }
+                .setNegativeButton(
+                        StudSimulatorApplication.getContext().getString(R.string.death_button),
+                        (dialog, id) -> {
+                            finish();
+                            dialog.cancel();
                         });
         AlertDialog alert = builder.create();
         alert.show();

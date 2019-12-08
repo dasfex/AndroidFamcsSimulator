@@ -84,7 +84,6 @@ public class InfoFragment extends Fragment {
         randomActionsMessages.append(message);
     }
 
-
     public interface OnInformationFragmentListener {
         void onNewWeekClicked();
     }

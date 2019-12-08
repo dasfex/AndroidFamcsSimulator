@@ -24,7 +24,6 @@ public interface GameContract {
     interface Presenter {
         void viewCreated();
         void clickOnNewWeekButton(int energy);
-        void writeMessage(String message);
 
         void clickOnFoodButton(Food food);
         void unclickOnFoodButton(Food food);

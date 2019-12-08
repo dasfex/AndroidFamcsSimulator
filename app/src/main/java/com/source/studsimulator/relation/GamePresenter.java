@@ -40,11 +40,6 @@ public class GamePresenter implements GameContract.Presenter {
         view.updateEnergyLevel(model.getEnergyLevel());
     }
 
-    @Override
-    public void writeMessage(String message) {
-        view.writeMessage(message);
-    }
-
     private void applyLiveChoices(ViewState weekLiveChoicesStaff) {
         for (Food foodItem : weekLiveChoicesStaff.getFoodList()) {
             model.eat(foodItem);

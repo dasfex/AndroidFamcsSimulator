@@ -89,7 +89,7 @@ public class GameLogic implements GameContract.Model {
         return gameTime;
     }
 
-    public void applyRandomAction(RandomAction action){
+    public void applyRandomAction(RandomAction action) {
             student.changeHealth(action.getHealthChanging());
             pay(action);
     }
