@@ -92,5 +92,26 @@
     <string name="death">СМЭРЦЬ!</string>
     <string name="death_text">Похоже вы не расчитали свои силы и умерли. А ведь мама говорила, что надо было идти в БГУИР. Ну иди теперь в армейку. Кыш-кыш</string>
     <string name="death_button">Мам, я стану рэпером!</string>
+    <string name="studyStage">Этап обучения:</string>
+
+    <string name="a1">A1</string>
+    <string name="a2">A2</string>
+    <string name="b1">B1</string>
+    <string name="b2">B2</string>
+    <string name="c1">C1</string>
+    <string name="c2">C2</string>
+    <string name="d13">D13</string>
+
+    <string name="semestr">семестр</string>
+    <string name="session">сессия</string>
+    <string name="holidays">каникулы</string>
+
+    <string name="begginer_prog">Begginer</string>
+    <string name="lub_prog">Lubitel</string>
+    <string name="jun_prog">Junior</string>
+    <string name="mid_prog">Middle</string>
+    <string name="senior_prog">Senior</string>
+    <string name="lead_prog">Lead</string>
+    <string name="gena_prog">Korotkevich</string>
 
 </resources>

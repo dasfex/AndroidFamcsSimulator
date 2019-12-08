@@ -1,17 +1,47 @@
 package com.source.studsimulator.relation;
 
+import com.source.studsimulator.R;
 import com.source.studsimulator.model.GameLogic.PlayerStatsEnum;
 import com.source.studsimulator.model.entity.ContainsRandomAction;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
+import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.entity.ViewState;
 
-import java.util.Random;
-
 public class GamePresenter implements GameContract.Presenter {
+
+    public class PlayerInformation {
+        private String course;
+        private String studyStage;
+        private String programmingSkill;
+        private String englishSkill;
+
+        public PlayerInformation(String course, String studyStage, String programmingSkill, String englishSkill) {
+            this.course = course;
+            this.studyStage = studyStage;
+            this.programmingSkill = programmingSkill;
+            this.englishSkill = englishSkill;
+        }
+
+        public String getCourse() {
+            return course;
+        }
+
+        public String getStudyStage() {
+            return studyStage;
+        }
+
+        public String getProgrammingSkill() {
+            return programmingSkill;
+        }
+
+        public String getEnglishSkill() {
+            return englishSkill;
+        }
+    }
 
     private GameContract.Model model;
     private GameContract.View view;
@@ -38,6 +68,11 @@ public class GamePresenter implements GameContract.Presenter {
         updatePlayerStats();
         view.updateWeek(model.getWeek());
         view.updateEnergyLevel(model.getEnergyLevel());
+        view.updateWeekInformation(new PlayerInformation(
+                String.valueOf(model.getWeek() / 52 + 1),
+                getStudyStage(model.getWeek()),
+                getProgrammingSkillString(model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)),
+                getEnglishSkillString(model.getParameter(PlayerStatsEnum.ENGLISH_SKILL))));
     }
 
     private void applyLiveChoices(ViewState weekLiveChoicesStaff) {
@@ -129,10 +164,6 @@ public class GamePresenter implements GameContract.Presenter {
         view.updateEnergyLevel(model.getEnergyLevel());
     }
 
-    private int getParameter(PlayerStatsEnum characteristic) {
-        return model.getParameter(characteristic);
-    }
-
     private void updatePlayerStats() {
         PlayerStats playerStats = new
                 PlayerStats(
@@ -147,37 +178,48 @@ public class GamePresenter implements GameContract.Presenter {
 
     private String getProgrammingSkillString(int param) {
         if (param < 20) {
-            return "Begginer";
+            return StudSimulatorApplication.getContext().getString(R.string.begginer_prog);
         } else if (param < 40) {
-            return "Lubitel";
+            return StudSimulatorApplication.getContext().getString(R.string.lub_prog);
         } else if (param < 80) {
-            return "Junior";
+            return StudSimulatorApplication.getContext().getString(R.string.jun_prog);
         } else if (param < 140) {
-            return "Middle";
+            return StudSimulatorApplication.getContext().getString(R.string.mid_prog);
         } else if (param < 220) {
-            return "Senior";
+            return StudSimulatorApplication.getContext().getString(R.string.senior_prog);
         } else if (param < 300) {
-            return "Lead";
+            return StudSimulatorApplication.getContext().getString(R.string.lead_prog);
         } else {
-            return "Korotkevich";
+            return StudSimulatorApplication.getContext().getString(R.string.gena_prog);
         }
     }
 
     private String getEnglishSkillString(int param) {
         if (param < 20) {
-            return "A1";
+            return StudSimulatorApplication.getContext().getString(R.string.a1);
         } else if (param < 40) {
-            return "A2";
+            return StudSimulatorApplication.getContext().getString(R.string.a2);
         } else if (param < 60) {
-            return "B1";
+            return StudSimulatorApplication.getContext().getString(R.string.b1);
         } else if (param < 80) {
-            return "B2";
+            return StudSimulatorApplication.getContext().getString(R.string.b2);
         } else if (param < 100) {
-            return "C1";
+            return StudSimulatorApplication.getContext().getString(R.string.c1);
         } else if (param < 120) {
-            return "C2";
+            return StudSimulatorApplication.getContext().getString(R.string.c2);
         } else {
-            return "D13";
+            return StudSimulatorApplication.getContext().getString(R.string.d13);
+        }
+    }
+
+    private String getStudyStage(int week) {
+        week %= 52 + 1;
+        if (week <= 16 || (week > 22 && week <= 36)) {
+            return StudSimulatorApplication.getContext().getString(R.string.semestr);
+        } else if ((week > 16 && week <= 20) || (week > 36 && week <= 40)) {
+            return StudSimulatorApplication.getContext().getString(R.string.session);
+        } else {
+            return StudSimulatorApplication.getContext().getString(R.string.holidays);
         }
     }
 

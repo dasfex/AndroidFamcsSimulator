@@ -14,10 +14,14 @@ public interface GameContract {
 
     interface View {
         void refreshPlayerStats(PlayerStats playerStats);
+
         void updateWeek(int weekNumber);
         void updateEnergyLevel(int energyLevel);
+        void updateWeekInformation(GamePresenter.PlayerInformation newInformation);
+
         void cleanMessages();
         void writeMessage(String message);
+
         void printDeadMessage();
     }
 

@@ -185,6 +185,11 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
+    public void updateWeekInformation(GamePresenter.PlayerInformation newInformation) {
+        ((InfoFragment) informationFragment).updateWeekInformation(newInformation);
+    }
+
+    @Override
     public void cleanMessages() {
         InfoFragment infoFragment = (InfoFragment) informationFragment;
         infoFragment.cleanView();

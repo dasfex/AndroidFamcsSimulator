@@ -37,24 +37,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/programmingLevel"
+        android:id="@+id/programmingLevelTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="20dp"
         android:text="@string/programmingLevel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerCourseTV" />
+        app:layout_constraintTop_toBottomOf="@+id/artyomTheStudent" />
 
     <TextView
-        android:id="@+id/englishLevel"
+        android:id="@+id/englishLevelTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="14dp"
         android:text="@string/englishLevel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/programmingLevel" />
+        app:layout_constraintTop_toBottomOf="@+id/programmingLevelTv" />
 
     <TextView
         android:id="@+id/name"
@@ -107,7 +107,45 @@
             android:layout_marginTop="15dp" />
     </ScrollView>
 
+    <TextView
+        android:id="@+id/studyStageTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/studyStage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerCourseTV" />
 
+    <TextView
+        android:id="@+id/studyStage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/semestr"
+        app:layout_constraintStart_toEndOf="@+id/studyStageTv"
+        app:layout_constraintTop_toBottomOf="@+id/playerCourseTV" />
+
+    <TextView
+        android:id="@+id/programmingLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/begginer_prog"
+        app:layout_constraintStart_toEndOf="@+id/programmingLevelTv"
+        app:layout_constraintTop_toBottomOf="@+id/artyomTheStudent" />
+
+    <TextView
+        android:id="@+id/englishLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/a1"
+        app:layout_constraintStart_toEndOf="@+id/englishLevelTv"
+        app:layout_constraintTop_toBottomOf="@+id/programmingLevel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

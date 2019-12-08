@@ -1,11 +1,11 @@
 package com.source.studsimulator.ui.fragments;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +19,15 @@ import android.widget.Toast;
 import com.source.studsimulator.R;
 import com.source.studsimulator.relation.GamePresenter;
 
-import java.util.List;
 
 public class InfoFragment extends Fragment {
 
     private Button newWeekButton;
     private ImageView photo;
-    private List<String > messagesList;
+    private TextView playerCourse;
+    private TextView programmingSkill;
+    private TextView englishSkill;
+    private TextView studyStage;
     private TextView randomActionsMessages;
 
     private OnInformationFragmentListener activityListener;
@@ -43,6 +45,11 @@ public class InfoFragment extends Fragment {
     private void initializeWidgets(View view) {
         photo = view.findViewById(R.id.artyomTheStudent);
         photo.setOnClickListener(this::showToast);
+
+        playerCourse = view.findViewById(R.id.playerCourse);
+        programmingSkill = view.findViewById(R.id.programmingLevel);
+        englishSkill = view.findViewById(R.id.englishLevel);
+        studyStage = view.findViewById(R.id.studyStage);
 
         newWeekButton = view.findViewById(R.id.newWeekButton);
         newWeekButton.setOnClickListener(v -> activityListener.onNewWeekClicked());
@@ -82,6 +89,13 @@ public class InfoFragment extends Fragment {
             randomActionsMessages.append("\n");
         }
         randomActionsMessages.append(message);
+    }
+
+    public void updateWeekInformation(GamePresenter.PlayerInformation newInformation) {
+        playerCourse.setText(newInformation.getCourse());
+        programmingSkill.setText(newInformation.getProgrammingSkill());
+        englishSkill.setText(newInformation.getEnglishSkill());
+        studyStage.setText(newInformation.getStudyStage());
     }
 
     public interface OnInformationFragmentListener {
