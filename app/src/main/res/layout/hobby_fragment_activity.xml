@@ -7,24 +7,17 @@
     android:background="#1fcecb"
     tools:context=".ui.fragments.HobbyFragment">
 
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
-
     <TextView
         android:id="@+id/textFriendView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="5dp"
+        android:layout_width="274dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="77dp"
         android:text="@string/friendLabel"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.TextView"
-        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,34 +26,37 @@
         android:layout_width="140dp"
         android:layout_height="36dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintEnd_toStartOf="@id/guideline"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="20dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:spinnerMode="dialog" />
+        app:layout_constraintTop_toBottomOf="@+id/textFriendView" />
 
     <TextView
         android:id="@+id/textOtherHobbyView"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:text="@string/hobbyLabel"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Widget.TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friendSpinner" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lonelyHobbyRv"
-        android:layout_width="147dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="68dp"
+        android:layout_width="145dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textOtherHobbyView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

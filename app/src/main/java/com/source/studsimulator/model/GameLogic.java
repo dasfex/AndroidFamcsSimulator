@@ -90,8 +90,10 @@ public class GameLogic implements GameContract.Model {
     }
 
     public void applyRandomAction(RandomAction action) {
-            student.changeHealth(action.getHealthChanging());
-            pay(action);
+        student.changeHealth(action.getHealthChanging());
+        student.changeSatiety(action.getSatietyChanging());
+        student.changeEducationLevel(action.getStudyChanging());
+        student.changeMoney(action.getMoneyChanging());
     }
 
     @Override

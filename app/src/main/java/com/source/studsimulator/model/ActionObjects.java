@@ -1,5 +1,7 @@
 package com.source.studsimulator.model;
 
+import android.drm.DrmStore;
+
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Friend;
@@ -33,8 +35,8 @@ public class ActionObjects {
             foodList.add(new Food(3, StudSimulatorApplication.getContext().getString(R.string.doshikFood), 7, -5, 2));
             foodList.add(new Food(7, StudSimulatorApplication.getContext().getString(R.string.stolovkaFood), 12, 7, 1));
             foodList.add(new Food(5, StudSimulatorApplication.getContext().getString(R.string.yourselfFood), 8, 10, 3));
-            foodList.add(new Food(10, StudSimulatorApplication.getContext().getString(R.string.fastFood), 20, -10, 1));
-            foodList.add(new Food(13, StudSimulatorApplication.getContext().getString(R.string.sushiFood), 15, 5, 1));
+            foodList.add(new Food(10, StudSimulatorApplication.getContext().getString(R.string.fastFood), 20, -10, 1, ActionObjects.getAction(4)));
+            foodList.add(new Food(13, StudSimulatorApplication.getContext().getString(R.string.sushiFood), 15, 5, 1, ActionObjects.getAction(2)));
             foodList.add(new Food(20, StudSimulatorApplication.getContext().getString(R.string.burgerFood), 40, -15, 1));
         }
         return foodList;
@@ -85,8 +87,8 @@ public class ActionObjects {
     public static List<StudentActivity> getSideJobList() {
         if (sideJobList.isEmpty()) {
             sideJobList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.flaery), -5, -5, 5, 0, 0, 0, 1, 2));
-            sideJobList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.vagony), -15, -15, 10, 0, 0, 0, 0, 3));
-            sideJobList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.klub), -5, -10, 10, 0, 3, 0, 1, 1));
+            sideJobList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.vagony), -15, -15, 10, 0, 0, 0, 0, 3, ActionObjects.getAction(8)));
+            sideJobList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.klub), -5, -10, 10, 0, 3, 0, 1, 1, ActionObjects.getAction(7)));
             sideJobList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.perehody), -4, -8, 3, 0, 0, 0, 1, 1));
             sideJobList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.freelance), -2, -5, 25, 10, 10, 3, 1, 2));
         }
@@ -112,12 +114,40 @@ public class ActionObjects {
     public static RandomAction getAction(int index) {
         if(randomActionsList.isEmpty()) {
             randomActionsList.add(new RandomAction(
-                    StudSimulatorApplication.getContext().getString(R.string.neightbour_action_message),
-                    4, 0, -10, 0)
+                    StudSimulatorApplication.getContext().getString(R.string.neighbour_action_message),
+                    4, -3, 0, 0, 0)
             );
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.spisyvanie_action_message),
-                    4, 0, 0, -40)
+                    4, 0, -40, 0, 0)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.sushi_bad_message),
+                    4, -3, 0, 0, 0)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.parents_money_message),
+                    0, 0, 0, 0, 10)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.friend_fastfood_message),
+                    4, 0, 0, 0, 10)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.classmate_bd_message),
+                    4, 0, 0, 0, -10)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.player_bd_message),
+                    100, 30, 30, 30, 100)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.draka_message),
+                    4, -10, 0, 0, 0)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.loader),
+                    4, -10, 0, 0, 0)
             );
         }
         return randomActionsList.get(index);
