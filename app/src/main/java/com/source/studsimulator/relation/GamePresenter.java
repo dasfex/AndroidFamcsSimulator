@@ -1,10 +1,12 @@
 package com.source.studsimulator.relation;
 
 import com.source.studsimulator.R;
+import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.GameLogic.PlayerStatsEnum;
 import com.source.studsimulator.model.entity.ContainsRandomAction;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Hobby;
+import com.source.studsimulator.model.entity.RandomAction;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.StudSimulatorApplication;
@@ -101,6 +103,10 @@ public class GamePresenter implements GameContract.Presenter {
         if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
                 model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
             view.printDeadMessage();
+        }
+
+        if (model.getWeek() % 52 == 1) {
+            applyRandomAction(ActionObjects.getAction(6));
         }
     }
 
@@ -232,4 +238,12 @@ public class GamePresenter implements GameContract.Presenter {
         }
     }
 
+    private void applyRandomAction(RandomAction action) {
+        if (action != null) {
+            if (action.isActive()) {
+                model.applyRandomAction(action);
+                view.writeMessage(action.getMessage());
+            }
+        }
+    }
 }

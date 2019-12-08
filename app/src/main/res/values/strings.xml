@@ -75,8 +75,15 @@
     <string name="github_of_project">Github of project!</string>
     <string name="github">https://github.com/KhodorVan/AndroidFamcsSimulator</string>
 
-    <string name="neightbour_action_message">Сосед обнаружил, что вы тырите его еду, и хорошенько вас отмутузил. Ваше здоровье уменьшилось.</string>
+    <string name="neighbour_action_message">Сосед обнаружил, что вы тырите его еду, и хорошенько вас отмутузил. Ваше здоровье уменьшилось.</string>
     <string name="spisyvanie_action_message">Вас спалили за списыванием. Уровень вашей успеваемости снизился. </string>
+    <string name="sushi_bad_message">Вы поели суши и у вас завелись глисты! Ваше здоровье уменьшилось. </string>
+    <string name="parents_money_message">Родители прислали вам денег! </string>
+    <string name="friend_fastfood_message">Друг угостил вас в фастфуде! </string>
+    <string name="classmate_bd_message">У вашего одногруппника День рождения! Надо скинуться на подарок. </string>
+    <string name="player_bd_message">У вас День рождения! Все характеристики увеличены! </string>
+    <string name="draka_message">Когда вы подменяли друга в клубе, случилась драка! Ваше здоровье уменьшилось. </string>
+    <string name="loader_message">Вы сорвали спину, разгружая вагоны! Ваше здоровье уменьшилось. </string>
 
     <string name="handbook">Handbook</string>
     <string name="Jtransition">Jtransition</string>
