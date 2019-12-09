@@ -62,8 +62,8 @@ public class HobbyFragment extends Fragment {
     }
 
     public interface OnHobbyFragmentListener {
-        void clickOnHobbyButton(Hobby hobby);
-        void unclickOnHobbyButton(Hobby hobby);
+        void clickOnHobbyButton(Hobby hobby, Friend friend);
+        void unclickOnHobbyButton(Hobby hobby, Friend friend);
         int getEnergy();
     }
 
@@ -90,13 +90,15 @@ public class HobbyFragment extends Fragment {
             StudentActivity newHobby = hobbies.get(position);
             if (currentEnergy >= newHobby.getEnergyNeeded()) {
                 if (currentPosition != -1) {
-                    activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition));
+                    activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition),
+                            (Friend) friendSpinner.getSelectedItem());
                 }
                 hobbyRvAdapter.setIndexOfActivatedButton(position);
                 changeAccessForHobby(position);
                 hobbyRvAdapter.notifyDataSetChanged();
                 if (currentPosition != position) {
-                    activityListener.clickOnHobbyButton((Hobby) hobbies.get(position));
+                    activityListener.clickOnHobbyButton((Hobby) hobbies.get(position),
+                            (Friend) friendSpinner.getSelectedItem());
                 }
             } else {
                 Toast.makeText(getContext(),

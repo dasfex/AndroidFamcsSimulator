@@ -67,28 +67,27 @@ public class ActionObjects {
     public static List<StudentActivity> getHobbyList() {
         if (hobbyList.isEmpty()) {
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 7, 0, 1, 0));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 0, 15, -2, 3, 20));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 0, 12, -1, 1, 40));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 0, 10, -1, 2, 60));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 5, 15, -2, 3, 20));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 10, 20, -1, 1, 40));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 5, 12, -1, 2, 60));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 15, 5, 4, 80));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.eurovision), 0, 11, -5, 3, 10));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.eurovision), 0, 15, -5, 3, 10));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.help), 0, 6, 1, 3, 25));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.sport), 0, 15, 0, 15, 100));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.walk), 0, 10, 2, 7, 100));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.sport), 0, 20, 0, 15, 95));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.walk), 0, 25, 2, 7, 99));
         }
         return hobbyList;
     }
 
     public static List<Friend> getFriendList() {
         if (friendList.isEmpty()) {
-            // нужно как-то не менять уровень дружбы с собой
-            friendList.add(new Friend(100, 0, 0.0, "С собой", R.drawable.alone));
-            friendList.add(new Friend(50, 0, 0.0, "Витя", R.drawable.vitya));
-            friendList.add(new Friend(50, 0, 0.0, "Женя", R.drawable.zhenya));
-            friendList.add(new Friend(50, 0, 0.0, "Саша Спилберг", R.drawable.sasha));
-            friendList.add(new Friend(50, 0, 0.0, "Карла", R.drawable.karla));
-            friendList.add(new Friend(50, 0, 0.0, "Ник", R.drawable.nick));
-            friendList.add(new Friend(50, 0, 0.0, "Стар", R.drawable.star));
+            friendList.add(new Friend(100, 0, 0,"С собой", R.drawable.alone, false));
+            friendList.add(new Friend(50, 20, 3, "Витя", R.drawable.vitya, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 5, 5, "Женя", R.drawable.zhenya, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 90, 20,"Саша Спилберг", R.drawable.sasha, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 70, 15, "Карла", R.drawable.karla, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 10, 10, "Ник", R.drawable.nick, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 15, 11, "Стар", R.drawable.star, ActionObjects.getAction(9)));
         }
         return friendList;
     }
@@ -155,8 +154,12 @@ public class ActionObjects {
                     4, -10, 0, 0, 0)
             );
             randomActionsList.add(new RandomAction(
-                    StudSimulatorApplication.getContext().getString(R.string.loader),
+                    StudSimulatorApplication.getContext().getString(R.string.loader_message),
                     4, -10, 0, 0, 0)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.friend_busy_message),
+                    100, 0, 0, 0, 0)
             );
         }
         return randomActionsList.get(index);
