@@ -164,20 +164,16 @@ public class GamePresenter implements GameContract.Presenter {
         }
         if (work.getProgrammingSkillRequired() > model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)){
             view.notAvailableMessage("Не достаточный навык программирования");
-            System.out.println("прога");
             return;
         }
         if (work.getEnglishSkillRequired() > model.getParameter(PlayerStatsEnum.ENGLISH_SKILL)){
             view.notAvailableMessage("Не достаточный навык английского");
-            System.out.println("англ");
             return;
         }
         if (work.getEnergyNeeded() > model.getEnergyLevel()){
             view.notAvailableMessage("Не достаточно энергии");
-            System.out.println("энергия");
             return;
         }
-        System.out.println("кнопка" + number + "ща запустится");
         weekLiveChoicesStaff.addWork(work);
         model.changeEnergyLevel(-work.getEnergyNeeded());
         changeEnergyLevel();

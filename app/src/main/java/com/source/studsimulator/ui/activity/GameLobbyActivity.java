@@ -165,7 +165,6 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
 
     @Override
     public void clickOnWorkButton(int number, Work.TYPE_OF_WORK type) {
-        System.out.println("кнопка" + number + "думает");
         presenter.clickOnWorkButton(number, type);
     }
 
