@@ -1,7 +1,10 @@
 package com.source.studsimulator.model;
 
 
+import androidx.fragment.app.Fragment;
+
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.RandomAction;
@@ -57,9 +60,12 @@ public class GameLogic implements GameContract.Model {
     }
 
     @Override
-    public void hobby(Hobby hobby) {
+    public void hobby(Hobby hobby, Friend friend) {
         student.changeSatiety(hobby.getSatietyChanging());
         student.changeHealth(hobby.getHealthChanging());
+        if (friend != null) {
+            student.changeHealth(friend.getHealthChanging());
+        }
         pay(hobby);
     }
 

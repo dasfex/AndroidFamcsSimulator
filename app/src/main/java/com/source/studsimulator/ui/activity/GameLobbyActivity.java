@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
@@ -140,13 +141,13 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnHobbyButton(Hobby hobby) {
-        presenter.clickOnHobbyButton(hobby);
+    public void clickOnHobbyButton(Hobby hobby, Friend friend) {
+        presenter.clickOnHobbyButton(hobby, friend);
     }
 
     @Override
-    public void unclickOnHobbyButton(Hobby hobby) {
-        presenter.unclickOnHobbyButton(hobby);
+    public void unclickOnHobbyButton(Hobby hobby, Friend friend) {
+        presenter.unclickOnHobbyButton(hobby, friend);
     }
 
     @Override

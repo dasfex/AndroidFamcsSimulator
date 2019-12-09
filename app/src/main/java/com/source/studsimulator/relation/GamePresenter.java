@@ -5,6 +5,7 @@ import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.GameLogic.PlayerStatsEnum;
 import com.source.studsimulator.model.entity.ContainsRandomAction;
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.RandomAction;
 import com.source.studsimulator.model.entity.Study;
@@ -75,6 +76,11 @@ public class GamePresenter implements GameContract.Presenter {
                 getStudyStage(model.getWeek()),
                 getProgrammingSkillString(model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)),
                 getEnglishSkillString(model.getParameter(PlayerStatsEnum.ENGLISH_SKILL))));
+        for (Friend friend : ActionObjects.getFriendList()) {
+            if (!friend.isMeet()) {
+                friend.decreaseCharacteristics();
+            }
+        }
     }
 
     private void applyLiveChoices(ViewState weekLiveChoicesStaff) {
@@ -94,15 +100,19 @@ public class GamePresenter implements GameContract.Presenter {
         }
 
         for (Hobby hobbyItem : weekLiveChoicesStaff.getHobbyList()) {
-            model.hobby(hobbyItem);
+            Friend friend = weekLiveChoicesStaff.getFriend();
+            if (friend != null) {
+                if (!friend.isBusy()) {
+                    model.hobby(hobbyItem, weekLiveChoicesStaff.getFriend());
+                } else {
+                    model.hobby(hobbyItem, null);
+                    applyRandomAction(friend.getRandomAction());
+                }
+                friend.changeCharacteristics();
+            } else {
+                model.hobby(hobbyItem, null);
+            }
             applyRandomAction(hobbyItem);
-        }
-
-        model.normalizeCharacteristics();
-      
-        if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
-                model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
-            view.printDeadMessage();
         }
 
         // birthday
@@ -111,6 +121,13 @@ public class GamePresenter implements GameContract.Presenter {
         }
         // money from parents
         applyRandomAction(ActionObjects.getAction(3));
+
+        model.normalizeCharacteristics();
+
+        if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
+                model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
+            view.printDeadMessage();
+        }
     }
 
     @Override
@@ -156,15 +173,17 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void clickOnHobbyButton(Hobby hobby) {
+    public void clickOnHobbyButton(Hobby hobby, Friend friend) {
         weekLiveChoicesStaff.addHobby(hobby);
+        weekLiveChoicesStaff.addFriend(friend);
         model.changeEnergyLevel(-hobby.getEnergyNeeded());
         changeEnergyLevel();
     }
 
     @Override
-    public void unclickOnHobbyButton(Hobby hobby) {
+    public void unclickOnHobbyButton(Hobby hobby, Friend friend) {
         weekLiveChoicesStaff.removeHobby(hobby);
+        weekLiveChoicesStaff.removeFriend(friend);
         model.changeEnergyLevel(hobby.getEnergyNeeded());
         changeEnergyLevel();
     }
@@ -225,7 +244,7 @@ public class GamePresenter implements GameContract.Presenter {
         week %= 52 + 1;
         if (week <= 16 || (week > 22 && week <= 36)) {
             return StudSimulatorApplication.getContext().getString(R.string.semestr);
-        } else if ((week > 16 && week <= 20) || (week > 36 && week <= 40)) {
+        } else if (week <= 20 || (week > 36 && week <= 40)) {
             return StudSimulatorApplication.getContext().getString(R.string.session);
         } else {
             return StudSimulatorApplication.getContext().getString(R.string.holidays);

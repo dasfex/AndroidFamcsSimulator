@@ -1,35 +1,50 @@
 package com.source.studsimulator.model.entity;
 
-import android.widget.ImageView;
-import android.widget.TextView;
+import java.util.Random;
 
-public class Friend {
+public class Friend implements ContainsRandomAction {
 
-    private int friendshipLevel = 0;
-    private int weeksWithoutContact = 0;
-    private double busyProbability = 0.2;
+    private int friendshipLevel;
+    private int busyProbability;
+    private int healthChanging;
+    private boolean isFriendshipLevelCanChange;
+    private boolean lastBusiest;
+    private boolean isMeet;
     private String name;
     private int photoId;
+    private RandomAction randomAction;
+    private Random random = new Random();
 
-    public Friend(int friendshipLevel, int weeksWithoutContact, double busyProbability,
-                  String name, int photoId) {
+    public Friend(int friendshipLevel, int busyProbability, int healthChanging,
+                  String name, int photoId, boolean isFriendshipLevelCanChange) {
         this.friendshipLevel = friendshipLevel;
-        this.weeksWithoutContact = weeksWithoutContact;
         this.busyProbability = busyProbability;
+        this.healthChanging = healthChanging;
         this.name = name;
         this.photoId = photoId;
+        this.isFriendshipLevelCanChange = isFriendshipLevelCanChange;
+    }
+
+    public Friend(int friendshipLevel, int busyProbability, int healthChanging,
+                  String name, int photoId, RandomAction randomAction) {
+        this.friendshipLevel = friendshipLevel;
+        this.busyProbability = busyProbability;
+        this.healthChanging = healthChanging;
+        this.name = name;
+        this.photoId = photoId;
+        this.isFriendshipLevelCanChange = true;
+        this.randomAction = randomAction;
     }
 
     public int getFriendshipLevel() {
         return friendshipLevel;
     }
 
-    public int getWeeksWithoutContact() {
-        return weeksWithoutContact;
-    }
-
-    public double getBusyProbability() {
-        return busyProbability;
+    public boolean isBusy() {
+        isMeet = true;
+        int x = random.nextInt(100);
+        lastBusiest = x <= busyProbability;
+        return lastBusiest;
     }
 
     public String getName() {
@@ -38,6 +53,39 @@ public class Friend {
 
     public int getPhotoId() {
         return photoId;
+    }
+
+    public int getHealthChanging() {
+        return healthChanging;
+    }
+
+    @Override
+    public RandomAction getRandomAction() {
+        return randomAction;
+    }
+
+    public boolean isMeet() {
+        boolean result = isMeet;
+        isMeet = false;
+        return result;
+    }
+
+    public void changeCharacteristics() {
+        if (isFriendshipLevelCanChange) {
+            if (lastBusiest) {
+                friendshipLevel += 5;
+            } else {
+                friendshipLevel += 1;
+            }
+            friendshipLevel = Math.min(friendshipLevel, 100);
+        }
+    }
+
+    public void decreaseCharacteristics() {
+        if (isFriendshipLevelCanChange) {
+            friendshipLevel -= 4;
+            friendshipLevel = Math.max(0, friendshipLevel);
+        }
     }
 
     @Override

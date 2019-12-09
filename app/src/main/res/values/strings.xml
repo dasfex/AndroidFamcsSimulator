@@ -88,6 +88,7 @@
     <string name="player_bd_message">У вас День рождения! Все характеристики увеличены! </string>
     <string name="draka_message">Когда вы подменяли друга в клубе, случилась драка! Ваше здоровье уменьшилось. </string>
     <string name="loader_message">Вы сорвали спину, разгружая вагоны! Ваше здоровье уменьшилось. </string>
+    <string name="friend_busy_message">Ваш друг был занят! </string>
 
     <string name="handbook">Handbook</string>
     <string name="Jtransition">Jtransition</string>
