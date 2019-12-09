@@ -72,9 +72,8 @@ public class GamePresenter implements GameContract.Presenter {
         view.updateEnergyLevel(model.getEnergyLevel());
     }
 
-    @Override
-    public void clickOnNewWeekButton(int energy) {
-        int sum  = 0;
+    private boolean CheckMoney() {
+        int sum = 0;
         for (Food foodItem : weekLiveChoicesStaff.getFoodList()) {
             sum += foodItem.getPrice().getPrice();
         }
@@ -84,10 +83,15 @@ public class GamePresenter implements GameContract.Presenter {
         for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
             sum -= workItem.getAmountOfMoney();
         }
-        for (Hobby hobbyItem : weekLiveChoicesStaff.getHobbyList()){
+        for (Hobby hobbyItem : weekLiveChoicesStaff.getHobbyList()) {
             sum += hobbyItem.getPrice().getPrice();
         }
-        if (sum > model.getParameter(PlayerStatsEnum.MONEY)){
+        return sum > model.getParameter(PlayerStatsEnum.MONEY);
+    }
+
+    @Override
+    public void clickOnNewWeekButton(int energy) {
+        if (CheckMoney()) {
             SoundActivity.hearSound(getContext(), R.raw.nomoney);
             Toast clickToast = Toast.makeText(getContext(),
                     getContext().getString(R.string.noMoney),
