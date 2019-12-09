@@ -1,5 +1,11 @@
 package com.source.studsimulator.relation;
 
+import android.graphics.Color;
+import android.view.Gravity;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.GameLogic.PlayerStatsEnum;
@@ -11,8 +17,11 @@ import com.source.studsimulator.model.entity.RandomAction;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.StudSimulatorApplication;
+import com.source.studsimulator.ui.activity.SoundActivity;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.entity.ViewState;
+
+import static com.source.studsimulator.ui.StudSimulatorApplication.getContext;
 
 public class GamePresenter implements GameContract.Presenter {
 
@@ -65,6 +74,38 @@ public class GamePresenter implements GameContract.Presenter {
 
     @Override
     public void clickOnNewWeekButton(int energy) {
+        int sum  = 0;
+        for (Food foodItem : weekLiveChoicesStaff.getFoodList()) {
+            sum += foodItem.getPrice().getPrice();
+        }
+        for (Study studyItem : weekLiveChoicesStaff.getStudyList()) {
+            sum += studyItem.getPrice().getPrice();
+        }
+        for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
+            sum -= workItem.getAmountOfMoney();
+        }
+        for (Hobby hobbyItem : weekLiveChoicesStaff.getHobbyList()){
+            sum += hobbyItem.getPrice().getPrice();
+        }
+        if (sum > model.getParameter(PlayerStatsEnum.MONEY)){
+            SoundActivity.hearSound(getContext(), R.raw.nomoney);
+            Toast clickToast = Toast.makeText(getContext(),
+                    getContext().getString(R.string.noMoney),
+                    Toast.LENGTH_SHORT);
+
+            clickToast.setGravity(Gravity.NO_GRAVITY, 0, 0);
+
+            LinearLayout toastContainer = (LinearLayout) clickToast.getView();
+            toastContainer.setBackgroundColor(Color.TRANSPARENT);
+
+            ImageView artImage = new ImageView(getContext());
+            artImage.setImageResource(R.drawable.nomoney);
+            toastContainer.addView(artImage, 0);
+
+            clickToast.show();
+            return;
+        }
+
         view.cleanMessages();
         applyLiveChoices(weekLiveChoicesStaff);
         model.newWeek(energy);
@@ -208,48 +249,48 @@ public class GamePresenter implements GameContract.Presenter {
 
     private String getProgrammingSkillString(int param) {
         if (param < 20) {
-            return StudSimulatorApplication.getContext().getString(R.string.begginer_prog);
+            return getContext().getString(R.string.begginer_prog);
         } else if (param < 40) {
-            return StudSimulatorApplication.getContext().getString(R.string.lub_prog);
+            return getContext().getString(R.string.lub_prog);
         } else if (param < 80) {
-            return StudSimulatorApplication.getContext().getString(R.string.jun_prog);
+            return getContext().getString(R.string.jun_prog);
         } else if (param < 140) {
-            return StudSimulatorApplication.getContext().getString(R.string.mid_prog);
+            return getContext().getString(R.string.mid_prog);
         } else if (param < 220) {
-            return StudSimulatorApplication.getContext().getString(R.string.senior_prog);
+            return getContext().getString(R.string.senior_prog);
         } else if (param < 300) {
-            return StudSimulatorApplication.getContext().getString(R.string.lead_prog);
+            return getContext().getString(R.string.lead_prog);
         } else {
-            return StudSimulatorApplication.getContext().getString(R.string.gena_prog);
+            return getContext().getString(R.string.gena_prog);
         }
     }
 
     private String getEnglishSkillString(int param) {
         if (param < 20) {
-            return StudSimulatorApplication.getContext().getString(R.string.a1);
+            return getContext().getString(R.string.a1);
         } else if (param < 40) {
-            return StudSimulatorApplication.getContext().getString(R.string.a2);
+            return getContext().getString(R.string.a2);
         } else if (param < 60) {
-            return StudSimulatorApplication.getContext().getString(R.string.b1);
+            return getContext().getString(R.string.b1);
         } else if (param < 80) {
-            return StudSimulatorApplication.getContext().getString(R.string.b2);
+            return getContext().getString(R.string.b2);
         } else if (param < 100) {
-            return StudSimulatorApplication.getContext().getString(R.string.c1);
+            return getContext().getString(R.string.c1);
         } else if (param < 120) {
-            return StudSimulatorApplication.getContext().getString(R.string.c2);
+            return getContext().getString(R.string.c2);
         } else {
-            return StudSimulatorApplication.getContext().getString(R.string.d13);
+            return getContext().getString(R.string.d13);
         }
     }
 
     private String getStudyStage(int week) {
         week %= 52 + 1;
         if (week <= 16 || (week > 22 && week <= 36)) {
-            return StudSimulatorApplication.getContext().getString(R.string.semestr);
+            return getContext().getString(R.string.semestr);
         } else if (week <= 20 || (week > 36 && week <= 40)) {
-            return StudSimulatorApplication.getContext().getString(R.string.session);
+            return getContext().getString(R.string.session);
         } else {
-            return StudSimulatorApplication.getContext().getString(R.string.holidays);
+            return getContext().getString(R.string.holidays);
         }
     }
 
