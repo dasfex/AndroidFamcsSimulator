@@ -221,7 +221,7 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="5dp"
         android:src="@drawable/electricity_symbol"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
@@ -231,9 +231,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintStart_toEndOf="@id/energyImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
 
 
 
