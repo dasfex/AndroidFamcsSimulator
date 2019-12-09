@@ -71,7 +71,6 @@ public class ActionObjects {
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 0, 12, -1, 1, 40));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 0, 10, -1, 2, 60));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 15, 5, 4, 80));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 15, 5, 4, 80));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.eurovision), 0, 11, -5, 3, 10));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.help), 0, 6, 1, 3, 25));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.sport), 0, 15, 0, 15, 100));
