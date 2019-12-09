@@ -19,10 +19,12 @@ public interface GameContract {
         void updateEnergyLevel(int energyLevel);
         void updateWeekInformation(GamePresenter.PlayerInformation newInformation);
 
-        void cleanMessages();
-        void writeMessage(String message);
+        void cleanRandomActionsMessages();
+        void writeRandomActionMessage(String message);
 
         void printDeadMessage();
+        void activateStudyButton(int number, Work.TYPE_OF_WORK type);
+        void notAvailableMessage(String message);
     }
 
     interface Presenter {
@@ -35,8 +37,9 @@ public interface GameContract {
         void clickOnStudyButton(Study study);
         void unclickOnStudyButton(Study study);
 
-        void clickOnWorkButton(Work work);
-        void unclickOnWorkButton(Work work);
+        void activateWorkButton(Work work);
+        void clickOnWorkButton(int number, Work.TYPE_OF_WORK type);
+        void deactivateWorkButton(Work work);
 
         void clickOnHobbyButton(Hobby hobby);
         void unclickOnHobbyButton(Hobby hobby);

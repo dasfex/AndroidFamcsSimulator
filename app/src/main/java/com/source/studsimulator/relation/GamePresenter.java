@@ -64,7 +64,7 @@ public class GamePresenter implements GameContract.Presenter {
 
     @Override
     public void clickOnNewWeekButton(int energy) {
-        view.cleanMessages();
+        view.cleanRandomActionsMessages();
         applyLiveChoices(weekLiveChoicesStaff);
         model.newWeek(energy);
         updatePlayerStats();
@@ -142,14 +142,50 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void clickOnWorkButton(Work work) {
+    public void activateWorkButton(Work work) {
         weekLiveChoicesStaff.addWork(work);
         model.changeEnergyLevel(-work.getEnergyNeeded());
         changeEnergyLevel();
     }
 
     @Override
-    public void unclickOnWorkButton(Work work) {
+    public void clickOnWorkButton( int number, Work.TYPE_OF_WORK type) {
+        Work work = (Work) ActionObjects.getWorkList().get(0);;
+        switch (type){
+            case SUMMER:
+                work = (Work) ActionObjects.getSummerWorkList().get(number);
+                break;
+            case SIDE:
+            work = (Work) ActionObjects.getSideJobList().get(number);
+                break;
+            case FULL_TIME:
+            work = (Work) ActionObjects.getWorkList().get(number);
+                break;
+        }
+        if (work.getProgrammingSkillRequired() > model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)){
+            view.notAvailableMessage("Не достаточный навык программирования");
+            System.out.println("прога");
+            return;
+        }
+        if (work.getEnglishSkillRequired() > model.getParameter(PlayerStatsEnum.ENGLISH_SKILL)){
+            view.notAvailableMessage("Не достаточный навык английского");
+            System.out.println("англ");
+            return;
+        }
+        if (work.getEnergyNeeded() > model.getEnergyLevel()){
+            view.notAvailableMessage("Не достаточно энергии");
+            System.out.println("энергия");
+            return;
+        }
+        System.out.println("кнопка" + number + "ща запустится");
+        weekLiveChoicesStaff.addWork(work);
+        model.changeEnergyLevel(-work.getEnergyNeeded());
+        changeEnergyLevel();
+        view.activateStudyButton(number, type);
+    }
+
+    @Override
+    public void deactivateWorkButton(Work work) {
         weekLiveChoicesStaff.removeWork(work);
         model.changeEnergyLevel(work.getEnergyNeeded());
         changeEnergyLevel();
@@ -236,7 +272,7 @@ public class GamePresenter implements GameContract.Presenter {
         if (item.getRandomAction() != null) {
             if (item.getRandomAction().isActive()) {
                 model.applyRandomAction(item.getRandomAction());
-                view.writeMessage(item.getRandomAction().getMessage());
+                view.writeRandomActionMessage(item.getRandomAction().getMessage());
             }
         }
     }
@@ -245,7 +281,7 @@ public class GamePresenter implements GameContract.Presenter {
         if (action != null) {
             if (action.isActive()) {
                 model.applyRandomAction(action);
-                view.writeMessage(action.getMessage());
+                view.writeRandomActionMessage(action.getMessage());
             }
         }
     }
