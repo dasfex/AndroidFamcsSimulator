@@ -81,10 +81,10 @@ public class ActionObjects {
 
     public static List<Friend> getFriendList() {
         if (friendList.isEmpty()) {
-            friendList.add(new Friend(100, -1, 0,"С собой", R.drawable.alone, false));
+            friendList.add(new Friend(100, -1, 0, "С собой", R.drawable.alone, false));
             friendList.add(new Friend(50, 20, 3, "Витя", R.drawable.vitya, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 5, 5, "Женя", R.drawable.zhenya, ActionObjects.getAction(9)));
-            friendList.add(new Friend(50, 90, 20,"Саша Спилберг", R.drawable.sasha, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 90, 20, "Саша Спилберг", R.drawable.sasha, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 70, 15, "Карла", R.drawable.karla, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 10, 10, "Ник", R.drawable.nick, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 15, 11, "Стар", R.drawable.star, ActionObjects.getAction(9)));
@@ -160,6 +160,31 @@ public class ActionObjects {
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.friend_busy_message),
                     100, 0, 0, 0, 0)
+            );
+            randomActionsList.add(new RandomAction(
+
+                    StudSimulatorApplication.getContext().getString(R.string.grant),
+                    100, 0, 0, 0, 50)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.zero_grant),
+                    100, -2, 0, 0, 0)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.angry_em),
+                    30, -30, 0, 0, 0)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.walk_with_girls),
+                    100, 30, 0, 0, -50)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.sad),
+                    100, -40, 0, 0, 0)
+            );
+            randomActionsList.add(new RandomAction(
+                    StudSimulatorApplication.getContext().getString(R.string.bigger_grant),
+                    100, 0, 0, 0, 60)
             );
         }
         return randomActionsList.get(index);

@@ -201,7 +201,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         InfoFragment infoFragment = (InfoFragment) informationFragment;
         infoFragment.writeMessage(message);
     }
-          
+
     @Override
     public void printDeadMessage() {
         SoundActivity.hearSound(this, R.raw.death);

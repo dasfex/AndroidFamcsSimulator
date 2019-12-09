@@ -2,6 +2,7 @@ package com.source.studsimulator.relation;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.ActionObjects;
+import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.model.GameLogic.PlayerStatsEnum;
 import com.source.studsimulator.model.entity.ContainsRandomAction;
 import com.source.studsimulator.model.entity.Food;
@@ -103,6 +104,12 @@ public class GamePresenter implements GameContract.Presenter {
             Friend friend = weekLiveChoicesStaff.getFriend();
             if (friend != null) {
                 if (!friend.isBusy()) {
+                    if (friend.getName().equals("Kарла")) {
+                        applyRandomAction(ActionObjects.getAction(14));
+                    }
+                    if (friend.getName().equals("Карла") || friend.getName().equals("Саша Спилберг") || friend.getName().equals("Стар")) {
+                        applyRandomAction(ActionObjects.getAction(13));
+                    }
                     model.hobby(hobbyItem, weekLiveChoicesStaff.getFriend());
                 } else {
                     model.hobby(hobbyItem, null);
@@ -117,6 +124,8 @@ public class GamePresenter implements GameContract.Presenter {
 
         model.weekCharacteristicDecrease();
 
+        applyRandomAction(ActionObjects.getAction(12));
+
         // birthday
         if (model.getWeek() % 52 == 1) {
             applyRandomAction(ActionObjects.getAction(6));
@@ -124,11 +133,23 @@ public class GamePresenter implements GameContract.Presenter {
         // money from parents
         applyRandomAction(ActionObjects.getAction(3));
 
+        if (model.getWeek() % 4 == 1) {
+            if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) > 80) {
+                applyRandomAction(ActionObjects.getAction(15));
+            } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) > 50) {
+                applyRandomAction(ActionObjects.getAction(10));
+            }
+        }
+        
         model.normalizeCharacteristics();
 
         if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
                 model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
             view.printDeadMessage();
+        }
+
+        if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) == 0) {
+            applyRandomAction(ActionObjects.getAction(11));
         }
     }
 

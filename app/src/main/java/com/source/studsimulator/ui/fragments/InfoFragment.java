@@ -2,6 +2,7 @@ package com.source.studsimulator.ui.fragments;
 
 import androidx.fragment.app.Fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.relation.GamePresenter;
+import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.activity.SoundActivity;
 
 
@@ -73,6 +75,9 @@ public class InfoFragment extends Fragment {
 
         clickToast.show();
     }
+
+
+
 
     @Override
     public void onAttach(Context context) {
