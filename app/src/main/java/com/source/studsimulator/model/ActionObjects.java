@@ -66,7 +66,7 @@ public class ActionObjects {
 
     public static List<StudentActivity> getHobbyList() {
         if (hobbyList.isEmpty()) {
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 7, 0, 1, 0));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 7, 0, 1, -1));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 5, 15, -2, 3, 20));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 10, 20, -1, 1, 40));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 5, 12, -1, 2, 60));
@@ -81,7 +81,7 @@ public class ActionObjects {
 
     public static List<Friend> getFriendList() {
         if (friendList.isEmpty()) {
-            friendList.add(new Friend(100, 0, 0,"С собой", R.drawable.alone, false));
+            friendList.add(new Friend(100, -1, 0,"С собой", R.drawable.alone, false));
             friendList.add(new Friend(50, 20, 3, "Витя", R.drawable.vitya, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 5, 5, "Женя", R.drawable.zhenya, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 90, 20,"Саша Спилберг", R.drawable.sasha, ActionObjects.getAction(9)));

@@ -76,6 +76,11 @@ public class GamePresenter implements GameContract.Presenter {
                 getStudyStage(model.getWeek()),
                 getProgrammingSkillString(model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)),
                 getEnglishSkillString(model.getParameter(PlayerStatsEnum.ENGLISH_SKILL))));
+        for (Friend friend : ActionObjects.getFriendList()) {
+            if (!friend.isMeet()) {
+                friend.decreaseCharacteristics();
+            }
+        }
     }
 
     private void applyLiveChoices(ViewState weekLiveChoicesStaff) {
@@ -109,7 +114,6 @@ public class GamePresenter implements GameContract.Presenter {
             }
             applyRandomAction(hobbyItem);
         }
-
 
         // birthday
         if (model.getWeek() % 52 == 1) {

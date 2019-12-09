@@ -9,6 +9,7 @@ public class Friend implements ContainsRandomAction {
     private int healthChanging;
     private boolean isFriendshipLevelCanChange;
     private boolean lastBusiest;
+    private boolean isMeet;
     private String name;
     private int photoId;
     private RandomAction randomAction;
@@ -40,6 +41,7 @@ public class Friend implements ContainsRandomAction {
     }
 
     public boolean isBusy() {
+        isMeet = true;
         int x = random.nextInt(100);
         lastBusiest = x <= busyProbability;
         return lastBusiest;
@@ -62,13 +64,25 @@ public class Friend implements ContainsRandomAction {
         return randomAction;
     }
 
+    public boolean isMeet() {
+        boolean result = isMeet;
+        isMeet = false;
+        return result;
+    }
+
     public void changeCharacteristics() {
-        if (!isFriendshipLevelCanChange) {
+        if (isFriendshipLevelCanChange) {
             if (lastBusiest) {
                 friendshipLevel += 5;
             } else {
-                friendshipLevel -= 3;
+                friendshipLevel += 1;
             }
+        }
+    }
+
+    public void decreaseCharacteristics() {
+        if (isFriendshipLevelCanChange) {
+            friendshipLevel -= 4;
         }
     }
 
