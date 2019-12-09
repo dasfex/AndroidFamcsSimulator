@@ -45,6 +45,7 @@ public interface GameContract {
 
     interface Model {
         void newWeek(int energy);
+        void weekCharacteristicDecrease();
 
         void pay(Payable payable);
 

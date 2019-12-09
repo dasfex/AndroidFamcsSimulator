@@ -12,11 +12,14 @@ import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.relation.GameContract;
 
+import java.util.Random;
+
 public class GameLogic implements GameContract.Model {
 
     private Student student;
     private int gameTime = 1;
     private int energyLevel = 16;
+    private Random random = new Random();
 
     public enum PlayerStatsEnum {
         EDUCATION_LEVEL, HEALTH, SATIETY, MONEY,
@@ -105,5 +108,12 @@ public class GameLogic implements GameContract.Model {
     @Override
     public void normalizeCharacteristics() {
         student.normalizeCharacteristics();
+    }
+
+    @Override
+    public void weekCharacteristicDecrease() {
+        student.changeHealth(-random.nextInt(5));
+        student.changeSatiety(-random.nextInt(5));
+        student.changeEducationLevel(-random.nextInt(5));
     }
 }

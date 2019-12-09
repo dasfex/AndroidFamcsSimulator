@@ -115,6 +115,8 @@ public class GamePresenter implements GameContract.Presenter {
             applyRandomAction(hobbyItem);
         }
 
+        model.weekCharacteristicDecrease();
+
         // birthday
         if (model.getWeek() % 52 == 1) {
             applyRandomAction(ActionObjects.getAction(6));
