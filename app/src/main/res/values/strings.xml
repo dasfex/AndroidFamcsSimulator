@@ -107,6 +107,7 @@
     <string name="freelance">Пофрилансить</string>
   
     <string name="notEnoughEnergy">Недостаточно энергии!</string>
+    <string name="noMoney">Недостаточно денег!</string>
     <string name="death">СМЭРЦЬ!</string>
     <string name="death_text">Похоже вы не расчитали свои силы и умерли. А ведь мама говорила, что надо было идти в БГУИР. Ну иди теперь в армейку. Кыш-кыш!</string>
     <string name="death_button">Мам, я стану рэпером!</string>
