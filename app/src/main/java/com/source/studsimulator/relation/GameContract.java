@@ -64,5 +64,6 @@ public interface GameContract {
         int getParameter(GameLogic.PlayerStatsEnum characteristic);
         int getEnergyLevel();
         int getWeek();
+        String getStudyStage();
     }
 }

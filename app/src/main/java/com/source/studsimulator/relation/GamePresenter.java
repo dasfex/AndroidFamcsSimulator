@@ -72,7 +72,7 @@ public class GamePresenter implements GameContract.Presenter {
         view.updateEnergyLevel(model.getEnergyLevel());
         view.updateWeekInformation(new PlayerInformation(
                 String.valueOf(model.getWeek() / 52 + 1),
-                getStudyStage(model.getWeek()),
+                model.getStudyStage(),
                 getProgrammingSkillString(model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)),
                 getEnglishSkillString(model.getParameter(PlayerStatsEnum.ENGLISH_SKILL))));
     }
@@ -279,17 +279,6 @@ public class GamePresenter implements GameContract.Presenter {
             return StudSimulatorApplication.getContext().getString(R.string.c2);
         } else {
             return StudSimulatorApplication.getContext().getString(R.string.d13);
-        }
-    }
-
-    private String getStudyStage(int week) {
-        week %= 52 + 1;
-        if (week <= 16 || (week > 22 && week <= 36)) {
-            return StudSimulatorApplication.getContext().getString(R.string.semestr);
-        } else if ((week > 16 && week <= 20) || (week > 36 && week <= 40)) {
-            return StudSimulatorApplication.getContext().getString(R.string.session);
-        } else {
-            return StudSimulatorApplication.getContext().getString(R.string.holidays);
         }
     }
 
