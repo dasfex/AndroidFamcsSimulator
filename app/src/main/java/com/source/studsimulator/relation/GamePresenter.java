@@ -175,7 +175,6 @@ public class GamePresenter implements GameContract.Presenter {
 
         model.weekCharacteristicDecrease();
 
-        applyRandomAction(ActionObjects.getAction(12));
 
         // birthday
         if (model.getWeek() % 52 == 1) {
@@ -191,6 +190,7 @@ public class GamePresenter implements GameContract.Presenter {
             } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) > 50) {
                 applyRandomAction(ActionObjects.getAction(10));
             }
+            applyRandomAction(ActionObjects.getAction(12));
         }
 
         if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) == 0) {

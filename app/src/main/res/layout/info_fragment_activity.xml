@@ -16,6 +16,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="102dp"
         android:backgroundTint="#10BE04"
+        android:fontFamily="@font/slackey"
         android:text="@string/newWeek"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

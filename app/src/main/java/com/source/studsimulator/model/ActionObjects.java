@@ -58,7 +58,7 @@ public class ActionObjects {
             extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.english), 5, 8, -2, -5, 0, 0, 10, 0, 1));
             extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.itransition), 0, 10, -4, -8, 4, 20, 2, 0, 1));
             extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.epam), 0, 12, -6, -10, 8, 50, 6, 50, 1));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.shad), 0, 30, -12, -50, 14, 100, 0, 0, 5));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.shad), 0, 30, -12, -20, 14, 300, 0, 0, 5));
             extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cookingCourses), 5, 20, 4, 0, 0, 0, 0, 0, 1));
         }
         return extraActivityList;
@@ -107,7 +107,7 @@ public class ActionObjects {
         if (workList.isEmpty()) {
             workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Mak), -10, -10, 50, 0, 0, 10, 6, 2));
             workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Jtransition), -6, -7, 40, 15, 2, 5, 4, 3));
-            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.tyndex), -20, -20, 100, 50, 3, 20, 1, 3));
+            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.tyndex), -20, -30, 100, 50, 3, 20, 1, 3));
         }
         return workList;
     }
@@ -131,7 +131,7 @@ public class ActionObjects {
             ); // 1
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.sushi_bad_message),
-                    4, -3, 0, 0, 0)
+                    4, -15, 0, 0, 0)
             ); // 2
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.parents_money_message),
@@ -171,7 +171,7 @@ public class ActionObjects {
             ); // 11
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.angry_em),
-                    30, -10, 0, 0, 0)
+                    30, -30, 0, 0, 0)
             ); // 12
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.walk_with_girls),
