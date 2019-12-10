@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Friend;
@@ -30,6 +30,8 @@ import com.source.studsimulator.ui.fragments.HobbyFragment;
 import com.source.studsimulator.ui.fragments.InfoFragment;
 import com.source.studsimulator.ui.fragments.StudyFragment;
 import com.source.studsimulator.ui.fragments.WorkFragment;
+
+import static com.source.studsimulator.ui.StudSimulatorApplication.getContext;
 
 public class GameLobbyActivity extends AppCompatActivity implements GameContract.View,
         InfoFragment.OnInformationFragmentListener, FoodFragment.OnFoodFragmentListener,
@@ -57,10 +59,10 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     private ImageButton hobbyButton;
 
     private Fragment informationFragment;
-    private Fragment foodFragment;
-    private Fragment studyFragment;
-    private Fragment workFragment;
-    private Fragment hobbyFragment;
+    private FoodFragment foodFragment;
+    private StudyFragment studyFragment;
+    private WorkFragment workFragment;
+    private HobbyFragment hobbyFragment;
 
     private FragmentTransaction fragmentTransaction;
 
@@ -131,8 +133,8 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnFoodButton(Food food) {
-        presenter.clickOnFoodButton(food);
+    public void clickOnFoodButton(int position) {
+        presenter.clickOnFoodButton(position);
     }
 
     @Override
@@ -141,8 +143,8 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnHobbyButton(Hobby hobby, Friend friend) {
-        presenter.clickOnHobbyButton(hobby, friend);
+    public void clickOnHobbyButton(int position, Friend friend) {
+        presenter.clickOnHobbyButton(position, friend);
     }
 
     @Override
@@ -151,18 +153,45 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnWorkButton(Work work) {
-        presenter.clickOnWorkButton(work);
+    public void activateWorkButton(int number, Work.TYPE_OF_WORK type) {
+        workFragment.activateButton(number, type);
+    }
+
+    @Override
+    public void activateStudyButton(int number, Study.TYPE_OF_STUDY type) {
+        studyFragment.activateButton(number, type);
+    }
+
+    @Override
+    public void activateFoodButton(int number) {
+        foodFragment.activateButton(number);
+    }
+
+    @Override
+    public void activateHobhyButton(int number) {
+        hobbyFragment.activateButton(number);
+    }
+
+    @Override
+    public void notAvailableMessage(String message) {
+        Toast.makeText(getContext(),
+                message,
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void clickOnWorkButton(int number, Work.TYPE_OF_WORK type) {
+        presenter.clickOnWorkButton(number, type);
     }
 
     @Override
     public void unclickOnWorkButton(Work work) {
-        presenter.unclickOnWorkButton(work);
+        presenter.deactivateWorkButton(work);
     }
 
     @Override
-    public void clickOnStudyButton(Study study) {
-        presenter.clickOnStudyButton(study);
+    public void clickOnStudyButton(int position, Study.TYPE_OF_STUDY type) {
+        presenter.clickOnStudyButton(position, type);
     }
 
     @Override
@@ -191,13 +220,13 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void cleanMessages() {
+    public void cleanRandomActionsMessages() {
         InfoFragment infoFragment = (InfoFragment) informationFragment;
         infoFragment.cleanView();
     }
 
     @Override
-    public void writeMessage(String message) {
+    public void writeRandomActionMessage(String message) {
         InfoFragment infoFragment = (InfoFragment) informationFragment;
         infoFragment.writeMessage(message);
     }
@@ -206,11 +235,11 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     public void printDeadMessage() {
         SoundActivity.hearSound(this, R.raw.death);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(StudSimulatorApplication.getContext().getString(R.string.death))
-                .setMessage(StudSimulatorApplication.getContext().getString(R.string.death_text))
+        builder.setTitle(getContext().getString(R.string.death))
+                .setMessage(getContext().getString(R.string.death_text))
                 .setCancelable(false)
                 .setNegativeButton(
-                        StudSimulatorApplication.getContext().getString(R.string.death_button),
+                        getContext().getString(R.string.death_button),
                         (dialog, id) -> {
                             finish();
                             dialog.cancel();

@@ -14,6 +14,10 @@ public class Study implements Payable, StudentActivity, ContainsRandomAction {
     private int energyNeeded;
     private RandomAction randomAction;
 
+    public enum TYPE_OF_STUDY{
+        UNIVERSITY, EXTRA
+    }
+
     public Study(String title, int price,
                  int educationChanging, int satietyChanging, int healthChanging,
                  int programmingSkillIncrease, int programmingSkillRequired,

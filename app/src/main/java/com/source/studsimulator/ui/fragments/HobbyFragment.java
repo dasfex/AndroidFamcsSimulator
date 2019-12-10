@@ -19,6 +19,8 @@ import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.StudentActivity;
+import com.source.studsimulator.model.entity.Study;
+import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.fragments.adapters.FriendAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
@@ -38,6 +40,8 @@ public class HobbyFragment extends Fragment {
 
     private HobbyFragment.OnHobbyFragmentListener activityListener;
 
+    OneActiveButtonWithBlockCharacteristics hobbyRvAdapter;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hobby_fragment_activity, null);
@@ -47,6 +51,13 @@ public class HobbyFragment extends Fragment {
         initializeWidgets(view);
 
         return view;
+    }
+
+
+    public void activateButton(int position) {
+        hobbyRvAdapter.setIndexOfActivatedButton(position);
+        changeAccessForHobby(position);
+        hobbyRvAdapter.notifyDataSetChanged();
     }
 
     private void changeAccessForHobby(int pos) {
@@ -62,7 +73,7 @@ public class HobbyFragment extends Fragment {
     }
 
     public interface OnHobbyFragmentListener {
-        void clickOnHobbyButton(Hobby hobby, Friend friend);
+        void clickOnHobbyButton(int index, Friend friend);
         void unclickOnHobbyButton(Hobby hobby, Friend friend);
         int getEnergy();
     }
@@ -77,33 +88,20 @@ public class HobbyFragment extends Fragment {
         hobbyRv.setLayoutManager(new LinearLayoutManager(getContext()));
         hobbyRv.setHasFixedSize(true);
 
-        OneActiveButtonWithBlockCharacteristics hobbyRvAdapter =
+        hobbyRvAdapter =
                 new OneActiveButtonWithBlockCharacteristics(hobbies);
         hobbyRv.setAdapter(hobbyRvAdapter);
 
         hobbyRvAdapter.setAdapterListener(position -> {
             int currentPosition = hobbyRvAdapter.getIndexOfActivatedButton();
-            int currentEnergy = activityListener.getEnergy();
-            if (currentPosition != -1) {
-                currentEnergy += hobbies.get(currentPosition).getEnergyNeeded();
-            }
-            StudentActivity newHobby = hobbies.get(position);
-            if (currentEnergy >= newHobby.getEnergyNeeded()) {
-                if (currentPosition != -1) {
-                    activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition),
-                            (Friend) friendSpinner.getSelectedItem());
-                }
+            if (currentPosition == position) {
+                activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition),
+                                                     (Friend) friendSpinner.getSelectedItem());
                 hobbyRvAdapter.setIndexOfActivatedButton(position);
                 changeAccessForHobby(position);
                 hobbyRvAdapter.notifyDataSetChanged();
-                if (currentPosition != position) {
-                    activityListener.clickOnHobbyButton((Hobby) hobbies.get(position),
-                            (Friend) friendSpinner.getSelectedItem());
-                }
             } else {
-                Toast.makeText(getContext(),
-                        StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
-                        Toast.LENGTH_SHORT).show();
+                activityListener.clickOnHobbyButton(position, (Friend) friendSpinner.getSelectedItem());
             }
         });
 

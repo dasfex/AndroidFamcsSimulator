@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.ActionObjects;
+import com.source.studsimulator.model.Student;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.model.entity.Study;
+import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
@@ -33,6 +35,10 @@ public class StudyFragment extends Fragment {
     private StudyFragment.OnStudyFragmentListener activityListener;
     private int activeButtonIndex = -1;
 
+    OneActiveButtonAdapter universityRvAdapter;
+    ActiveButtonsAdapter extraActivityRvAdapter;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,6 +51,21 @@ public class StudyFragment extends Fragment {
         return view;
     }
 
+    public void activateButton(int position, Study.TYPE_OF_STUDY type) {
+        switch (type) {
+            case UNIVERSITY:
+                universityRvAdapter.setIndexOfActivatedButton(position);
+                changeButtonActivity(position);
+                universityRvAdapter.notifyDataSetChanged();
+                break;
+            case EXTRA:
+                extraActivityRvAdapter.setButtonDisActivate(position);
+                    changeAccessForSideButton(position);
+                    extraActivityRvAdapter.notifyDataSetChanged();
+                break;
+        }
+    }
+
     private void changeButtonActivity(int position) {
         activeButtonIndex = activeButtonIndex == position ? -1 : position;
     }
@@ -54,7 +75,7 @@ public class StudyFragment extends Fragment {
     }
 
     public interface OnStudyFragmentListener {
-        void clickOnStudyButton(Study study);
+        void clickOnStudyButton(int index, Study.TYPE_OF_STUDY type);
         void unclickOnStudyButton(Study study);
         int getEnergy();
     }
@@ -76,38 +97,26 @@ public class StudyFragment extends Fragment {
         universityRv = view.findViewById(R.id.universityRV);
         universityRv.setLayoutManager(new LinearLayoutManager(getContext()));
         universityRv.setHasFixedSize(true);
-        OneActiveButtonAdapter universityRvAdapter = new OneActiveButtonAdapter(university);
+        universityRvAdapter = new OneActiveButtonAdapter(university);
         universityRv.setAdapter(universityRvAdapter);
         universityRvAdapter.setIndexOfActivatedButton(activeButtonIndex);
 
         universityRvAdapter.setAdapterListener(position -> {
             int currentPosition = universityRvAdapter.getIndexOfActivatedButton();
-            int currentEnergy = activityListener.getEnergy();
-            if (currentPosition != -1) {
-                currentEnergy += university.get(currentPosition).getEnergyNeeded();
-            }
-            StudentActivity newStudy = university.get(position);
-            if (currentEnergy >= newStudy.getEnergyNeeded()) {
-                if (currentPosition != -1) {
-                    activityListener.unclickOnStudyButton((Study) university.get(currentPosition));
-                }
+            if (currentPosition == position) {
+                activityListener.unclickOnStudyButton((Study) university.get(currentPosition));
                 universityRvAdapter.setIndexOfActivatedButton(position);
                 changeButtonActivity(position);
                 universityRvAdapter.notifyDataSetChanged();
-                if (currentPosition != position) {
-                    activityListener.clickOnStudyButton((Study) university.get(position));
-                }
             } else {
-                Toast.makeText(getContext(),
-                        StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
-                        Toast.LENGTH_SHORT).show();
+                activityListener.clickOnStudyButton(position, Study.TYPE_OF_STUDY.UNIVERSITY);
             }
         });
 
         extraActivityRv = view.findViewById(R.id.extraActivityRV);
         extraActivityRv.setLayoutManager(new LinearLayoutManager(getContext()));
         extraActivityRv.setHasFixedSize(true);
-        ActiveButtonsAdapter extraActivityRvAdapter = new ActiveButtonsAdapter(extraActivity);
+        extraActivityRvAdapter = new ActiveButtonsAdapter(extraActivity);
         extraActivityRv.setAdapter(extraActivityRvAdapter);
 
         extraActivityRvAdapter.setAdapterListener(position -> {
@@ -118,18 +127,7 @@ public class StudyFragment extends Fragment {
                 changeAccessForSideButton(position);
                 extraActivityRvAdapter.notifyDataSetChanged();
             } else {
-                int currentEnergy = activityListener.getEnergy();
-                StudentActivity newStudy = extraActivity.get(position);
-                if (currentEnergy >= newStudy.getEnergyNeeded()) {
-                    activityListener.clickOnStudyButton((Study) extraActivity.get(position));
-                    extraActivityRvAdapter.setButtonDisActivate(position);
-                    changeAccessForSideButton(position);
-                    extraActivityRvAdapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(getContext(),
-                            StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
-                            Toast.LENGTH_SHORT).show();
-                }
+                activityListener.clickOnStudyButton(position, Study.TYPE_OF_STUDY.EXTRA);
             }
         });
 
