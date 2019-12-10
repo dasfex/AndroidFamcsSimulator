@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,11 +18,7 @@ import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.StudentActivity;
-import com.source.studsimulator.model.entity.Study;
-import com.source.studsimulator.model.entity.Work;
-import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.fragments.adapters.FriendAdapter;
-import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonWithBlockCharacteristics;
 
 import java.util.ArrayList;
@@ -75,7 +70,6 @@ public class HobbyFragment extends Fragment {
     public interface OnHobbyFragmentListener {
         void clickOnHobbyButton(int index, Friend friend);
         void unclickOnHobbyButton(Hobby hobby, Friend friend);
-        int getEnergy();
     }
 
     private void initializeLists() {

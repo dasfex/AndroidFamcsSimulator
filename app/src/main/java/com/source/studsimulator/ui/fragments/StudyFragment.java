@@ -77,7 +77,6 @@ public class StudyFragment extends Fragment {
     public interface OnStudyFragmentListener {
         void clickOnStudyButton(int index, Study.TYPE_OF_STUDY type);
         void unclickOnStudyButton(Study study);
-        int getEnergy();
     }
 
     @Override

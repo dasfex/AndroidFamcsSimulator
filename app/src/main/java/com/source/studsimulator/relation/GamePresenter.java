@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.ActionObjects;
-import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.model.GameLogic.PlayerStatsEnum;
 import com.source.studsimulator.model.entity.ContainsRandomAction;
 import com.source.studsimulator.model.entity.Food;
@@ -149,10 +148,12 @@ public class GamePresenter implements GameContract.Presenter {
             Friend friend = weekLiveChoicesStaff.getFriend();
             if (friend != null) {
                 if (!friend.isBusy()) {
-                    if (friend.getName().equals("Kарла")) {
+                    if (friend.getName().equals(getContext().getString(R.string.carla))) {
                         applyRandomAction(ActionObjects.getAction(14));
                     }
-                    if (friend.getName().equals("Карла") || friend.getName().equals("Саша Спилберг") || friend.getName().equals("Стар")) {
+                    if (friend.getName().equals(getContext().getString(R.string.carla)) || 
+                            friend.getName().equals(getContext().getString(R.string.spilbergsasha)) 
+                            || friend.getName().equals(getContext().getString(R.string.star))) {
                         applyRandomAction(ActionObjects.getAction(13));
                     }
                     model.hobby(hobbyItem, weekLiveChoicesStaff.getFriend());
@@ -202,7 +203,8 @@ public class GamePresenter implements GameContract.Presenter {
     public void clickOnFoodButton(int position) {
         Food food = (Food) ActionObjects.getFoodList().get(position);
         if (food.getEnergyNeeded() > model.getEnergyLevel()) {
-            view.notAvailableMessage("Не достаточно энергии");
+            view.notAvailableMessage(StudSimulatorApplication.getContext()
+                    .getString(R.string.energyless));
             return;
         }
         weekLiveChoicesStaff.addFood(food);
@@ -231,15 +233,15 @@ public class GamePresenter implements GameContract.Presenter {
                 break;
         }
         if (study.getProgrammingSkillRequired() > model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)) {
-            view.notAvailableMessage("Не достаточный навык программирования");
+            view.notAvailableMessage(getContext().getString(R.string.programmingless));
             return;
         }
         if (study.getEnglishSkillRequired() > model.getParameter(PlayerStatsEnum.ENGLISH_SKILL)) {
-            view.notAvailableMessage("Не достаточный навык английского");
+            view.notAvailableMessage(getContext().getString(R.string.englishless));
             return;
         }
         if (study.getEnergyNeeded() > model.getEnergyLevel()) {
-            view.notAvailableMessage("Не достаточно энергии");
+            view.notAvailableMessage(getContext().getString(R.string.energyless));
             return;
         }
         weekLiveChoicesStaff.addStudy(study);
@@ -271,15 +273,15 @@ public class GamePresenter implements GameContract.Presenter {
                 break;
         }
         if (work.getProgrammingSkillRequired() > model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)) {
-            view.notAvailableMessage("Не достаточный навык программирования");
+            view.notAvailableMessage(getContext().getString(R.string.programmingless));
             return;
         }
         if (work.getEnglishSkillRequired() > model.getParameter(PlayerStatsEnum.ENGLISH_SKILL)) {
-            view.notAvailableMessage("Не достаточный навык английского");
+            view.notAvailableMessage(getContext().getString(R.string.englishless));
             return;
         }
         if (work.getEnergyNeeded() > model.getEnergyLevel()) {
-            view.notAvailableMessage("Не достаточно энергии");
+            view.notAvailableMessage(getContext().getString(R.string.energyless));
             return;
         }
         weekLiveChoicesStaff.addWork(work);
@@ -299,7 +301,7 @@ public class GamePresenter implements GameContract.Presenter {
     public void clickOnHobbyButton(int position, Friend friend) {
         Hobby hobby = (Hobby) ActionObjects.getHobbyList().get(position);
         if (hobby.getEnergyNeeded() > model.getEnergyLevel()) {
-            view.notAvailableMessage("Недостаточно энергии");
+            view.notAvailableMessage(getContext().getString(R.string.energyless));
             return;
         }
         weekLiveChoicesStaff.addHobby(hobby);

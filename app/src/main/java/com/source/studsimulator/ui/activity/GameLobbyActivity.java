@@ -23,7 +23,6 @@ import com.source.studsimulator.relation.GameContract;
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.relation.GamePresenter;
-import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.fragments.FoodFragment;
 import com.source.studsimulator.ui.fragments.HobbyFragment;
@@ -197,11 +196,6 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     @Override
     public void unclickOnStudyButton(Study study) {
         presenter.unclickOnStudyButton(study);
-    }
-
-    @Override
-    public int getEnergy() {
-        return Integer.valueOf(String.valueOf(energyTextView.getText()));
     }
 
     @Override

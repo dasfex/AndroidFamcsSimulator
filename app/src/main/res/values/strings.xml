@@ -88,7 +88,7 @@
     <string name="player_bd_message">У вас День рождения! Все характеристики увеличены! </string>
     <string name="draka_message">Когда вы подменяли друга в клубе, случилась драка! Ваше здоровье уменьшилось. </string>
     <string name="loader_message">Вы сорвали спину, разгружая вагоны! Ваше здоровье уменьшилось. </string>
-    <string name="friend_busy_message">Ваш друг был занят! </string>
+    <string name="friend_busy_message">Ваш друг был занят! Потому вы развлекались в одиночестве... </string>
     <string name="grant">Пришла стипендия! Время вечеринки с блекджеком и джавой! </string>
     <string name="zero_grant">Вы остались без стипендии. Почему? По кочану! </string>
     <string name="angry_em">Заведующая общаги спалила, что вы НЕ ЗАПЛАТИЛИ ЗА ОБЩЕЖИТИЕ. Скажите спасибо, что живы остались. </string>
@@ -134,5 +134,12 @@
     <string name="senior_prog">Senior</string>
     <string name="lead_prog">Lead</string>
     <string name="gena_prog">Korotkevich</string>
+
+    <string name="energyless">Недостаточно энергии</string>
+    <string name="carla">Kарла</string>
+    <string name="spilbergsasha">Саша Спилберг</string>
+    <string name="star">Стар</string>
+    <string name="programmingless">Недостаточный навык программирования</string>
+    <string name="englishless">Недостаточный навык английского</string>
 
 </resources>

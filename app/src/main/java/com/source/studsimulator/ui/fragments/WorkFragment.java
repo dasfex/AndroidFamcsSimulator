@@ -81,10 +81,7 @@ public class WorkFragment extends Fragment {
 
     public interface OnWorkFragmentListener {
         void clickOnWorkButton(int position, Work.TYPE_OF_WORK type);
-
         void unclickOnWorkButton(Work work);
-
-        int getEnergy();
     }
 
     @Override

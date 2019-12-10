@@ -84,10 +84,10 @@ public class ActionObjects {
             friendList.add(new Friend(100, -1, 0, "С собой", R.drawable.alone, false));
             friendList.add(new Friend(50, 20, 3, "Витя", R.drawable.vitya, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 5, 5, "Женя", R.drawable.zhenya, ActionObjects.getAction(9)));
-            friendList.add(new Friend(50, 90, 20, "Саша Спилберг", R.drawable.sasha, ActionObjects.getAction(9)));
-            friendList.add(new Friend(50, 70, 15, "Карла", R.drawable.karla, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 90, 20, StudSimulatorApplication.getContext().getString(R.string.spilbergsasha), R.drawable.sasha, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 70, 15, StudSimulatorApplication.getContext().getString(R.string.carla), R.drawable.karla, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 10, 10, "Ник", R.drawable.nick, ActionObjects.getAction(9)));
-            friendList.add(new Friend(50, 15, 11, "Стар", R.drawable.star, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 15, 11, StudSimulatorApplication.getContext().getString(R.string.star), R.drawable.star, ActionObjects.getAction(9)));
         }
         return friendList;
     }
@@ -162,7 +162,6 @@ public class ActionObjects {
                     100, 0, 0, 0, 0)
             );
             randomActionsList.add(new RandomAction(
-
                     StudSimulatorApplication.getContext().getString(R.string.grant),
                     100, 0, 0, 0, 50)
             );

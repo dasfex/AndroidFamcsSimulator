@@ -9,9 +9,7 @@ import android.widget.Button;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.source.studsimulator.R;
-import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.StudentActivity;
-import com.source.studsimulator.ui.StudSimulatorApplication;
 
 import java.util.List;
 
