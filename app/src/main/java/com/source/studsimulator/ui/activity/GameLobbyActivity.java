@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
@@ -142,13 +143,13 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnHobbyButton(int position) {
-        presenter.clickOnHobbyButton(position);
+    public void clickOnHobbyButton(int position, Friend friend) {
+        presenter.clickOnHobbyButton(position, friend);
     }
 
     @Override
-    public void unclickOnHobbyButton(Hobby hobby) {
-        presenter.unclickOnHobbyButton(hobby);
+    public void unclickOnHobbyButton(Hobby hobby, Friend friend) {
+        presenter.unclickOnHobbyButton(hobby, friend);
     }
 
     @Override

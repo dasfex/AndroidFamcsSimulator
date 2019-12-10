@@ -73,10 +73,8 @@ public class HobbyFragment extends Fragment {
     }
 
     public interface OnHobbyFragmentListener {
-        void clickOnHobbyButton(int index);
-
-        void unclickOnHobbyButton(Hobby hobby);
-
+        void clickOnHobbyButton(int index, Friend friend);
+        void unclickOnHobbyButton(Hobby hobby, Friend friend);
         int getEnergy();
     }
 
@@ -97,12 +95,13 @@ public class HobbyFragment extends Fragment {
         hobbyRvAdapter.setAdapterListener(position -> {
             int currentPosition = hobbyRvAdapter.getIndexOfActivatedButton();
             if (currentPosition == position) {
-                activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition));
+                activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition),
+                                                     (Friend) friendSpinner.getSelectedItem());
                 hobbyRvAdapter.setIndexOfActivatedButton(position);
                 changeAccessForHobby(position);
                 hobbyRvAdapter.notifyDataSetChanged();
             } else {
-                activityListener.clickOnHobbyButton(position);
+                activityListener.clickOnHobbyButton(position, (Friend) friendSpinner.getSelectedItem());
             }
         });
 

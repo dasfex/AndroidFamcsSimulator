@@ -1,6 +1,6 @@
 <resources>
     <string name="new_game">Новая игра</string>
-    <string name="app_name">FAMCS Student simulator</string>
+    <string name="app_name">FAMCS</string>
     <string name="action_settings">Настройки</string>
     <string name="exit">Выход</string>
 
@@ -88,6 +88,13 @@
     <string name="player_bd_message">У вас День рождения! Все характеристики увеличены! </string>
     <string name="draka_message">Когда вы подменяли друга в клубе, случилась драка! Ваше здоровье уменьшилось. </string>
     <string name="loader_message">Вы сорвали спину, разгружая вагоны! Ваше здоровье уменьшилось. </string>
+    <string name="friend_busy_message">Ваш друг был занят! </string>
+    <string name="grant">Пришла стипендия! Время вечеринки с блекджеком и джавой! </string>
+    <string name="zero_grant">Вы остались без стипендии. Почему? По кочану! </string>
+    <string name="angry_em">Заведующая общаги спалила, что вы НЕ ЗАПЛАТИЛИ ЗА ОБЩЕЖИТИЕ. Скажите спасибо, что живы остались. </string>
+    <string name="walk_with_girls">Прогулки с дамами дороговато вам обходятся... </string>
+    <string name="sad">Неужели Ефим и Карла вместе??? О нет!</string>
+    <string name="bigger_grant">Мммм... Стипендия...</string>
 
     <string name="handbook">Handbook</string>
     <string name="Jtransition">Jtransition</string>
@@ -100,10 +107,13 @@
     <string name="freelance">Пофрилансить</string>
   
     <string name="notEnoughEnergy">Недостаточно энергии!</string>
+    <string name="noMoney">Недостаточно денег!</string>
     <string name="death">СМЭРЦЬ!</string>
     <string name="death_text">Похоже вы не расчитали свои силы и умерли. А ведь мама говорила, что надо было идти в БГУИР. Ну иди теперь в армейку. Кыш-кыш!</string>
     <string name="death_button">Мам, я стану рэпером!</string>
     <string name="studyStage">Этап обучения:</string>
+    <string name="nice">Хм...</string>
+    <string name="nice_text">Вы долго учились и сильно устали, давайте посмотрим на фоточки Вари!</string>
 
     <string name="a1">A1</string>
     <string name="a2">A2</string>

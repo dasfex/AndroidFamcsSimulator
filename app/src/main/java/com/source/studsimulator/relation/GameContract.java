@@ -3,6 +3,7 @@ package com.source.studsimulator.relation;
 
 import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.RandomAction;
@@ -43,19 +44,20 @@ public interface GameContract {
         void clickOnWorkButton(int number, Work.TYPE_OF_WORK type);
         void deactivateWorkButton(Work work);
 
-        void clickOnHobbyButton(int position);
-        void unclickOnHobbyButton(Hobby hobby);
+        void clickOnHobbyButton(int position, Friend friend);
+        void unclickOnHobbyButton(Hobby hobby, Friend friend);
     }
 
     interface Model {
         void newWeek(int energy);
+        void weekCharacteristicDecrease();
 
         void pay(Payable payable);
 
         void eat(Food food);
         void study(Study study);
         void work(Work work);
-        void hobby(Hobby hobby);
+        void hobby(Hobby hobby, Friend friend);
         void applyRandomAction(RandomAction action);
         void normalizeCharacteristics();
 
