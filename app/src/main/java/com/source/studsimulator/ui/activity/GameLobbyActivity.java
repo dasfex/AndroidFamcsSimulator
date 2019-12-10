@@ -226,7 +226,13 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void printDeadMessage() {
+    public void updateFragmentSkills(int programming, int english) {
+        ((WorkFragment) workFragment).updateSkills(programming, english);
+        ((StudyFragment) studyFragment).updateSkills(programming, english);
+    }
+
+    @Override
+    public void showDeathMessage() {
         SoundActivity.hearSound(this, R.raw.death);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getContext().getString(R.string.death))

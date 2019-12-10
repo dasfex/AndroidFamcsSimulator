@@ -38,7 +38,6 @@ public class StudyFragment extends Fragment {
     OneActiveButtonAdapter universityRvAdapter;
     ActiveButtonsAdapter extraActivityRvAdapter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,6 +46,8 @@ public class StudyFragment extends Fragment {
         initializeLists();
 
         initializeRv(view);
+
+        updateSkills(0, 0);
 
         return view;
     }
@@ -72,6 +73,10 @@ public class StudyFragment extends Fragment {
 
     private void changeAccessForSideButton(int pos) {
         isCourseActive.set(pos, !isCourseActive.get(pos));
+    }
+
+    public void updateSkills(int programming, int english) {
+        extraActivityRvAdapter.setSkills(programming, english);
     }
 
     public interface OnStudyFragmentListener {

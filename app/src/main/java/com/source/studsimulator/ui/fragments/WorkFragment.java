@@ -37,10 +37,9 @@ public class WorkFragment extends Fragment {
 
     private WorkFragment.OnWorkFragmentListener activityListener;
 
-    BlockUnactiveButtonsAdapter summerWorkAdapter;
-    BlockUnactiveButtonsAdapter workAdapter;
     ActiveButtonsAdapter sideJobsAdapter;
-
+    BlockUnactiveButtonsAdapter workAdapter;
+    BlockUnactiveButtonsAdapter summerWorkAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,6 +50,8 @@ public class WorkFragment extends Fragment {
         initializeLists();
 
         initializeRecyclerView(view);
+
+        updateSkills(0, 0);
 
         if (isSideJobActive.size() == 0) {
             for (int i = 0; i < sideJobList.size(); ++i) {
@@ -90,6 +91,12 @@ public class WorkFragment extends Fragment {
         if (context instanceof WorkFragment.OnWorkFragmentListener) {
             activityListener = (WorkFragment.OnWorkFragmentListener) context;
         }
+    }
+
+    public void updateSkills(int programming, int english) {
+        sideJobsAdapter.setSkills(programming, english);
+        workAdapter.setSkills(programming, english);
+        summerWorkAdapter.setSkills(programming, english);
     }
 
     private void changeAccessForSideButton(int pos) {

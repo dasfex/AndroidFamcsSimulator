@@ -19,15 +19,17 @@ public interface GameContract {
         void updateWeek(int weekNumber);
         void updateEnergyLevel(int energyLevel);
         void updateWeekInformation(GamePresenter.PlayerInformation newInformation);
+        void updateFragmentSkills(int programming, int english);
 
         void cleanRandomActionsMessages();
         void writeRandomActionMessage(String message);
 
-        void printDeadMessage();
         void activateWorkButton(int number, Work.TYPE_OF_WORK type);
         void activateStudyButton(int number, Study.TYPE_OF_STUDY type);
         void activateFoodButton(int number);
         void activateHobhyButton(int number);
+
+        void showDeathMessage();
         void notAvailableMessage(String message);
     }
 

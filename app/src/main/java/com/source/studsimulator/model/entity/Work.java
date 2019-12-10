@@ -116,17 +116,16 @@ public class Work implements StudentActivity, ContainsRandomAction {
     }
 
     @Override
-    public void setEnable(int characteristicForBlock) {
-        isEnable = isGood(characteristicForBlock);
-    }
+    public void setEnable(int characteristicForBlock) {}
 
     @Override
     public boolean isEnable() {
         return isEnable;
     }
 
-    private boolean isGood(int characteristicForBlock) {
-        return true;
+    @Override
+    public void setSkills(int programming, int english) {
+        isEnable = programming >= programmingSkillRequired && english >= englishSkillRequired;
     }
 
     @Override

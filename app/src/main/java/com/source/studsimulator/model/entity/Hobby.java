@@ -34,6 +34,7 @@ public class Hobby implements Payable, StudentActivity, ContainsRandomAction {
         this.energyNeeded = energy;
         this.friendshipLevelRequired = friendshipLevelRequired;
     }
+
     public Hobby(String title, int price,
                  int healthChanging, int satietyChanging, int energy,
                  int friendshipLevelRequired, RandomAction randomAction) throws IllegalArgumentException {
@@ -79,10 +80,6 @@ public class Hobby implements Payable, StudentActivity, ContainsRandomAction {
         return satietyChanging;
     }
 
-    public int getFriendshipLevelRequired() {
-        return friendshipLevelRequired;
-    }
-
     @Override
     public void setEnable(int characteristicForBlock) {
         isEnable = characteristicForBlock > friendshipLevelRequired;
@@ -92,6 +89,9 @@ public class Hobby implements Payable, StudentActivity, ContainsRandomAction {
     public boolean isEnable() {
         return isEnable;
     }
+
+    @Override
+    public void setSkills(int programming, int english) {}
 
     @Override
     public RandomAction getRandomAction() {
