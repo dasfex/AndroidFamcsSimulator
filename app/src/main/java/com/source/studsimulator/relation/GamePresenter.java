@@ -13,6 +13,8 @@ import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.entity.ViewState;
 
+import static com.source.studsimulator.model.entity.Work.TypeOfWork.SUMMER;
+
 public class GamePresenter implements GameContract.Presenter {
 
     public class PlayerInformation {
@@ -67,6 +69,7 @@ public class GamePresenter implements GameContract.Presenter {
         view.cleanRandomActionsMessages();
         applyLiveChoices(weekLiveChoicesStaff);
         model.newWeek(energy);
+        eraseExcessLiveChoices();
         updatePlayerStats();
         view.updateWeek(model.getWeek());
         view.updateEnergyLevel(model.getEnergyLevel());
@@ -111,6 +114,17 @@ public class GamePresenter implements GameContract.Presenter {
         }
         // money from parents
         applyRandomAction(ActionObjects.getAction(3));
+    }
+
+    void eraseExcessLiveChoices() {
+        if (!model.getStudyStage().equals(StudSimulatorApplication.getContext().getString(R.string.holidays))) {
+            for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
+                if (ActionObjects.getSummerWorkList().contains(workItem)) {
+                    view.unClick(workItem, SUMMER);
+                    view.writeRandomActionMessage("Стажировка закончилась. Вы заработали кучу долларов и отправляетесь домой");
+                }
+            }
+        }
     }
 
     @Override
@@ -171,7 +185,7 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void clickOnWorkButton(int number, Work.TYPE_OF_WORK type) {
+    public void clickOnWorkButton(int number, Work.TypeOfWork type) {
         Work work = (Work) ActionObjects.getWorkList().get(0);
         ;
         switch (type) {
@@ -184,6 +198,10 @@ public class GamePresenter implements GameContract.Presenter {
             case FULL_TIME:
                 work = (Work) ActionObjects.getWorkList().get(number);
                 break;
+        }
+        if (type == SUMMER && !model.getStudyStage().equals(StudSimulatorApplication.getContext().getString(R.string.holidays))) {
+            view.notAvailableMessage("Стажировки доступны только на каникулах");
+            return;
         }
         if (work.getProgrammingSkillRequired() > model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)) {
             view.notAvailableMessage("Не достаточный навык программирования");

@@ -22,7 +22,6 @@ import com.source.studsimulator.relation.GameContract;
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.GameLogic;
 import com.source.studsimulator.relation.GamePresenter;
-import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.fragments.FoodFragment;
 import com.source.studsimulator.ui.fragments.HobbyFragment;
@@ -152,7 +151,11 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void activateWorkButton(int number, Work.TYPE_OF_WORK type) {
+    public void unClick(Work workItem, Work.TypeOfWork type) {
+        workFragment.unClick(workItem, type);
+    }
+    @Override
+    public void activateWorkButton(int number, Work.TypeOfWork type) {
         workFragment.activateButton(number, type);
     }
 
@@ -179,7 +182,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnWorkButton(int number, Work.TYPE_OF_WORK type) {
+    public void clickOnWorkButton(int number, Work.TypeOfWork type) {
         presenter.clickOnWorkButton(number, type);
     }
 

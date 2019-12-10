@@ -23,11 +23,13 @@ public interface GameContract {
         void writeRandomActionMessage(String message);
 
         void printDeadMessage();
-        void activateWorkButton(int number, Work.TYPE_OF_WORK type);
+        void activateWorkButton(int number, Work.TypeOfWork type);
         void activateStudyButton(int number, Study.TYPE_OF_STUDY type);
         void activateFoodButton(int number);
         void activateHobhyButton(int number);
         void notAvailableMessage(String message);
+
+        void unClick(Work workItem, Work.TypeOfWork type);
     }
 
     interface Presenter {
@@ -40,7 +42,7 @@ public interface GameContract {
         void clickOnStudyButton(int position, Study.TYPE_OF_STUDY type);
         void unclickOnStudyButton(Study study);
 
-        void clickOnWorkButton(int number, Work.TYPE_OF_WORK type);
+        void clickOnWorkButton(int number, Work.TypeOfWork type);
         void deactivateWorkButton(Work work);
 
         void clickOnHobbyButton(int position);

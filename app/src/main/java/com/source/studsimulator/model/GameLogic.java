@@ -16,7 +16,7 @@ public class GameLogic implements GameContract.Model {
     private Student student;
     private int gameTime = 1;
     private int energyLevel = 16;
-    private String studyStage;
+    private String studyStage = StudSimulatorApplication.getContext().getString(R.string.semestr);
 
     public enum PlayerStatsEnum {
         EDUCATION_LEVEL, HEALTH, SATIETY, MONEY,
