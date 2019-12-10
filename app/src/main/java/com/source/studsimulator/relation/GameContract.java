@@ -23,7 +23,10 @@ public interface GameContract {
         void writeRandomActionMessage(String message);
 
         void printDeadMessage();
-        void activateStudyButton(int number, Work.TYPE_OF_WORK type);
+        void activateWorkButton(int number, Work.TYPE_OF_WORK type);
+        void activateStudyButton(int number, Study.TYPE_OF_STUDY type);
+        void activateFoodButton(int number);
+        void activateHobhyButton(int number);
         void notAvailableMessage(String message);
     }
 
@@ -31,17 +34,16 @@ public interface GameContract {
         void viewCreated();
         void clickOnNewWeekButton(int energy);
 
-        void clickOnFoodButton(Food food);
+        void clickOnFoodButton(int position);
         void unclickOnFoodButton(Food food);
 
-        void clickOnStudyButton(Study study);
+        void clickOnStudyButton(int position, Study.TYPE_OF_STUDY type);
         void unclickOnStudyButton(Study study);
 
-        void activateWorkButton(Work work);
         void clickOnWorkButton(int number, Work.TYPE_OF_WORK type);
         void deactivateWorkButton(Work work);
 
-        void clickOnHobbyButton(Hobby hobby);
+        void clickOnHobbyButton(int position);
         void unclickOnHobbyButton(Hobby hobby);
     }
 

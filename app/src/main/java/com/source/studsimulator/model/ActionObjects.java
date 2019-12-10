@@ -46,8 +46,8 @@ public class ActionObjects {
     public static List<StudentActivity> getUniversityList() {
         if (universityList.isEmpty()) {
             universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 0, 0, 5, 0, 0, 0, 0, 0));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 15, -4, -15, 1, 1, 0, 0, 1));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 2, -1, -10, 2, 2, 0, 0, 2, ActionObjects.getAction(1)));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 15, -4, -15, 1, 0, 0, 0, 1));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 2, -1, -10, 2, 0, 0, 0, 2, ActionObjects.getAction(1)));
             universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 20, -6, -20, 4, 0, 5, 0, 3));
         }
         return universityList;
@@ -106,8 +106,8 @@ public class ActionObjects {
 
     public static List<StudentActivity> getWorkList() {
         if (workList.isEmpty()) {
-            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Mak), -10, -10, 50, 20, 30, 10, 6, 2));
-            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Jtransition), -6, -7, 40, 5, 2, 5, 4, 3));
+            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Mak), -10, -10, 50, 0, 0, 10, 6, 2));
+            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Jtransition), -6, -7, 40, 15, 2, 5, 4, 3));
             workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.tyndex), -20, -20, 100, 50, 3, 20, 1, 3));
         }
         return workList;

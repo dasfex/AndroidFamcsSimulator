@@ -58,10 +58,10 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     private ImageButton hobbyButton;
 
     private Fragment informationFragment;
-    private Fragment foodFragment;
-    private Fragment studyFragment;
+    private FoodFragment foodFragment;
+    private StudyFragment studyFragment;
     private WorkFragment workFragment;
-    private Fragment hobbyFragment;
+    private HobbyFragment hobbyFragment;
 
     private FragmentTransaction fragmentTransaction;
 
@@ -132,8 +132,8 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnFoodButton(Food food) {
-        presenter.clickOnFoodButton(food);
+    public void clickOnFoodButton(int position) {
+        presenter.clickOnFoodButton(position);
     }
 
     @Override
@@ -142,8 +142,8 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnHobbyButton(Hobby hobby) {
-        presenter.clickOnHobbyButton(hobby);
+    public void clickOnHobbyButton(int position) {
+        presenter.clickOnHobbyButton(position);
     }
 
     @Override
@@ -152,15 +152,30 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void activateStudyButton(int number, Work.TYPE_OF_WORK type) {
+    public void activateWorkButton(int number, Work.TYPE_OF_WORK type) {
         workFragment.activateButton(number, type);
+    }
+
+    @Override
+    public void activateStudyButton(int number, Study.TYPE_OF_STUDY type) {
+        studyFragment.activateButton(number, type);
+    }
+
+    @Override
+    public void activateFoodButton(int number) {
+        foodFragment.activateButton(number);
+    }
+
+    @Override
+    public void activateHobhyButton(int number) {
+        hobbyFragment.activateButton(number);
     }
 
     @Override
     public void notAvailableMessage(String message) {
         Toast.makeText(getContext(),
-                            message,
-                            Toast.LENGTH_SHORT).show();
+                message,
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -174,8 +189,8 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnStudyButton(Study study) {
-        presenter.clickOnStudyButton(study);
+    public void clickOnStudyButton(int position, Study.TYPE_OF_STUDY type) {
+        presenter.clickOnStudyButton(position, type);
     }
 
     @Override
@@ -214,7 +229,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         InfoFragment infoFragment = (InfoFragment) informationFragment;
         infoFragment.writeMessage(message);
     }
-          
+
     @Override
     public void printDeadMessage() {
         SoundActivity.hearSound(this, R.raw.death);

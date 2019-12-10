@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.ActionObjects;
@@ -81,7 +80,7 @@ public class WorkFragment extends Fragment {
     }
 
     public interface OnWorkFragmentListener {
-        void clickOnWorkButton(int number, Work.TYPE_OF_WORK type);
+        void clickOnWorkButton(int position, Work.TYPE_OF_WORK type);
 
         void unclickOnWorkButton(Work work);
 
@@ -128,18 +127,7 @@ public class WorkFragment extends Fragment {
                 changeAccessForSideButton(position);
                 sideJobsAdapter.notifyDataSetChanged();
             } else {
-//                int currentEnergy = activityListener.getEnergy();
-//                StudentActivity newStudy = sideJobList.get(position);
                 activityListener.clickOnWorkButton(position, Work.TYPE_OF_WORK.SIDE);
-//                if (currentEnergy >= newStudy.getEnergyNeeded()) {
-//                    sideJobsAdapter.setButtonDisActivate(position);
-//                    changeAccessForSideButton(position);
-//                    sideJobsAdapter.notifyDataSetChanged();
-//                } else {
-//                    Toast.makeText(getContext(),
-//                            StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
-//                            Toast.LENGTH_SHORT).show();
-//                }
             }
         });
 
@@ -163,17 +151,6 @@ public class WorkFragment extends Fragment {
                 changeWorkButtonActivity(position);
             } else {
                 activityListener.clickOnWorkButton(position, Work.TYPE_OF_WORK.FULL_TIME);
-//                int currentEnergy = activityListener.getEnergy();
-//                StudentActivity newWork = workList.get(position);
-//                if (currentEnergy >= newWork.getEnergyNeeded()) {
-//                    activityListener.activateWorkButton((Work) workList.get(position));
-//                    workAdapter.setIndexOfActivatedButton(position);
-//                    changeWorkButtonActivity(position);
-//                } else {
-//                    Toast.makeText(getContext(),
-//                            StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
-//                            Toast.LENGTH_SHORT).show();
-//                }
             }
             workAdapter.notifyDataSetChanged();
         });
@@ -192,18 +169,6 @@ public class WorkFragment extends Fragment {
                 changeSummerWorkButtonActivity(position);
             } else {
                 activityListener.clickOnWorkButton(position, Work.TYPE_OF_WORK.SUMMER);
-//                activityListener.clickOnWorkButton((Work) summerWorkList.get(activeSummerWorkIndex));
-//                int currentEnergy = activityListener.getEnergy();
-//                StudentActivity newSummerWork = summerWorkList.get(position);
-//                if (currentEnergy >= newSummerWork.getEnergyNeeded()) {
-//                    activityListener.activateWorkButton((Work) summerWorkList.get(position));
-//                    summerWorkAdapter.setIndexOfActivatedButton(position);
-//                    changeSummerWorkButtonActivity(position);
-//                } else {
-//                    Toast.makeText(getContext(),
-//                            StudSimulatorApplication.getContext().getString(R.string.notEnoughEnergy),
-//                            Toast.LENGTH_SHORT).show();
-//                }
             }
             summerWorkAdapter.notifyDataSetChanged();
         });
