@@ -167,7 +167,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void activateHobhyButton(int number) {
+    public void activateHobbyButton(int number) {
         hobbyFragment.activateButton(number);
     }
 
@@ -185,7 +185,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
 
     @Override
     public void unclickOnWorkButton(Work work) {
-        presenter.deactivateWorkButton(work);
+        presenter.unclickOnWorkButton(work);
     }
 
     @Override

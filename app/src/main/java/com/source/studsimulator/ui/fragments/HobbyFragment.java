@@ -95,6 +95,10 @@ public class HobbyFragment extends Fragment {
                 changeAccessForHobby(position);
                 hobbyRvAdapter.notifyDataSetChanged();
             } else {
+                if (currentPosition != -1) {
+                    activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition),
+                            (Friend) friendSpinner.getSelectedItem());
+                }
                 activityListener.clickOnHobbyButton(position, (Friend) friendSpinner.getSelectedItem());
             }
         });

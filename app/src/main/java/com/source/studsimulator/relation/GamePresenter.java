@@ -83,9 +83,10 @@ public class GamePresenter implements GameContract.Presenter {
         for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
             sum -= workItem.getAmountOfMoney();
         }
-        for (Hobby hobbyItem : weekLiveChoicesStaff.getHobbyList()) {
-            sum += hobbyItem.getPrice().getPrice();
+        for (Hobby hobby : weekLiveChoicesStaff.getHobbyList()) {
+            sum += hobby.getPrice().getPrice();
         }
+
         return sum > model.getParameter(PlayerStatsEnum.MONEY);
     }
 
@@ -148,7 +149,7 @@ public class GamePresenter implements GameContract.Presenter {
             applyRandomAction(workItem);
         }
 
-        for (Hobby hobbyItem : weekLiveChoicesStaff.getHobbyList()) {
+        for (Hobby hobby : weekLiveChoicesStaff.getHobbyList()) {
             Friend friend = weekLiveChoicesStaff.getFriend();
             if (friend != null) {
                 if (!friend.isBusy()) {
@@ -160,16 +161,16 @@ public class GamePresenter implements GameContract.Presenter {
                             || friend.getName().equals(getContext().getString(R.string.star))) {
                         applyRandomAction(ActionObjects.getAction(13));
                     }
-                    model.hobby(hobbyItem, weekLiveChoicesStaff.getFriend());
+                    model.hobby(hobby, weekLiveChoicesStaff.getFriend());
                 } else {
-                    model.hobby(hobbyItem, null);
+                    model.hobby(hobby, null);
                     applyRandomAction(friend.getRandomAction());
                 }
                 friend.changeCharacteristics();
             } else {
-                model.hobby(hobbyItem, null);
+                model.hobby(hobby, null);
             }
-            applyRandomAction(hobbyItem);
+            applyRandomAction(hobby);
         }
 
         model.weekCharacteristicDecrease();
@@ -192,17 +193,16 @@ public class GamePresenter implements GameContract.Presenter {
             }
         }
 
+        if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) == 0) {
+            applyRandomAction(ActionObjects.getAction(11));
+        }
+
         model.normalizeCharacteristics();
 
         if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
                 model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
             view.showDeathMessage();
         }
-
-        if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) == 0) {
-            applyRandomAction(ActionObjects.getAction(11));
-        }
-
         view.updateFragmentSkills(model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL),
                 model.getParameter(PlayerStatsEnum.ENGLISH_SKILL));
     }
@@ -297,7 +297,7 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void deactivateWorkButton(Work work) {
+    public void unclickOnWorkButton(Work work) {
         weekLiveChoicesStaff.removeWork(work);
         model.changeEnergyLevel(work.getEnergyNeeded());
         changeEnergyLevel();
@@ -314,7 +314,7 @@ public class GamePresenter implements GameContract.Presenter {
         weekLiveChoicesStaff.addFriend(friend);
         model.changeEnergyLevel(-hobby.getEnergyNeeded());
         changeEnergyLevel();
-        view.activateHobhyButton(position);
+        view.activateHobbyButton(position);
     }
 
     @Override

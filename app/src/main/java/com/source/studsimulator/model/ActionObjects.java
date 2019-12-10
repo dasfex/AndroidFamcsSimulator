@@ -73,7 +73,7 @@ public class ActionObjects {
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 15, 5, 4, 80));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.eurovision), 0, 15, -5, 3, 10));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.help), 0, 6, 1, 3, 25));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.sport), 0, 20, 0, 15, 95));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.sport), 0, 20, 0, 10, 95));
             hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.walk), 0, 25, 2, 7, 99));
         }
         return hobbyList;
@@ -171,7 +171,7 @@ public class ActionObjects {
             ); // 11
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.angry_em),
-                    30, -30, 0, 0, 0)
+                    30, -10, 0, 0, 0)
             ); // 12
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.walk_with_girls),
