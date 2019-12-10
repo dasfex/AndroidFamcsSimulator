@@ -34,6 +34,8 @@ public class WorkFragment extends Fragment {
     private ArrayList<Boolean> isSideJobActive = new ArrayList<>();
     private int activeWorkIndex = -1;
     private int activeSummerWorkIndex = -1;
+    private int programming = 0;
+    private int english = 0;
 
     private WorkFragment.OnWorkFragmentListener activityListener;
 
@@ -50,8 +52,6 @@ public class WorkFragment extends Fragment {
         initializeLists();
 
         initializeRecyclerView(view);
-
-        updateSkills(0, 0);
 
         if (isSideJobActive.size() == 0) {
             for (int i = 0; i < sideJobList.size(); ++i) {
@@ -94,9 +94,8 @@ public class WorkFragment extends Fragment {
     }
 
     public void updateSkills(int programming, int english) {
-        sideJobsAdapter.setSkills(programming, english);
-        workAdapter.setSkills(programming, english);
-        summerWorkAdapter.setSkills(programming, english);
+        this.programming = programming;
+        this.english = english;
     }
 
     private void changeAccessForSideButton(int pos) {
@@ -122,6 +121,7 @@ public class WorkFragment extends Fragment {
         sideJobRv.setLayoutManager(new LinearLayoutManager(getContext()));
         sideJobRv.setHasFixedSize(true);
         sideJobsAdapter = new ActiveButtonsAdapter(sideJobList);
+        sideJobsAdapter.setSkills(programming, english);
         sideJobRv.setAdapter(sideJobsAdapter);
         sideJobsAdapter.setAdapterListener(position -> {
             List<Integer> currentIndices = sideJobsAdapter.getActiveButtonsIndices();
@@ -147,6 +147,7 @@ public class WorkFragment extends Fragment {
         workAdapter = new BlockUnactiveButtonsAdapter(workList);
         workRv.setAdapter(workAdapter);
         workAdapter.setIndexOfActivatedButton(activeWorkIndex);
+        workAdapter.setSkills(programming, english);
         workAdapter.setAdapterListener(position -> {
             int currentPosition = workAdapter.getIndexOfActivatedButton();
             if (currentPosition == position) {
@@ -165,6 +166,7 @@ public class WorkFragment extends Fragment {
         summerWorkAdapter = new BlockUnactiveButtonsAdapter(summerWorkList);
         summerWorkRv.setAdapter(summerWorkAdapter);
         summerWorkAdapter.setIndexOfActivatedButton(activeSummerWorkIndex);
+        summerWorkAdapter.setSkills(programming, english);
         summerWorkAdapter.setAdapterListener(position -> {
             int currentPosition = summerWorkAdapter.getIndexOfActivatedButton();
             if (currentPosition == position) {

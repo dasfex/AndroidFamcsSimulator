@@ -93,6 +93,7 @@ public class GamePresenter implements GameContract.Presenter {
     public void clickOnNewWeekButton(int energy) {
         if (CheckMoney()) {
             sendNoMoneyToast();
+            return;
         }
 
         view.cleanRandomActionsMessages();

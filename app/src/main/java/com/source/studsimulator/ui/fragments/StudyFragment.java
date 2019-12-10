@@ -31,6 +31,8 @@ public class StudyFragment extends Fragment {
     private List<StudentActivity> university;
     private List<StudentActivity> extraActivity;
     private ArrayList<Boolean> isCourseActive = new ArrayList<>();
+    private int programming = 0;
+    private int english = 0;
 
     private StudyFragment.OnStudyFragmentListener activityListener;
     private int activeButtonIndex = -1;
@@ -46,8 +48,6 @@ public class StudyFragment extends Fragment {
         initializeLists();
 
         initializeRv(view);
-
-        updateSkills(0, 0);
 
         return view;
     }
@@ -76,7 +76,8 @@ public class StudyFragment extends Fragment {
     }
 
     public void updateSkills(int programming, int english) {
-        extraActivityRvAdapter.setSkills(programming, english);
+        this.programming = programming;
+        this.english = english;
     }
 
     public interface OnStudyFragmentListener {
@@ -121,6 +122,7 @@ public class StudyFragment extends Fragment {
         extraActivityRv.setLayoutManager(new LinearLayoutManager(getContext()));
         extraActivityRv.setHasFixedSize(true);
         extraActivityRvAdapter = new ActiveButtonsAdapter(extraActivity);
+        extraActivityRvAdapter.setSkills(programming, english);
         extraActivityRv.setAdapter(extraActivityRvAdapter);
 
         extraActivityRvAdapter.setAdapterListener(position -> {
