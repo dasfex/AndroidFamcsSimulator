@@ -1,6 +1,7 @@
 package com.source.studsimulator.ui.fragments.adapters;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,12 @@ public class ActiveButtonsAdapter
         this.adapterListener = adapterListener;
     }
 
+    public void setSkills(int programming, int english) {
+        for (StudentActivity activity : studentActivities) {
+            activity.setSkills(programming, english);
+        }
+    }
+
     @Override
     public int getItemCount() {
         return studentActivities.size();
@@ -73,8 +80,11 @@ public class ActiveButtonsAdapter
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int ind) {
         viewHolder.button.setText(studentActivities.get(ind).getTitle());
-        viewHolder.button.setBackgroundColor(isButtonActivated.get(ind) ? Color.GREEN : Color.WHITE);
-
+        if (studentActivities.get(ind).isEnable()) {
+            viewHolder.button.setBackgroundColor(isButtonActivated.get(ind) ? Color.GREEN : Color.WHITE);
+        } else {
+            viewHolder.button.setBackgroundColor(Color.GRAY);
+        }
         viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 

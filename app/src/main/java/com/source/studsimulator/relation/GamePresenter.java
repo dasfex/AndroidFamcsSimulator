@@ -92,24 +92,9 @@ public class GamePresenter implements GameContract.Presenter {
     @Override
     public void clickOnNewWeekButton(int energy) {
         if (CheckMoney()) {
-            SoundActivity.hearSound(getContext(), R.raw.nomoney);
-            Toast clickToast = Toast.makeText(getContext(),
-                    getContext().getString(R.string.noMoney),
-                    Toast.LENGTH_SHORT);
-
-            clickToast.setGravity(Gravity.NO_GRAVITY, 0, 0);
-
-            LinearLayout toastContainer = (LinearLayout) clickToast.getView();
-            toastContainer.setBackgroundColor(Color.TRANSPARENT);
-
-            ImageView artImage = new ImageView(getContext());
-            artImage.setImageResource(R.drawable.nomoney);
-            toastContainer.addView(artImage, 0);
-
-            clickToast.show();
-            return;
+            sendNoMoneyToast();
         }
-        
+
         view.cleanRandomActionsMessages();
         applyLiveChoices(weekLiveChoicesStaff);
         model.newWeek(energy);
@@ -126,6 +111,24 @@ public class GamePresenter implements GameContract.Presenter {
                 friend.decreaseCharacteristics();
             }
         }
+    }
+
+    private void sendNoMoneyToast() {
+        SoundActivity.hearSound(getContext(), R.raw.nomoney);
+        Toast clickToast = Toast.makeText(getContext(),
+                getContext().getString(R.string.noMoney),
+                Toast.LENGTH_SHORT);
+
+        clickToast.setGravity(Gravity.NO_GRAVITY, 0, 0);
+
+        LinearLayout toastContainer = (LinearLayout) clickToast.getView();
+        toastContainer.setBackgroundColor(Color.TRANSPARENT);
+
+        ImageView artImage = new ImageView(getContext());
+        artImage.setImageResource(R.drawable.nomoney);
+        toastContainer.addView(artImage, 0);
+
+        clickToast.show();
     }
 
     private void applyLiveChoices(ViewState weekLiveChoicesStaff) {
@@ -151,8 +154,8 @@ public class GamePresenter implements GameContract.Presenter {
                     if (friend.getName().equals(getContext().getString(R.string.carla))) {
                         applyRandomAction(ActionObjects.getAction(14));
                     }
-                    if (friend.getName().equals(getContext().getString(R.string.carla)) || 
-                            friend.getName().equals(getContext().getString(R.string.spilbergsasha)) 
+                    if (friend.getName().equals(getContext().getString(R.string.carla)) ||
+                            friend.getName().equals(getContext().getString(R.string.spilbergsasha))
                             || friend.getName().equals(getContext().getString(R.string.star))) {
                         applyRandomAction(ActionObjects.getAction(13));
                     }
@@ -179,6 +182,7 @@ public class GamePresenter implements GameContract.Presenter {
         // money from parents
         applyRandomAction(ActionObjects.getAction(3));
 
+        // stependia
         if (model.getWeek() % 4 == 1) {
             if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) > 80) {
                 applyRandomAction(ActionObjects.getAction(15));
@@ -186,17 +190,20 @@ public class GamePresenter implements GameContract.Presenter {
                 applyRandomAction(ActionObjects.getAction(10));
             }
         }
-        
+
         model.normalizeCharacteristics();
 
         if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
                 model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
-            view.printDeadMessage();
+            view.showDeathMessage();
         }
 
         if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) == 0) {
             applyRandomAction(ActionObjects.getAction(11));
         }
+
+        view.updateFragmentSkills(model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL),
+                model.getParameter(PlayerStatsEnum.ENGLISH_SKILL));
     }
 
     @Override
@@ -223,7 +230,6 @@ public class GamePresenter implements GameContract.Presenter {
     @Override
     public void clickOnStudyButton(int position, Study.TYPE_OF_STUDY type) {
         Study study = (Study) ActionObjects.getUniversityList().get(0);
-        ;
         switch (type) {
             case UNIVERSITY:
                 study = (Study) ActionObjects.getUniversityList().get(position);
@@ -260,7 +266,6 @@ public class GamePresenter implements GameContract.Presenter {
     @Override
     public void clickOnWorkButton(int number, Work.TYPE_OF_WORK type) {
         Work work = (Work) ActionObjects.getWorkList().get(0);
-        ;
         switch (type) {
             case SUMMER:
                 work = (Work) ActionObjects.getSummerWorkList().get(number);

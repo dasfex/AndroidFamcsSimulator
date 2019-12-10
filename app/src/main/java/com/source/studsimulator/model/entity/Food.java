@@ -83,6 +83,9 @@ public class Food implements Payable, StudentActivity, ContainsRandomAction {
     }
 
     @Override
+    public void setSkills(int programming, int english) {}
+
+    @Override
     public RandomAction getRandomAction() {
         return randomAction;
     }

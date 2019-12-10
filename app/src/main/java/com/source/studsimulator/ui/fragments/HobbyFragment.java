@@ -116,7 +116,7 @@ public class HobbyFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 friendSpinner.setSelection(position);
                 Friend friend = (Friend) friendSpinner.getSelectedItem();
-                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel());
+                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel(), 0, 0);
                 hobbyRvAdapter.notifyDataSetChanged();
             }
 
@@ -124,7 +124,7 @@ public class HobbyFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
                 friendSpinner.setSelection(0);
                 Friend friend = (Friend) friendSpinner.getSelectedItem();
-                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel());
+                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel(), 0, 0);
                 hobbyRvAdapter.notifyDataSetChanged();
             }
         });

@@ -124,67 +124,67 @@ public class ActionObjects {
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.neighbour_action_message),
                     4, -3, 0, 0, 0)
-            );
+            ); // 0
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.spisyvanie_action_message),
                     4, 0, -40, 0, 0)
-            );
+            ); // 1
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.sushi_bad_message),
                     4, -3, 0, 0, 0)
-            );
+            ); // 2
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.parents_money_message),
                     0, 0, 0, 0, 10)
-            );
+            ); // 3
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.friend_fastfood_message),
                     4, 0, 0, 0, 10)
-            );
+            ); // 4
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.classmate_bd_message),
                     4, 0, 0, 0, -10)
-            );
+            ); // 5
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.player_bd_message),
                     100, 30, 30, 30, 100)
-            );
+            ); // 6
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.draka_message),
                     4, -10, 0, 0, 0)
-            );
+            ); // 7
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.loader_message),
                     4, -10, 0, 0, 0)
-            );
+            ); // 8
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.friend_busy_message),
                     100, 0, 0, 0, 0)
-            );
+            ); // 9
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.grant),
                     100, 0, 0, 0, 50)
-            );
+            ); // 10
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.zero_grant),
                     100, -2, 0, 0, 0)
-            );
+            ); // 11
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.angry_em),
                     30, -30, 0, 0, 0)
-            );
+            ); // 12
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.walk_with_girls),
                     100, 30, 0, 0, -50)
-            );
+            ); // 13
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.sad),
                     100, -40, 0, 0, 0)
-            );
+            ); // 14
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.bigger_grant),
                     100, 0, 0, 0, 60)
-            );
+            ); // 15
         }
         return randomActionsList.get(index);
     }

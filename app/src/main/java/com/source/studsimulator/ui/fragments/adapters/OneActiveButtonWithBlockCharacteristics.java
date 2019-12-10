@@ -38,9 +38,11 @@ public class OneActiveButtonWithBlockCharacteristics
         }
     }
 
-    public void setCharacteristicForBlock(int characteristicForBlock) {
+    public void setCharacteristicForBlock(int characteristicForBlock,
+                                          int programming, int english) {
         for (StudentActivity activity : studentActivities) {
             activity.setEnable(characteristicForBlock);
+            activity.setSkills(programming, english);
         }
     }
 
@@ -73,14 +75,12 @@ public class OneActiveButtonWithBlockCharacteristics
         viewHolder.button.setText(studentActivities.get(ind).getTitle());
         if (studentActivities.get(ind).isEnable() && ind == indexOfActivatedButton) {
             viewHolder.button.setBackgroundColor(Color.GREEN);
-            viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
         } else if (studentActivities.get(ind).isEnable()) {
             viewHolder.button.setBackgroundColor(Color.WHITE);
-            viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
         } else {
             viewHolder.button.setBackgroundColor(Color.GRAY);
-            viewHolder.button.setClickable(false);
         }
+        viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
     }
 
     public interface AdapterListener {

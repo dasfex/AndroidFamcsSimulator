@@ -38,6 +38,12 @@ public class BlockUnactiveButtonsAdapter
         }
     }
 
+    public void setSkills(int programming, int english) {
+        for (StudentActivity activity : studentActivities) {
+            activity.setSkills(programming, english);
+        }
+    }
+
     public int getIndexOfActivatedButton() {
         return indexOfActivatedButton;
     }
@@ -70,13 +76,19 @@ public class BlockUnactiveButtonsAdapter
             viewHolder.button.setClickable(true);
             viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
         } else {
-            if (indexOfActivatedButton != -1) {
+            if (!studentActivities.get(ind).isEnable()) {
                 viewHolder.button.setBackgroundColor(Color.GRAY);
-                viewHolder.button.setClickable(false);
-            } else {
-                viewHolder.button.setBackgroundColor(Color.WHITE);
-                viewHolder.button.setClickable(true);
                 viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
+                viewHolder.button.setClickable(true);
+            } else {
+                if (indexOfActivatedButton != -1) {
+                    viewHolder.button.setBackgroundColor(Color.GRAY);
+                    viewHolder.button.setClickable(false);
+                } else {
+                    viewHolder.button.setBackgroundColor(Color.WHITE);
+                    viewHolder.button.setClickable(true);
+                    viewHolder.button.setOnClickListener(v -> adapterListener.onClick(ind));
+                }
             }
         }
     }
