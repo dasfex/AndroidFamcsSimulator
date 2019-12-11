@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,18 +14,35 @@ import com.source.studsimulator.R;
 import com.source.studsimulator.ui.StudSimulatorApplication;
 
 @SuppressLint("Registered")
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button githubButton;
+    private Button startButton;
+    private Button stopButton;
 
     @Override
-    protected void onCreate(Bundle savedIstanceState) {
-        super.onCreate(savedIstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         githubButton = findViewById(R.id.gitButton);
         githubButton.setOnClickListener(v -> GoToGithub());
+
+        startButton = findViewById(R.id.startButton);
+        stopButton = findViewById(R.id.stopButton);
+
+        startButton.setOnClickListener(this);
+        stopButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == startButton) {
+            startService(new Intent(this, MyService.class));
+        } else if (view == stopButton) {
+            stopService(new Intent(this, MyService.class));
+        }
     }
 
     private void GoToGithub() {
@@ -32,4 +50,5 @@ public class SettingsActivity extends AppCompatActivity {
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }
+
 }

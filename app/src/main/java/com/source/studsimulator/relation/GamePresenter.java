@@ -275,15 +275,15 @@ public class GamePresenter implements GameContract.Presenter {
     private String getProgrammingSkillString(int param) {
         if (param < 20) {
             return getContext().getString(R.string.begginer_prog);
-        } else if (param < 40) {
+        } else if (param < 60) {
             return getContext().getString(R.string.lub_prog);
-        } else if (param < 80) {
+        } else if (param < 200) {
             return getContext().getString(R.string.jun_prog);
-        } else if (param < 140) {
-            return getContext().getString(R.string.mid_prog);
-        } else if (param < 220) {
-            return getContext().getString(R.string.senior_prog);
         } else if (param < 300) {
+            return getContext().getString(R.string.mid_prog);
+        } else if (param < 400) {
+            return getContext().getString(R.string.senior_prog);
+        } else if (param < 600) {
             return getContext().getString(R.string.lead_prog);
         } else {
             return getContext().getString(R.string.gena_prog);
@@ -293,15 +293,15 @@ public class GamePresenter implements GameContract.Presenter {
     private String getEnglishSkillString(int param) {
         if (param < 20) {
             return getContext().getString(R.string.a1);
-        } else if (param < 40) {
-            return getContext().getString(R.string.a2);
-        } else if (param < 60) {
-            return getContext().getString(R.string.b1);
-        } else if (param < 80) {
-            return getContext().getString(R.string.b2);
         } else if (param < 100) {
+            return getContext().getString(R.string.a2);
+        } else if (param < 200) {
+            return getContext().getString(R.string.b1);
+        } else if (param < 300) {
+            return getContext().getString(R.string.b2);
+        } else if (param < 500) {
             return getContext().getString(R.string.c1);
-        } else if (param < 120) {
+        } else if (param < 700) {
             return getContext().getString(R.string.c2);
         } else {
             return getContext().getString(R.string.d13);
