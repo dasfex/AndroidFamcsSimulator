@@ -9,9 +9,19 @@
         android:id="@+id/gitButton"
         android:layout_width="203dp"
         android:layout_height="103dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="55dp"
         android:text="@string/github_of_project"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formButton" />
+
+    <Button
+        android:id="@+id/formButton"
+        android:layout_width="203dp"
+        android:layout_height="103dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="156dp"
+        android:text="@string/feedback"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

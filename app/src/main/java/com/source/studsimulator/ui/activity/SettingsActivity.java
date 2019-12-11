@@ -17,6 +17,7 @@ import com.source.studsimulator.ui.StudSimulatorApplication;
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button githubButton;
+    private Button formButton;
     private Button startButton;
     private Button stopButton;
 
@@ -30,6 +31,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         githubButton = findViewById(R.id.gitButton);
         githubButton.setOnClickListener(v -> GoToGithub());
+
+        formButton = findViewById(R.id.formButton);
+        formButton.setOnClickListener(v -> leaveFeedback());
 
         startButton = findViewById(R.id.startButton);
         stopButton = findViewById(R.id.stopButton);
@@ -54,6 +58,12 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     private void GoToGithub() {
         Uri uriUrl = Uri.parse(StudSimulatorApplication.getContext().getString(R.string.github));
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
+    }
+
+    private void leaveFeedback() {
+        Uri uriUrl = Uri.parse(StudSimulatorApplication.getContext().getString(R.string.feedback_link));
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }

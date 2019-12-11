@@ -183,7 +183,7 @@ public class GamePresenter implements GameContract.Presenter {
         // money from parents
         applyRandomAction(ActionObjects.getAction(3));
 
-        // stependia
+        // stipendia
         if (model.getWeek() % 4 == 1) {
             if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) > 80) {
                 applyRandomAction(ActionObjects.getAction(15));

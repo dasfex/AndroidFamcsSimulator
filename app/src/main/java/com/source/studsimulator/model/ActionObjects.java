@@ -175,11 +175,11 @@ public class ActionObjects {
             ); // 12
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.walk_with_girls),
-                    100, 30, 0, 0, -50)
+                    30, 30, 0, 0, -50)
             ); // 13
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.sad),
-                    100, -40, 0, 0, 0)
+                    30, -40, 0, 0, 0)
             ); // 14
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.bigger_grant),

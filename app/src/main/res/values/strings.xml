@@ -26,7 +26,7 @@
     <string name="burgerFood">Покупать бургеры за 2000</string>
 
     <string name="friendLabel">Выбери, с кем хочешь провести время!</string>
-    <string name="hobbyLabel">Выбери занятие!</string>
+    <string name="hobbyLabel">Скролль, чтобы выбрать занятие по душе!</string>
     <string name="read">почитать книжку</string>
     <string name="dance">танцевать</string>
     <string name="beer">попить пева</string>
@@ -78,6 +78,7 @@
     <string name="programmingLevel">Навыки программистера:</string>
     <string name="github_of_project">Github of project!</string>
     <string name="github">https://github.com/KhodorVan/AndroidFamcsSimulator</string>
+    <string name="feedback_link">https://forms.gle/ZFj8MharqnsaSf6g7</string>
 
     <string name="neighbour_action_message">Сосед обнаружил, что вы тырите его еду, и хорошенько вас отмутузил. Ваше здоровье уменьшилось.</string>
     <string name="spisyvanie_action_message">Вас спалили за списыванием. Уровень вашей успеваемости снизился. </string>
@@ -142,5 +143,6 @@
     <string name="star">Стар</string>
     <string name="programmingless">Недостаточный навык программирования</string>
     <string name="englishless">Недостаточный навык английского</string>
+    <string name="feedback">Хотите оставить отзыв?..</string>
 
 </resources>

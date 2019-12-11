@@ -19,20 +19,11 @@ public class MainActivity extends AppCompatActivity  {
     private Button settingsButton;
     private Button exitButton;
 
-  //  private BackgroundSound backgroundSound;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-
-
-//        backgroundSound = new BackgroundSound();
-//        backgroundSound.execute();
 
         newGameButton = findViewById(R.id.newGameButton);
         newGameButton.setOnClickListener(v -> {
@@ -53,40 +44,4 @@ public class MainActivity extends AppCompatActivity  {
             System.exit(0);
         });
     }
-
-//    @Override
-//    public void setPause(){
-//        backgroundSound.cancel(true);
-//    }
-//
-//    @Override
-//    public void setPlay() {
-//
-//        backgroundSound.execute();
-//    }
-
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        backgroundSound.cancel(true);
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//    }
-
-//    private class BackgroundSound extends AsyncTask<Void, Void, Void> {
-//
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//            MediaPlayer player = MediaPlayer.create(MainActivity.this, R.raw.background);
-//            player.setLooping(true); // Set looping
-//            player.setVolume(1.0f, 1.0f);
-//            player.start();
-//
-//            return null;
-//        }
-//
-//    }
 }
