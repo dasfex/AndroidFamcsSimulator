@@ -20,6 +20,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private Button startButton;
     private Button stopButton;
 
+    private boolean IsActive = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +41,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         if (view == startButton) {
-            startService(new Intent(this, MyService.class));
-        } else if (view == stopButton) {
+            if (IsActive == false) {
+                startService(new Intent(this, MyService.class));
+                IsActive = true;
+            }
+        }
+        if (view == stopButton) {
             stopService(new Intent(this, MyService.class));
+            IsActive = false;
         }
     }
 

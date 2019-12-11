@@ -11,7 +11,7 @@ import com.source.studsimulator.R;
 
 
 public class MyService extends Service {
-     private MediaPlayer player;
+    private MediaPlayer mediaPlayer;
 
     @Nullable
     @Override
@@ -21,10 +21,11 @@ public class MyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        player = MediaPlayer.create(this,
+        mediaPlayer = MediaPlayer.create(this,
                 R.raw.background);
-        player.setLooping(true);
-        player.start();
+        mediaPlayer.setVolume(1.0f, 1.0f);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
         return START_STICKY;
     }
 
@@ -32,6 +33,6 @@ public class MyService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        player.stop();
+        mediaPlayer.stop();
     }
 }

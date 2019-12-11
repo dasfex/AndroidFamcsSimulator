@@ -19,27 +19,34 @@ public interface GameContract {
         void updateWeek(int weekNumber);
         void updateEnergyLevel(int energyLevel);
         void updateWeekInformation(GamePresenter.PlayerInformation newInformation);
+        void updateFragmentSkills(int programming, int english);
 
-        void cleanMessages();
-        void writeMessage(String message);
+        void cleanRandomActionsMessages();
+        void writeRandomActionMessage(String message);
 
-        void printDeadMessage();
+        void activateWorkButton(int number, Work.TYPE_OF_WORK type);
+        void activateStudyButton(int number, Study.TYPE_OF_STUDY type);
+        void activateFoodButton(int number);
+        void activateHobbyButton(int number);
+
+        void showDeathMessage();
+        void notAvailableMessage(String message);
     }
 
     interface Presenter {
         void viewCreated();
         void clickOnNewWeekButton(int energy);
 
-        void clickOnFoodButton(Food food);
+        void clickOnFoodButton(int position);
         void unclickOnFoodButton(Food food);
 
-        void clickOnStudyButton(Study study);
+        void clickOnStudyButton(int position, Study.TYPE_OF_STUDY type);
         void unclickOnStudyButton(Study study);
 
-        void clickOnWorkButton(Work work);
+        void clickOnWorkButton(int number, Work.TYPE_OF_WORK type);
         void unclickOnWorkButton(Work work);
 
-        void clickOnHobbyButton(Hobby hobby, Friend friend);
+        void clickOnHobbyButton(int position, Friend friend);
         void unclickOnHobbyButton(Hobby hobby, Friend friend);
     }
 

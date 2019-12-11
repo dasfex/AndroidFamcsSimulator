@@ -14,6 +14,10 @@ public class Work implements StudentActivity, ContainsRandomAction {
     private boolean isEnable = true;
     RandomAction randomAction;
 
+    public enum TYPE_OF_WORK {
+        SUMMER, SIDE, FULL_TIME
+    }
+
     public Work(String title, int healthChanging,
                 int satietyChanging, int amountOfMoney,
                 int programmingSkillRequired, int englishSkillRequired,
@@ -112,17 +116,16 @@ public class Work implements StudentActivity, ContainsRandomAction {
     }
 
     @Override
-    public void setEnable(int characteristicForBlock) {
-        isEnable = isGood(characteristicForBlock);
-    }
+    public void setEnable(int characteristicForBlock) {}
 
     @Override
     public boolean isEnable() {
         return isEnable;
     }
 
-    private boolean isGood(int characteristicForBlock) {
-        return true;
+    @Override
+    public void setSkills(int programming, int english) {
+        isEnable = programming >= programmingSkillRequired && english >= englishSkillRequired;
     }
 
     @Override
