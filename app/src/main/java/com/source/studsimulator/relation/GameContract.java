@@ -24,16 +24,13 @@ public interface GameContract {
         void cleanRandomActionsMessages();
         void writeRandomActionMessage(String message);
 
-        void printDeadMessage();
-        void activateWorkButton(int number, Work.TypeOfWork type);
+        void activateWorkButton(int number, Work.TYPE_OF_WORK type);
         void activateStudyButton(int number, Study.TYPE_OF_STUDY type);
         void activateFoodButton(int number);
         void activateHobbyButton(int number);
 
         void showDeathMessage();
         void notAvailableMessage(String message);
-
-        void unClick(Work workItem, Work.TypeOfWork type);
     }
 
     interface Presenter {
@@ -45,9 +42,6 @@ public interface GameContract {
 
         void clickOnStudyButton(int position, Study.TYPE_OF_STUDY type);
         void unclickOnStudyButton(Study study);
-
-        void clickOnWorkButton(int number, Work.TypeOfWork type);
-        void deactivateWorkButton(Work work);
 
         void clickOnWorkButton(int number, Work.TYPE_OF_WORK type);
         void unclickOnWorkButton(Work work);
@@ -74,6 +68,5 @@ public interface GameContract {
         int getParameter(GameLogic.PlayerStatsEnum characteristic);
         int getEnergyLevel();
         int getWeek();
-        String getStudyStage();
     }
 }

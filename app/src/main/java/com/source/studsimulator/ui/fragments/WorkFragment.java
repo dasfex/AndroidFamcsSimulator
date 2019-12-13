@@ -14,6 +14,7 @@ import com.source.studsimulator.R;
 import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.model.entity.Work;
+import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.BlockUnactiveButtonsAdapter;
 
@@ -61,26 +62,26 @@ public class WorkFragment extends Fragment {
         return view;
     }
 
-    public void activateButton(int number, Work.TypeOfWork type) {
+    public void activateButton(int number, Work.TYPE_OF_WORK type) {
         switch (type) {
             case SUMMER:
                 summerWorkAdapter.setIndexOfActivatedButton(number);
                 changeSummerWorkButtonActivity(number);
                 break;
             case FULL_TIME:
-                workAdapter.setIndexOfActivatedButton(number);
-                changeWorkButtonActivity(number);
+            workAdapter.setIndexOfActivatedButton(number);
+            changeWorkButtonActivity(number);
                 break;
             case SIDE:
-                sideJobsAdapter.setButtonDisActivate(number);
-                changeAccessForSideButton(number);
-                sideJobsAdapter.notifyDataSetChanged();
+            sideJobsAdapter.setButtonDisActivate(number);
+            changeAccessForSideButton(number);
+            sideJobsAdapter.notifyDataSetChanged();
                 break;
         }
     }
 
     public interface OnWorkFragmentListener {
-        void clickOnWorkButton(int position, Work.TypeOfWork type);
+        void clickOnWorkButton(int position, Work.TYPE_OF_WORK type);
         void unclickOnWorkButton(Work work);
     }
 
@@ -130,7 +131,7 @@ public class WorkFragment extends Fragment {
                 changeAccessForSideButton(position);
                 sideJobsAdapter.notifyDataSetChanged();
             } else {
-                activityListener.clickOnWorkButton(position, Work.TypeOfWork.SIDE);
+                activityListener.clickOnWorkButton(position, Work.TYPE_OF_WORK.SIDE);
             }
         });
 
@@ -154,7 +155,7 @@ public class WorkFragment extends Fragment {
                 workAdapter.setIndexOfActivatedButton(position);
                 changeWorkButtonActivity(position);
             } else {
-                activityListener.clickOnWorkButton(position, Work.TypeOfWork.FULL_TIME);
+                activityListener.clickOnWorkButton(position, Work.TYPE_OF_WORK.FULL_TIME);
             }
             workAdapter.notifyDataSetChanged();
         });
@@ -173,25 +174,9 @@ public class WorkFragment extends Fragment {
                 summerWorkAdapter.setIndexOfActivatedButton(position);
                 changeSummerWorkButtonActivity(position);
             } else {
-                activityListener.clickOnWorkButton(position, Work.TypeOfWork.SUMMER);
+                activityListener.clickOnWorkButton(position, Work.TYPE_OF_WORK.SUMMER);
             }
             summerWorkAdapter.notifyDataSetChanged();
         });
-    }
-
-    public void unClick(Work workItem, Work.TypeOfWork type) {
-        int position = 0;
-        switch (type) {
-            case SUMMER:
-                position = ActionObjects.getSummerWorkList().indexOf(workItem);
-            case FULL_TIME:
-                position = ActionObjects.getWorkList().indexOf(workItem);
-            case SIDE:
-                position = ActionObjects.getSideJobList().indexOf(workItem);
-        }
-        ActionObjects.getSummerWorkList().indexOf(workItem);
-        activityListener.unclickOnWorkButton((Work) summerWorkList.get(activeSummerWorkIndex));
-        summerWorkAdapter.setIndexOfActivatedButton(position);
-        changeSummerWorkButtonActivity(position);
     }
 }
