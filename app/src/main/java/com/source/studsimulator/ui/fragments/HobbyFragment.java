@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,11 +18,7 @@ import com.source.studsimulator.model.ActionObjects;
 import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.StudentActivity;
-import com.source.studsimulator.model.entity.Study;
-import com.source.studsimulator.model.entity.Work;
-import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.fragments.adapters.FriendAdapter;
-import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonWithBlockCharacteristics;
 
 import java.util.ArrayList;
@@ -73,11 +68,8 @@ public class HobbyFragment extends Fragment {
     }
 
     public interface OnHobbyFragmentListener {
-        void clickOnHobbyButton(int index);
-
-        void unclickOnHobbyButton(Hobby hobby);
-
-        int getEnergy();
+        void clickOnHobbyButton(int index, Friend friend);
+        void unclickOnHobbyButton(Hobby hobby, Friend friend);
     }
 
     private void initializeLists() {
@@ -97,12 +89,17 @@ public class HobbyFragment extends Fragment {
         hobbyRvAdapter.setAdapterListener(position -> {
             int currentPosition = hobbyRvAdapter.getIndexOfActivatedButton();
             if (currentPosition == position) {
-                activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition));
+                activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition),
+                                                     (Friend) friendSpinner.getSelectedItem());
                 hobbyRvAdapter.setIndexOfActivatedButton(position);
                 changeAccessForHobby(position);
                 hobbyRvAdapter.notifyDataSetChanged();
             } else {
-                activityListener.clickOnHobbyButton(position);
+                if (currentPosition != -1) {
+                    activityListener.unclickOnHobbyButton((Hobby) hobbies.get(currentPosition),
+                            (Friend) friendSpinner.getSelectedItem());
+                }
+                activityListener.clickOnHobbyButton(position, (Friend) friendSpinner.getSelectedItem());
             }
         });
 
@@ -123,7 +120,7 @@ public class HobbyFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 friendSpinner.setSelection(position);
                 Friend friend = (Friend) friendSpinner.getSelectedItem();
-                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel());
+                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel(), 0, 0);
                 hobbyRvAdapter.notifyDataSetChanged();
             }
 
@@ -131,7 +128,7 @@ public class HobbyFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
                 friendSpinner.setSelection(0);
                 Friend friend = (Friend) friendSpinner.getSelectedItem();
-                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel());
+                hobbyRvAdapter.setCharacteristicForBlock(friend.getFriendshipLevel(), 0, 0);
                 hobbyRvAdapter.notifyDataSetChanged();
             }
         });

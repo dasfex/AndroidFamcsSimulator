@@ -1,6 +1,7 @@
 package com.source.studsimulator.ui.entity;
 
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
@@ -13,6 +14,7 @@ public class ViewState {
     private List<Study> studyList;
     private List<Work> workList;
     private List<Hobby> hobbyList;
+    private Friend friend;
 
     public ViewState() {
         foodList = new ArrayList<>();
@@ -67,5 +69,17 @@ public class ViewState {
 
     public void removeHobby(Hobby hobby) {
         hobbyList.remove(hobby);
+    }
+
+    public void addFriend(Friend friend) {
+        this.friend = friend;
+    }
+
+    public Friend getFriend() {
+        return friend;
+    }
+
+    public void removeFriend(Friend friend) {
+        this.friend = null;
     }
 }

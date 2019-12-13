@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.AlertDialog;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
@@ -141,13 +144,13 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnHobbyButton(int position) {
-        presenter.clickOnHobbyButton(position);
+    public void clickOnHobbyButton(int position, Friend friend) {
+        presenter.clickOnHobbyButton(position, friend);
     }
 
     @Override
-    public void unclickOnHobbyButton(Hobby hobby) {
-        presenter.unclickOnHobbyButton(hobby);
+    public void unclickOnHobbyButton(Hobby hobby, Friend friend) {
+        presenter.unclickOnHobbyButton(hobby, friend);
     }
 
     @Override
@@ -170,7 +173,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void activateHobhyButton(int number) {
+    public void activateHobbyButton(int number) {
         hobbyFragment.activateButton(number);
     }
 
@@ -188,7 +191,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
 
     @Override
     public void unclickOnWorkButton(Work work) {
-        presenter.deactivateWorkButton(work);
+        presenter.unclickOnWorkButton(work);
     }
 
     @Override
@@ -199,11 +202,6 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     @Override
     public void unclickOnStudyButton(Study study) {
         presenter.unclickOnStudyButton(study);
-    }
-
-    @Override
-    public int getEnergy() {
-        return Integer.valueOf(String.valueOf(energyTextView.getText()));
     }
 
     @Override
@@ -234,7 +232,13 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void printDeadMessage() {
+    public void updateFragmentSkills(int programming, int english) {
+        ((WorkFragment) workFragment).updateSkills(programming, english);
+        ((StudyFragment) studyFragment).updateSkills(programming, english);
+    }
+
+    @Override
+    public void showDeathMessage() {
         SoundActivity.hearSound(this, R.raw.death);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getContext().getString(R.string.death))
@@ -268,4 +272,6 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     protected void onDestroy() {
         super.onDestroy();
     }
+
+
 }

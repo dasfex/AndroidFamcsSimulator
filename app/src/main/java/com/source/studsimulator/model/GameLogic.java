@@ -2,7 +2,9 @@ package com.source.studsimulator.model;
 
 
 import com.source.studsimulator.R;
+import androidx.fragment.app.Fragment;
 import com.source.studsimulator.model.entity.Food;
+import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
 import com.source.studsimulator.model.entity.Payable;
 import com.source.studsimulator.model.entity.RandomAction;
@@ -11,12 +13,15 @@ import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.relation.GameContract;
 import com.source.studsimulator.ui.StudSimulatorApplication;
 
+import java.util.Random;
+
 public class GameLogic implements GameContract.Model {
 
     private Student student;
     private int gameTime = 1;
     private int energyLevel = 16;
     private String studyStage = StudSimulatorApplication.getContext().getString(R.string.semestr);
+    private Random random = new Random();
 
     public enum PlayerStatsEnum {
         EDUCATION_LEVEL, HEALTH, SATIETY, MONEY,
@@ -61,9 +66,12 @@ public class GameLogic implements GameContract.Model {
     }
 
     @Override
-    public void hobby(Hobby hobby) {
+    public void hobby(Hobby hobby, Friend friend) {
         student.changeSatiety(hobby.getSatietyChanging());
         student.changeHealth(hobby.getHealthChanging());
+        if (friend != null) {
+            student.changeHealth(friend.getHealthChanging());
+        }
         pay(hobby);
     }
 
@@ -120,5 +128,12 @@ public class GameLogic implements GameContract.Model {
         } else {
             studyStage = StudSimulatorApplication.getContext().getString(R.string.holidays);
         }
+    }
+  
+    @Override
+    public void weekCharacteristicDecrease() {
+        student.changeHealth(-random.nextInt(5));
+        student.changeSatiety(-random.nextInt(5));
+        student.changeEducationLevel(-random.nextInt(5));
     }
 }

@@ -12,6 +12,7 @@ public class Study implements Payable, StudentActivity, ContainsRandomAction {
     private int englishSkillIncrease;
     private int englishSkillRequired;
     private int energyNeeded;
+    private boolean isEnable;
     private RandomAction randomAction;
 
     public enum TYPE_OF_STUDY{
@@ -45,6 +46,7 @@ public class Study implements Payable, StudentActivity, ContainsRandomAction {
         this.englishSkillIncrease = englishSkillIncrease;
         this.englishSkillRequired = englishSkillRequired;
         this.energyNeeded = energy;
+        this.isEnable = true;
     }
     public Study(String title, int price,
                  int educationChanging, int satietyChanging, int healthChanging,
@@ -74,6 +76,7 @@ public class Study implements Payable, StudentActivity, ContainsRandomAction {
         this.englishSkillRequired = englishSkillRequired;
         this.energyNeeded = energy;
         this.randomAction = randomAction;
+        this.isEnable = true;
     }
 
     @Override
@@ -124,7 +127,12 @@ public class Study implements Payable, StudentActivity, ContainsRandomAction {
 
     @Override
     public boolean isEnable() {
-        return true;
+        return isEnable;
+    }
+
+    @Override
+    public void setSkills(int programming, int english) {
+        isEnable = programming >= programmingSkillRequired && english >= englishSkillRequired;
     }
 
     @Override

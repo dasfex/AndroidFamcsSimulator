@@ -31,13 +31,14 @@ public class StudyFragment extends Fragment {
     private List<StudentActivity> university;
     private List<StudentActivity> extraActivity;
     private ArrayList<Boolean> isCourseActive = new ArrayList<>();
+    private int programming = 0;
+    private int english = 0;
 
     private StudyFragment.OnStudyFragmentListener activityListener;
     private int activeButtonIndex = -1;
 
     OneActiveButtonAdapter universityRvAdapter;
     ActiveButtonsAdapter extraActivityRvAdapter;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,10 +75,14 @@ public class StudyFragment extends Fragment {
         isCourseActive.set(pos, !isCourseActive.get(pos));
     }
 
+    public void updateSkills(int programming, int english) {
+        this.programming = programming;
+        this.english = english;
+    }
+
     public interface OnStudyFragmentListener {
         void clickOnStudyButton(int index, Study.TYPE_OF_STUDY type);
         void unclickOnStudyButton(Study study);
-        int getEnergy();
     }
 
     @Override
@@ -117,6 +122,7 @@ public class StudyFragment extends Fragment {
         extraActivityRv.setLayoutManager(new LinearLayoutManager(getContext()));
         extraActivityRv.setHasFixedSize(true);
         extraActivityRvAdapter = new ActiveButtonsAdapter(extraActivity);
+        extraActivityRvAdapter.setSkills(programming, english);
         extraActivityRv.setAdapter(extraActivityRvAdapter);
 
         extraActivityRvAdapter.setAdapterListener(position -> {

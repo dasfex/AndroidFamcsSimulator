@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 
 import com.source.studsimulator.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private Button newGameButton;
     private Button settingsButton;
@@ -24,14 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
         newGameButton = findViewById(R.id.newGameButton);
         newGameButton.setOnClickListener(v -> {
-            SoundActivity.hearSound(this, R.raw.pisk);
             Intent intent = new Intent(MainActivity.this, GameLobbyActivity.class);
             startActivity(intent);
         });
 
         settingsButton = findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(v -> {
-            SoundActivity.hearSound(this, R.raw.pisk);
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
