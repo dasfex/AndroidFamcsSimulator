@@ -1,8 +1,8 @@
 package com.source.studsimulator.model;
 
 
+import com.source.studsimulator.R;
 import androidx.fragment.app.Fragment;
-
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Friend;
 import com.source.studsimulator.model.entity.Hobby;
@@ -11,6 +11,7 @@ import com.source.studsimulator.model.entity.RandomAction;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.relation.GameContract;
+import com.source.studsimulator.ui.StudSimulatorApplication;
 
 import java.util.Random;
 
@@ -19,6 +20,7 @@ public class GameLogic implements GameContract.Model {
     private Student student;
     private int gameTime = 1;
     private int energyLevel = 16;
+    private String studyStage = StudSimulatorApplication.getContext().getString(R.string.semestr);
     private Random random = new Random();
 
     public enum PlayerStatsEnum {
@@ -44,6 +46,7 @@ public class GameLogic implements GameContract.Model {
     public void newWeek(int energy) {
         gameTime += 1;
         energyLevel = energy;
+        updateStudyStage();
     }
 
     @Override
@@ -98,6 +101,11 @@ public class GameLogic implements GameContract.Model {
         return gameTime;
     }
 
+    @Override
+    public String getStudyStage() {
+        return studyStage;
+    }
+
     public void applyRandomAction(RandomAction action) {
         student.changeHealth(action.getHealthChanging());
         student.changeSatiety(action.getSatietyChanging());
@@ -110,6 +118,18 @@ public class GameLogic implements GameContract.Model {
         student.normalizeCharacteristics();
     }
 
+    private void updateStudyStage() {
+        int week = gameTime;
+        week %= 52;
+        if (week <= 16 || (week > 22 && week <= 36)) {
+            studyStage = StudSimulatorApplication.getContext().getString(R.string.semestr);
+        } else if ((week > 16 && week <= 20) || (week > 36 && week <= 40)) {
+            studyStage = StudSimulatorApplication.getContext().getString(R.string.session);
+        } else {
+            studyStage = StudSimulatorApplication.getContext().getString(R.string.holidays);
+        }
+    }
+  
     @Override
     public void weekCharacteristicDecrease() {
         student.changeHealth(-random.nextInt(5));
