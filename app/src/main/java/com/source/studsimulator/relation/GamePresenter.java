@@ -101,6 +101,7 @@ public class GamePresenter implements GameContract.Presenter {
         view.cleanRandomActionsMessages();
         applyLiveChoices(weekLiveChoicesStaff);
         model.newWeek(energy);
+        eraseExcessLiveChoices();
         updatePlayerStats();
         view.updateWeek(model.getWeek());
         view.updateEnergyLevel(model.getEnergyLevel());
