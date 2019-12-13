@@ -8,8 +8,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.AlertDialog;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -154,7 +152,12 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void activateWorkButton(int number, Work.TYPE_OF_WORK type) {
+    public void unClick(Work workItem, Work.TypeOfWork type) {
+        workFragment.unClick(workItem, type);
+    }
+
+    @Override
+    public void activateWorkButton(int number, Work.TypeOfWork type) {
         workFragment.activateButton(number, type);
     }
 
@@ -181,7 +184,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     }
 
     @Override
-    public void clickOnWorkButton(int number, Work.TYPE_OF_WORK type) {
+    public void clickOnWorkButton(int number, Work.TypeOfWork type) {
         presenter.clickOnWorkButton(number, type);
     }
 

@@ -14,7 +14,7 @@ public class Work implements StudentActivity, ContainsRandomAction {
     private boolean isEnable = true;
     RandomAction randomAction;
 
-    public enum TYPE_OF_WORK {
+    public enum TypeOfWork {
         SUMMER, SIDE, FULL_TIME
     }
 

@@ -144,5 +144,7 @@
     <string name="programmingless">Недостаточный навык программирования</string>
     <string name="englishless">Недостаточный навык английского</string>
     <string name="feedback">Хотите оставить отзыв?..</string>
+    <string name="cant_stage">Стажировки доступны только на каникулах</string>
+    <string name="stage_end">Стажировка закончилась. Вы заработали кучу долларов и отправляетесь домой</string>
 
 </resources>

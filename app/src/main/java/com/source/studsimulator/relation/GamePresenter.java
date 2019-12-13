@@ -21,6 +21,7 @@ import com.source.studsimulator.ui.activity.SoundActivity;
 import com.source.studsimulator.ui.entity.PlayerStats;
 import com.source.studsimulator.ui.entity.ViewState;
 
+import static com.source.studsimulator.model.entity.Work.TypeOfWork.SUMMER;
 import static com.source.studsimulator.ui.StudSimulatorApplication.getContext;
 
 public class GamePresenter implements GameContract.Presenter {
@@ -105,7 +106,7 @@ public class GamePresenter implements GameContract.Presenter {
         view.updateEnergyLevel(model.getEnergyLevel());
         view.updateWeekInformation(new PlayerInformation(
                 String.valueOf(model.getWeek() / 52 + 1),
-                getStudyStage(model.getWeek()),
+                model.getStudyStage(),
                 getProgrammingSkillString(model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)),
                 getEnglishSkillString(model.getParameter(PlayerStatsEnum.ENGLISH_SKILL))));
         for (Friend friend : ActionObjects.getFriendList()) {
@@ -265,7 +266,7 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     @Override
-    public void clickOnWorkButton(int number, Work.TYPE_OF_WORK type) {
+    public void clickOnWorkButton(int number, Work.TypeOfWork type) {
         Work work = (Work) ActionObjects.getWorkList().get(0);
         switch (type) {
             case SUMMER:
@@ -277,6 +278,10 @@ public class GamePresenter implements GameContract.Presenter {
             case FULL_TIME:
                 work = (Work) ActionObjects.getWorkList().get(number);
                 break;
+        }
+        if (type == SUMMER && !model.getStudyStage().equals(StudSimulatorApplication.getContext().getString(R.string.holidays))) {
+            view.notAvailableMessage(getContext().getString(R.string.cant_stage));
+            return;
         }
         if (work.getProgrammingSkillRequired() > model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)) {
             view.notAvailableMessage(getContext().getString(R.string.programmingless));
@@ -377,17 +382,6 @@ public class GamePresenter implements GameContract.Presenter {
         }
     }
 
-    private String getStudyStage(int week) {
-        week %= 52 + 1;
-        if (week <= 16 || (week > 22 && week <= 36)) {
-            return getContext().getString(R.string.semestr);
-        } else if (week <= 20 || (week > 36 && week <= 40)) {
-            return getContext().getString(R.string.session);
-        } else {
-            return getContext().getString(R.string.holidays);
-        }
-    }
-
     private void applyRandomAction(ContainsRandomAction item) {
         if (item.getRandomAction() != null) {
             if (item.getRandomAction().isActive()) {
@@ -402,6 +396,17 @@ public class GamePresenter implements GameContract.Presenter {
             if (action.isActive()) {
                 model.applyRandomAction(action);
                 view.writeRandomActionMessage(action.getMessage());
+            }
+        }
+    }
+
+    void eraseExcessLiveChoices() {
+        if (!model.getStudyStage().equals(StudSimulatorApplication.getContext().getString(R.string.holidays))) {
+            for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
+                if (ActionObjects.getSummerWorkList().contains(workItem)) {
+                    view.unClick(workItem, SUMMER);
+                    view.writeRandomActionMessage(getContext().getString(R.string.stage_end));
+                }
             }
         }
     }
