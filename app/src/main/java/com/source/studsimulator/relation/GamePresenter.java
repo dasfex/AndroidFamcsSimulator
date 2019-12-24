@@ -115,6 +115,9 @@ public class GamePresenter implements GameContract.Presenter {
                 friend.decreaseCharacteristics();
             }
         }
+        if (model.isKicked()) {
+            view.showFailGameMessage();
+        }
     }
 
     private void sendNoMoneyToast() {

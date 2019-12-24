@@ -57,7 +57,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     private ImageButton workButton;
     private ImageButton hobbyButton;
 
-    private Fragment informationFragment;
+    private InfoFragment informationFragment;
     private FoodFragment foodFragment;
     private StudyFragment studyFragment;
     private WorkFragment workFragment;
@@ -255,6 +255,25 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLUE);
     }
 
+    @Override
+    public void showFailGameMessage() {
+        SoundActivity.hearSound(this, R.raw.death);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getContext().getString(R.string.universityFail))
+                .setMessage(getContext().getString(R.string.universityFailText))
+                .setCancelable(false)
+                .setNegativeButton(
+                        getContext().getString(R.string.universityFailButton),
+                        (dialog, id) -> {
+                            finish();
+                            dialog.cancel();
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+        alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLUE);
+    }
+
     private void setOnClickListenersForFragmentButtons() {
         infoButton.setOnClickListener(v -> replaceFragment(informationFragment));
 
@@ -271,6 +290,4 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     protected void onDestroy() {
         super.onDestroy();
     }
-
-
 }
