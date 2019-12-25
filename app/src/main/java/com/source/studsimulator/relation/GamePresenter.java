@@ -32,7 +32,8 @@ public class GamePresenter implements GameContract.Presenter {
         private String programmingSkill;
         private String englishSkill;
 
-        public PlayerInformation(String course, String studyStage, String programmingSkill, String englishSkill) {
+        public PlayerInformation(String course, String studyStage,
+                                 String programmingSkill, String englishSkill) {
             this.course = course;
             this.studyStage = studyStage;
             this.programmingSkill = programmingSkill;
@@ -59,6 +60,7 @@ public class GamePresenter implements GameContract.Presenter {
     private GameContract.Model model;
     private GameContract.View view;
     private ViewState weekLiveChoicesStaff;
+    private boolean isFail = false;
 
     public GamePresenter(GameContract.View newView, GameContract.Model newModel) {
         view = newView;
@@ -114,9 +116,6 @@ public class GamePresenter implements GameContract.Presenter {
             if (!friend.isMeet()) {
                 friend.decreaseCharacteristics();
             }
-        }
-        if (model.isKicked()) {
-            view.showFailGameMessage();
         }
     }
 
@@ -204,12 +203,10 @@ public class GamePresenter implements GameContract.Presenter {
 
         model.normalizeCharacteristics();
 
-        if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
-                model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
-            view.showDeathMessage();
-        }
         view.updateFragmentSkills(model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL),
                 model.getParameter(PlayerStatsEnum.ENGLISH_SKILL));
+
+        checkIfLoose();
     }
 
     @Override
@@ -334,6 +331,22 @@ public class GamePresenter implements GameContract.Presenter {
         changeEnergyLevel();
     }
 
+    @Override
+    public void setPlayerSettings(GameSettings settings) {
+        model.setPlayerSettings(settings);
+    }
+
+
+    @Override
+    public GameSettings getPlayerSettings() {
+        return model.getPlayerSettings();
+    }
+
+    @Override
+    public boolean isLoose() {
+        return isFail;
+    }
+
     private void changeEnergyLevel() {
         view.updateEnergyLevel(model.getEnergyLevel());
     }
@@ -353,15 +366,15 @@ public class GamePresenter implements GameContract.Presenter {
     private String getProgrammingSkillString(int param) {
         if (param < 20) {
             return getContext().getString(R.string.begginer_prog);
-        } else if (param < 60) {
+        } else if (param < 80) {
             return getContext().getString(R.string.lub_prog);
-        } else if (param < 200) {
+        } else if (param < 190) {
             return getContext().getString(R.string.jun_prog);
-        } else if (param < 300) {
+        } else if (param < 340) {
             return getContext().getString(R.string.mid_prog);
-        } else if (param < 400) {
+        } else if (param < 500) {
             return getContext().getString(R.string.senior_prog);
-        } else if (param < 600) {
+        } else if (param < 700) {
             return getContext().getString(R.string.lead_prog);
         } else {
             return getContext().getString(R.string.gena_prog);
@@ -369,17 +382,17 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     private String getEnglishSkillString(int param) {
-        if (param < 20) {
+        if (param < 40) {
             return getContext().getString(R.string.a1);
         } else if (param < 100) {
             return getContext().getString(R.string.a2);
-        } else if (param < 200) {
+        } else if (param < 180) {
             return getContext().getString(R.string.b1);
         } else if (param < 300) {
             return getContext().getString(R.string.b2);
-        } else if (param < 500) {
+        } else if (param < 550) {
             return getContext().getString(R.string.c1);
-        } else if (param < 700) {
+        } else if (param < 800) {
             return getContext().getString(R.string.c2);
         } else {
             return getContext().getString(R.string.d13);
@@ -404,7 +417,7 @@ public class GamePresenter implements GameContract.Presenter {
         }
     }
 
-    void eraseExcessLiveChoices() {
+    private void eraseExcessLiveChoices() {
         if (!model.getStudyStage().equals(StudSimulatorApplication.getContext().getString(R.string.holidays))) {
             for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
                 if (ActionObjects.getSummerWorkList().contains(workItem)) {
@@ -412,6 +425,62 @@ public class GamePresenter implements GameContract.Presenter {
                     view.writeRandomActionMessage(getContext().getString(R.string.stage_end));
                 }
             }
+        }
+    }
+
+    private void checkIfLoose() {
+        if (model.getWeek() >= 210) {
+            if (weekLiveChoicesStaff.getWorkList().isEmpty()) {
+                String title = getContext().getString(R.string.win);
+                String message = getContext().getString(R.string.winText);
+                String button_name = getContext().getString(R.string.repeatText);
+                int audio = R.raw.win;
+                view.showGameEndMessage(title, message, button_name, audio);
+            } else {
+                String title = getContext().getString(R.string.loose);
+                String message = getContext().getString(R.string.looseText);
+                String button_name = getContext().getString(R.string.repeat2Text);
+                int audio = R.raw.death;
+                view.showGameEndMessage(title, message, button_name, audio);
+                isFail = true;
+            }
+        } else if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
+                model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
+            String title = getContext().getString(R.string.death);
+            String message = getContext().getString(R.string.death_text);
+            String button_name = getContext().getString(R.string.death_button);
+            int audio = R.raw.death;
+            view.showGameEndMessage(title, message, button_name, audio);
+            isFail = true;
+        } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) <= 80 &&
+                model.getStudyStage().equals(
+                        StudSimulatorApplication.getContext().getString(R.string.session))) {
+            String title = getContext().getString(R.string.loose2);
+            String message = getContext().getString(R.string.loose2Textr);
+            String button_name = getContext().getString(R.string.repeat2);
+            int audio = R.raw.death;
+            view.showGameEndMessage(title, message, button_name, audio);
+            isFail = true;
+        }
+    }
+
+    public static class GameSettings {
+        public int gameTime;
+        public int money;
+        public int health;
+        public int satiety;
+        public int educationLevel;
+        public int programmingSkill;
+        public int englishSkill;
+
+        public GameSettings() {
+            this.gameTime = 1;
+            this.money = 50;
+            this.health = 50;
+            this.satiety = 50;
+            this.educationLevel = 0;
+            this.programmingSkill = 0;
+            this.englishSkill = 0;
         }
     }
 }

@@ -7,8 +7,13 @@ import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SoundActivity extends AppCompatActivity {
+    private static MediaPlayer sound = new MediaPlayer();
+
     public static void hearSound(Context context, int soundIndex){
-        MediaPlayer sound = MediaPlayer.create(context, soundIndex);
+        if (sound.isPlaying()) {
+            return;
+        }
+        sound = MediaPlayer.create(context, soundIndex);
         sound.start();
     }
 }

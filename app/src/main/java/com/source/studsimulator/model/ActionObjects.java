@@ -1,7 +1,5 @@
 package com.source.studsimulator.model;
 
-import android.drm.DrmStore;
-
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Friend;
@@ -33,12 +31,12 @@ public class ActionObjects {
     public static List<StudentActivity> getFoodList() {
         if (foodList.isEmpty()) {
             foodList.add(new Food(0, StudSimulatorApplication.getContext().getString(R.string.neighbourFood), 4, 10, 1, ActionObjects.getAction(0)));
-            foodList.add(new Food(3, StudSimulatorApplication.getContext().getString(R.string.doshikFood), 7, -5, 2));
+            foodList.add(new Food(3, StudSimulatorApplication.getContext().getString(R.string.doshikFood), 7, 1, 2));
             foodList.add(new Food(7, StudSimulatorApplication.getContext().getString(R.string.stolovkaFood), 12, 7, 1));
             foodList.add(new Food(5, StudSimulatorApplication.getContext().getString(R.string.yourselfFood), 8, 10, 3));
-            foodList.add(new Food(10, StudSimulatorApplication.getContext().getString(R.string.fastFood), 20, -10, 1, ActionObjects.getAction(4)));
+            foodList.add(new Food(10, StudSimulatorApplication.getContext().getString(R.string.fastFood), 20, 3, 1, ActionObjects.getAction(4)));
             foodList.add(new Food(13, StudSimulatorApplication.getContext().getString(R.string.sushiFood), 15, 5, 1, ActionObjects.getAction(2)));
-            foodList.add(new Food(20, StudSimulatorApplication.getContext().getString(R.string.burgerFood), 40, -15, 1));
+            foodList.add(new Food(20, StudSimulatorApplication.getContext().getString(R.string.burgerFood), 40, -5, 1));
         }
         return foodList;
     }
@@ -107,7 +105,7 @@ public class ActionObjects {
         if (workList.isEmpty()) {
             workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Mak), -10, -10, 50, 0, 0, 10, 6, 2));
             workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Jtransition), -6, -7, 40, 15, 2, 5, 4, 3));
-            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.tyndex), -20, -30, 100, 50, 3, 20, 1, 3));
+            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.tyndex), -15, -20, 100, 50, 3, 20, 1, 3));
         }
         return workList;
     }

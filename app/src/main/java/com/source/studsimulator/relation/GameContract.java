@@ -29,9 +29,7 @@ public interface GameContract {
         void activateFoodButton(int number);
         void activateHobbyButton(int number);
 
-        void showDeathMessage();
-        void showFailGameMessage();
-
+        void showGameEndMessage(String title, String message, String buttonName, int audio);
         void notAvailableMessage(String message);
         void unClick(Work workItem, Work.TypeOfWork type);
     }
@@ -51,6 +49,11 @@ public interface GameContract {
 
         void clickOnHobbyButton(int position, Friend friend);
         void unclickOnHobbyButton(Hobby hobby, Friend friend);
+
+        void setPlayerSettings(GamePresenter.GameSettings settings);
+
+        GamePresenter.GameSettings getPlayerSettings();
+        boolean isLoose();
     }
 
     interface Model {
@@ -67,6 +70,9 @@ public interface GameContract {
         void normalizeCharacteristics();
 
         void changeEnergyLevel(int energyLevelPoints);
+
+        void setPlayerSettings(GamePresenter.GameSettings settings);
+        GamePresenter.GameSettings getPlayerSettings();
 
         int getParameter(GameLogic.PlayerStatsEnum characteristic);
         int getEnergyLevel();

@@ -12,7 +12,7 @@ public class Work implements StudentActivity, ContainsRandomAction {
     private int englishSkillIncrease;
     private int energyNeeded;
     private boolean isEnable = true;
-    RandomAction randomAction;
+    private RandomAction randomAction;
 
     public enum TypeOfWork {
         SUMMER, SIDE, FULL_TIME

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -85,10 +86,33 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentLayout, informationFragment).commit();
 
+        loadSettings();
+
         setOnClickListenersForFragmentButtons();
 
         initPlayerStatsView();
+
         presenter.viewCreated();
+    }
+
+    private void loadSettings() {
+        GamePresenter.GameSettings settings = new GamePresenter.GameSettings();
+        SharedPreferences preferences = getSharedPreferences("settings", MODE_PRIVATE);
+        settings.gameTime = preferences.getInt("time", 1);
+        settings.money = preferences.getInt("money", 50);
+        settings.health = preferences.getInt("health", 50);
+        settings.satiety = preferences.getInt("satiety", 50);
+        settings.educationLevel = preferences.getInt("educationLevel", 0);
+        settings.programmingSkill = preferences.getInt("programmingSkill", 50);
+        settings.englishSkill = preferences.getInt("englishSkill", 50);
+        InfoFragment.InfoState state = new InfoFragment.InfoState();
+        state.playerCourse = preferences.getString("course", "1");
+        state.studyStage = preferences.getString("studyStage", getContext().getString(R.string.semestr));
+        state.englishSkill = preferences.getString("englishSkillText", getContext().getString(R.string.a1));
+        state.programmingSkill = preferences.getString("programmingSkillText", getContext().getString(R.string.begginer_prog));
+        state.randomActionsMessages = preferences.getString("randomActions", "");
+        informationFragment.infoStateLoad(state);
+        presenter.setPlayerSettings(settings);
     }
 
     private void initPlayerStatsView() {
@@ -215,55 +239,36 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
 
     @Override
     public void updateWeekInformation(GamePresenter.PlayerInformation newInformation) {
-        ((InfoFragment) informationFragment).updateWeekInformation(newInformation);
+        informationFragment.updateWeekInformation(newInformation);
     }
 
     @Override
     public void cleanRandomActionsMessages() {
-        InfoFragment infoFragment = (InfoFragment) informationFragment;
+        InfoFragment infoFragment = informationFragment;
         infoFragment.cleanView();
     }
 
     @Override
     public void writeRandomActionMessage(String message) {
-        InfoFragment infoFragment = (InfoFragment) informationFragment;
+        InfoFragment infoFragment = informationFragment;
         infoFragment.writeMessage(message);
     }
 
     @Override
     public void updateFragmentSkills(int programming, int english) {
-        ((WorkFragment) workFragment).updateSkills(programming, english);
-        ((StudyFragment) studyFragment).updateSkills(programming, english);
+        workFragment.updateSkills(programming, english);
+        studyFragment.updateSkills(programming, english);
     }
 
     @Override
-    public void showDeathMessage() {
-        SoundActivity.hearSound(this, R.raw.death);
+    public void showGameEndMessage(String title, String message, String button_name, int audio) {
+        SoundActivity.hearSound(this, audio);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getContext().getString(R.string.death))
-                .setMessage(getContext().getString(R.string.death_text))
+        builder.setTitle(title)
+                .setMessage(message)
                 .setCancelable(false)
                 .setNegativeButton(
-                        getContext().getString(R.string.death_button),
-                        (dialog, id) -> {
-                            finish();
-                            dialog.cancel();
-                        });
-        AlertDialog alert = builder.create();
-        alert.show();
-
-        alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLUE);
-    }
-
-    @Override
-    public void showFailGameMessage() {
-        SoundActivity.hearSound(this, R.raw.death);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getContext().getString(R.string.universityFail))
-                .setMessage(getContext().getString(R.string.universityFailText))
-                .setCancelable(false)
-                .setNegativeButton(
-                        getContext().getString(R.string.universityFailButton),
+                        button_name,
                         (dialog, id) -> {
                             finish();
                             dialog.cancel();
@@ -289,5 +294,46 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (presenter.isLoose()) {
+            resetPreferences();
+        } else {
+            savePreferences();
+        }
+    }
+
+    private void resetPreferences() {
+        SharedPreferences.Editor editor = getSharedPreferences("settings", MODE_PRIVATE).edit();
+        editor.putInt("time", 1);
+        editor.putInt("money", 50);
+        editor.putInt("satiety", 50);
+        editor.putInt("health", 50);
+        editor.putInt("educationLevel", 0);
+        editor.putInt("programmingSkill", 0);
+        editor.putInt("englishSkill", 0);
+        editor.putString("course", "1");
+        editor.putString("studyStage", getContext().getString(R.string.semestr));
+        editor.putString("englishSkillText", getContext().getString(R.string.a1));
+        editor.putString("programmingSkillText", getContext().getString(R.string.begginer_prog));
+        editor.putString("randomActions", "");
+        editor.apply();
+    }
+
+    private void savePreferences() {
+        GamePresenter.GameSettings settings = presenter.getPlayerSettings();
+        SharedPreferences.Editor editor = getSharedPreferences("settings", MODE_PRIVATE).edit();
+        editor.putInt("time", settings.gameTime);
+        editor.putInt("money", settings.money);
+        editor.putInt("satiety", settings.satiety);
+        editor.putInt("health", settings.health);
+        editor.putInt("educationLevel", settings.educationLevel);
+        editor.putInt("programmingSkill", settings.programmingSkill);
+        editor.putInt("englishSkill", settings.englishSkill);
+        InfoFragment.InfoState state = informationFragment.getState();
+        editor.putString("course", state.playerCourse);
+        editor.putString("studyStage", state.studyStage);
+        editor.putString("englishSkillText", state.englishSkill);
+        editor.putString("programmingSkillText", state.programmingSkill);
+        editor.putString("randomActions", state.randomActionsMessages);
+        editor.apply();
     }
 }

@@ -10,6 +10,7 @@ import com.source.studsimulator.model.entity.RandomAction;
 import com.source.studsimulator.model.entity.Study;
 import com.source.studsimulator.model.entity.Work;
 import com.source.studsimulator.relation.GameContract;
+import com.source.studsimulator.relation.GamePresenter;
 import com.source.studsimulator.ui.StudSimulatorApplication;
 
 import java.util.Random;
@@ -29,9 +30,7 @@ public class GameLogic implements GameContract.Model {
         PROGRAMMING_SKILL, ENGLISH_SKILL
     }
 
-    public GameLogic() {
-        student = new Student();
-    }
+    public GameLogic() {}
 
     @Override
     public int getEnergyLevel() {
@@ -138,6 +137,25 @@ public class GameLogic implements GameContract.Model {
         student.changeHealth(-random.nextInt(5));
         student.changeSatiety(-random.nextInt(5));
         student.changeEducationLevel(-random.nextInt(5));
+    }
+
+    @Override
+    public void setPlayerSettings(GamePresenter.GameSettings settings) {
+        student = new Student(settings);
+        gameTime = settings.gameTime;
+    }
+
+    @Override
+    public GamePresenter.GameSettings getPlayerSettings() {
+        GamePresenter.GameSettings settings = new GamePresenter.GameSettings();
+        settings.gameTime = gameTime;
+        settings.money = student.getParameter(PlayerStatsEnum.MONEY);
+        settings.health = student.getParameter(PlayerStatsEnum.HEALTH);
+        settings.satiety = student.getParameter(PlayerStatsEnum.SATIETY);
+        settings.educationLevel = student.getParameter(PlayerStatsEnum.EDUCATION_LEVEL);
+        settings.programmingSkill = student.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL);
+        settings.englishSkill = student.getParameter(PlayerStatsEnum.ENGLISH_SKILL);
+        return settings;
     }
 
     private void updateStudyStage() {

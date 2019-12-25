@@ -83,7 +83,7 @@ public class Friend implements ContainsRandomAction {
 
     public void decreaseCharacteristics() {
         if (isFriendshipLevelCanChange) {
-            friendshipLevel -= 4;
+            friendshipLevel -= 2;
             friendshipLevel = Math.max(0, friendshipLevel);
         }
     }
