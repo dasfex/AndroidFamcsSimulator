@@ -146,5 +146,14 @@
     <string name="feedback">Хотите оставить отзыв?..</string>
     <string name="cant_stage">Стажировки доступны только на каникулах</string>
     <string name="stage_end">Стажировка закончилась. Вы заработали кучу долларов и отправляетесь домой</string>
+    <string name="win">ПОБЕДА</string>
+    <string name="winText">Это невероятно! Вы закончили универ и нашли себе хорошую работу! Кажется, вы готовы к взрослой жизни</string>
+    <string name="repeatText">Еще раз</string>
+    <string name="loose">ПОРАЖЕНИЕ</string>
+    <string name="looseText">Вы закончили универ, но так и не нашли себе работу. Ваш красный диплом никому не нужен.</string>
+    <string name="repeat2Text">Вот черт. Еще раз</string>
+    <string name="loose2">ОТЧИСЛЕНИЕ</string>
+    <string name="loose2Textr">Ты завалил сессию и отчислился. Надеюсь, ты хорошо провел время в универе. Теперь тебя ждет армия.</string>
+    <string name="repeat2">Перепоступить!</string>
 
 </resources>

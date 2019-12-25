@@ -1,8 +1,6 @@
 package com.source.studsimulator.model;
 
 
-import androidx.fragment.app.Fragment;
-
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Friend;

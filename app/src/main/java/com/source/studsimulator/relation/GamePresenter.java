@@ -32,7 +32,8 @@ public class GamePresenter implements GameContract.Presenter {
         private String programmingSkill;
         private String englishSkill;
 
-        public PlayerInformation(String course, String studyStage, String programmingSkill, String englishSkill) {
+        public PlayerInformation(String course, String studyStage,
+                                 String programmingSkill, String englishSkill) {
             this.course = course;
             this.studyStage = studyStage;
             this.programmingSkill = programmingSkill;
@@ -403,7 +404,7 @@ public class GamePresenter implements GameContract.Presenter {
         }
     }
 
-    void eraseExcessLiveChoices() {
+    private void eraseExcessLiveChoices() {
         if (!model.getStudyStage().equals(StudSimulatorApplication.getContext().getString(R.string.holidays))) {
             for (Work workItem : weekLiveChoicesStaff.getWorkList()) {
                 if (ActionObjects.getSummerWorkList().contains(workItem)) {
@@ -415,35 +416,35 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     void checkIfLoose() {
-        if (model.getWeek() >= 120) {
+        if (model.getWeek() >= 210) {
             if (weekLiveChoicesStaff.getWorkList().isEmpty()) {
-                String title = "ПОБЕДА";
-                String message = "Это невероятно! Вы закончили универ и нашли себе хорошую работу! Кажется, вы готовы к взрослой жизни";
-                String button_name = "Еще раз";
+                String title = getContext().getString(R.string.win);
+                String message = getContext().getString(R.string.winText);
+                String button_name = getContext().getString(R.string.repeatText);
                 int audio = R.raw.win;
                 view.showGameEndMessage(title, message, button_name, audio);
             } else {
-                String title = "ПОРАЖЕНИЕ";
-                String message = "Вы закончили универ,но так и не нашли себе работу. Ваш красный диплом никому не нужен.";
-                String button_name = "Вот черт. Еще раз";
+                String title = getContext().getString(R.string.loose);
+                String message = getContext().getString(R.string.looseText);
+                String button_name = getContext().getString(R.string.repeat2Text);
                 int audio = R.raw.death;
                 view.showGameEndMessage(title, message, button_name, audio);
             }
-        } else if(model.getParameter(PlayerStatsEnum.SATIETY)==0||
-            model.getParameter(PlayerStatsEnum.HEALTH)==0)
-    {
-        String title = getContext().getString(R.string.death);
-        String message = getContext().getString(R.string.death_text);
-        String button_name = getContext().getString(R.string.death_button);
-        int audio = R.raw.death;
-        view.showGameEndMessage(title, message, button_name, audio);
-    } else if(model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL)==0 && model.getStudyStage().equals("сессия"))
-    {
-        String title = "ОТЧИСЛЕНИЕ";
-        String message = "Ты завалил сессию и отчислился. Надеюсь, ты хорошо провел время в универе. Теперь тебя ждет армия.";
-        String button_name = "Попробовать еще раз";
-        int audio = R.raw.death;
-        view.showGameEndMessage(title, message, button_name, audio);
+        } else if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
+                model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
+            String title = getContext().getString(R.string.death);
+            String message = getContext().getString(R.string.death_text);
+            String button_name = getContext().getString(R.string.death_button);
+            int audio = R.raw.death;
+            view.showGameEndMessage(title, message, button_name, audio);
+        } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) == 0 &&
+                model.getStudyStage().equals(
+                        StudSimulatorApplication.getContext().getString(R.string.session))) {
+            String title = getContext().getString(R.string.loose2);
+            String message = getContext().getString(R.string.loose2Textr);
+            String button_name = getContext().getString(R.string.repeat2);
+            int audio = R.raw.death;
+            view.showGameEndMessage(title, message, button_name, audio);
+        }
     }
-}
 }
