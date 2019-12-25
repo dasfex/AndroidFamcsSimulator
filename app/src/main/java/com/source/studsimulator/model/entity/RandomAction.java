@@ -7,18 +7,18 @@ public class RandomAction {
     //вероятность от 1 до 100
     private int probability;
     private int healthChanging;
-    private int studyChanging;
+    private int educationChanging;
     private int satietyChanging;
     private int moneyChanging;
     private Random rand = new Random();
 
     public RandomAction(String message, int probability,
-                        int healthChanging, int studyChanging, int satietyChanging,
+                        int healthChanging, int educationChanging, int satietyChanging,
                         int moneyChanging) {
         this.message = message;
         this.probability = probability;
         this.healthChanging = healthChanging;
-        this.studyChanging = studyChanging;
+        this.educationChanging = educationChanging;
         this.satietyChanging = satietyChanging;
         this.moneyChanging = moneyChanging;
     }
@@ -36,8 +36,8 @@ public class RandomAction {
         return healthChanging;
     }
 
-    public int getStudyChanging() {
-        return studyChanging;
+    public int getEducationChanging() {
+        return educationChanging;
     }
 
     public int getSatietyChanging() {

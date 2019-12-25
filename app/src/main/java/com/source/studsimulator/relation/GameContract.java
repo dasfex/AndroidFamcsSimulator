@@ -29,7 +29,7 @@ public interface GameContract {
         void activateFoodButton(int number);
         void activateHobbyButton(int number);
 
-        void showGameEndMessage(String title, String message, String button_name, int audio);
+        void showGameEndMessage(String title, String message, String buttonName, int audio);
         void notAvailableMessage(String message);
         void unClick(Work workItem, Work.TypeOfWork type);
     }
@@ -77,6 +77,7 @@ public interface GameContract {
         int getParameter(GameLogic.PlayerStatsEnum characteristic);
         int getEnergyLevel();
         int getWeek();
+        boolean isKicked();
         String getStudyStage();
     }
 }

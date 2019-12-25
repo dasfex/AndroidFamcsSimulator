@@ -260,6 +260,7 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         studyFragment.updateSkills(programming, english);
     }
 
+    @Override
     public void showGameEndMessage(String title, String message, String button_name, int audio) {
         SoundActivity.hearSound(this, audio);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

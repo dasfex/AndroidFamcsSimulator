@@ -1,7 +1,5 @@
 package com.source.studsimulator.model;
 
-import android.drm.DrmStore;
-
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.entity.Food;
 import com.source.studsimulator.model.entity.Friend;
@@ -45,21 +43,21 @@ public class ActionObjects {
 
     public static List<StudentActivity> getUniversityList() {
         if (universityList.isEmpty()) {
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 1, 0, -1, 0, 0, 0, 0, 0));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 5, -4, -8, 1, 0, 0, 0, 1));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 3, -1, -5, 2, 0, 0, 0, 2, ActionObjects.getAction(1)));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 10, -6, -15, 4, 0, 5, 0, 3));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 0, 0, 5, 0, 0, 0, 0, 0));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 5, -4, -15, 1, 0, 0, 0, 1));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 2, -1, -10, 2, 0, 0, 0, 2, ActionObjects.getAction(1)));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 9, -6, -20, 4, 0, 5, 0, 3));
         }
         return universityList;
     }
 
     public static List<StudentActivity> getExtraActivityList() {
         if (extraActivityList.isEmpty()) {
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.english), 5, 3, -2, -5, 0, 0, 10, 0, 1));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.itransition), 0, 6, -4, -8, 4, 20, 2, 0, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.english), 5, 8, -2, -5, 0, 0, 10, 0, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.itransition), 0, 7, -4, -8, 4, 20, 2, 0, 1));
             extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.epam), 0, 10, -6, -10, 8, 50, 6, 50, 1));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.shad), 0, 15, -12, -13, 14, 300, 0, 0, 5));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cookingCourses), 5, 2, 4, 0, 0, 0, 0, 0, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.shad), 0, 13, -12, -20, 14, 300, 0, 0, 5));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cookingCourses), 5, 20, 4, 0, 0, 0, 0, 0, 1));
         }
         return extraActivityList;
     }
