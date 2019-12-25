@@ -9,15 +9,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.model.ActionObjects;
-import com.source.studsimulator.model.Student;
 import com.source.studsimulator.model.entity.StudentActivity;
 import com.source.studsimulator.model.entity.Study;
-import com.source.studsimulator.model.entity.Work;
-import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.fragments.adapters.ActiveButtonsAdapter;
 import com.source.studsimulator.ui.fragments.adapters.OneActiveButtonAdapter;
 

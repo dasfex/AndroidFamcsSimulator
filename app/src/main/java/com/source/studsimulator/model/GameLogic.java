@@ -22,8 +22,6 @@ public class GameLogic implements GameContract.Model {
     private int energyLevel = 16;
     private String studyStage = StudSimulatorApplication.getContext().getString(R.string.semestr);
     private Random random = new Random();
-    private boolean isKicked = false;
-    private int generalEducationChange = 0;
 
     public enum PlayerStatsEnum {
         EDUCATION_LEVEL, HEALTH, SATIETY, MONEY,
@@ -47,7 +45,6 @@ public class GameLogic implements GameContract.Model {
         gameTime += 1;
         energyLevel = energy;
         updateStudyStage();
-        checkForEndGame();
     }
 
     @Override
@@ -94,7 +91,6 @@ public class GameLogic implements GameContract.Model {
         student.changeEducationLevel(study.getEducationChanging());
         student.changeEnglishSkill(study.getEnglishSkillIncrease());
         student.changeProgrammingSkill(study.getProgrammingSkillIncrease());
-        increaseEducationChanging(study.getEducationChanging());
         pay(study);
     }
 
@@ -108,23 +104,11 @@ public class GameLogic implements GameContract.Model {
         return gameTime;
     }
 
-    public boolean isKicked() {
-        return isKicked;
-    }
-
     public void applyRandomAction(RandomAction action) {
         student.changeHealth(action.getHealthChanging());
         student.changeSatiety(action.getSatietyChanging());
         student.changeEducationLevel(action.getEducationChanging());
         student.changeMoney(action.getMoneyChanging());
-        increaseEducationChanging(action.getEducationChanging());
-    }
-
-    private void increaseEducationChanging(int change) {
-        if (change < 0) {
-            throw new RuntimeException("CHANGE IS NEGATIVE");
-        }
-        generalEducationChange += change;
     }
 
     @Override
@@ -167,19 +151,6 @@ public class GameLogic implements GameContract.Model {
             studyStage = StudSimulatorApplication.getContext().getString(R.string.session);
         } else {
             studyStage = StudSimulatorApplication.getContext().getString(R.string.holidays);
-        }
-    }
-
-    private void checkForEndGame() {
-        if (studyStage.equals(StudSimulatorApplication.getContext().getString(R.string.session)) &&
-            student.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) < 70) {
-            isKicked = true;
-        }
-        if (gameTime % 52 == 16 || gameTime % 52 == 40) {
-            if (generalEducationChange < 100) {
-                isKicked = true;
-            }
-            generalEducationChange = 0;
         }
     }
 }

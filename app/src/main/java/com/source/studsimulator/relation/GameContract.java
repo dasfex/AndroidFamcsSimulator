@@ -77,7 +77,6 @@ public interface GameContract {
         int getParameter(GameLogic.PlayerStatsEnum characteristic);
         int getEnergyLevel();
         int getWeek();
-        boolean isKicked();
         String getStudyStage();
     }
 }

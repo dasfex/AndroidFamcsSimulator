@@ -4,12 +4,12 @@ package com.source.studsimulator.model;
 import com.source.studsimulator.relation.GamePresenter;
 
 public class Student {
-    private int money = 50;
-    private int health = 50;
-    private int satiety = 50;
-    private int educationLevel = 0;
-    private int programmingSkill = 0;
-    private int englishSkill = 0;
+    private int money;
+    private int health;
+    private int satiety;
+    private int educationLevel;
+    private int programmingSkill;
+    private int englishSkill;
 
     public Student(GamePresenter.GameSettings settings) {
         money = settings.money;
