@@ -1,12 +1,19 @@
 package com.source.studsimulator.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private Button formButton;
     private Button startButton;
     private Button stopButton;
+    private Button rulesButton;
 
     private boolean IsActive = false;
 
@@ -40,6 +48,17 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         startButton.setOnClickListener(this);
         stopButton.setOnClickListener(this);
+
+        rulesButton = findViewById(R.id.rulesButton);
+        rulesButton.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingsActivity.this, RulesActivity.class);
+            startActivity(intent);
+        });
+
+//        webView = findViewById(R.id.webView);
+//        //  webView.setWebViewClient(webViewClient);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.loadUrl("file:///android_asset/rules.html");
     }
 
     @Override
