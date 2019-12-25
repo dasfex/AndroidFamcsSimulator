@@ -56,6 +56,10 @@ public class GamePresenter implements GameContract.Presenter {
         }
     }
 
+    public enum endGameCondition {
+        DEATH, LOOSE, WIN, OTCHISLEN
+    }
+
     private GameContract.Model model;
     private GameContract.View view;
     private ViewState weekLiveChoicesStaff;
@@ -201,12 +205,10 @@ public class GamePresenter implements GameContract.Presenter {
 
         model.normalizeCharacteristics();
 
-        if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
-                model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
-            view.showDeathMessage();
-        }
         view.updateFragmentSkills(model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL),
                 model.getParameter(PlayerStatsEnum.ENGLISH_SKILL));
+
+        checkIfLoose();
     }
 
     @Override
@@ -411,4 +413,37 @@ public class GamePresenter implements GameContract.Presenter {
             }
         }
     }
+
+    void checkIfLoose() {
+        if (model.getWeek() >= 120) {
+            if (weekLiveChoicesStaff.getWorkList().isEmpty()) {
+                String title = "ПОБЕДА";
+                String message = "Это невероятно! Вы закончили универ и нашли себе хорошую работу! Кажется, вы готовы к взрослой жизни";
+                String button_name = "Еще раз";
+                int audio = R.raw.win;
+                view.showGameEndMessage(title, message, button_name, audio);
+            } else {
+                String title = "ПОРАЖЕНИЕ";
+                String message = "Вы закончили универ,но так и не нашли себе работу. Ваш красный диплом никому не нужен.";
+                String button_name = "Вот черт. Еще раз";
+                int audio = R.raw.death;
+                view.showGameEndMessage(title, message, button_name, audio);
+            }
+        } else if(model.getParameter(PlayerStatsEnum.SATIETY)==0||
+            model.getParameter(PlayerStatsEnum.HEALTH)==0)
+    {
+        String title = getContext().getString(R.string.death);
+        String message = getContext().getString(R.string.death_text);
+        String button_name = getContext().getString(R.string.death_button);
+        int audio = R.raw.death;
+        view.showGameEndMessage(title, message, button_name, audio);
+    } else if(model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL)==0 && model.getStudyStage().equals("сессия"))
+    {
+        String title = "ОТЧИСЛЕНИЕ";
+        String message = "Ты завалил сессию и отчислился. Надеюсь, ты хорошо провел время в универе. Теперь тебя ждет армия.";
+        String button_name = "Попробовать еще раз";
+        int audio = R.raw.death;
+        view.showGameEndMessage(title, message, button_name, audio);
+    }
+}
 }

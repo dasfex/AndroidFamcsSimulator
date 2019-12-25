@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.source.studsimulator.R;
 import com.source.studsimulator.relation.GamePresenter;
+import com.source.studsimulator.ui.StudSimulatorApplication;
 import com.source.studsimulator.ui.activity.SoundActivity;
 
 
@@ -30,6 +32,8 @@ public class InfoFragment extends Fragment {
     private TextView studyStage;
     private TextView randomActionsMessages;
 
+    private InfoState state = new InfoState();
+
     private OnInformationFragmentListener activityListener;
 
     @Override
@@ -40,6 +44,26 @@ public class InfoFragment extends Fragment {
         initializeWidgets(view);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        playerCourse.setText(state.playerCourse);
+        programmingSkill.setText(state.programmingSkill);
+        englishSkill.setText(state.englishSkill);
+        studyStage.setText(state.studyStage);
+        randomActionsMessages.setText(state.randomActionsMessages);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        state.playerCourse = String.valueOf(playerCourse.getText());
+        state.englishSkill = String.valueOf(englishSkill.getText());
+        state.programmingSkill = String.valueOf(programmingSkill.getText());
+        state.studyStage = String.valueOf(studyStage.getText());
+        state.randomActionsMessages = String.valueOf(randomActionsMessages.getText());
     }
 
     private void initializeWidgets(View view) {
@@ -101,5 +125,22 @@ public class InfoFragment extends Fragment {
 
     public interface OnInformationFragmentListener {
         void onNewWeekClicked();
+    }
+
+    private class InfoState {
+        String playerCourse;
+        String programmingSkill;
+        String englishSkill;
+        String studyStage;
+        String randomActionsMessages;
+
+        public InfoState() {
+            playerCourse = "1";
+            programmingSkill = StudSimulatorApplication.getContext().getString(
+                    R.string.begginer_prog);
+            englishSkill = StudSimulatorApplication.getContext().getString(R.string.a1);
+            studyStage = StudSimulatorApplication.getContext().getString(R.string.semestr);
+            randomActionsMessages = "";
+        }
     }
 }
