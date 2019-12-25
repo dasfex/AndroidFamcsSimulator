@@ -137,14 +137,23 @@
     <string name="gena_prog">Korotkevich</string>
     <string name="shanson">Шансончик, который играет</string>
 
-    <string name="energyless">Недостаточно энергии</string>
     <string name="carla">Kарла</string>
     <string name="spilbergsasha">Саша Спилберг</string>
     <string name="star">Стар</string>
+    <string name="alone">С собой</string>
+    <string name="vitya">Витя</string>
+    <string name="zhenya">Женя</string>
+    <string name="dragonFly">Ник</string>
+
+    <string name="energyless">Недостаточно энергии</string>
     <string name="programmingless">Недостаточный навык программирования</string>
     <string name="englishless">Недостаточный навык английского</string>
-    <string name="feedback">Хотите оставить отзыв?..</string>
     <string name="cant_stage">Стажировки доступны только на каникулах</string>
+    <string name="feedback">Хотите оставить отзыв?..</string>
     <string name="stage_end">Стажировка закончилась. Вы заработали кучу долларов и отправляетесь домой</string>
+
+    <string name="universityFail">Вы отчислены!</string>
+    <string name="universityFailText">Вы не сдали сессию, и вас отчислили!</string>
+    <string name="universityFailButton">Перепоступить!</string>
 
 </resources>

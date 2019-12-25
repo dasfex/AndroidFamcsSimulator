@@ -30,6 +30,8 @@ public interface GameContract {
         void activateHobbyButton(int number);
 
         void showDeathMessage();
+        void showFailGameMessage();
+
         void notAvailableMessage(String message);
         void unClick(Work workItem, Work.TypeOfWork type);
     }
@@ -69,6 +71,7 @@ public interface GameContract {
         int getParameter(GameLogic.PlayerStatsEnum characteristic);
         int getEnergyLevel();
         int getWeek();
+        boolean isKicked();
         String getStudyStage();
     }
 }
