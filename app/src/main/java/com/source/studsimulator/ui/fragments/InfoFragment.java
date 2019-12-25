@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -116,6 +117,10 @@ public class InfoFragment extends Fragment {
         randomActionsMessages.append(message);
     }
 
+    public InfoState getState() {
+        return state;
+    }
+
     public void updateWeekInformation(GamePresenter.PlayerInformation newInformation) {
         playerCourse.setText(newInformation.getCourse());
         programmingSkill.setText(newInformation.getProgrammingSkill());
@@ -127,12 +132,16 @@ public class InfoFragment extends Fragment {
         void onNewWeekClicked();
     }
 
-    private class InfoState {
-        String playerCourse;
-        String programmingSkill;
-        String englishSkill;
-        String studyStage;
-        String randomActionsMessages;
+    public void infoStateLoad(InfoState state) {
+        this.state = state;
+    }
+
+    public static class InfoState {
+        public String playerCourse;
+        public String programmingSkill;
+        public String englishSkill;
+        public String studyStage;
+        public String randomActionsMessages;
 
         public InfoState() {
             playerCourse = "1";

@@ -49,6 +49,11 @@ public interface GameContract {
 
         void clickOnHobbyButton(int position, Friend friend);
         void unclickOnHobbyButton(Hobby hobby, Friend friend);
+
+        void setPlayerSettings(GamePresenter.GameSettings settings);
+
+        GamePresenter.GameSettings getPlayerSettings();
+        boolean isLoose();
     }
 
     interface Model {
@@ -65,6 +70,9 @@ public interface GameContract {
         void normalizeCharacteristics();
 
         void changeEnergyLevel(int energyLevelPoints);
+
+        void setPlayerSettings(GamePresenter.GameSettings settings);
+        GamePresenter.GameSettings getPlayerSettings();
 
         int getParameter(GameLogic.PlayerStatsEnum characteristic);
         int getEnergyLevel();

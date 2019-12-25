@@ -141,11 +141,17 @@
     <string name="carla">Kарла</string>
     <string name="spilbergsasha">Саша Спилберг</string>
     <string name="star">Стар</string>
+    <string name="alone">С собой</string>
+    <string name="vitya">Витя</string>
+    <string name="zhenya">Женя</string>
+    <string name="dragonFly">Ник</string>
+
     <string name="programmingless">Недостаточный навык программирования</string>
     <string name="englishless">Недостаточный навык английского</string>
     <string name="feedback">Хотите оставить отзыв?..</string>
     <string name="cant_stage">Стажировки доступны только на каникулах</string>
-    <string name="stage_end">Стажировка закончилась. Вы заработали кучу долларов и отправляетесь домой</string>
+    <string name="stage_end">Стажировка закончилась. Вы заработали кучу долларов и отправляетесь домой!</string>
+
     <string name="win">ПОБЕДА</string>
     <string name="winText">Это невероятно! Вы закончили универ и нашли себе хорошую работу! Кажется, вы готовы к взрослой жизни</string>
     <string name="repeatText">Еще раз</string>

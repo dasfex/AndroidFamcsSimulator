@@ -1,8 +1,9 @@
 package com.source.studsimulator.model;
 
 
-public class Student {
+import com.source.studsimulator.relation.GamePresenter;
 
+public class Student {
     private int money = 50;
     private int health = 50;
     private int satiety = 50;
@@ -10,8 +11,13 @@ public class Student {
     private int programmingSkill = 0;
     private int englishSkill = 0;
 
-    public Student() {
-
+    public Student(GamePresenter.GameSettings settings) {
+        money = settings.money;
+        health = settings.health;
+        satiety = settings.satiety;
+        educationLevel = settings.educationLevel;
+        programmingSkill = settings.programmingSkill;
+        englishSkill = settings.englishSkill;
     }
 
     public void changeHealth(int change) {

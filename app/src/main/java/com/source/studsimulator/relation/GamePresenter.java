@@ -57,13 +57,10 @@ public class GamePresenter implements GameContract.Presenter {
         }
     }
 
-    public enum endGameCondition {
-        DEATH, LOOSE, WIN, OTCHISLEN
-    }
-
     private GameContract.Model model;
     private GameContract.View view;
     private ViewState weekLiveChoicesStaff;
+    private boolean isFail = false;
 
     public GamePresenter(GameContract.View newView, GameContract.Model newModel) {
         view = newView;
@@ -334,6 +331,22 @@ public class GamePresenter implements GameContract.Presenter {
         changeEnergyLevel();
     }
 
+    @Override
+    public void setPlayerSettings(GameSettings settings) {
+        model.setPlayerSettings(settings);
+    }
+
+
+    @Override
+    public GameSettings getPlayerSettings() {
+        return model.getPlayerSettings();
+    }
+
+    @Override
+    public boolean isLoose() {
+        return isFail;
+    }
+
     private void changeEnergyLevel() {
         view.updateEnergyLevel(model.getEnergyLevel());
     }
@@ -415,7 +428,7 @@ public class GamePresenter implements GameContract.Presenter {
         }
     }
 
-    void checkIfLoose() {
+    private void checkIfLoose() {
         if (model.getWeek() >= 210) {
             if (weekLiveChoicesStaff.getWorkList().isEmpty()) {
                 String title = getContext().getString(R.string.win);
@@ -429,6 +442,7 @@ public class GamePresenter implements GameContract.Presenter {
                 String button_name = getContext().getString(R.string.repeat2Text);
                 int audio = R.raw.death;
                 view.showGameEndMessage(title, message, button_name, audio);
+                isFail = true;
             }
         } else if (model.getParameter(PlayerStatsEnum.SATIETY) == 0 ||
                 model.getParameter(PlayerStatsEnum.HEALTH) == 0) {
@@ -437,6 +451,7 @@ public class GamePresenter implements GameContract.Presenter {
             String button_name = getContext().getString(R.string.death_button);
             int audio = R.raw.death;
             view.showGameEndMessage(title, message, button_name, audio);
+            isFail = true;
         } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) == 0 &&
                 model.getStudyStage().equals(
                         StudSimulatorApplication.getContext().getString(R.string.session))) {
@@ -445,6 +460,27 @@ public class GamePresenter implements GameContract.Presenter {
             String button_name = getContext().getString(R.string.repeat2);
             int audio = R.raw.death;
             view.showGameEndMessage(title, message, button_name, audio);
+            isFail = true;
+        }
+    }
+
+    public static class GameSettings {
+        public int gameTime;
+        public int money;
+        public int health;
+        public int satiety;
+        public int educationLevel;
+        public int programmingSkill;
+        public int englishSkill;
+
+        public GameSettings() {
+            this.gameTime = 1;
+            this.money = 50;
+            this.health = 50;
+            this.satiety = 50;
+            this.educationLevel = 0;
+            this.programmingSkill = 0;
+            this.englishSkill = 0;
         }
     }
 }

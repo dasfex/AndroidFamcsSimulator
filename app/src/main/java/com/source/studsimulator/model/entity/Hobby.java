@@ -10,7 +10,7 @@ public class Hobby implements Payable, StudentActivity, ContainsRandomAction {
     private int energyNeeded;
     private int friendshipLevelRequired;
     private boolean isEnable = true;
-    RandomAction randomAction;
+    private RandomAction randomAction;
 
     public Hobby(String title, int price,
                  int healthChanging, int satietyChanging, int energy,

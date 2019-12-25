@@ -46,20 +46,20 @@ public class ActionObjects {
     public static List<StudentActivity> getUniversityList() {
         if (universityList.isEmpty()) {
             universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 0, 0, 5, 0, 0, 0, 0, 0));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 15, -4, -15, 1, 0, 0, 0, 1));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 2, -1, -10, 2, 0, 0, 0, 2, ActionObjects.getAction(1)));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 20, -6, -20, 4, 0, 5, 0, 3));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 7, -4, -8, 1, 0, 0, 0, 1));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 5, -1, -10, 2, 0, 0, 0, 2, ActionObjects.getAction(1)));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 10, -6, -15, 4, 0, 5, 0, 3));
         }
         return universityList;
     }
 
     public static List<StudentActivity> getExtraActivityList() {
         if (extraActivityList.isEmpty()) {
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.english), 5, 8, -2, -5, 0, 0, 10, 0, 1));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.itransition), 0, 10, -4, -8, 4, 20, 2, 0, 1));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.epam), 0, 12, -6, -10, 8, 50, 6, 50, 1));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.shad), 0, 30, -12, -20, 14, 300, 0, 0, 5));
-            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cookingCourses), 5, 20, 4, 0, 0, 0, 0, 0, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.english), 5, 3, -2, -5, 0, 0, 10, 0, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.itransition), 0, 6, -4, -8, 4, 20, 2, 0, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.epam), 0, 10, -6, -10, 8, 50, 6, 50, 1));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.shad), 0, 15, -12, -13, 14, 300, 0, 0, 5));
+            extraActivityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cookingCourses), 5, 2, 4, 0, 0, 0, 0, 0, 1));
         }
         return extraActivityList;
     }
@@ -81,12 +81,12 @@ public class ActionObjects {
 
     public static List<Friend> getFriendList() {
         if (friendList.isEmpty()) {
-            friendList.add(new Friend(100, -1, 0, "С собой", R.drawable.alone, false));
-            friendList.add(new Friend(50, 20, 3, "Витя", R.drawable.vitya, ActionObjects.getAction(9)));
-            friendList.add(new Friend(50, 5, 5, "Женя", R.drawable.zhenya, ActionObjects.getAction(9)));
+            friendList.add(new Friend(100, -1, 0, StudSimulatorApplication.getContext().getString(R.string.alone), R.drawable.alone, false));
+            friendList.add(new Friend(50, 20, 3, StudSimulatorApplication.getContext().getString(R.string.vitya), R.drawable.vitya, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 5, 5, StudSimulatorApplication.getContext().getString(R.string.zhenya), R.drawable.zhenya, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 90, 20, StudSimulatorApplication.getContext().getString(R.string.spilbergsasha), R.drawable.sasha, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 70, 15, StudSimulatorApplication.getContext().getString(R.string.carla), R.drawable.karla, ActionObjects.getAction(9)));
-            friendList.add(new Friend(50, 10, 10, "Ник", R.drawable.nick, ActionObjects.getAction(9)));
+            friendList.add(new Friend(50, 10, 10, StudSimulatorApplication.getContext().getString(R.string.dragonFly), R.drawable.nick, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 15, 11, StudSimulatorApplication.getContext().getString(R.string.star), R.drawable.star, ActionObjects.getAction(9)));
         }
         return friendList;
@@ -107,7 +107,7 @@ public class ActionObjects {
         if (workList.isEmpty()) {
             workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Mak), -10, -10, 50, 0, 0, 10, 6, 2));
             workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Jtransition), -6, -7, 40, 15, 2, 5, 4, 3));
-            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.tyndex), -20, -30, 100, 50, 3, 20, 1, 3));
+            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.tyndex), -15, -20, 100, 50, 3, 20, 1, 3));
         }
         return workList;
     }
