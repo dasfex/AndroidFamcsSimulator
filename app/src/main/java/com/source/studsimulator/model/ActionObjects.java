@@ -33,21 +33,21 @@ public class ActionObjects {
     public static List<StudentActivity> getFoodList() {
         if (foodList.isEmpty()) {
             foodList.add(new Food(0, StudSimulatorApplication.getContext().getString(R.string.neighbourFood), 4, 10, 1, ActionObjects.getAction(0)));
-            foodList.add(new Food(3, StudSimulatorApplication.getContext().getString(R.string.doshikFood), 7, -5, 2));
+            foodList.add(new Food(3, StudSimulatorApplication.getContext().getString(R.string.doshikFood), 7, 1, 2));
             foodList.add(new Food(7, StudSimulatorApplication.getContext().getString(R.string.stolovkaFood), 12, 7, 1));
             foodList.add(new Food(5, StudSimulatorApplication.getContext().getString(R.string.yourselfFood), 8, 10, 3));
-            foodList.add(new Food(10, StudSimulatorApplication.getContext().getString(R.string.fastFood), 20, -10, 1, ActionObjects.getAction(4)));
+            foodList.add(new Food(10, StudSimulatorApplication.getContext().getString(R.string.fastFood), 20, 3, 1, ActionObjects.getAction(4)));
             foodList.add(new Food(13, StudSimulatorApplication.getContext().getString(R.string.sushiFood), 15, 5, 1, ActionObjects.getAction(2)));
-            foodList.add(new Food(20, StudSimulatorApplication.getContext().getString(R.string.burgerFood), 40, -15, 1));
+            foodList.add(new Food(20, StudSimulatorApplication.getContext().getString(R.string.burgerFood), 40, -5, 1));
         }
         return foodList;
     }
 
     public static List<StudentActivity> getUniversityList() {
         if (universityList.isEmpty()) {
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 0, 0, 5, 0, 0, 0, 0, 0));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 7, -4, -8, 1, 0, 0, 0, 1));
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 5, -1, -10, 2, 0, 0, 0, 2, ActionObjects.getAction(1)));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 1, 0, -1, 0, 0, 0, 0, 0));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 5, -4, -8, 1, 0, 0, 0, 1));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 3, -1, -5, 2, 0, 0, 0, 2, ActionObjects.getAction(1)));
             universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 10, -6, -15, 4, 0, 5, 0, 3));
         }
         return universityList;

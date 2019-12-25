@@ -366,15 +366,15 @@ public class GamePresenter implements GameContract.Presenter {
     private String getProgrammingSkillString(int param) {
         if (param < 20) {
             return getContext().getString(R.string.begginer_prog);
-        } else if (param < 60) {
+        } else if (param < 80) {
             return getContext().getString(R.string.lub_prog);
-        } else if (param < 200) {
+        } else if (param < 190) {
             return getContext().getString(R.string.jun_prog);
-        } else if (param < 300) {
+        } else if (param < 340) {
             return getContext().getString(R.string.mid_prog);
-        } else if (param < 400) {
+        } else if (param < 500) {
             return getContext().getString(R.string.senior_prog);
-        } else if (param < 600) {
+        } else if (param < 700) {
             return getContext().getString(R.string.lead_prog);
         } else {
             return getContext().getString(R.string.gena_prog);
@@ -382,17 +382,17 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     private String getEnglishSkillString(int param) {
-        if (param < 20) {
+        if (param < 40) {
             return getContext().getString(R.string.a1);
         } else if (param < 100) {
             return getContext().getString(R.string.a2);
-        } else if (param < 200) {
+        } else if (param < 180) {
             return getContext().getString(R.string.b1);
         } else if (param < 300) {
             return getContext().getString(R.string.b2);
-        } else if (param < 500) {
+        } else if (param < 550) {
             return getContext().getString(R.string.c1);
-        } else if (param < 700) {
+        } else if (param < 800) {
             return getContext().getString(R.string.c2);
         } else {
             return getContext().getString(R.string.d13);
@@ -452,7 +452,7 @@ public class GamePresenter implements GameContract.Presenter {
             int audio = R.raw.death;
             view.showGameEndMessage(title, message, button_name, audio);
             isFail = true;
-        } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) == 0 &&
+        } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) <= 80 &&
                 model.getStudyStage().equals(
                         StudSimulatorApplication.getContext().getString(R.string.session))) {
             String title = getContext().getString(R.string.loose2);
