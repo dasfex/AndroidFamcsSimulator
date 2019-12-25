@@ -236,15 +236,14 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         ((StudyFragment) studyFragment).updateSkills(programming, english);
     }
 
-    @Override
-    public void showDeathMessage() {
-        SoundActivity.hearSound(this, R.raw.death);
+    public void showGameEndMessage(String title, String message, String button_name, int audio) {
+        SoundActivity.hearSound(this, audio);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getContext().getString(R.string.death))
-                .setMessage(getContext().getString(R.string.death_text))
+        builder.setTitle(title)
+                .setMessage(message)
                 .setCancelable(false)
                 .setNegativeButton(
-                        getContext().getString(R.string.death_button),
+                        button_name,
                         (dialog, id) -> {
                             finish();
                             dialog.cancel();
