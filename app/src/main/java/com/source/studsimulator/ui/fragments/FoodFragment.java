@@ -86,6 +86,9 @@ public class FoodFragment extends Fragment {
                 foodRvAdapter.notifyDataSetChanged();
             } else {
                 activityListener.clickOnFoodButton(position);
+                if (currentPosition != -1) {
+                    activityListener.unclickFoodButton((Food) food.get(currentPosition));
+                }
             }
         });
     }

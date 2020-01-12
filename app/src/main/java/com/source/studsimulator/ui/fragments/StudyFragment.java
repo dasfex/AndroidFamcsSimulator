@@ -110,6 +110,9 @@ public class StudyFragment extends Fragment {
                 changeButtonActivity(position);
                 universityRvAdapter.notifyDataSetChanged();
             } else {
+                if (currentPosition != -1){
+                    activityListener.unclickOnStudyButton((Study) university.get(currentPosition));
+                }
                 activityListener.clickOnStudyButton(position, Study.TYPE_OF_STUDY.UNIVERSITY);
             }
         });
