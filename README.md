@@ -1,4 +1,4 @@
-# [FAMCS Student Simulator](https://play.google.com/apps/publish/?account=7179214948195834596#RatingsPlace:p=com.source.studsimulator&appid=4974286315506903669)
+# [FAMCS Student Simulator](https://play.google.com/store/apps/details?id=com.source.studsimulator)
 <p>Пам-парам-пам! Перед Вами - мини-правила данной замечательной игры "Симулятор студента ФПМИ"!
 Почти только здесь (ну еще и непосредственно на ФПМИ) Вы сможете почувствовать себе
 студентом факультета прикладной математики и информатики некоего
