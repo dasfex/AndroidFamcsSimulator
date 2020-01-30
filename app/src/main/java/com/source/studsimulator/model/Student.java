@@ -33,16 +33,10 @@ public class Student {
     public void changeMoney(int change) { money += change; }
 
     public void changeProgrammingSkill(int change) {
-        if (change < 0) {
-            throw new IllegalArgumentException("Programming skill can't decrease.");
-        }
         programmingSkill += change;
     }
 
     public void changeEnglishSkill(int change) {
-        if (change < 0) {
-            throw new IllegalArgumentException("English skill can't decrease.");
-        }
         englishSkill += change;
     }
 

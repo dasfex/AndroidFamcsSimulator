@@ -30,11 +30,11 @@ public class ActionObjects {
 
     public static List<StudentActivity> getFoodList() {
         if (foodList.isEmpty()) {
-            foodList.add(new Food(0, StudSimulatorApplication.getContext().getString(R.string.neighbourFood), 4, 10, 1, ActionObjects.getAction(0)));
+            foodList.add(new Food(0, StudSimulatorApplication.getContext().getString(R.string.neighbourFood), 4, 5, 1, ActionObjects.getAction(0)));
             foodList.add(new Food(3, StudSimulatorApplication.getContext().getString(R.string.doshikFood), 7, 1, 2));
-            foodList.add(new Food(7, StudSimulatorApplication.getContext().getString(R.string.stolovkaFood), 12, 7, 1));
-            foodList.add(new Food(5, StudSimulatorApplication.getContext().getString(R.string.yourselfFood), 8, 10, 3));
-            foodList.add(new Food(10, StudSimulatorApplication.getContext().getString(R.string.fastFood), 20, 3, 1, ActionObjects.getAction(4)));
+            foodList.add(new Food(7, StudSimulatorApplication.getContext().getString(R.string.stolovkaFood), 12, 6, 1));
+            foodList.add(new Food(5, StudSimulatorApplication.getContext().getString(R.string.yourselfFood), 8, 8, 3));
+            foodList.add(new Food(10, StudSimulatorApplication.getContext().getString(R.string.fastFood), 20, -2, 1, ActionObjects.getAction(4)));
             foodList.add(new Food(13, StudSimulatorApplication.getContext().getString(R.string.sushiFood), 15, 5, 1, ActionObjects.getAction(2)));
             foodList.add(new Food(20, StudSimulatorApplication.getContext().getString(R.string.burgerFood), 40, -5, 1));
         }
@@ -43,7 +43,7 @@ public class ActionObjects {
 
     public static List<StudentActivity> getUniversityList() {
         if (universityList.isEmpty()) {
-            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 0, 0, 5, 0, 0, 0, 0, 0));
+            universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.noVisit), 0, 0, 0, -1, 0, 0, 0, 0, 0));
             universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.visit), 0, 5, -4, -15, 1, 0, 0, 0, 1));
             universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.cheat), 0, 2, -1, -10, 2, 0, 0, 0, 2, ActionObjects.getAction(1)));
             universityList.add(new Study(StudSimulatorApplication.getContext().getString(R.string.workHard), 0, 9, -6, -20, 4, 0, 5, 0, 3));
@@ -64,22 +64,22 @@ public class ActionObjects {
 
     public static List<StudentActivity> getHobbyList() {
         if (hobbyList.isEmpty()) {
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 7, 0, 1, -1));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 5, 15, -2, 3, 20));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 10, 20, -1, 1, 40));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 5, 12, -1, 2, 60));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 15, 5, 4, 80));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.eurovision), 0, 15, -5, 3, 10));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.help), 0, 6, 1, 3, 25));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.sport), 0, 20, 0, 10, 95));
-            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.walk), 0, 25, 2, 7, 99));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.read), 0, 3, 0, 1, -1));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.dance), 5, 6, -2, 3, 20));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.film), 4, 4, -1, 1, 40));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.beer), 5, 5, -1, 2, 60));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.vote), 0, 10, 5, 4, 80));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.eurovision), 0, 6, -5, 3, 10));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.help), 0, 5, 1, 3, 25));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.sport), 0, 13, 0, 10, 95));
+            hobbyList.add(new Hobby(StudSimulatorApplication.getContext().getString(R.string.walk), 0, 17, 2, 7, 99));
         }
         return hobbyList;
     }
 
     public static List<Friend> getFriendList() {
         if (friendList.isEmpty()) {
-            friendList.add(new Friend(100, -1, 0, StudSimulatorApplication.getContext().getString(R.string.alone), R.drawable.alone, false));
+            friendList.add(new Friend(70, -1, 0, StudSimulatorApplication.getContext().getString(R.string.alone), R.drawable.alone, false));
             friendList.add(new Friend(50, 20, 3, StudSimulatorApplication.getContext().getString(R.string.vitya), R.drawable.vitya, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 5, 5, StudSimulatorApplication.getContext().getString(R.string.zhenya), R.drawable.zhenya, ActionObjects.getAction(9)));
             friendList.add(new Friend(50, 90, 20, StudSimulatorApplication.getContext().getString(R.string.spilbergsasha), R.drawable.sasha, ActionObjects.getAction(9)));
@@ -103,16 +103,16 @@ public class ActionObjects {
 
     public static List<StudentActivity> getWorkList() {
         if (workList.isEmpty()) {
-            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Mak), -10, -10, 50, 0, 0, 10, 6, 2));
-            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Jtransition), -6, -7, 40, 15, 2, 5, 4, 3));
-            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.tyndex), -15, -20, 100, 50, 3, 20, 1, 3));
+            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Mak), -10, -10, 15, 0, 0, 10, 6, 2));
+            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.Jtransition), -6, -7, 30, 15, 2, 5, 4, 3));
+            workList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.tyndex), -15, -20, 50, 50, 3, 20, 1, 3));
         }
         return workList;
     }
 
     public static List<StudentActivity> getSummerWorkList() {
         if (summerWorkList.isEmpty()) {
-            summerWorkList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.handbook), -20, -20, 150, 30, 50, 20, 20, 4));
+            summerWorkList.add(new Work(StudSimulatorApplication.getContext().getString(R.string.handbook), -20, -20, 100, 30, 50, 20, 20, 4));
         }
         return summerWorkList;
     }
@@ -133,7 +133,7 @@ public class ActionObjects {
             ); // 2
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.parents_money_message),
-                    0, 0, 0, 0, 10)
+                    0, 0, 0, 0, 20)
             ); // 3
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.friend_fastfood_message),
@@ -145,7 +145,7 @@ public class ActionObjects {
             ); // 5
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.player_bd_message),
-                    100, 30, 30, 30, 100)
+                    100, 30, 30, 30, 70)
             ); // 6
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.draka_message),
@@ -181,7 +181,7 @@ public class ActionObjects {
             ); // 14
             randomActionsList.add(new RandomAction(
                     StudSimulatorApplication.getContext().getString(R.string.bigger_grant),
-                    100, 0, 0, 0, 60)
+                    100, 0, 0, 0, 25)
             ); // 15
         }
         return randomActionsList.get(index);

@@ -190,15 +190,13 @@ public class GamePresenter implements GameContract.Presenter {
         // stipendia
         if (model.getWeek() % 4 == 1) {
             if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) > 80) {
-                applyRandomAction(ActionObjects.getAction(15));
-            } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) > 50) {
                 applyRandomAction(ActionObjects.getAction(10));
+            } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) > 50) {
+                applyRandomAction(ActionObjects.getAction(15));
+            } else {
+                applyRandomAction(ActionObjects.getAction(11));
             }
             applyRandomAction(ActionObjects.getAction(12));
-        }
-
-        if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) == 0) {
-            applyRandomAction(ActionObjects.getAction(11));
         }
 
         model.normalizeCharacteristics();
@@ -241,7 +239,8 @@ public class GamePresenter implements GameContract.Presenter {
                 study = (Study) ActionObjects.getExtraActivityList().get(position);
                 break;
         }
-        if (study.getProgrammingSkillRequired() > model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)) {
+        if (study.getProgrammingSkillRequired() >
+                model.getParameter(PlayerStatsEnum.PROGRAMMING_SKILL)) {
             view.notAvailableMessage(getContext().getString(R.string.programmingless));
             return;
         }
@@ -429,7 +428,7 @@ public class GamePresenter implements GameContract.Presenter {
     }
 
     private void checkIfLoose() {
-        if (model.getWeek() >= 210) {
+        if (model.getWeek() >= 208) {
             if (weekLiveChoicesStaff.getWorkList().isEmpty()) {
                 String title = getContext().getString(R.string.win);
                 String message = getContext().getString(R.string.winText);
@@ -452,7 +451,7 @@ public class GamePresenter implements GameContract.Presenter {
             int audio = R.raw.death;
             view.showGameEndMessage(title, message, button_name, audio);
             isFail = true;
-        } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) <= 80 &&
+        } else if (model.getParameter(PlayerStatsEnum.EDUCATION_LEVEL) < 40 &&
                 model.getStudyStage().equals(
                         StudSimulatorApplication.getContext().getString(R.string.session))) {
             String title = getContext().getString(R.string.loose2);

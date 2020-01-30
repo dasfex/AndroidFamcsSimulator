@@ -277,6 +277,8 @@ public class GameLobbyActivity extends AppCompatActivity implements GameContract
         alert.show();
 
         alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLUE);
+
+        resetPreferences();
     }
 
     private void setOnClickListenersForFragmentButtons() {
