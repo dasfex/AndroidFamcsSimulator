@@ -72,4 +72,9 @@ FAMCS Student Simulator
     кнопку <b>"Прожить неделю!" </b>
 </p>
 
+### Предэкзаменационный мем
+
+
+![mem](/app/src/main/assets/mem.jpg)
+
 
