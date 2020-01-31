@@ -429,7 +429,7 @@ public class GamePresenter implements GameContract.Presenter {
 
     private void checkIfLoose() {
         if (model.getWeek() >= 208) {
-            if (weekLiveChoicesStaff.getWorkList().isEmpty()) {
+            if (!weekLiveChoicesStaff.getWorkList().isEmpty()) {
                 String title = getContext().getString(R.string.win);
                 String message = getContext().getString(R.string.winText);
                 String button_name = getContext().getString(R.string.repeatText);
