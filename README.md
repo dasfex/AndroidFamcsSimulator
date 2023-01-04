@@ -74,13 +74,13 @@
 
 ### Картиночки
 
-![p1](/images/IMAGE 2023-01-04 16:03:52.jpg)
-![p2](/images/IMAGE 2023-01-04 16:03:55.jpg)
-![p3](/images/IMAGE 2023-01-04 16:03:57.jpg)
-![p4](/images/IMAGE 2023-01-04 16:04:00.jpg)
-![p5](/images/IMAGE 2023-01-04 16:04:02.jpg)
-![p6](/images/IMAGE 2023-01-04 16:04:05.jpg)
-![p7](/images/IMAGE 2023-01-04 16:04:07.jpg)
-![p8](/images/IMAGE 2023-01-04 16:04:09.jpg)
+![p1](/images/p1.jpg)
+![p2](/images/p2.jpg)
+![p3](/images/p3.jpg)
+![p4](/images/p4.jpg)
+![p5](/images/p5.jpg)
+![p6](/images/p6.jpg)
+![p7](/images/p7.jpg)
+![p8](/images/p8.jpg)
 
 
